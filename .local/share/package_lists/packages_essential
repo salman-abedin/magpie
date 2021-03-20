@@ -1,0 +1,312 @@
+#---------------------------------------
+#              Shell
+#---------------------------------------
+zsh
+zsh-completions
+zsh-syntax-highlighting
+zsh-autosuggestions
+
+#---------------------------------------
+#              Dmenu
+#---------------------------------------
+fzf
+$ salman-abedin/amenu
+# rofi
+
+#---------------------------------------
+#              Multiplexer
+#---------------------------------------
+tmux
+
+#---------------------------------------
+#              Editor
+#---------------------------------------
+# neovim
+# nano
+
+#---------------------------------------
+#              Explorer
+#---------------------------------------
+$ salman-abedin/faint
+$ salman-abedin/bolt
+# @ lf-git
+# @ vidir
+
+# perl-file-mimeinfo
+# trash-cli
+# @ mimeo
+# vifm
+
+#---------------------------------------
+#              Audio
+#---------------------------------------
+alsa-utils
+pulseaudio-alsa
+pulseaudio-bluetooth
+bluez-utils
+# pulseeffects
+pavucontrol
+
+#---------------------------------------
+#              Trackpad
+#---------------------------------------
+xdotool
+xf86-input-libinput
+@ libinput-gestures
+# @ gebaar-libinput-git
+# @ gebaar
+
+#---------------------------------------
+#              Keyboard
+#---------------------------------------
+xorg-xmodmap
+xcape
+xsel
+xorg-xev
+# sxhkd
+# xclip
+
+#---------------------------------------
+#              Display Server
+#---------------------------------------
+xorg-server
+xorg-xinit
+
+#---------------------------------------
+#              Terminal Emulator
+#---------------------------------------
+$ salman-abedin/st
+# alacritty
+# termite
+
+#---------------------------------------
+#              Window Manager
+#---------------------------------------
+$ salman-abedin/dwm
+# bspwm
+# spectrwm
+
+
+#---------------------------------------
+#              Panel
+#---------------------------------------
+$ salman-abedin/uniblocks
+# polybar
+# @ yabar
+
+#---------------------------------------
+#              Compositor
+#---------------------------------------
+
+xcompmgr
+# @ transset-df
+
+# @ picom-jonaburg-git
+# @ compton-tryone-git
+# picom
+
+#---------------------------------------
+#              Sans & Serif Fonts
+#---------------------------------------
+
+ttf-ubuntu-font-family
+ttf-linux-libertine
+# @ ttf-ms-fonts
+# @ ttf-vista-fonts
+# ttf-liberation
+
+#---------------------------------------
+#               Monospace Fonts
+#---------------------------------------
+@ nerd-fonts-sf-mono
+# ttf-jetbrains-mono
+# ttf-dejavu
+# @ nerd-fonts-iosevka
+# ttf-roboto-mono
+# ttf-cascadia-code
+# @ttf-iosevka
+# ttf-inconsolata
+# ttf-bitsream-vera
+# noto-fonts
+# @ nerd-fonts-hack
+# @ ttf-mononoki
+# @ otf-code-new-roman
+
+# ttf-fira-code
+# ttf-bitstream-vera
+# ttf-droid
+# adobe-source-code-pro-fonts
+
+#---------------------------------------
+# Emojis & Glyphs
+#---------------------------------------
+@ libxft-bgra
+ttf-joypixels
+
+# noto-fonts-emoji
+# ttf-font-awesome
+# @ powerline-fonts-git
+# @ nerd-fonts-complete
+# @ ttf-symbola-free
+
+#---------------------------------------
+#              Video
+#---------------------------------------
+mesa
+
+# lib32-mesa
+# xf86-video-intel
+# vulkan-intel
+# intel-media-driver
+
+#---------------------------------------
+#              Music
+#---------------------------------------
+mpd
+mpc
+playerctl
+ncmpcpp
+@ spotify
+@ spotify_dl
+# @ spicetify-cli
+# youtube-dl
+
+#---------------------------------------
+#              Image Tools
+#---------------------------------------
+feh
+imagemagick
+# maim
+
+#---------------------------------------
+#              Browser
+#---------------------------------------
+qutebrowser
+# firefox
+# @ brave-bin
+# falkon
+
+# @ vdhcoapp
+# @ firefox-extension-video-download-helper
+
+# w3m
+
+#---------------------------------------
+#              Reader
+#---------------------------------------
+
+# @ masterpdfeditor-free
+# @ foxitreader
+
+zathura
+zathura-pdf-mupdf
+# zathura-ps
+# zathura-djvu
+
+# evince
+
+# qpdfview
+
+#---------------------------------------
+#              Torrent
+#---------------------------------------
+transmission-cli
+$ salman-abedin/tide
+
+# transmission-gtk
+# @ transmission-remote-cli-git
+
+#---------------------------------------
+#              Syncing
+#---------------------------------------
+rclone
+unison
+rsync
+
+# sshfs
+# inotify-tools
+
+# git-annex
+
+#---------------------------------------
+#              Notifications
+#---------------------------------------
+dunst
+libnotify
+# stalonetray
+
+# notification-daemon
+# dzen2
+
+#---------------------------------------
+#              Archiving
+#---------------------------------------
+unzip
+unrar
+p7zip
+# atool
+
+#---------------------------------------
+#              Mail
+#---------------------------------------
+neomutt
+# isync
+# abook
+# msmtp
+# pass
+
+#---------------------------------------
+#              Chatting
+#---------------------------------------
+weechat
+aspell
+aspell-en
+#bitlbee
+#@ bitlbee-facebook
+
+# matrix
+libolm
+weechat-matrix
+
+# # slack
+# @ slack-term-bin
+# python-websocket-client
+
+#---------------------------------------
+#              Locker
+#---------------------------------------
+xss-lock
+@ i3lock-color
+
+# @ xidlehook
+# xterm
+# cmatrix
+
+#---------------------------------------
+#              Calcurse
+#---------------------------------------
+calcurse
+vdirsyncer
+python-httplib2
+
+#---------------------------------------
+#              X Tools
+#---------------------------------------
+xdo
+xorg-xset
+xorg-xsetroot
+xorg-xrandr
+
+#---------------------------------------
+#               Misc
+#---------------------------------------
+man-db
+make
+fcron
+newsboat
+mpv
+@ doas
+@ xbanish
+wget
+android-tools
+# git

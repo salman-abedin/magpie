@@ -1,0 +1,143 @@
+#!/bin/sh
+
+#===============================================================================
+#                             Default Settings
+#===============================================================================
+
+TRASH_DIR=/mnt/internal/trash
+MARGIN_TOP_BOTTOM=0 # 0 - 49
+MARGIN_LEFT_RIGHT=0 # 0 - 49
+BORDER=bottom # rounder | sharp | horizontal | vertical | top | bottom | left | right
+
+#===============================================================================
+# Bindings ( ⁉ has to be a single character!) [ More on fzf man page ]
+#===============================================================================
+
+#===============================================================================
+#                             Filters
+#===============================================================================
+
+FILTERS="\
+node_modules;
+package-lock.json;
+pubspec.lock;
+composer.lock;
+.env;
+.packages;
+.idea;
+.gitignore;
+.dart_tool;
+.metadata;
+ios;
+android;
+yarn.lock;
+yarn-error.log;
+.git;
+.cache;
+package.json;
+tsconfig.json;
+build;
+Makefile;
+docs;
+config.mk;
+LICENSE;
+PKGBUILD;
+.cache;
+.nuxt;
+/config;
+dist;
+README.md;
+data/;
+"
+# layouts;
+# nuxt.config.js;
+
+#===============================================================================
+#                             Operations
+#===============================================================================
+
+link_soft() {
+   echo "$FILE_LIST" |
+      while read -r file; do
+         ln -rs "$file" "$LAST_DIR"
+         # cp -frs "$file" "$LAST_DIR"
+      done
+}
+link_hard() {
+   echo "$FILE_LIST" |
+      while read -r file; do
+         cp -frl "$file" "$LAST_DIR"
+      done
+}
+tmux_window() {
+   tmux new-window "$EDITOR $FILE_ARGS"
+   # tmux swap-window -d -t :-
+}
+own() {
+   echo "$FILE_ARGS" |
+      while read -r file; do
+         doas -n chown -R "$USER" "$file"
+      done
+}
+rename() {
+   kill -37 "$FAINT_PID"
+   pkill -P "$FAINT_PID"
+}
+push2android() { adb push --sync "$FILE_ARGS" $CARD; }
+# push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
+push2yy() { rsync -aP "$FILE_ARGS" salman@192.168.95.131:/mnt/internal; }
+show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
+launch_choose() { /usr/local/bin/launch -c "$FILE_ARGS" & }
+make_dir() { kill -38 "$FAINT_PID" && pkill -P "$FAINT_PID"; }
+compress() {
+   echo "$FILE_ARGS" |
+      while read -r file; do
+         tar cvzf "compressed.tar" "$file"
+      done
+}
+
+OPS="\
+✖ Tmux:tmux_window;
+🏷  Rename:rename;
+⚔  Trash:trash;
+❌ Delete:delete;
+©  Yank:yank;
+🖌  Paste:paste;
+🚚 Move:move;
+😎 Own:own;
+📱 Push to Android:push2android;
+💻 Push to YY:push2yy;
+ℹ  Show Size:show_size;
+💊 Choose:launch_choose;
+📁 New Directory:make_dir;
+♦  Compress:compress;
+🗞  Soft Link:link_soft;
+🌴 Hard Link:link_hard;
+"
+
+#===============================================================================
+#                               Icons
+#===============================================================================
+
+ICONS="\
+DIR:📁;
+FILE:📃;
+LINK:⛓;
+iso|img:📀;
+png|ico:🖼 ;
+jpg|jpeg:📸;
+part:💔;
+json:📒;
+md:📘;
+tex:📜;
+css|sass|scss:🎨;
+html|pug:📐;
+url:🌎;
+pdf|epub:📚;
+mp4|mkv:🎥;
+ts|js:🎮;
+"
+
+execute() {
+   /usr/local/bin/launch -f "$*"
+}

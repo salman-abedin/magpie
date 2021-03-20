@@ -1,0 +1,95 @@
+#                __   __
+#  ____  ____ _ / /_ / /_   __  __ _____ ____ _
+# /_  / / __ `// __// __ \ / / / // ___// __ `/
+#  / /_/ /_/ // /_ / / / // /_/ // /   / /_/ /
+# /___/\__,_/ \__//_/ /_/ \__,_//_/    \__,_/
+
+#---------------------------------------
+#              Options
+#---------------------------------------
+
+set selection-clipboard clipboard
+set adjust-open width
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+# set recolor true
+
+#---------------------------------------
+#              Bindings
+#---------------------------------------
+
+map i zoom in
+map o zoom out
+
+# map J navigate previous
+# map : navigate next
+
+# map K scroll half-up
+# map J scroll half-down
+
+map r recolor
+
+map w adjust_window width
+map W adjust_window best-fit
+
+map <Esc> quit
+
+# Index
+map ; toggle_index
+map [index] ; toggle_index
+
+# map [index] J navigate_index collapse-all
+# map [index] : navigate_index expand-all
+
+# map [index] n exit
+
+#===============================================================================
+#                     Gruvbox Color Scheme (Stolen from Bryan Jenks)
+#===============================================================================
+
+set completion-group-bg         "#282828"
+set completion-group-fg         "#ebdbb2"
+set completion-bg               "#282828"
+set completion-fg               "#ebdbb2"
+set completion-highlight-bg     "#458588"
+set completion-highlight-fg     "#ebdbb2"
+
+set notification-error-bg       "#3c3836"
+set notification-error-fg       "#ebdbb2"
+set notification-warning-bg     "#3c3836"
+set notification-warning-fg     "#ebdbb2"
+set notification-bg             "#3c3836"
+set notification-fg             "#ebdbb2"
+
+set index-bg                    "#1d2021"
+set index-fg                    "#ebdbb2"
+set index-active-bg             "#282828"
+set index-active-fg             "#ebdbb2"
+
+set inputbar-bg                 "#3c3836"
+set inputbar-fg                 "#ebdbb2"
+
+set statusbar-bg                "#282828"
+set statusbar-fg                "#ebdbb2"
+
+set highlight-color             "#458588"
+set highlight-active-color      "#458588"
+
+set default-bg                  "#1d2021"
+set default-fg                  "#001512"
+set recolor-lightcolor          "#282828"
+set recolor-darkcolor           "#ebdbb2"
+
+#===============================================================================
+#                              Experiements
+#===============================================================================
+
+
+## map     K           goto top
+## map     L           goto bottom
+
+
+## map p print
+
+## map D toggle_page_mode

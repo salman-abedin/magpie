@@ -1,0 +1,4 @@
+# Mime List
+
+[Default Applications]
+x-scheme-handler/magnet=transmission.desktop;

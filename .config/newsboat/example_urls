@@ -1,0 +1,32 @@
+# RSS Feeds
+
+"══════════════════════════════| Highlights |══════════════════════════════════"
+" "
+"query:Youtube:tags # \"youtube\""
+" "
+# query:<name of feed>:<filter expression> [<tag> ...]
+"query:Youtube:unread = \"yes\" and tags # \"youtube\""
+"query:Unread:unread = \"yes\""
+"query:Que:flags # \"q\""
+"query:Starred:flags # \"s\""
+" "
+"═══════════════════════════════| Feeds |═══════════════════════════════════════"
+" "
+"═[ Youtube ]═"
+" "
+https://www.youtube.com/feeds/videos.xml?channel_id=UCkf4VIqu3Acnfzuk3kRIFwA "youtube" #gotbletu
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "youtube" #lukesmith
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXPHFM88IlFn68OmLwtPmZA "youtube" #greghurrell
+" "
+"═[ Reddit ]═"
+" "
+https://www.reddit.com/r/commandline.rss "~Command Line" "reddit"
+https://www.reddit.com/r/bash.rss "~bash" "reddit"
+https://www.reddit.com/r/bspwm.rss "~bspwm" "reddit"
+https://www.reddit.com/r/tmux.rss "~tmux" "reddit"
+" "
+"═[ Misc ]═"
+" "
+https://notrelated.libsyn.com/rss "~Luke Smith(Not Related)"
+http://lukesmith.xyz/rss.xml "~Lukes Smith(Blog)"
+https://www.archlinux.org/feeds/news/ "~Arch Linux"

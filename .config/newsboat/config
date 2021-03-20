@@ -1,0 +1,133 @@
+# Newsboat Config
+
+#===============================================================================
+#                             Options
+#===============================================================================
+
+prepopulate-query-feeds yes
+# refresh-on-startup yes
+
+# show-read-feeds no
+# show-read-articles no
+show-keymap-hint no
+auto-reload yes
+reload-time 5 # reload after 5 minue
+browser "launch --link"
+# external-url-viewer "urlscan -d -r 'launch --link {}'"
+# text-width 80
+confirm-exit yes
+cleanup-on-quit no
+max-items 1000
+# delete-read-articles-on-quit yes
+
+# Formats
+feedlist-title-format "%u Unread Feeds"
+articlelist-title-format "%u Unread Articles"
+itemview-title-format "%T"
+urlview-title-format "URLs"
+datetime-format "%H:%M, %a, %d %b, %y"
+
+feedlist-format "%9u %t"
+articlelist-format "%D | %-17T | %t"
+# articlelist-format "%D %5s %-17T %5s %t"
+
+# searchresult-title-format "%N: (%u) Search"
+# filebrowser-title-format "%N: %f %?O?Open File&Save File?"
+# help-title-format "%N: Help"
+# selecttag-title-format "%N: Select Tag"
+# selectfilter-title-format "%N: Select Filter"
+# dialogs-title-format "%N: Dialogs"
+# feedlist-format     "%11u %t"
+# articlelist-format  "%4i %f %D  %?T?|%-24T|  ?%t"
+
+# notify-always yes
+# notify-program "notifynews"
+# notify-format "%d News Update"
+
+cleanup-on-quit no
+
+#===============================================================================
+#                             Bindings
+#===============================================================================
+
+bind-key l down
+bind-key k up
+bind-key ; open
+bind-key j quit
+
+bind-key L pagedown
+bind-key K pageup
+
+bind-key i toggle-article-read
+
+bind-key n hard-quit
+bind-key ESC hard-quit
+
+bind-key t toggle-show-read-feeds
+
+bind-key e edit-urls
+bind-key R reload-urls
+bind-key r reload-all
+
+bind-key h mark-feed-read
+# bind-key \" mark-all-feeds-read
+
+bind-key f edit-flags
+
+bind-key SPACE macro-prefix
+macro SPACE set browser "$BROWSER" ; open-in-browser ; set browser "launch --link"
+
+# bind-key l next articlelist
+# bind-key k prev articlelist
+
+# bind-key L next-feed articlelist
+# bind-key K prev-feed articlelist
+
+# bind-key G end
+# bind-key g home
+
+
+bind-key m next-unread
+bind-key M prev-unread
+
+# bind-key D pb-download
+# bind-key U show-urls
+# bind-key x pb-delete
+
+#===============================================================================
+#                             Colors
+#===============================================================================
+
+color listfocus black white
+color listfocus_unread red white
+
+color listnormal white default
+color listnormal_unread red default
+color info red default
+# color article magenta default bold
+
+highlight all "══.*" magenta
+highlight all "═\\[.*" yellow
+highlight feedlist ".*(0/[0-9]+))" black
+
+highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default
+highlight article "(^Link:.*|^Date:.*)" default default
+highlight article "https?://[^ ]+" blue default
+highlight article "^(Title):.*$" yellow default
+highlight article "\\[[0-9][0-9]*\\]" magenta default
+highlight article "\\[image\\ [0-9]+\\]" green default
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default
+highlight article ":.*\\(link\\)$" cyan default
+highlight article ":.*\\(image\\)$" blue default
+highlight article ":.*\\(embedded flash\\)$" magenta default
+
+#===============================================================================
+#                             Exp
+#===============================================================================
+
+# macro t set browser "qndl" ; open-in-browser ; set browser linkhandler
+# macro a set browser "tsp youtube-dl --add-metadata -xic -f bestaudio/best" ; open-in-browser ; set browser linkhandler
+# macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
+# macro w set browser "lynx" ; open-in-browser ; set browser linkhandler
+# macro p set browser "dmenuhandler" ; open-in-browser ; set browser linkhandler
+# macro c set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler

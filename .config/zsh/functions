@@ -1,0 +1,175 @@
+#!/bin/sh
+
+#===============================================================================
+#                             Git
+#===============================================================================
+
+griH() {
+   COMMIT_COUNT=$(git rev-list --count master)
+   git rebase -i HEAD~$((COMMIT_COUNT - 1))
+}
+
+merge() {
+   git add .
+   if [ -z "$1" ]; then
+      git commit --amend --no-edit
+      # git commit --allow-empty-message -m ''
+   else
+      git commit -m "$*"
+   fi
+   git checkout master
+   git merge test
+   git branch -D test
+}
+
+gcg() { git clone git@gist.github.com:"$1".git; }
+
+#===============================================================================
+#                             Database Dev
+#===============================================================================
+
+mi() {
+   [ -d /run/mysqld ] || doas -n mkdir /run/mysqld
+   doas -n chown -R salman /run/mysqld /var/lib/mysql
+   mysqld --user=salman
+}
+
+pi() {
+   [ -d /run/postgresql ] || doas -n mkdir /run/postgresql
+   doas -u $USER chown -R $USER /run/postgresql /var/lib/postgres
+   postgres -D /var/lib/postgres/data
+}
+
+#===============================================================================
+#                             Misc
+#===============================================================================
+
+A() {
+   adb kill-server
+   daas adb start-server
+}
+
+packages() { expac '%m %n' | sort -n; }
+h2p() { wkhtmltopdf --enable-local-file-access "$1" "${1%.*}.pdf"; }
+gesr() { gpg -esr "$MAIL_BOX" "$1" && rm "$1"; }
+# compress() { tar cvzf "compressed.tar" "$@"; }
+tcf() { tar cf "$1".tar "$1"; }
+
+h() {
+   tail -25 ~/.config/zsh/history |
+      sed -e 's/.*;//' \
+         -e '1i#!/bin/sh' |
+      nvim
+}
+
+N() {
+   pidof mpd > /dev/null || mpd 2> /dev/null
+   ncmpcpp
+}
+
+vpn() { doas -- openvpn --config ~/.local/share/misc/vpnbook-us1-tcp80.ovpn; }
+flg() { fc-list | grep -i "$1"; }
+ug() { doas -n -- grub-mkconfig -o /boot/grub/grub.cfg; }
+dbt() {
+   docker build -t "$1" "$PWD"
+}
+view() {
+   setsid -f qutebrowser \
+      localhost:"$1" > /dev/null 2>&1
+   # http://192.168.0.100:"$1" > /dev/null 2>&1
+}
+graph() {
+   setsid -f surf \
+      localhost:8022/graphql > /dev/null 2>&1
+}
+pdf2png() { pdftoppm -png "$1" > converted.png; }
+u(){ sort "$@" | uniq -u }
+
+#===============================================================================
+#                             Exp
+#===============================================================================
+
+list() {
+   pacman -Qi |
+      awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' |
+      sort -hr |
+      head -25
+}
+
+# H() {
+#    out=$($1 --help || $1 -h)
+#    echo "$out" | nvim -R
+# }
+# h() { "$1" --help | nvim -R; }
+
+# fp() {
+#    read -r FILE_LIST < /tmp/FAINT_FILE_LIST
+#    cp -br $FILE_LIST .
+# }
+
+# rs() { doas -n ln -s /etc/runit/sv/"$1" /run/runit/service; }
+# rS() { doas -n rm /run/runit/service/"$1"; }
+
+# disableMinNCam() {
+#    [ "$1" ] && echo "" | doas tee /etc/modprobe.d/blacklist.conf && return
+#    echo install uvcvideo /bin/true | doas -- tee -a /etc/modprobe.d/blacklist.conf > /dev/null
+#    echo install "$(sed 1q /proc/asound/modules | cut -d ' ' -f 3)" /bin/true | doas -- tee -a /etc/modprobe.d/blacklist.conf > /dev/null
+# }
+
+# gsa() { git subtree add --prefix "$1" "$2" master --squash; }
+# gsp() { git subtree pull --prefix "$1" "$2" master --squash; }
+
+# check() {
+#    time sh -c 'for i in $(seq 1000); do toy > /dev/null 2>&1; done'
+#    # time sh -c 'for i in $(seq 1000000); do $@ > /dev/null; done'
+# }
+
+# calc() { echo "$*" | bc; }
+
+# cuT() {
+#    curl \
+#       -u "$MAIL:$(gpg -d ~/.local/share/passwords/salmanabedin@disroot.org.gpg)" \
+#       https://cloud.disroot.org/remote.php/dav/files/salmanabedin/ -T "$1"
+# }
+
+# twr() {
+#    iwctl station wlan0 disconnect
+#    iwctl station wlan0 scan
+#    # sleep 2
+#    iwctl --passphrase pS73exd1 station wlan0 connect DIRECT-f6-Android_b199
+#    iwctl --passphrase pqlamz., station wlan0 connect c4rn@g3
+#    iwctl station wlan0 show
+#    return
+#    return
+#    if iwctl station wlan0 show | grep -i "direct"; then
+#       iwctl --passphrase pqlamz., station wlan0 connect c4rn@g3
+#       notify-send -u low -i "$ICONS"/connected.png 'Connected to default'
+#    else
+#       iwctl --passphrase pS73exd1 station wlan0 connect DIRECT-f6-Android_b199
+#       notify-send -u low -i "$ICONS"/connected.png 'Connected to repeater'
+#    fi
+# }
+
+# ttz() {
+#    if readlink /etc/localtime | grep Berlin > /dev/null; then
+#       doas -- ln -sf /usr/share/zoneinfo/Asia/Dhaka /etc/localtime
+#    else
+#       doas -- ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+#    fi
+# }
+
+# short() { curl -F "shorten=$1" 0x0.st; }
+
+# autologin() {
+#    path=/etc/systemd/system/getty@tty1.service.d/override.conf
+#    [ "$1" ] && echo '' | doas tee $path && return
+#    printf "%s" "[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM" | doas tee $path
+# }
+
+# server() {
+#    [ "$1" ] && echo 'Server = http://mirror.xeonbd.com/archlinux/$repo/os/$arch' |
+#       doas tee /etc/pacman.d/mirrorlist && return
+#    doas -- reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+# }
+
+# god() { gpg -o "${1%.gpg}" -d "$1"; }

@@ -1,0 +1,46 @@
+#     ____
+#    / __/_____ _____ ____   ____   _____ _____
+#   / /_ / ___// ___// __ \ / __ \ / ___// ___/
+#  / __// /__ / /   / /_/ // / / // /   / /__
+# /_/   \___//_/    \____//_/ /_//_/    \___/
+
+#===============================================================================
+#                             Config
+#===============================================================================
+
+#---------------------------------------
+# Add paths for scripts 
+#---------------------------------------
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+#---------------------------------------------
+# libnotify environment variables
+#---------------------------------------------
+XAUTHORITY=/home/salman/.config/X11/Xauthority
+ICONS=~/.local/share/icons/system
+GIT=/mnt/internal/git
+
+#---------------------------------------
+# Required to work on Arch
+#---------------------------------------
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+
+#===============================================================================
+#                             Tabs
+#===============================================================================
+
+# All personal scripts from Alfred
+@ 5 DISPLAY=$(cat /tmp/DISPLAY) battery --monitor
+@ 3h DISPLAY=$(cat /tmp/DISPLAY) mirror --git
+@ 6h DISPLAY=$(cat /tmp/DISPLAY) mirror --calcurse
+@ 12h DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/horcrux 50
+@ 24h DISPLAY=$(cat /tmp/DISPLAY) mirror --brave --drive
+@ 7d DISPLAY=$(cat /tmp/DISPLAY) housekeep
+@ 7d DISPLAY=$(cat /tmp/DISPLAY) mirror --arch --repos --upstream
+
+#===============================================================================
+#                             EXP
+#===============================================================================
+
+# 0 06,18 * * * DISPLAY=$(cat /tmp/DISPLAY) toggle --dark
+# @ 24h da updatedb

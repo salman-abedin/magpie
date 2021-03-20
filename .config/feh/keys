@@ -1,0 +1,30 @@
+# Feh Configuration
+
+#Unset
+toggle_info
+toggle_keep_vp
+toggle_pointer
+toggle_pause
+toggle_menu
+toggle_filenames
+
+##Set
+
+zoom_in i
+zoom_out o
+
+next_img n
+prev_img m
+
+scroll_down  k
+scroll_up    j
+
+scroll_right h
+scroll_left  l
+
+# orient_3    r
+# orient_1    R
+# mirror      m
+delete      d
+
+quit q

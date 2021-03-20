@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Torrent Client
+Exec=/usr/local/bin/torrent --add %U

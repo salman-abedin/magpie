@@ -1,0 +1,6 @@
+image/*; cp %s /mnt/internal/downloads & launch -f %s;
+application/*; cp %s /mnt/internal/downloads && launch -f %s;
+application/pdf; cp %s /mnt/internal/downloads && launch -f %s;
+video/*; cp %s /mnt/internal/downloads & launch -f %s;
+audio/*; cp %s /mnt/internal/downloads & launch -f %s;
+text/html; w3m -o confirm_qq=false %s; nametemplate=%s.html;
