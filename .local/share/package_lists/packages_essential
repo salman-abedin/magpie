@@ -5,6 +5,7 @@ zsh
 zsh-completions
 zsh-syntax-highlighting
 zsh-autosuggestions
+@dashbinsh
 
 #---------------------------------------
 #              Dmenu
@@ -22,6 +23,7 @@ tmux
 #              Editor
 #---------------------------------------
 # neovim
+@neovim-git
 # nano
 
 #---------------------------------------
@@ -176,6 +178,8 @@ ncmpcpp
 #---------------------------------------
 feh
 imagemagick
+pinta
+# inkscape
 # maim
 
 #---------------------------------------

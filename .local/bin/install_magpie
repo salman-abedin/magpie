@@ -35,11 +35,11 @@ echo "$user_name ALL=(ALL) ALL" >> /etc/sudoers
 pacman -S --noconfirm --needed yarn ruby python python2 perl
 
 if ! command -v paru; then
-   cd /tmp || exit
-   git clone https://aur.archlinux.org/paru.git
-   chown -R "$user_name":wheel paru
-   cd paru || exit
-   sudo -u "$user_name" makepkg --noconfirm -si
+  cd /tmp || exit
+  git clone https://aur.archlinux.org/paru.git
+  chown -R "$user_name":wheel paru
+  cd paru || exit
+  sudo -u "$user_name" makepkg --noconfirm -si
 fi
 
 #===============================================================================
@@ -47,7 +47,6 @@ fi
 #===============================================================================
 
 pacman -Syu --noconfirm
-
 
 #---------------------------------------
 #               Essential
@@ -57,18 +56,18 @@ pacman -Syu --noconfirm
 # grep "^[a-z]" packagerc | pacman -S --noconfirm --needed -
 
 while read -r package; do
-   case $package in
-      "#"*) continue ;;
-      @*) sudo -u "$user_name" paru -S --noconfirm --needed "${package#@}" ;;
-      "$"*)
-         cd /tmp || exit 1
-         git clone https://github.com/"${package#$}"
-         cd "${package#*/}" || exit 1
-         git checkout personal 2> /dev/null
-         sudo -u "$user_name" make && make install
-         ;;
-      *) pacman -S --noconfirm --needed "$package" ;;
-   esac
+  case $package in
+    "#"*) continue ;;
+    @*) sudo -u "$user_name" paru -S --noconfirm --needed "${package#@}" ;;
+    "$"*)
+      cd /tmp || exit 1
+      git clone https://github.com/"${package#$}"
+      cd "${package#*/}" || exit 1
+      git checkout personal 2> /dev/null
+      sudo -u "$user_name" make && make install
+      ;;
+    *) pacman -S --noconfirm --needed "$package" ;;
+  esac
 done < ./.local/share/package_lists/packages_essential
 
 #===============================================================================
@@ -85,21 +84,21 @@ chown -R "$user_name":wheel /home/"$user_name"
 #---------------------------------------
 #              Bash to Dash
 #---------------------------------------
-pacman -S --noconfirm dash
-ln -sfT dash /usr/bin/sh
-cat << eof > /usr/share/libalpm/hooks/block_bash_overwrite.hook
-[Trigger]
-Type = Package
-Operation = Install
-Operation = Upgrade
-Target = bash
-
-[Action]
-Description = Re-pointing /bin/sh symlink to dash...
-When = PostTransaction
-Exec = /usr/bin/ln -sfT dash /usr/bin/sh
-Depends = dash
-eof
+# pacman -S --noconfirm dash
+# ln -sfT dash /usr/bin/sh
+# cat << eof > /usr/share/libalpm/hooks/block_bash_overwrite.hook
+# [Trigger]
+# Type = Package
+# Operation = Install
+# Operation = Upgrade
+# Target = bash
+#
+# [Action]
+# Description = Re-pointing /bin/sh symlink to dash...
+# When = PostTransaction
+# Exec = /usr/bin/ln -sfT dash /usr/bin/sh
+# Depends = dash
+# eof
 
 #---------------------------------------
 #              Trackpad
@@ -143,11 +142,11 @@ echo "permit nopass keepenv $user_name" > /etc/doas.conf
 #---------------------------------------
 
 case "$DISTRO" in
-   *Arch*) systemctl enable fcron ;;
-   *)
-      pacman -S fcron-runit
-      ln -s /etc/runit/sv/fcron /etc/runit/runsvdir/default
-      ;;
+  *Arch*) systemctl enable fcron ;;
+  *)
+    pacman -S fcron-runit
+    ln -s /etc/runit/sv/fcron /etc/runit/runsvdir/default
+    ;;
 esac
 
 #---------------------------------------
@@ -155,11 +154,11 @@ esac
 #---------------------------------------
 
 case "$DISTRO" in
-   *Arch*) systemctl enable bluetoothd ;;
-   *)
-      pacman -S bluez-runit
-      ln -s /etc/runit/sv/bluetoothd /etc/runit/runsvdir/default
-      ;;
+  *Arch*) systemctl enable bluetoothd ;;
+  *)
+    pacman -S bluez-runit
+    ln -s /etc/runit/sv/bluetoothd /etc/runit/runsvdir/default
+    ;;
 esac
 
 # Calcurse
@@ -169,14 +168,6 @@ esac
 #              Mail
 #---------------------------------------
 mkdir -p /home/"$user_name"/.local/share/mail
-
-##---------------------------------------
-##              Neovim fix
-##---------------------------------------
-#sudo -u "$user_name" pip3 install neovim
-#sudo -u "$user_name" yarn global add neovim
-#sudo -u "$user_name" gem install neovim
-#sudo -u "$user_name" cpan Neovim::Ext
 
 #---------------------------------------
 #              Plug Notification
@@ -192,18 +183,18 @@ eof
 #              Autologin
 #---------------------------------------
 case "$DISTRO" in
-   *Arch*)
-      mkdir /etc/systemd/system/getty@tty1.service.d
-      cat << eof > /etc/systemd/system/getty@tty1.service.d/skip-prompt.conf
+  *Arch*)
+    mkdir /etc/systemd/system/getty@tty1.service.d
+    cat << eof > /etc/systemd/system/getty@tty1.service.d/skip-prompt.conf
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --skip-login --nonewline --noissue --autologin $user_name --noclear %I $TERM
 eof
-      ;;
-   *)
-      sed -i "s/GETTY_ARGS=\"/GETTY_ARGS=\"--autologin $user_name /" \
-         /etc/runit/sv/agetty-tty1/conf
-      ;;
+    ;;
+  *)
+    sed -i "s/GETTY_ARGS=\"/GETTY_ARGS=\"--autologin $user_name /" \
+      /etc/runit/sv/agetty-tty1/conf
+    ;;
 esac
 
 #---------------------------------------
@@ -216,8 +207,8 @@ mkdir -p /home/"$user_name"/.config/wget
 #               DBUS
 #---------------------------------------
 case "$DISTRO" in
-   *Arch*) return ;;
-   *) dbus-uuidgen > /var/lib/dbus/machine-id ;;
+  *Arch*) return ;;
+  *) dbus-uuidgen > /var/lib/dbus/machine-id ;;
 esac
 
 #===============================================================================
@@ -287,3 +278,26 @@ esac
 # echo "$RESUME_PARAMS"
 # sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$RESUME_PARAMS/" /etc/default/grub
 # grub-mkconfig -o /boot/grub/grub.cfg
+
+#===============================================================================
+#                              Neovim
+#===============================================================================
+
+#sudo -u "$user_name" pip3 install neovim
+#sudo -u "$user_name" yarn global add neovim
+#sudo -u "$user_name" gem install neovim
+#sudo -u "$user_name" cpan Neovim::Ext
+#sudo -u "$user_name" pacman -S --noconfirm tree-sitter
+
+#===============================================================================
+#                              Lua
+#===============================================================================
+
+# git clone https://github.com/sumneko/lua-language-server
+# cd lua-language-server || exit
+# git submodule update --init --recursive
+
+# cd 3rd/luamake || exit
+# ninja -f ninja/linux.ninja
+# cd ../..
+# ./3rd/luamake/luamake rebuild

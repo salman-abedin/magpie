@@ -1,5 +1,507 @@
 #!/usr/bin/env zsh
 
+# aliases{{{
+#===============================================================================
+#                              Aliases
+#===============================================================================
+
+#---------------------------------------
+#               Globals
+#---------------------------------------
+alias -g grey="ubuntu@3.0.101.215"
+alias -g yy="ubuntu@54.179.99.90"
+alias -g shaikh="ubuntu@sbys.tk"
+alias -g yeh="root@yehbackend.tk"
+
+#---------------------------------------
+#              MVPS
+#---------------------------------------
+
+alias ..="cd .."
+alias a='adb connect 192.168.1.100'
+alias c="clear"
+alias cc="calcurse"
+alias cLO="curl -LO"
+alias cpr="cp -r"
+alias t="git checkout -B test > /dev/null 2>&1"
+alias d="doas --"
+alias dau="doas -u $USER --"
+alias dc="doas cfdisk"
+alias dcpr="da cp -r"
+alias dka="da killall"
+alias dlf="da lf"
+alias dm="doas mount"
+alias dmd="da mkdir"
+alias dmv="da mv"
+alias drmr="da rm -r"
+alias duf="da umount -f"
+alias e="exit"
+alias f="faint"
+alias f3="faint -d 3"
+alias f5="faint -d 5"
+alias fl="faint -l"
+alias fn="faint -n"
+alias fr="flutter run"
+alias g="bolt -g"
+alias ka="killall"
+alias l="launch -f"
+alias m="git checkout master > /dev/null 2>&1"
+alias M="neomutt 2>/dev/null"
+alias md="mkdir"
+alias ml="mpv --loop"
+alias n="nvim"
+# alias n="XDG_CONFIG_HOME=/mnt/internal/downloads/lua nvim5"
+# alias n="nvim5 --clean -S ~/.config/nvim/init.lua"
+# alias n="newsboat"
+alias p="git checkout personal > /dev/null 2>&1"
+alias pf="pkill -f"
+alias pg="ps aux | grep"
+alias psp1="patch -s -p1"
+alias rmr="rm -r"
+alias s="bolt --search"
+alias sshp="ssh -p \$PORT \$PHONE"
+alias src=". ~/.config/zsh/functions && . ~/.config/zsh/aliases"
+alias user="who | head -1 | cut -d' ' -f1"
+alias W="weechat"
+alias x="xprop"
+alias xek="xev -event keyboard"
+alias xmqf="xdg-mime query filetype"
+# alias yda="youtube-dl -x --embed-thumbnail -f bestaudio/best"
+alias yda="youtube-dl -x --embed-thumbnail --audio-format mp3"
+alias ydv="youtube-dl -f best"
+alias tra="transmission-remote -a"
+
+# alias t=": >"
+# yd="youtube-dl -x --audio-format mp3 --audio-quality 0"
+
+#---------------------------------------
+#              Pacman & Yay
+#---------------------------------------
+
+# alias dp="d pacman"
+# alias dpS="dp -S"
+# alias dpSn="dpS --needed"
+# alias dpSnn="dpSn --noconfirm "
+# alias dpSyu="dp -Syu"
+# alias dpRns="dp -Rns"
+# alias dpRnsn="dpRns --noconfirm"
+
+alias pQs="pacman -Qs"
+# alias pQqe="pacman -Qqe"
+
+# alias expac="expac | sort -n"
+
+# alias yS="yay -S"
+# alias ySn="yS --needed"
+# alias ySnn="ySn --noconfirm"
+
+#---------------------------------------
+#               Paru
+#---------------------------------------
+
+alias pSyu="paru -Syu"
+alias pSyun="pSyu --noconfirm"
+alias pS="paru -S"
+alias pSn="pS --noconfirm"
+alias pSnn="pS --noconfirm --needed"
+alias pRns="paru -Rns"
+alias pRnsn="pRns --noconfirm"
+
+#---------------------------------------
+#              Git
+#---------------------------------------
+
+alias gP="git pull"
+alias gPr="git pull --rebase"
+alias gPn="git pull --no-rebase"
+alias gaa="git add ."
+alias gb="git branch"
+alias gbm="gb -m"
+alias gba="gb -a"
+alias gbD="gb -D"
+alias gc="git checkout"
+alias gcB="gc -B"
+alias gcl="git clone"
+alias gcan="git commit --amend --no-edit"
+alias gd="git diff"
+alias gi="git init"
+alias glo="git log --oneline"
+alias glogda="git log --oneline --graph --decorate --all"
+alias gm="git merge"
+alias gmn="git merge --no-ff"
+alias gp="git push"
+alias gpf="gp -f"
+alias gpfo="gpf origin"
+alias gpfom="gp -f origin master"
+alias gpfop="gp -f origin personal"
+alias gpo="gp origin"
+alias gpod="gpo -d"
+alias gpom="gpo master"
+alias gpuo="gp -u origin"
+alias gra="git remote add"
+alias grc="git rebase --continue"
+alias grh="git reset --hard"
+alias grsuapo="git remote set-url --add --push origin"
+alias gs="git stash"
+alias gsc="git stash clear"
+alias gsgsc="git stash && git stash clear"
+
+# alias grH="git reset HEAD"
+# alias gpsuo="git push --set-upstream origin"
+# ug="cd $DF; git commit -a -m"update\" && git push -u origin master"
+
+
+#---------------------------------------
+#              Yarn
+#---------------------------------------
+alias y="yarn"
+alias ya="y add"
+alias yaD="ya -D"
+alias yb="y build"
+alias yc="y create"
+alias yd="y dev"
+alias yg="y generate"
+alias yga="y global add"
+alias yi="y init"
+alias yiy="yi -y"
+alias yl="y list"
+alias ys="y start"
+alias yt="y test"
+alias ysa="ys --android"
+alias yr="y remove"
+alias yu="y upgrade"
+
+#---------------------------------------
+#              Make
+#---------------------------------------
+alias dmi="da make install"
+alias dmc="da make clean"
+alias dmci="da make clean install"
+alias dmu="da make uninstall"
+
+#---------------------------------------
+#              Systemd
+#---------------------------------------
+alias dsd="da systemctl disable"
+alias dse="da systemctl enable"
+alias dsr="da systemctl reload"
+alias dsR="da systemctl restart"
+alias dss="da systemctl start"
+alias dsS="da systemctl stop"
+alias dsf="da systemctl --failed"
+alias sab="systemd-analyze blame"
+alias dj="da journalctl -p 3 -xb"
+
+##---------------------------------------
+##              Runit
+##---------------------------------------
+#alias dsu="da sv up"
+#alias dsd="da sv down"
+#alias dss="da sv status"
+
+#---------------------------------------
+# Misc
+#---------------------------------------
+alias ls="ls -hN --color=auto --group-directories-first"
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+
+#---------------------------------------
+#              Docker 
+#---------------------------------------
+# alias db="docker build"
+
+# SSH
+alias scii="ssh-copy-id -i $GIT/own/magpie-private/.ssh/id_rsa.pub"
+
+
+#---------------------------------------
+#               Exp
+#---------------------------------------
+
+# #---------------------------------------
+# #              Laravel
+# #---------------------------------------
+
+# alias ccppdll="composer create-project --prefer-dist laravel/laravel"
+# alias cda="composer dump-autoload"
+
+# alias pa="php artisan"
+# alias pas="pa serve"
+
+# # Make
+# alias pammo="pa make:model"
+# alias pammg="pa make:migration"
+# alias pammd="pa make:middleware"
+# alias pamc="pa make:controller"
+
+# # Migration
+# alias pam="pa migrate"
+# alias pamf="pa migrate:fresh"
+# alias pams="pa migrate:status"
+# alias pamr="pa migrate:rollback"
+
+
+# # tmux
+# alias ta="tmux attach || tmux"
+# alias tl="tmux ls"
+
+# # XBPS
+# alias
+#    dxi="da xbps-install"
+#    dxis="da xbps-install -S"
+#    dxisy="da xbps-install -Sy"
+#    dxrry="da xbps-remove -Ry"
+#    dxisuy="da xbps-install -Suy"
+#    xqrs="xbps-query -Rs"
+
+# # Flutter
+# alias fr="flutter run"
+
+
+# GPG
+# alias gpgs="gpg -c --s2k-cipher-algo AES256 --s2k-digest-algo SHA512 --s2k-count 65536"
+
+# # lsd
+# alias l="lsd"
+# alias ll="lsd -l"
+# alias l1="lsd -1"
+# alias lA1="lsd -1A"
+# alias lAl="lsd -Al"
+# alias lt="lsd --tree"
+# alias lAt="lsd -A --tree"
+
+# # Power
+# alias sS='systemctl suspend'
+# alias sH='systemctl hibernate'
+# alias pku='pkill -KILL -u $USER'
+# alias po='poweroff'
+# alias rb='reboot'
+
+
+# # Adb
+# alias aps="adb push --sync"
+# alias ai="adb install"
+
+# # NPM
+# alias ncra="npx create-react-app"
+
+#---------------------------------------
+#              NPM
+#---------------------------------------
+# alias niy="npm init -y"
+
+# alias ni="npm install"
+# alias nis="npm install --save"
+# alias niD="npm install -D"
+# alias dnig="da npm install -g"
+
+# alias nrd="npm run dev"
+# alias nrs="npm run start"
+# alias nrt="npm run test"
+# alias nrb="npm run build"
+
+# alias nu="ncu -u"
+# }}}
+# functions{{{
+
+#===============================================================================
+#                              Functions
+#===============================================================================
+
+#---------------------------------------
+#               Git
+#---------------------------------------
+
+griH() {
+   COMMIT_COUNT=$(git rev-list --count master)
+   git rebase -i HEAD~$((COMMIT_COUNT - 1))
+}
+
+merge() {
+   git add .
+   if [ -z "$1" ]; then
+      git commit --amend --no-edit
+      # git commit --allow-empty-message -m ''
+   else
+      git commit -m "$*"
+   fi
+   git checkout master
+   git merge test
+   git branch -D test
+}
+
+gcg() { git clone git@gist.github.com:"$1".git; }
+
+#---------------------------------------
+#               DB
+#---------------------------------------
+
+mi() {
+   [ -d /run/mysqld ] || doas -n mkdir /run/mysqld
+   doas -n chown -R salman /run/mysqld /var/lib/mysql
+   mysqld --user=salman
+}
+
+pi() {
+   [ -d /run/postgresql ] || doas -n mkdir /run/postgresql
+   doas -u $USER chown -R $USER /run/postgresql /var/lib/postgres
+   postgres -D /var/lib/postgres/data
+}
+
+#---------------------------------------
+#               Misc
+#---------------------------------------
+
+img2webp(){
+   find $PWD -name "*.jpg" -o -name "*.png" \
+      -exec cwebp -o {}.webp -- {} \;
+}
+
+A() {
+   adb kill-server
+   daas adb start-server
+}
+
+packages() { expac '%m %n' | sort -n; }
+h2p() { wkhtmltopdf --enable-local-file-access "$1" "${1%.*}.pdf"; }
+gesr() { gpg -esr "$MAIL_BOX" "$1" && rm "$1"; }
+# compress() { tar cvzf "compressed.tar" "$@"; }
+tcf() { tar cf "$1".tar "$1"; }
+
+h() {
+   tail -25 ~/.config/zsh/history |
+      sed -e 's/.*;//' \
+         -e '1i#!/bin/sh' |
+      nvim
+}
+
+N() {
+   pidof mpd > /dev/null || mpd 2> /dev/null
+   ncmpcpp
+}
+
+vpn() { doas -- openvpn --config ~/.local/share/misc/vpnbook-us1-tcp80.ovpn; }
+flg() { fc-list | grep -i "$1"; }
+ug() { doas -n -- grub-mkconfig -o /boot/grub/grub.cfg; }
+dbt() {
+   docker build -t "$1" "$PWD"
+}
+view() {
+   setsid -f qutebrowser \
+      localhost:"$1" > /dev/null 2>&1
+   # http://192.168.0.100:"$1" > /dev/null 2>&1
+}
+graph() {
+   setsid -f surf \
+      localhost:8022/graphql > /dev/null 2>&1
+}
+pdf2png() { pdftoppm -png "$1" > converted.png; }
+u(){ sort "$@" | uniq -u }
+
+dy(){
+  cd /mnt/internal/git/work/yy_ventures/
+  yarn generate
+  cd /mnt/internal/git/work/yy_ventures/dist
+  zip -r dist.zip *
+  mv /mnt/internal/git/work/yy_ventures/dist/dist.zip /mnt/internal/downloads
+}
+
+#---------------------------------------
+#               Exp
+#---------------------------------------
+
+list() {
+   pacman -Qi |
+      awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' |
+      sort -hr |
+      head -25
+}
+
+# H() {
+#    out=$($1 --help || $1 -h)
+#    echo "$out" | nvim -R
+# }
+# h() { "$1" --help | nvim -R; }
+
+# fp() {
+#    read -r FILE_LIST < /tmp/FAINT_FILE_LIST
+#    cp -br $FILE_LIST .
+# }
+
+# rs() { doas -n ln -s /etc/runit/sv/"$1" /run/runit/service; }
+# rS() { doas -n rm /run/runit/service/"$1"; }
+
+# disableMinNCam() {
+#    [ "$1" ] && echo "" | doas tee /etc/modprobe.d/blacklist.conf && return
+#    echo install uvcvideo /bin/true | doas -- tee -a /etc/modprobe.d/blacklist.conf > /dev/null
+#    echo install "$(sed 1q /proc/asound/modules | cut -d ' ' -f 3)" /bin/true | doas -- tee -a /etc/modprobe.d/blacklist.conf > /dev/null
+# }
+
+# gsa() { git subtree add --prefix "$1" "$2" master --squash; }
+# gsp() { git subtree pull --prefix "$1" "$2" master --squash; }
+
+# check() {
+#    time sh -c 'for i in $(seq 1000); do toy > /dev/null 2>&1; done'
+#    # time sh -c 'for i in $(seq 1000000); do $@ > /dev/null; done'
+# }
+
+# calc() { echo "$*" | bc; }
+
+# cuT() {
+#    curl \
+#       -u "$MAIL:$(gpg -d ~/.local/share/passwords/salmanabedin@disroot.org.gpg)" \
+#       https://cloud.disroot.org/remote.php/dav/files/salmanabedin/ -T "$1"
+# }
+
+# twr() {
+#    iwctl station wlan0 disconnect
+#    iwctl station wlan0 scan
+#    # sleep 2
+#    iwctl --passphrase pS73exd1 station wlan0 connect DIRECT-f6-Android_b199
+#    iwctl --passphrase pqlamz., station wlan0 connect c4rn@g3
+#    iwctl station wlan0 show
+#    return
+#    return
+#    if iwctl station wlan0 show | grep -i "direct"; then
+#       iwctl --passphrase pqlamz., station wlan0 connect c4rn@g3
+#       notify-send -u low -i "$ICONS"/connected.png 'Connected to default'
+#    else
+#       iwctl --passphrase pS73exd1 station wlan0 connect DIRECT-f6-Android_b199
+#       notify-send -u low -i "$ICONS"/connected.png 'Connected to repeater'
+#    fi
+# }
+
+# ttz() {
+#    if readlink /etc/localtime | grep Berlin > /dev/null; then
+#       doas -- ln -sf /usr/share/zoneinfo/Asia/Dhaka /etc/localtime
+#    else
+#       doas -- ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+#    fi
+# }
+
+# short() { curl -F "shorten=$1" 0x0.st; }
+
+# autologin() {
+#    path=/etc/systemd/system/getty@tty1.service.d/override.conf
+#    [ "$1" ] && echo '' | doas tee $path && return
+#    printf "%s" "[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM" | doas tee $path
+# }
+
+# server() {
+#    [ "$1" ] && echo 'Server = http://mirror.xeonbd.com/archlinux/$repo/os/$arch' |
+#       doas tee /etc/pacman.d/mirrorlist && return
+#    doas -- reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+# }
+
+# god() { gpg -o "${1%.gpg}" -d "$1"; }
+# }}}
+# config{{{
+
+#===============================================================================
+#                              Config
+#===============================================================================
+
 setopt promptsubst
 
 # If not running interactively, don't do anything
@@ -8,9 +510,9 @@ setopt promptsubst
 autoload -U colors
 colors
 
-#===============================================================================
-#                             Prompt
-#===============================================================================
+#---------------------------------------
+#               Prompt
+#---------------------------------------
 
 PS1=""
 PS1+="%B"
@@ -39,9 +541,9 @@ PS1+=$'\n'
 # Reset
 PS1+="%{$reset_color%}%b"
 
-#===============================================================================
-#                             Completion 
-#===============================================================================
+#---------------------------------------
+#               Completion
+#---------------------------------------
 
 fpath=($HOME/.config/zsh/completions $fpath)
 
@@ -68,9 +570,9 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # Colorize completions using default `ls` colors.
 zstyle ':completion:*' list-colors ''
 
-#===============================================================================
-#                             Options 
-#===============================================================================
+#---------------------------------------
+#               Options
+#---------------------------------------
 
 setopt autocd               # no cd required
 setopt autoparamslash       # tab completing directory appends a slash
@@ -90,9 +592,9 @@ setopt pushdignoredups      # don't push multiple copies of same dir onto stack
 setopt pushdsilent          # don't print dir stack after pushing/popping
 setopt sharehistory         # share history across shells
 
-#===============================================================================
-#                             Misc 
-#===============================================================================
+#---------------------------------------
+#               Misc
+#---------------------------------------
 
 ## History in cache directory:
 HISTSIZE=10000
@@ -126,9 +628,9 @@ echo -ne '\e[5 q'
 ## Use beam shape cursor for each new prompt.
 preexec() { echo -ne '\e[5 q' ;}
 
-################################################################################
-#                             Bindings
-################################################################################
+#---------------------------------------
+#               Bindings
+#---------------------------------------
 
 ## vi mode
 bindkey -v
@@ -205,15 +707,10 @@ bindkey -M menuselect 'l' vi-forward-char
 # [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
 
-#===============================================================================
-#                             Sources
-#===============================================================================
+#---------------------------------------
+#               Sources
+#---------------------------------------
 
-ALIASES=~/.config/zsh/aliases
-FUNCTIONS=~/.config/zsh/functions
-
-[ -f $ALIASES ] && . $ALIASES
-[ -f $FUNCTIONS ] && . $FUNCTIONS
 
 # GIT_COMPLETION=/usr/share/git/completion/git-completion.zsh
 # [ -f $GIT_COMPLETION ]  && . $GIT_COMPLETION
@@ -223,9 +720,9 @@ FUNCTIONS=~/.config/zsh/functions
 # [ -f /usr/share/fzf/key-bindings.zsh ] && /usr/share/fzf/key-bindings.zsh
 # [ -f /usr/share/fzf/completion.zsh ] && /usr/share/fzf/completion.zsh
 
-#===============================================================================
-#                             Plugins
-#===============================================================================
+#---------------------------------------
+#               Plugins
+#---------------------------------------
 
 # # autosuggestions
 # [ -f /home/git/others/zsh-autosuggestions/zsh-autosuggestions.zsh ] &&
@@ -244,9 +741,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
-#===============================================================================
-#                             Exp 
-#===============================================================================
+#---------------------------------------
+#               Exp
+#---------------------------------------
 
 # PS1=$'${(r:$COLUMNS::_:)}\n\n'$PS1
 # PS1=$'%U${(r:$COLUMNS:: :)}%u\n\n'$PS1
@@ -274,3 +771,4 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
+# }}}

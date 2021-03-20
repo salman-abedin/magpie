@@ -14,27 +14,34 @@ alias sharika Sharika Sadaf <sharika@yy.ventures># }}}
 
 set realname = "Salman Abedin"
 
-# source ~/.local/share/passwords/mutt
+# source ~/.local/share/misc/outlook
 # set from = "salman@yy.ventures"
 # set folder    = "imaps://$from@outlook.office365.com"
 # set smtp_url = "smtp://$from:$imap_pass@smtp.office365.com"
 # set record = "+Sent Items"
+# set trash = "+Deleted Items"
+# set signature="~/.config/mutt/signature_work"
 
 set from = "salmanabedin@disroot.org"
-set imap_pass = `gpg -d ~/.local/share/passwords/salmanabedin@disroot.org.gpg 2>/dev/null`
+set imap_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/disroot,/{print $3}'`
 set folder    = "imaps://$from@disroot.org/"
 set smtp_url = "smtps://$from@disroot.org"
 set smtp_pass = $imap_pass
 set record = "+Sent"
+set trash = "+Trash"
+macro index 3 "<change-folder> =Sent<enter>"
+set signature="~/.config/mutt/signature_personal"
 
 set spoolfile = +INBOX
 set postponed = +Drafts
-set trash = "+Trash"
 
 
 #---------------------------------------
 #               Exp
 #---------------------------------------
+
+
+set sig_on_top # Puts signature on top
 
 # mailboxes       = +INBOX +Drafts
 # set imap_check_subscribed
@@ -45,11 +52,16 @@ set trash = "+Trash"
 #                              Settings
 #===============================================================================
 
-set signature="~/.config/mutt/signature"
 set mbox_type=Maildir
 # set imap_check_subscribed
 set header_cache = ~/.local/share/cache/mutt
 set message_cachedir = ~/.local/share/cache/mutt
+
+# Edit Headers in the editor
+set edit_headers
+
+# Disable Pre-edit prompts
+set autoedit
 
 # Check mail after mentioned secods
 set timeout = 21600
@@ -107,6 +119,8 @@ hdr_order Date From To Cc
 
 set index_format="%Z %-25.25L | %-75.75s | %{%H:%M,%a,%d-%b}"
 
+# set askcc 
+
 #---------------------------------------
 #              Sidebar
 #---------------------------------------
@@ -121,6 +135,8 @@ set index_format="%Z %-25.25L | %-75.75s | %{%H:%M,%a,%d-%b}"
 #---------------------------------------
 #               Exp
 #---------------------------------------
+
+# send-hook . set signature="~/.config/mutt/signature"
 
 # set markers = no # Disables the `+` displayed at line wraps
 
@@ -194,16 +210,14 @@ bind index,pager ';' quit
 bind index <Space> tag-entry
 
 # Mailboxes
-macro index ! "<change-folder> =INBOX<enter>"
-macro index @ "<change-folder> =Drafts<enter>"
-# macro index # "<change-folder> =Sent<enter>"
-# macro index 3 "<change-folder> =Trash<enter>"
+macro index 1 "<change-folder> =INBOX<enter>"
+macro index 2 "<change-folder> =Drafts<enter>"
+# macro index 4 "<change-folder> =Trash<enter>"
 
 #---------------------------------------
 #               Exp
 #---------------------------------------
-
-
+bind index,pager R group-reply
 
 # macro index,pager    o "<pipe-message> urlscan -Hdcr 'launch --link {}'<Enter>"
 # macro attach,compose o "<pipe-entry> urlscan -Hdcr 'launch --link {}'<Enter>"

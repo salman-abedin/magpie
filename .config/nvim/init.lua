@@ -4,13 +4,19 @@
 --   / __ \ / _ \ / __ \| | / // // __ `__ \
 --  / / / //  __// /_/ /| |/ // // / / / / /
 -- /_/ /_/ \___/ \____/ |___//_//_/ /_/ /_/
---}}}
+-- }}}
 -- variables & functions{{{
+--------------------------------------------------------------------------------
+--                              Variables & Functions
+--------------------------------------------------------------------------------
+-- betters health
 vim.g.python3_host_prog = '/usr/bin/python3'
 vim.g.python_host_prog = '/usr/bin/python2'
 
 local f = vim.fn
 local g = vim.g
+
+-- g.vim_json_conceal = 0
 
 local function m(mode, lhs, rhs, opts)
   local options = {noremap = true}
@@ -18,285 +24,450 @@ local function m(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local function r(option, exclusion)
-   return vim.api.nvim_get_option(option):gsub("," .. exclusion, "")
-end
-
-local function a(option, inclusion)
-   return vim.api.nvim_get_option(option) .. inclusion
-end
+-- local function r(option, exclusion)
+--    return vim.api.nvim_get_option(option):gsub(',' .. exclusion, '')
+-- end
+-- 
+-- local function a(option, inclusion)
+--    return vim.api.nvim_get_option(option) .. inclusion
+-- end
 
 local function set_options(global, window, buffer)
 
-   for key, value in pairs(global) do
-      vim.api.nvim_set_option(key, value)
-   end
+  for key, value in pairs(global) do vim.api.nvim_set_option(key, value) end
 
-   for key, value in pairs(window) do
-      vim.api.nvim_win_set_option(0, key, value)
-   end
+  for key, value in pairs(window) do vim.api.nvim_win_set_option(0, key, value) end
 
-   for key, value in pairs(buffer) do
-      vim.api.nvim_buf_set_option(0, key, value)
-   end
+  for key, value in pairs(buffer) do vim.api.nvim_buf_set_option(0, key, value) end
 
 end
 
-local function run_commands(commands)
-   for command in commands:gmatch("([^\n]*)\n?") do
-      vim.cmd(command)
-   end
+local function vimscript(commands)
+  for command in commands:gmatch('([^\n]*)\n?') do vim.cmd(command) end
 end
 
 -- }}}
--- plugins{{{
+
+-- =============================================================================
+--                              Plugins
+-- =============================================================================
+
 -- bootstrap{{{
+----------------------------------------
+--               Packer Bootstrap
+----------------------------------------
 local execute = vim.api.nvim_command
 
-local install_path = f.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = f.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if f.empty(f.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
+              install_path)
   execute 'packadd packer.nvim'
 end
---}}}
+
 require('packer').startup(function()
-   use {'wbthomason/packer.nvim'}
-   use { 'neovim/nvim-lspconfig' }
 
-   use { 'tpope/vim-surround' }
-   m('n', 'S', 'ys', { noremap = false})
+  -- }}}
+  -- completion{{{
+  ----------------------------------------
+  --               Completion
+  ----------------------------------------
+  use 'nvim-lua/completion-nvim'
+  g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+  g.completion_confirm_key = '<c-y>'
+  vimscript([[ autocmd VimEnter * lua require'completion'.on_attach() ]])
+  m('i', '<tab>', 'pumvisible() ? "<C-n><C-y>" : "<Tab>"', {expr = true})
+  -- m('i', '<s-tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 
-   -- use { 'hrsh7th/nvim-compe' }
+  -- }}}
+  -- colorschemes{{{
+  ----------------------------------------
+  --               Colorschemes
+  ----------------------------------------
+  vim.api.nvim_set_option('bg', 'dark')
+  vim.api.nvim_set_option('termguicolors', true)
 
-   -- colorschemes{{{
-   use {'rakr/vim-one'}
-   use {'NLKNguyen/papercolor-theme'}
-   vim.api.nvim_set_option('bg', 'dark')
-   vim.cmd('colorscheme one')
---}}}
-   -- commenting{{{
-   use 'tyru/caw.vim'
-   use 'Shougo/context_filetype.vim'
-   m('', 's', 'gcc', { noremap = false})
---}}}
-   -- smoothie{{{
-   use {'psliwka/vim-smoothie'}
-   m( '', 'K', '<Plug>(SmoothieUpwards)', { noremap = false})
-   m( '', 'J', '<Plug>(SmoothieDownwards)', { noremap = false})
---}}}
-   -- easymotion{{{
-   use { 'easymotion/vim-easymotion' }
-   g.EasyMotion_do_mapping = 0
-   g.EasyMotion_smartcase = 1
-   m( 'n', 'e', '<Plug>(easymotion-overwin-w)', { noremap = false})
---}}}
--- emmete{{{
-use { 'mattn/emmet-vim'}
-g.emmet_html5 = 0
-g.user_emmet_leader_key=','
-g.user_emmet_install_global = 0
-vim.cmd('autocmd FileType html,css,sass,javascript,pug,vue EmmetInstall')
---}}}
-   -- indent line{{{
-   use { 'Yggdroot/indentLine' }
-   g.indentLine_char = '┊'
---}}}
-   -- syntax{{{
-   use { 'pangloss/vim-javascript' }
-   use { 'posva/vim-vue' }
-   use { 'digitaltoad/vim-pug' }
---}}}
--- lsp{{{
-local lsp = require'lspconfig'
+  -- use 'tjdevries/colorbuddy.vim'
+  -- use 'Th3Whit3Wolf/onebuddy'
+  -- require('colorbuddy').colorscheme('onebuddy')
 
-lsp.tsserver.setup{}
-lsp.bashls.setup{}
-lsp.clangd.setup{}
+  use {'Yggdroot/indentLine'}
+  g.indentLine_char = '┊'
 
-lsp.cssls.setup{
-   filetypes = { "css", "sass" },
-   settings = { css = { validate = true }, sass = { validate = true }, }
-}
+  use 'mhartington/oceanic-next'
+  vimscript('colorscheme OceanicNext')
 
-   -- lua{{{
-   USER = vim.fn.expand('$USER')
+  -- use {'NLKNguyen/papercolor-theme'}
+  -- use {'rakr/vim-one'}
+  -- vimscript('colorscheme one')
 
-   local sumneko_root_path = ""
-   local sumneko_binary = ""
+  -- use 'Th3Whit3Wolf/space-nvim'
+  -- vimscript('colorscheme space-nvim')
 
-   if vim.fn.has("mac") == 1 then
-      sumneko_root_path = "/Users/" .. USER .. "/.config/nvim/lua-language-server"
-      sumneko_binary = "/Users/" .. USER .. "/.config/nvim/lua-language-server/bin/macOS/lua-language-server"
-   elseif vim.fn.has("unix") == 1 then
-      sumneko_root_path = "/home/" .. USER .. "/.config/nvim/lua-language-server"
-      sumneko_binary = "/home/" .. USER .. "/.config/nvim/lua-language-server/bin/Linux/lua-language-server"
-   else
-      print("Unsupported system for sumneko")
-   end
+  -- use 'sainnhe/sonokai'
+  -- vimscript('colorscheme sonokai')
 
-   require'lspconfig'.sumneko_lua.setup {
-      cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-      settings = {
-         Lua = {
-               runtime = {
-                  -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                  version = 'LuaJIT',
-                  -- Setup your lua path
-                  path = vim.split(package.path, ';')
-               },
-               diagnostics = {
-                  -- Get the language server to recognize the `vim` global
-                  globals = {'vim'}
-               },
-               workspace = {
-                  -- Make the server aware of Neovim runtime files
-                  library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
-               }
-         }
+  -- use 'tanvirtin/monokai.nvim'
+  -- vimscript('colorscheme monokai')
+
+  -- use 'Th3Whit3Wolf/one-nvim'
+  -- vimscript('colorscheme one-nvim')
+
+  -- use 'sainnhe/edge'
+  -- vimscript('colorscheme edge')
+
+  -- use 'norcalli/nvim-base16.lua'
+  -- local base16 = require 'base16'
+  -- local one_dark = base16.theme_from_array {
+  --    '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD', '56B6C2',
+  --    'ABB2BF', '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD',
+  --    '56B6C2', 'ABB2BF'
+  -- }
+  -- base16(one_dark, true)
+
+  -- use 'RRethy/nvim-base16'
+  -- local colorscheme = require('base16-colorscheme')
+  -- colorscheme.setup('monokai')
+
+  -- }}}
+  -- commenting{{{
+  ----------------------------------------
+  --               Commenting
+  ----------------------------------------
+
+  use 'tyru/caw.vim'
+  use 'Shougo/context_filetype.vim'
+  m('', 's', 'gcc', {noremap = false})
+
+  -- use 'b3nj5m1n/kommentary'
+  -- require('kommentary.config').configure_language('default', {
+  --    prefer_single_line_comments = true
+  --    -- use_consistent_indentation = true,
+  --    -- ignore_whitespace = true
+  -- })
+
+  -- m('n', 's', 'gc', {noremap = false})
+  -- m('v', 's', 'gc<esc>', {noremap = false})
+  -- m('n', 'ss', 'gcc', {noremap = false})
+
+  -- }}}
+  -- smoothie{{{
+  use {'psliwka/vim-smoothie'}
+  m('', 'K', '<Plug>(SmoothieUpwards)', {noremap = false})
+  m('', 'J', '<Plug>(SmoothieDownwards)', {noremap = false})
+  -- }}}
+  -- emmete{{{
+  use {'mattn/emmet-vim'}
+  g.emmet_html5 = 0
+  g.user_emmet_leader_key = ','
+  g.user_emmet_install_global = 0
+  vimscript('autocmd FileType html,css,sass,javascript,pug,vue EmmetInstall')
+  -- }}}
+  -- -- indent guide{{{
+  -- use 'glepnir/indent-guides.nvim'
+  -- require('indent_guides').setup({
+  --   indent_start_level = 2,
+  --   indent_soft_pattern = '┊',
+  --   exclude_filetypes = {'help'}
+  -- })
+  -- -- }}}
+  -- syntax{{{
+  -- use {'pangloss/vim-javascript'}
+  -- use {'posva/vim-vue'}
+  use {'digitaltoad/vim-pug'}
+  -- }}}
+  -- colorizer{{{
+  use 'norcalli/nvim-colorizer.lua'
+  require'colorizer'.setup {'sass'}
+  -- }}}
+  -- hop{{{
+  use 'phaazon/hop.nvim'
+  -- require'hop'.setup {keys = 'fjdksl', term_seq_bias = 0.5}
+  m('n', 'e', '<cmd>lua require\'hop\'.hint_words()<cr>', {noremap = false})
+  -- }}}
+  -- scrollbar{{{
+  use 'Xuyuanp/scrollbar.nvim'
+  vimscript([[
+   autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+   autocmd WinEnter,FocusGained * silent! lua require('scrollbar').show()
+   autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
+   ]])
+  -- }}}
+  -- tree sitter{{{
+  ----------------------------------------
+  --               Tree Sitter
+  ----------------------------------------
+  use {'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate'}
+  use 'p00f/nvim-ts-rainbow'
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = 'all',
+    highlight = {enable = true},
+    -- autotag = {enable = true}
+    rainbow = {enable = true},
+    indent = {enable = true}
+  }
+  -- }}}
+  -- lsps{{{
+  ----------------------------------------
+  --               LSP
+  ----------------------------------------
+  use 'neovim/nvim-lspconfig'
+  -- config{{{
+  --------------------
+  --       Config
+  --------------------
+  vim.lsp.handlers['textDocument/publishDiagnostics'] =
+      vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+        --  see: ":help vim.lsp.diagnostic.set_signs()"
+        signs = false
+      })
+
+  vimscript([[
+
+" autocmd VimEnter * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
+" autocmd VimEnter * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=green gui=bold
+
+autocmd VimEnter * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
+autocmd VimEnter * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
+
+autocmd VimEnter * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=yellow gui=bold
+autocmd VimEnter * highlight LspDiagnosticsFloatingWarning guibg=none guifg=yellow gui=bold
+
+autocmd VimEnter * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
+autocmd VimEnter * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
+   ]])
+
+  m('n', 'gj', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+  m('n', 'gk', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+  -- }}}
+  -- languages{{{
+  --------------------
+  --       Languages
+  --------------------
+  lsp = require 'lspconfig'
+  lsp.bashls.setup {settings = {documentFormatting = false}}
+  lsp.clangd.setup {settings = {documentFormatting = false}}
+  lsp.tsserver.setup {settings = {documentFormatting = false}}
+  lsp.vuels.setup {settings = {documentFormatting = false}}
+
+  -- lsp.cssls.setup {
+  --    filetypes = {'css', 'sass'},
+  --    settings = {css = {validate = true}, sass = {validate = true}}
+  -- }
+  -- }}}
+  -- }}}
+  -- efm lsp{{{
+  -- -------------------------------------
+  --               EFM LSP
+  -- -------------------------------------
+  local lua_format = {
+    formatCommand = 'lua-format --indent-width 2 --double-quote-to-single-quote'
+  }
+
+  local shellcheck = {
+    LintCommand = 'shellcheck -f gcc -x',
+    lintFormats = {
+      '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
+    }
+  }
+  local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
+
+  local prettier = {formatCommand = 'prettier --tab-width 2'}
+  local prettier_javascript = {
+    formatCommand = 'prettier --single-quote --tab-width 2'
+  }
+
+  lsp.efm.setup {
+    init_options = {documentFormatting = true, codeAction = false},
+    filetypes = {
+      'sh', 'lua', 'markdown', 'javascript', 'yaml', 'json', 'html', 'css',
+      'vue'
+    },
+    settings = {
+      rootMarkers = {'.git/'},
+      languages = {
+        lua = {lua_format},
+        sh = {shellcheck, shfmt},
+        html = {prettier},
+        css = {prettier},
+        vue = {prettier_javascript},
+        javascript = {prettier_javascript},
+        json = {prettier},
+        yaml = {prettier},
+        markdown = {prettier}
       }
-   }
---}}}
+    }
+  }
 
---}}}
+  vimscript([[
+autocmd FileType sh,markdown autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
+autocmd BufWritePre *.{lua,js,css,html,yaml,vue,json} silent lua vim.lsp.buf.formatting()
+	]])
+
+  -- }}}
+  -- misc{{{
+  -- -------------------------------------
+  --               Misc
+  -- -------------------------------------
+  use 'wbthomason/packer.nvim'
+  -- use {
+  --    'nvim-telescope/telescope.nvim',
+  --    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+  -- }
+
 end)
---}}}
--- options{{{
+-- }}}
 
+-- =============================================================================
+--                              Config
+-- =============================================================================
+
+-- options{{{
+--------------------------------------------------------------------------------
+--                              Options
+--------------------------------------------------------------------------------
+
+----------------------------------------
+--               Globals
+----------------------------------------
 global = {
 
-encoding = 'utf-8',
+  -- encoding = 'utf-8',
 
-----------------------------------------
---              Essentials 
-----------------------------------------
+  -- autoread = true, -- reload files if changed
+  hidden = true, -- allow buffers with unsaved changes
+  backup = false, -- disable backups
+  writebackup = false, -- disable writebackup
+  swapfile = false, -- disable swap
+  -- autoindent = true, -- match indents new lines with previous line.
+  smartindent = true, -- see help. XD
+  clipboard = 'unnamedplus', -- copy to system clipboards
+  updatetime = 300, -- buffer update / Cursor hold autocommand delay
+  -- undofile = true, -- allows undo after closing and reopening a file
+  autochdir = true, -- change project directory to selected buffer path
+  -- backspace = 'indent,eol,start', -- Enable proper backspace behavior
 
-autoread  = true,           -- reload files if changed
-hidden = true,              -- allow buffers with unsaved changes
-backup = false,             -- disable backups
-writebackup = false,              -- disable writebackup
-swapfile = false,           -- disable swap
-autoindent = true,                 -- match indents new lines with previous line.
-smartindent     = true,           -- see help. XD
-clipboard = 'unnamedplus',      -- copy to system clipboards
-updatetime = 300,             -- buffer update / Cursor hold autocommand delay
-undofile = true,                  -- allows undo after closing and reopening a file
-autochdir = true,                  -- change project directory to selected buffer path
-backspace = 'indent,eol,start', -- Enable proper backspace behavior
+  pumheight = 5, -- Makes popup menu smaller
 
-pumheight = 5,                -- Makes popup menu smaller
+  ignorecase = true, -- case insensitive search
+  smartcase = true, -- if there are uppercase letters, become case-sensitive.
+  incsearch = true, -- live incremental searching
+  showmatch = true, -- live match highlighting
+  wrapscan = true, -- searching wraps lines
+  hlsearch = false, -- dont highlight matches
 
-----------------------------------------
---              Searching 
-----------------------------------------
+  ruler = false, -- dont show file position in the bottom right
+  showmode = false, -- dont show current mode
+  showcmd = false, -- dont show partial cmd in the last line
+  modelines = 0, -- disable modelines
+  laststatus = 0, -- disable status line
 
-ignorecase = true, -- case insensitive search
-smartcase = true,  -- if there are uppercase letters, become case-sensitive.
-incsearch = true,  -- live incremental searching
-showmatch = true,  -- live match highlighting
-wrapscan = true,   -- searching wraps lines
-hlsearch = false, -- dont highlight matches
+  -- expandtab = true, -- use spaces instead of tabs.
+  shiftround = true, -- always indent by multiple of shiftwidth
+  -- smarttab = true, -- <tab>/<BS> indent/dedent in leading whitespace
 
+  magic = true, -- respect regx characters while searching
+  history = 100, -- the number of histories to record for various operations
+  lazyredraw = true, -- whether to redraw screen after macros
 
-ruler = false,     -- dont show file position in the bottom right
-showmode = false,  -- dont show current mode
-showcmd = false,   -- dont show partial cmd in the last line
-modelines = 0, -- disable modelines
-laststatus = 0, -- disable status line
+  -- vim.o.iskeyo.d-=_          -- exclude characters from text object
+  sidescroll = 0, -- sidescroll in jumps because terminals are slow
+  spellfile = '~/.config/nvim/spell/en.utf-8.add', -- spell file path
 
-----------------------------------------
---              Tabs 
-----------------------------------------
+  -- Set completeopt to have a better completion experience
+  completeopt = 'menuone,noselect,noinsert',
 
-expandtab = true,     -- use spaces instead of tabs.
-shiftround = true,    -- always indent by multiple of shiftwidth
-smarttab = true,      -- <tab>/<BS> indent/dedent in leading whitespace
+  -- Avoid showing message extra message when using completion
+  shortmess = vim.o.shortmess .. 'c',
 
-----------------------------------------
---              Misc 
-----------------------------------------
+  -- Start scrolling at an offset from the bottom
+  scrolloff = 999,
 
-magic = true,                 -- respect regx characters while searching
-history = 100,           -- the number of histories to record for various operations
-lazyredraw = true,            -- whether to redraw screen after macros
-formatoptions = a('formatoptions', 'n'),
+  -- Disable Safe Write
+  backupcopy = 'yes',
 
-shell = '/usr/bin/zsh',    -- prefer zsh for shell-related tasks
--- vim.o.iskeyo.d-=_          -- exclude characters from text object
-sidescroll = 0,          -- sidescroll in jumps because terminals are slow
-spellfile = '~/.config/nvim/spell/en.utf-8.add', -- spell file path
-
-
+  -- Don't let Vim's 'Found a swap file' message block input
+  shortmess = vim.o.shortmess .. 'A'
 }
 
+----------------------------------------
+--               Window
+----------------------------------------
 window = {
-   foldmethod = 'marker',
-   -- signcolumn = 'yes',
-   -- fdo = r('fdo', 'search'),
+  foldmethod = 'marker',
+
+  -- Never show the sign column (i.e. no more jerking)
+  -- signcolumn = 'no',
+
+  -- fdo = r('fdo', 'search'),
+
+  -- Set absolute line numbers
+  number = true,
+
+  -- Set relative line numbers
+  relativenumber = true,
+
+  -- Disable line wrapping
+  wrap = false
 }
 
+----------------------------------------
+--               Buffer
+----------------------------------------
 buffer = {
-   softtabstop = 3, -- spaces per tab (in insert mode)
-   shiftwidth = 3,  -- spaces per tab (when shifting)
-   tabstop = 3,     -- number of spaces per tab
+  softtabstop = 2, -- spaces per tab (in insert mode)
+  shiftwidth = 2, -- spaces per tab (when shifting)
+  tabstop = 2 -- number of spaces per tab
 }
 
 set_options(global, window, buffer)
 
--- print(vim.wo.signcolumn)
+-- print(vim.o.backupcopy)
 
---}}}
+-- }}}
 -- theme{{{
+--------------------------------------------------------------------------------
+--                              Themes
+--------------------------------------------------------------------------------
 
-vim.api.nvim_set_option('termguicolors', true)     -- use guibg syntax
 vim.api.nvim_win_set_option(0, 'cursorline', true) -- show cursor line
 
-commands_theme = [[
+vimscript([[
 
 " cursor
 autocmd VimEnter * highlight clear CursorLine
+autocmd VimEnter * highlight clear SpellBad
+
 autocmd VimEnter * highlight CursorLine gui=underline
+
 autocmd InsertEnter * set nocursorline
 autocmd InsertLeave * set cursorline
 
+
 " transparency
-autocmd VimEnter * highlight Normal guibg=NONE
-autocmd VimEnter * highlight SignColumn guibg=NONE
-autocmd VimEnter * highlight Folded guibg=NONE
-autocmd VimEnter * highlight Visual guibg=NONE guifg=#00FF00
-
-]]
-run_commands(commands_theme)
-
--- exp{{{
-vim.cmd([[
-" Transparency
-" highlight CursorLineNR  guibg=NONE
-" highlight LineNR        guibg=NONE
-" highlight EndOfBuffer   guibg=NONE
-
-" highlight Pmenu         guibg=NONE
-" highlight CocErrorHighlight guibg=NONE guifg=red
-
-" Miss-spelled colors
-" highlight clear SpellBad
-" highlight SpellBad guibg=NONE guifg=Red
+autocmd VimEnter * highlight Normal       guibg=NONE
+autocmd VimEnter * highlight SignColumn   guibg=NONE
+autocmd VimEnter * highlight Folded       guibg=NONE
+autocmd VimEnter * highlight Pmenu        guibg=NONE
+autocmd VimEnter * highlight EndOfBuffer  guibg=NONE
+autocmd VimEnter * highlight LineNR       guibg=NONE
+autocmd VimEnter * highlight CursorLineNR guibg=NONE
+autocmd VimEnter * highlight Visual       guibg=NONE guifg=yellow gui=bold
+autocmd VimEnter * highlight SpellBad     guibg=NONE guifg=red gui=bold
 ]])
---}}}
---
---==============================================================================
---                             Space characters 
---==============================================================================
 
+--------------------------------------------------------------------------------
+--                              Space Characgters
+--------------------------------------------------------------------------------
 
-
---Visible space
+-- Visible space
 vim.api.nvim_set_option('list', true)
 -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
 -- og.listchars = 'nbsp:⦸'
 -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)
 -- og.listchars = a('listchars', 'tab:▷┅')
-
 
 -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
 -- vim.o.listchars+=extends:»
@@ -307,104 +478,130 @@ vim.api.nvim_set_option('list', true)
 -- DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
 -- if has('linebreak') | let &showbreak='↳ ' | endif
 
---==============================================================================
+-- ==============================================================================
 --                             Misc 
---==============================================================================
+-- ==============================================================================
 
 vim.api.nvim_set_option('emoji', false) -- don't assume all emoji are double width
---}}}
+-- }}}
 -- mappings{{{
+--------------------------------------------------------------------------------
+--                              Mappings
+--------------------------------------------------------------------------------
 
 vim.g.mapleader = ' '
 
-m('n', 'gj', '<c-i>')
-m('n', 'gk', '<c-o>')
-
 -- auto pairs{{{
-m('i', "'i", "''<left>")
+m('i', '\'i', '\'\'<left>')
 m('i', '"i', '""<left>')
 m('i', '`i', '``<left>')
+m('i', '(i', '()<left>')
+m('i', '{i', '{}<left>')
+m('i', '[i', '[]<left>')
+m('i', '<i', '<><left>')
 
-m('i', "'a", "''")
+m('i', '\'a', '\'\'')
 m('i', '"a', '""')
 m('i', '`a', '``')
+m('i', '(a', '()')
+m('i', '{a', '{}')
+m('i', '[a', '[]')
+m('i', '<a', '<>')
 
-m('i', "'o", "'<cr>'<esc>o")
-m('i', '"o', '"<cr>"<esc>o')
-m('i', '`o', '`<cr>`<esc>o')
---}}}
+m('i', '\'o', '\'<cr>\'<esc>O')
+m('i', '"o', '"<cr>"<esc>O')
+m('i', '`o', '`<cr>`<esc>O')
+m('i', '(o', '(<cr>)<esc>O')
+m('i', '{o', '{<cr>}<esc>O')
+m('i', '[o', '[<cr>]<esc>O')
+-- }}}
 -- consistancy with default mappings{{{
 m('n', 'Y', 'y$')
 m('n', 'V', 'v$h')
 m('n', 'vv', 'V')
 m('n', 'U', '<c-r>')
 m('n', '<leader>v', '<c-v>')
---}}}
+-- }}}
 
-m('n', '<cr>', ':silent wa<cr>', { silent = true })
-m('n', '<esc>', ':wqa<cr>', { silent = true })
-m('n', '<leader><esc>', ':qa!<cr>', { silent = true })
+-- m('n', 'gj', '<c-i>')
+-- m('n', 'gk', '<c-o>')
+
+m('n', '<cr>', ':silent wa<cr>', {silent = true})
+-- m('n', '<cr>', '<cmd>silent wa<cr>', {silent = true})
+m('n', '<esc>', '<cmd>wqa<cr>', {silent = true})
+m('n', '<leader><esc>', '<cmd>qa!<cr>', {silent = true})
+
+-- paste last yanked text
+m('n', '<leader>p', '"0p')
 
 -- folds
+-- m('n', '<leader>j', 'zA')
 m('n', '<leader>j', 'za')
-m('n', '<leader>k', 'zm')
+m('n', '<leader>k', 'zM')
 
 -- joins
 m('n', '<leader>J', 'J')
 m('n', '<leader>K', 'kJ')
 
-m('n', 'u', ':silent undo<cr>', { silent = true })
+-- spellings
+m('n', '<leader>f', '1z=')
+m('n', '<leader>F', 'i<C-X><C-S>')
+
+m('n', 'u', '<cmd>silent undo<cr>', {silent = true})
 m('n', '<leader>s', ':%s//gcI<left><left><left><left>')
 
---}}}
+-- }}}
 -- auto commands{{{
-commands_auto = [[
+--------------------------------------------------------------------------------
+--                              Autocommands
+--------------------------------------------------------------------------------
+vimscript([[
 
-" Save & Load folds
-autocmd VimEnter ?* silent! loadview
-autocmd VimLeave * mkview
+" Saves & Loads folds
+" autocmd VimLeave ?* mkview
+" autocmd VimEnter ?* silent! loadview
 
-" Auto split for toying around
+" Auto splits for toying around
 autocmd VimEnter toy.* silent !tmux split-window -l 35\% \; last-pane
 
-" Kill the output pane of toys on quit
+" Kills the output pane of toys on quit
 autocmd VimLeave toy.* !tmux killp -t :.+
 
-]]
-run_commands(commands_auto)
+" disables auto comments
+autocmd VimEnter * set formatoptions-=cro
 
--- vim.cmd([[
+" enable undoing between buffer closes
+autocmd VimEnter * set undofile
 
--- 
--- " Updates the buffer if changed elsewhere
--- autocmd FocusGained,BufEnter * checktime
--- 
--- " Restore cursor to the last location
--- autocmd BufReadPost * call setpos(".", getpos("'\""))
--- 
--- " Disables automatic commenting on newline:
--- autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
--- 
--- " Rename tmux window
--- " autocmd VimEnter * silent !tmux-rename-window %
--- 
--- 
--- 
--- " Clean Junk files after quitting
--- autocmd VimLeave *.tex !compile --clean %
--- 
--- 
--- ]])
--- 
+" Updates the buffer if changed elsewhere
+autocmd FocusGained,BufEnter * checktime
+
+" Restore cursor to the last location
+autocmd BufReadPost * call setpos(".", getpos("'\""))
+
+" Rename tmux window
+autocmd VimEnter ?* silent !tmux-rename-window %
+
+" Highlight yanked lines
+autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='Visual', timeout=200 }
+
+" Use spaces instead of tabs
+autocmd VimEnter * set expandtab
+]])
 -- --}}}
 -- write posts{{{
-commands_posts = [[
+--------------------------------------------------------------------------------
+--                              Write Posts
+--------------------------------------------------------------------------------
+vimscript([[
 " toys (setup for easily messing around with various programming languages)
-autocmd BufWritePost toy.* !toy %
-]]
-run_commands(commands_posts)
+autocmd BufWritePost toy.* silent !toy %
+" Auto compile
+autocmd BufWritePost *.{ms,c,h} silent !compile %
+autocmd FileType sh autocmd BufWritePost * silent !compile %
+]])
 
--- vim.cmd([[
+-- vimscript([[
 -- 
 -- "===============================================================================
 -- "                 Configs (Automatic Reload/Refresh)
@@ -446,3 +643,167 @@ run_commands(commands_posts)
 -- 
 -- ]])
 -- --}}}
+-- language specifics{{{
+--------------------------------------------------------------------------------
+--                              Language Specifics
+--------------------------------------------------------------------------------
+-- filetypes{{{
+----------------------------------------
+--               Filetypes
+----------------------------------------
+vimscript([[
+autocmd BufNewFile,BufRead calcurse-note.* setfiletype markdown
+]])
+-- }}}
+-- lua{{{
+----------------------------------------
+--               Lua
+----------------------------------------
+vimscript([[
+autocmd FileType lua inoremap ;bl -- <esc>77a=<esc>yypO-- <esc>29a<space><Esc>i<RIGHT>
+autocmd FileType lua inoremap ;bm -- <esc>37a-<esc>yypO-- <esc>14a<space><Esc>i<RIGHT>
+autocmd FileType lua inoremap ;bs -- <esc>17a-<esc>yypO-- <esc>7a<space><Esc>i<RIGHT>
+]])
+-- }}}
+-- markdown{{{
+--------------------------------------
+--              Markdown
+--------------------------------------
+vimscript([[
+autocmd FileType markdown autocmd VimEnter * setlocal spell
+autocmd FileType markdown inoremap ;bl <esc>i<!--<ESC>76a=<ESC>o<ESC>77i=<ESC>a--><ESC><<O<ESC>30a<SPACE><ESC>a
+autocmd FileType markdown inoremap inoremap ;bm <esc>i<!--<ESC>28a=<ESC>o<ESC>29i=<ESC>a--><ESC><<O<ESC>15a<SPACE><ESC>a
+]])
+-- }}}
+-- shellscript{{{
+-- -------------------------------------
+--               Shellscript
+-- -------------------------------------
+vimscript([[
+" Enable Tree Sitter Code Folding
+autocmd FileType sh set foldmethod=expr
+autocmd FileType sh set foldexpr=nvim_treesitter#foldexpr()
+]])
+-- }}}
+-- javascript{{{
+----------------------------------------
+--               Javascript
+----------------------------------------
+vimscript([[
+autocmd FileType javascript,vue,pug inoremap ;A (async () => {<cr>})();<esc>O
+autocmd FileType javascript,vue,pug inoremap ;a () => {<cr>}<esc>k$F)i
+autocmd FileType javascript,vue,pug inoremap ;c case :<cr>break;<up><left>
+autocmd FileType javascript,vue,pug inoremap ;E export default () => {<cr>}<esc>O
+autocmd FileType javascript,vue,pug inoremap ;ei else if () {<cr>}<up><right><right><right>
+autocmd FileType javascript,vue,pug inoremap ;el else {<cr>}<up><right><right><right>
+autocmd FileType javascript,vue,pug inoremap ;f function () {<cr>}<esc>k$F)i
+autocmd FileType javascript,vue,pug inoremap ;i if () {<cr>}<up><right><right><right>
+autocmd FileType javascript,vue,pug inoremap ;I import * from '<++>'<esc>F*s
+autocmd FileType javascript,vue,pug inoremap ;l console.log()<Left>
+autocmd FileType javascript,vue,pug inoremap ;L console.dir(, { depth: null })<esc>F(a
+autocmd FileType javascript,vue,pug inoremap ;o () => ({<cr>})<esc>k$F)i
+autocmd FileType javascript,vue,pug inoremap ;s switch () {<cr>}<up><esc>f(a
+autocmd FileType javascript,vue,pug inoremap ;tc try{<cr>}catch (error){<cr><++><cr>}<esc>2kO
+
+]])
+-- }}}
+-- sass{{{
+-- ----------------------------------------
+-- --               Sass
+-- ----------------------------------------
+vimscript([[
+" autocmd VimEnter *.sass setlocal shiftwidth=2
+autocmd VimEnter *.{sass,vue} inoremap ;dg  display: grid<cr>
+autocmd VimEnter *.{sass,vue} inoremap ;pic place-items: center<cr>
+autocmd VimEnter *.{sass,vue} inoremap ;m @media (min-width: 601px)<cr><tab>
+autocmd VimEnter *.{sass,vue} inoremap ;c calc()<left>
+]])
+-- }}}
+-- vue{{{
+-- -------------------------------------
+--               Vue
+-- -------------------------------------
+vimscript([[
+" Enable Tree Sitter Code Folding
+autocmd FileType vue set foldmethod=expr
+autocmd FileType vue set foldexpr=nvim_treesitter#foldexpr()
+]])
+-- }}}
+-- misc{{{
+----------------------------------------
+--               Headers
+----------------------------------------
+vimscript([[
+autocmd FileType sh,conf,yaml,sxhkd,zsh,python,muttrc,tmux,make,nginx inoremap ;bl #<esc>79a=<esc>yypO#<esc>30a<space><Esc>i<RIGHT>
+autocmd FileType sh,conf,yaml,sxhkd,zsh,python,muttrc,tmux,make,nginx inoremap ;bm #<esc>39a-<esc>yypO#<esc>15a<space><Esc>i<RIGHT>
+autocmd FileType sh,conf,yaml,sxhkd,zsh,python,muttrc,tmux,make,nginx inoremap ;bs #<esc>19a-<esc>yypO#<esc>7a<space><Esc>i<RIGHT>
+
+autocmd FileType c,cpp,dart,javascript,php,typescript,pug,sass,java inoremap ;bl //<esc>78a=<esc>yypO//<esc>30a<space><Esc>i<RIGHT>
+autocmd FileType c,cpp,dart,javascript,php,typescript,pug,sass,java inoremap ;bm //<esc>38a-<esc>yypO//<esc>15a<space><Esc>i<RIGHT>
+autocmd FileType c,cpp,dart,javascript,php,typescript,pug,sass,java inoremap ;bs //<esc>18a-<esc>yypO//<esc>7a<space><Esc>i<RIGHT>
+
+autocmd FileType mail,json autocmd VimEnter * setlocal spell
+]])
+-- }}}
+-- }}}
+-- experiments{{{
+--------------------------------------------------------------------------------
+--                              Experiments
+--------------------------------------------------------------------------------
+-- lsp{{{
+-- vimscript([[
+-- sign define LspDiagnosticsSignHint text=ℹ texthl= linehl= numhl=
+-- sign define LspDiagnosticsSignWarning text=⚠ texthl= linehl= numhl=
+-- sign define LspDiagnosticsSignError text=❌ texthl= linehl= numhl=
+-- autocmd VimEnter * highlight LspDiagnosticsVirtualTextHint guibg=NONE guifg=green gui=bold
+-- autocmd VimEnter * highlight LspDiagnosticsVirtualTextWarning guibg=NONE guifg=yellow gui=bold
+-- autocmd VimEnter * highlight LspDiagnosticsVirtualTextError guibg=NONE guifg=red gui=bold
+-- ]])
+
+-- }}}
+-- nvim-compe{{{
+--    use { 'hrsh7th/nvim-compe' }
+--    require'compe'.setup {
+--       enabled = true;
+--       autocomplete = true;
+--       debug = false;
+--       min_length = 1;
+--       preselect = 'enable';
+--       throttle_time = 80;
+--       source_timeout = 200;
+--       incomplete_delay = 400;
+--       max_abbr_width = 100;
+--       max_kind_width = 100;
+--       max_menu_width = 100;
+--       documentation = true;
+-- 
+--       source = {
+--          path = true;
+--          buffer = true;
+--          calc = true;
+--          nvim_lsp = true;
+--          nvim_lua = true;
+--          vsnip = true;
+--       };
+--    }
+-- }}}
+-- spellsitter{{{
+-- use 'lewis6991/spellsitter.nvim'
+-- require('spellsitter').setup {
+--    hl = 'SpellBad',
+--    captures = {}, -- set to {} to spellcheck everything
+--    hunspell_cmd = 'hunspell',
+--    hunspell_args = {}
+-- }
+-- }}}
+-- -- easymotion{{{
+-- use {'easymotion/vim-easymotion'}
+-- g.EasyMotion_do_mapping = 0
+-- g.EasyMotion_smartcase = 1
+-- m('n', 'e', '<Plug>(easymotion-overwin-w)', {noremap = false})
+-- -- }}}
+-- indentline{{{
+-- use {'Yggdroot/indentLine'}
+-- g.indentLine_char = '┊'
+-- }}}
+-- }}}

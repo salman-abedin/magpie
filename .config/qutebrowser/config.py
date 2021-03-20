@@ -47,8 +47,8 @@ c.downloads.location.directory = '/mnt/internal/downloads'
 #   - switching: Show the tab bar when switching tabs.
 c.tabs.show = 'always'
 
-c.colors.webpage.prefers_color_scheme_dark=False
-c.colors.webpage.darkmode.enabled=False
+# c.colors.webpage.prefers_color_scheme_dark=False
+# c.colors.webpage.darkmode.enabled=False
 
 #---------------------------------------
 #               Font

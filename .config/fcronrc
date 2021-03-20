@@ -33,10 +33,10 @@ DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 @ 5 DISPLAY=$(cat /tmp/DISPLAY) battery --monitor
 @ 3h DISPLAY=$(cat /tmp/DISPLAY) mirror --git
 @ 6h DISPLAY=$(cat /tmp/DISPLAY) mirror --calcurse
-@ 12h DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/horcrux 50
-@ 24h DISPLAY=$(cat /tmp/DISPLAY) mirror --brave --drive
+@ 12h DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/internal 50
+@ 24h DISPLAY=$(cat /tmp/DISPLAY) mirror --brave --firefox --drive
 @ 7d DISPLAY=$(cat /tmp/DISPLAY) housekeep
-@ 7d DISPLAY=$(cat /tmp/DISPLAY) mirror --arch --repos --upstream
+@ 7d DISPLAY=$(cat /tmp/DISPLAY) mirror --system --repos --upstream
 
 #===============================================================================
 #                             EXP

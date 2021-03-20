@@ -1,7 +1,5 @@
 .POSIX:
-init:
-	@echo Initiation finished.
 install:
-	@$$SHELL ./.local/bin/install
+	@$$SHELL ./.local/bin/magpie_install
 	@echo Installation finished.
-.PHONY: init install
+.PHONY: install

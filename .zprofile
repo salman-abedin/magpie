@@ -1,9 +1,22 @@
 #!/bin/sh
+#
+# Environemnt script
 
+# sources{{{
+#===============================================================================
+#                              Sources
+#===============================================================================
 [ -L ~/.private ] && . ~/.private
-
-export PATH=$PATH:~/.local/bin:~/.yarn/bin:~/.local/share/gem/ruby/2.7.0/bin
-
+# }}}
+# paths{{{
+#===============================================================================
+#                              Paths
+#===============================================================================
+export PATH=$PATH:~/.local/bin                      # local scripts
+export PATH=$PATH:~/.yarn/bin                       # global node packages
+export PATH=$PATH:~/.local/share/gem/ruby/2.7.0/bin # global ruby modules
+# }}}
+# default programs{{{
 #===============================================================================
 #                             Defaults Programs
 #===============================================================================
@@ -13,7 +26,7 @@ export TERMINAL=st
 export DMENU=amenu
 export STATUSBAR="uniblocks -g"
 
-export EDITOR=nvim5
+export EDITOR=nvim
 export VISUAL=$EDITOR
 export BROWSER=firefox
 export FILE=faint
@@ -21,8 +34,10 @@ export READER=zathura
 export COMPOSITOR=xcompmgr
 
 # export MANPAGER="$EDITOR +Man!"
-# export PAGER="$EDITOR -R +AnsiEsc"
+# export PAGER="$EDITOR -R"
 
+# }}}
+# system stuff{{{
 #===============================================================================
 #                             System Stuff
 #===============================================================================
@@ -46,6 +61,9 @@ export LAYOUT_EN=~/.config/X11/xmodmap-en
 export LAYOUT_AR=~/.config/X11/xmodmap-ar
 export LAYOUT_BN=~/.config/X11/xmodmap-bn
 
+export GPG_MAIL=salmanabedin@disroot.org
+# }}}
+# housekeeping{{{
 #===============================================================================
 #                             Housekeeping
 #===============================================================================
@@ -82,19 +100,23 @@ export LESS=-R
 # export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 # export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
+# }}}
+# autostart{{{
 #===============================================================================
 #                         Auto Start X on TTY1
 #===============================================================================
 
 [ "$(fgconsole 2> /dev/null)" = 1 ] &&
    exec startx ~/.config/X11/xinitrc -- vt1 > /dev/null 2>&1
-
+# }}}
+# escape swap{{{
 #===============================================================================
 #                        Swap Escape & Caps Lock when on TTY
 #===============================================================================
 
 # doas -n loadkeys ~/.local/share/misc/tty_maps.kmap
-
+# }}}
+# experiments{{{
 #===============================================================================
 #                             Exp
 #===============================================================================
@@ -128,3 +150,4 @@ export LESS=-R
 # export MOZ_SERVICES_HEALTHREPORT=0
 # [ -L ~/.config/lf/lf_icons ] && . ~/.config/lf/lf_icons
 # export PERL5LIB=~/perl5/lib/perl5
+# }}}
