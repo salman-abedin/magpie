@@ -1,29 +1,30 @@
 #---------------------------------------
 #              Shell
 #---------------------------------------
-zsh
-zsh-completions
-zsh-syntax-highlighting
-zsh-autosuggestions
-@dashbinsh
+^ zsh
+^ zsh-completions
+^ zsh-syntax-highlighting
+^ zsh-autosuggestions
+@ dashbinsh
 
 #---------------------------------------
 #              Dmenu
 #---------------------------------------
-fzf
-$ salman-abedin/amenu
+^ fzf
+$ salman-abedin/dmenu
+# $ salman-abedin/amenu
 # rofi
 
 #---------------------------------------
 #              Multiplexer
 #---------------------------------------
-tmux
+^ tmux
 
 #---------------------------------------
 #              Editor
 #---------------------------------------
 # neovim
-@neovim-git
+@ neovim-git
 # nano
 
 #---------------------------------------
@@ -42,18 +43,24 @@ $ salman-abedin/bolt
 #---------------------------------------
 #              Audio
 #---------------------------------------
-alsa-utils
-pulseaudio-alsa
-pulseaudio-bluetooth
-bluez-utils
+^ alsa-utils
+
+^ pulseaudio-alsa
+^ pavucontrol
+
 # pulseeffects
-pavucontrol
+
+#---------------------------------------
+#               Bluetooth
+#---------------------------------------
+# ^ pulseaudio-bluetooth
+# ^ bluez-utils
 
 #---------------------------------------
 #              Trackpad
 #---------------------------------------
-xdotool
-xf86-input-libinput
+^ xdotool
+^ xf86-input-libinput
 @ libinput-gestures
 # @ gebaar-libinput-git
 # @ gebaar
@@ -61,18 +68,18 @@ xf86-input-libinput
 #---------------------------------------
 #              Keyboard
 #---------------------------------------
-xorg-xmodmap
-xcape
-xsel
-xorg-xev
+^ xorg-xmodmap
+^ xcape
+^ xsel
+^ xorg-xev
 # sxhkd
 # xclip
 
 #---------------------------------------
 #              Display Server
 #---------------------------------------
-xorg-server
-xorg-xinit
+^ xorg-server
+^ xorg-xinit
 
 #---------------------------------------
 #              Terminal Emulator
@@ -100,7 +107,7 @@ $ salman-abedin/uniblocks
 #              Compositor
 #---------------------------------------
 
-xcompmgr
+^ xcompmgr
 # @ transset-df
 
 # @ picom-jonaburg-git
@@ -111,8 +118,8 @@ xcompmgr
 #              Sans & Serif Fonts
 #---------------------------------------
 
-ttf-ubuntu-font-family
-ttf-linux-libertine
+^ ttf-ubuntu-font-family
+^ ttf-linux-libertine
 # @ ttf-ms-fonts
 # @ ttf-vista-fonts
 # ttf-liberation
@@ -120,8 +127,8 @@ ttf-linux-libertine
 #---------------------------------------
 #               Monospace Fonts
 #---------------------------------------
-@ nerd-fonts-sf-mono
-# ttf-jetbrains-mono
+ttf-jetbrains-mono
+# @ nerd-fonts-sf-mono
 # ttf-dejavu
 # @ nerd-fonts-iosevka
 # ttf-roboto-mono
@@ -143,10 +150,10 @@ ttf-linux-libertine
 # Emojis & Glyphs
 #---------------------------------------
 @ libxft-bgra
-ttf-joypixels
+^ noto-fonts-emoji
+^ ttf-font-awesome
 
-# noto-fonts-emoji
-# ttf-font-awesome
+# ttf-joypixels
 # @ powerline-fonts-git
 # @ nerd-fonts-complete
 # @ ttf-symbola-free
@@ -154,7 +161,7 @@ ttf-joypixels
 #---------------------------------------
 #              Video
 #---------------------------------------
-mesa
+^ mesa
 
 # lib32-mesa
 # xf86-video-intel
@@ -164,10 +171,10 @@ mesa
 #---------------------------------------
 #              Music
 #---------------------------------------
-mpd
-mpc
-playerctl
-ncmpcpp
+^ mpd
+^ mpc
+^ playerctl
+^ ncmpcpp
 @ spotify
 @ spotify_dl
 # @ spicetify-cli
@@ -176,24 +183,27 @@ ncmpcpp
 #---------------------------------------
 #              Image Tools
 #---------------------------------------
-feh
-imagemagick
-pinta
+^ feh
+^ imagemagick
+^ pinta
 # inkscape
 # maim
 
 #---------------------------------------
 #              Browser
 #---------------------------------------
-qutebrowser
-# firefox
+^ qutebrowser
 # @ brave-bin
+# firefox
 # falkon
 
 # @ vdhcoapp
 # @ firefox-extension-video-download-helper
 
 # w3m
+
+$ salman-abedin/unimark
+$ salman-abedin/unipass
 
 #---------------------------------------
 #              Reader
@@ -202,8 +212,8 @@ qutebrowser
 # @ masterpdfeditor-free
 # @ foxitreader
 
-zathura
-zathura-pdf-mupdf
+^ zathura
+^ zathura-pdf-mupdf
 # zathura-ps
 # zathura-djvu
 
@@ -214,7 +224,7 @@ zathura-pdf-mupdf
 #---------------------------------------
 #              Torrent
 #---------------------------------------
-transmission-cli
+^ transmission-cli
 $ salman-abedin/tide
 
 # transmission-gtk
@@ -223,9 +233,9 @@ $ salman-abedin/tide
 #---------------------------------------
 #              Syncing
 #---------------------------------------
-rclone
-unison
-rsync
+^ rclone
+^ unison
+^ rsync
 
 # sshfs
 # inotify-tools
@@ -235,25 +245,25 @@ rsync
 #---------------------------------------
 #              Notifications
 #---------------------------------------
-dunst
-libnotify
-# stalonetray
+^ dunst
+^ libnotify
 
-# notification-daemon
+# ^ notification-daemon
+# stalonetray
 # dzen2
 
 #---------------------------------------
 #              Archiving
 #---------------------------------------
-unzip
-unrar
-p7zip
+^ unzip
+^ unrar
+^ p7zip
 # atool
 
 #---------------------------------------
 #              Mail
 #---------------------------------------
-neomutt
+^ neomutt
 # isync
 # abook
 # msmtp
@@ -262,15 +272,15 @@ neomutt
 #---------------------------------------
 #              Chatting
 #---------------------------------------
-weechat
-aspell
-aspell-en
+^ weechat
+^ aspell
+^ aspell-en
 #bitlbee
 #@ bitlbee-facebook
 
 # matrix
-libolm
-weechat-matrix
+^ libolm
+^ weechat-matrix
 
 # # slack
 # @ slack-term-bin
@@ -279,7 +289,7 @@ weechat-matrix
 #---------------------------------------
 #              Locker
 #---------------------------------------
-xss-lock
+^ xss-lock
 @ i3lock-color
 
 # @ xidlehook
@@ -289,28 +299,35 @@ xss-lock
 #---------------------------------------
 #              Calcurse
 #---------------------------------------
-calcurse
-vdirsyncer
-python-httplib2
+^ calcurse
+^ vdirsyncer
+^ python-httplib2
 
 #---------------------------------------
 #              X Tools
 #---------------------------------------
-xdo
-xorg-xset
-xorg-xsetroot
-xorg-xrandr
+^ xdo
+^ xorg-xset
+^ xorg-xsetroot
+^ xorg-xrandr
+
+#---------------------------------------
+#              scripts
+#---------------------------------------
+$ salman-abedin/alfred
 
 #---------------------------------------
 #               Misc
 #---------------------------------------
-man-db
-make
-fcron
-newsboat
-mpv
+^ man-db
+^ make
+^ fcron
+^ newsboat
+^ mpv
 @ doas
 @ xbanish
-wget
-android-tools
+^ wget
+^ android-tools
+^ zip
+^ w3m
 # git

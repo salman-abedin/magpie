@@ -1,31 +1,28 @@
 #!/bin/sh
-#
-# X11 startup script
 #          _         _  __
 #   _  __ (_)____   (_)/ /_ _____ _____
 #  | |/_// // __ \ / // __// ___// ___/
 # _>  < / // / / // // /_ / /   / /_
 #/_/|_|/_//_/ /_//_/ \__//_/    \___/
+#
+# X11 startup script
 
-# transmission-daemon &      # Launch torrent daemon
 xset -b &                        # Disable PC speaker
 xsetroot -cursor_name left_ptr & # Remove the ugly X cursor
 xbanish &                        # Hide cursor when idle
 
-# xset r rate 300 60 & # Speed key press delay & reapeat rate
 {
   xmodmap "$LAYOUT_EN"
   xcape -e "Super_L=Escape;Mode_switch=Tab"
-  # xcape -e "Super_L=Escape;Super_R=backslash;Mode_switch=Tab"
 } & # Bind Multi-purpose keys
 
 xss-lock -n 'backlight -D' -- 'lock' & # Set Dimmer & Locker
 xset s 300 300 &                       # Set Dimmer & Locker Delays
 libinput-gestures &                    # Bind gesture commands
-dunst &                                # Launch notification server
-bolt --generate &                      # Generate search list for bolt
-launch --tmux &                        # Launch tmux
-# mirror --mail &                            # Sync mails
+# dunst &                                # Launch notification server
+dbus-launch dunst &              # Launch notification server
+bolt --generate &                # Generate search list for bolt
+launch --tmux &                  # Launch tmux
 echo "$DISPLAY" > /tmp/DISPLAY & # For Udev & Fcron environment
 
 #===============================================================================
@@ -35,9 +32,9 @@ echo "$DISPLAY" > /tmp/DISPLAY & # For Udev & Fcron environment
 setdisplay --dpi --bg      # Set the correct DPI
 lock                       # Start locked
 $COMPOSITOR &              # Launch Compositor
-$TERMINAL -e tmux attach & # Launch terminal
 $STATUSBAR &               # Launch Compositor
-# teams &
+$TERMINAL -e tmux attach & # Launch terminal
+
 { sleep 5 && pkill dwm; } & # Fix uniblocks glithes
 exec $WM                    # Launch Window Manager
 
@@ -45,9 +42,15 @@ exec $WM                    # Launch Window Manager
 #                             Exp
 #===============================================================================
 
+# xcape -e "Super_L=Escape;Super_R=backslash;Mode_switch=Tab"
+# xset r rate 300 60 & # Speed key press delay & reapeat rate
+# transmission-daemon &      # Launch torrent daemon
+# mirror --mail &                            # Sync mails
+# teams &
+# /usr/lib/notification-daemon-1.0/notification-daemon & # Launch notification daemon
+# pulseaudio --exit-idle-time -1 -D & # Fix pulseaduio bug
 # toggle --wall-reel    # Start wallpaper reeling
 # watchmen &                             # Launch inotify watchers
-# pulseaudio --exit-idle-time -1 -D & # Fix pulseaduio bug
 # sh -c "sleep 0.5;  stalonetray -bg \"#000000\" --geometry \"1x1+125+5\"" &
 # xautolock -detectsleep -time 5 -locker lock & # Set Locker
 # xidlehook --not-when-audio --not-when-fullscreen \
@@ -55,4 +58,4 @@ exec $WM                    # Launch Window Manager
 # xset s off &                                   # Turn off screen blanking
 # xidlehook --not-when-audio --not-when-fullscreen \
 # --timer 300 'lock' '' & # Set up locker
-# gebaard -b            # Bind gesture commands
+# gebaard -b # Bind gesture commands

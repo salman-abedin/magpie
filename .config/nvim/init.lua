@@ -73,12 +73,43 @@ require('packer').startup(function()
   ----------------------------------------
   --               Completion
   ----------------------------------------
-  use 'nvim-lua/completion-nvim'
-  g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
-  g.completion_confirm_key = '<c-y>'
-  vimscript([[ autocmd VimEnter * lua require'completion'.on_attach() ]])
-  m('i', '<tab>', 'pumvisible() ? "<C-n><C-y>" : "<Tab>"', {expr = true})
+
+  -- use 'nvim-lua/completion-nvim'
+  -- g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+  -- vimscript [[ autocmd BufEnter * lua require'completion'.on_attach() ]]
+  -- g.completion_confirm_key = '<c-y>'
+  -- vimscript [[ autocmd VimEnter * lua require'completion'.on_attach() ]]
+
+  -- m('i', '<tab>', 'pumvisible() ? "<C-n><C-y>" : "<Tab>"', {expr = true})
   -- m('i', '<s-tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
+
+  m('i', '<tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
+  m('i', '<s-tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
+  m('i', '<CR>', 'pumvisible() ? "<C-y>" : "<CR>"', {expr = true})
+
+  -- use 'hrsh7th/nvim-compe '
+  -- require'compe'.setup {
+  --   enabled = true,
+  --   autocomplete = true,
+  --   debug = false,
+  --   min_length = 1,
+  --   preselect = 'enable',
+  --   throttle_time = 80,
+  --   source_timeout = 200,
+  --   incomplete_delay = 400,
+  --   max_abbr_width = 100,
+  --   max_kind_width = 100,
+  --   max_menu_width = 100,
+  --   documentation = true,
+  --   source = {
+  --     path = true,
+  --     buffer = true,
+  --     calc = true,
+  --     nvim_lsp = true,
+  --     nvim_lua = true,
+  --     vsnip = true
+  --   }
+  -- }
 
   -- }}}
   -- colorschemes{{{
@@ -96,7 +127,7 @@ require('packer').startup(function()
   g.indentLine_char = '┊'
 
   use 'mhartington/oceanic-next'
-  vimscript('colorscheme OceanicNext')
+  vimscript 'colorscheme OceanicNext'
 
   -- use {'NLKNguyen/papercolor-theme'}
   -- use {'rakr/vim-one'}
@@ -153,16 +184,16 @@ require('packer').startup(function()
 
   -- }}}
   -- smoothie{{{
-  use {'psliwka/vim-smoothie'}
+  use 'psliwka/vim-smoothie'
   m('', 'K', '<Plug>(SmoothieUpwards)', {noremap = false})
   m('', 'J', '<Plug>(SmoothieDownwards)', {noremap = false})
   -- }}}
   -- emmete{{{
-  use {'mattn/emmet-vim'}
+  use 'mattn/emmet-vim'
   g.emmet_html5 = 0
   g.user_emmet_leader_key = ','
   g.user_emmet_install_global = 0
-  vimscript('autocmd FileType html,css,sass,javascript,pug,vue EmmetInstall')
+  vimscript 'autocmd FileType html,css,sass,javascript,pug,vue EmmetInstall'
   -- }}}
   -- -- indent guide{{{
   -- use 'glepnir/indent-guides.nvim'
@@ -188,11 +219,11 @@ require('packer').startup(function()
   -- }}}
   -- scrollbar{{{
   use 'Xuyuanp/scrollbar.nvim'
-  vimscript([[
+  vimscript [[
    autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
    autocmd WinEnter,FocusGained * silent! lua require('scrollbar').show()
    autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
-   ]])
+   ]]
   -- }}}
   -- tree sitter{{{
   ----------------------------------------
@@ -202,7 +233,9 @@ require('packer').startup(function()
   use 'p00f/nvim-ts-rainbow'
   require'nvim-treesitter.configs'.setup {
     ensure_installed = 'all',
-    highlight = {enable = true},
+    -- highlight = {enable = true},
+    highlight = {enable = false},
+    -- highlight = {enable = true, disable = {'vue'}},
     -- autotag = {enable = true}
     rainbow = {enable = true},
     indent = {enable = true}
@@ -224,7 +257,7 @@ require('packer').startup(function()
         signs = false
       })
 
-  vimscript([[
+  vimscript [[
 
 " autocmd VimEnter * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
 " autocmd VimEnter * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=green gui=bold
@@ -237,7 +270,7 @@ autocmd VimEnter * highlight LspDiagnosticsFloatingWarning guibg=none guifg=yell
 
 autocmd VimEnter * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
 autocmd VimEnter * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
-   ]])
+   ]]
 
   m('n', 'gj', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
   m('n', 'gk', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
@@ -301,10 +334,10 @@ autocmd VimEnter * highlight LspDiagnosticsFloatingError guibg=none guifg=red gu
     }
   }
 
-  vimscript([[
+  vimscript [[
 autocmd FileType sh,markdown autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
 autocmd BufWritePre *.{lua,js,css,html,yaml,vue,json} silent lua vim.lsp.buf.formatting()
-	]])
+	]]
 
   -- }}}
   -- misc{{{
@@ -377,7 +410,8 @@ global = {
   spellfile = '~/.config/nvim/spell/en.utf-8.add', -- spell file path
 
   -- Set completeopt to have a better completion experience
-  completeopt = 'menuone,noselect,noinsert',
+  -- completeopt = 'menuone,noselect,noinsert',
+  completeopt = 'menuone,noselect',
 
   -- Avoid showing message extra message when using completion
   shortmess = vim.o.shortmess .. 'c',
@@ -409,6 +443,9 @@ window = {
   -- Set relative line numbers
   relativenumber = true,
 
+  -- Disable folding at startup
+  foldlevel = 99,
+
   -- Disable line wrapping
   wrap = false
 }
@@ -423,6 +460,8 @@ buffer = {
 }
 
 set_options(global, window, buffer)
+-- vimscript [[set iskeyword-=_]]
+-- vimscript [[set shortmess+=c]]
 
 -- print(vim.o.backupcopy)
 
@@ -434,7 +473,7 @@ set_options(global, window, buffer)
 
 vim.api.nvim_win_set_option(0, 'cursorline', true) -- show cursor line
 
-vimscript([[
+vimscript [[
 
 " cursor
 autocmd VimEnter * highlight clear CursorLine
@@ -456,7 +495,7 @@ autocmd VimEnter * highlight LineNR       guibg=NONE
 autocmd VimEnter * highlight CursorLineNR guibg=NONE
 autocmd VimEnter * highlight Visual       guibg=NONE guifg=yellow gui=bold
 autocmd VimEnter * highlight SpellBad     guibg=NONE guifg=red gui=bold
-]])
+]]
 
 --------------------------------------------------------------------------------
 --                              Space Characgters
@@ -546,6 +585,8 @@ m('n', '<leader>K', 'kJ')
 -- spellings
 m('n', '<leader>f', '1z=')
 m('n', '<leader>F', 'i<C-X><C-S>')
+m('n', '<leader>a', 'zg')
+m('n', '<leader>A', 'zug')
 
 m('n', 'u', '<cmd>silent undo<cr>', {silent = true})
 m('n', '<leader>s', ':%s//gcI<left><left><left><left>')
@@ -555,7 +596,7 @@ m('n', '<leader>s', ':%s//gcI<left><left><left><left>')
 --------------------------------------------------------------------------------
 --                              Autocommands
 --------------------------------------------------------------------------------
-vimscript([[
+vimscript [[
 
 " Saves & Loads folds
 " autocmd VimLeave ?* mkview
@@ -587,21 +628,24 @@ autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='Visual', tim
 
 " Use spaces instead of tabs
 autocmd VimEnter * set expandtab
-]])
+]]
 -- --}}}
 -- write posts{{{
 --------------------------------------------------------------------------------
 --                              Write Posts
 --------------------------------------------------------------------------------
-vimscript([[
+vimscript [[
 " toys (setup for easily messing around with various programming languages)
 autocmd BufWritePost toy.* silent !toy %
 " Auto compile
 autocmd BufWritePost *.{ms,c,h} silent !compile %
 autocmd FileType sh autocmd BufWritePost * silent !compile %
-]])
 
--- vimscript([[
+autocmd BufWritePost fcronrc silent !fcrontab %
+autocmd BufWritePost boltrc  silent !bolt -g
+]]
+
+-- vimscript [[
 -- 
 -- "===============================================================================
 -- "                 Configs (Automatic Reload/Refresh)
@@ -613,7 +657,6 @@ autocmd FileType sh autocmd BufWritePost * silent !compile %
 -- autocmd BufWritePost gebaard.toml silent !pkill -USR1 gebaard
 -- autocmd BufWritePost compton.conf silent !pkill -USR1 compton
 -- autocmd BufWritePost fcronrc      silent !fcrontab %
--- autocmd BufWritePost boltrc       silent !bolt -g
 -- autocmd BufWritePost dunstrc
 --          \ silent !killall dunst && dunst & notify-send -i "$ICONS"/bell.png 'Head' 'Message'
 -- autocmd BufWritePost tmux.conf
@@ -641,7 +684,7 @@ autocmd FileType sh autocmd BufWritePost * silent !compile %
 --          \ %s/[^{};]$/&;/e |
 --          \ exec "norm! `a"
 -- 
--- ]])
+-- ]]
 -- --}}}
 -- language specifics{{{
 --------------------------------------------------------------------------------
@@ -651,45 +694,45 @@ autocmd FileType sh autocmd BufWritePost * silent !compile %
 ----------------------------------------
 --               Filetypes
 ----------------------------------------
-vimscript([[
+vimscript [[
 autocmd BufNewFile,BufRead calcurse-note.* setfiletype markdown
-]])
+]]
 -- }}}
 -- lua{{{
 ----------------------------------------
 --               Lua
 ----------------------------------------
-vimscript([[
+vimscript [[
 autocmd FileType lua inoremap ;bl -- <esc>77a=<esc>yypO-- <esc>29a<space><Esc>i<RIGHT>
 autocmd FileType lua inoremap ;bm -- <esc>37a-<esc>yypO-- <esc>14a<space><Esc>i<RIGHT>
 autocmd FileType lua inoremap ;bs -- <esc>17a-<esc>yypO-- <esc>7a<space><Esc>i<RIGHT>
-]])
+]]
 -- }}}
 -- markdown{{{
 --------------------------------------
 --              Markdown
 --------------------------------------
-vimscript([[
+vimscript [[
 autocmd FileType markdown autocmd VimEnter * setlocal spell
 autocmd FileType markdown inoremap ;bl <esc>i<!--<ESC>76a=<ESC>o<ESC>77i=<ESC>a--><ESC><<O<ESC>30a<SPACE><ESC>a
 autocmd FileType markdown inoremap inoremap ;bm <esc>i<!--<ESC>28a=<ESC>o<ESC>29i=<ESC>a--><ESC><<O<ESC>15a<SPACE><ESC>a
-]])
+]]
 -- }}}
 -- shellscript{{{
 -- -------------------------------------
 --               Shellscript
 -- -------------------------------------
-vimscript([[
+vimscript [[
 " Enable Tree Sitter Code Folding
 autocmd FileType sh set foldmethod=expr
 autocmd FileType sh set foldexpr=nvim_treesitter#foldexpr()
-]])
+]]
 -- }}}
 -- javascript{{{
 ----------------------------------------
 --               Javascript
 ----------------------------------------
-vimscript([[
+vimscript [[
 autocmd FileType javascript,vue,pug inoremap ;A (async () => {<cr>})();<esc>O
 autocmd FileType javascript,vue,pug inoremap ;a () => {<cr>}<esc>k$F)i
 autocmd FileType javascript,vue,pug inoremap ;c case :<cr>break;<up><left>
@@ -705,35 +748,35 @@ autocmd FileType javascript,vue,pug inoremap ;o () => ({<cr>})<esc>k$F)i
 autocmd FileType javascript,vue,pug inoremap ;s switch () {<cr>}<up><esc>f(a
 autocmd FileType javascript,vue,pug inoremap ;tc try{<cr>}catch (error){<cr><++><cr>}<esc>2kO
 
-]])
+]]
 -- }}}
 -- sass{{{
 -- ----------------------------------------
 -- --               Sass
 -- ----------------------------------------
-vimscript([[
+vimscript [[
 " autocmd VimEnter *.sass setlocal shiftwidth=2
 autocmd VimEnter *.{sass,vue} inoremap ;dg  display: grid<cr>
 autocmd VimEnter *.{sass,vue} inoremap ;pic place-items: center<cr>
 autocmd VimEnter *.{sass,vue} inoremap ;m @media (min-width: 601px)<cr><tab>
 autocmd VimEnter *.{sass,vue} inoremap ;c calc()<left>
-]])
+]]
 -- }}}
 -- vue{{{
 -- -------------------------------------
 --               Vue
 -- -------------------------------------
-vimscript([[
+vimscript [[
 " Enable Tree Sitter Code Folding
 autocmd FileType vue set foldmethod=expr
 autocmd FileType vue set foldexpr=nvim_treesitter#foldexpr()
-]])
+]]
 -- }}}
 -- misc{{{
 ----------------------------------------
 --               Headers
 ----------------------------------------
-vimscript([[
+vimscript [[
 autocmd FileType sh,conf,yaml,sxhkd,zsh,python,muttrc,tmux,make,nginx inoremap ;bl #<esc>79a=<esc>yypO#<esc>30a<space><Esc>i<RIGHT>
 autocmd FileType sh,conf,yaml,sxhkd,zsh,python,muttrc,tmux,make,nginx inoremap ;bm #<esc>39a-<esc>yypO#<esc>15a<space><Esc>i<RIGHT>
 autocmd FileType sh,conf,yaml,sxhkd,zsh,python,muttrc,tmux,make,nginx inoremap ;bs #<esc>19a-<esc>yypO#<esc>7a<space><Esc>i<RIGHT>
@@ -743,7 +786,7 @@ autocmd FileType c,cpp,dart,javascript,php,typescript,pug,sass,java inoremap ;bm
 autocmd FileType c,cpp,dart,javascript,php,typescript,pug,sass,java inoremap ;bs //<esc>18a-<esc>yypO//<esc>7a<space><Esc>i<RIGHT>
 
 autocmd FileType mail,json autocmd VimEnter * setlocal spell
-]])
+]]
 -- }}}
 -- }}}
 -- experiments{{{
@@ -751,41 +794,15 @@ autocmd FileType mail,json autocmd VimEnter * setlocal spell
 --                              Experiments
 --------------------------------------------------------------------------------
 -- lsp{{{
--- vimscript([[
+-- vimscript [[
 -- sign define LspDiagnosticsSignHint text=ℹ texthl= linehl= numhl=
 -- sign define LspDiagnosticsSignWarning text=⚠ texthl= linehl= numhl=
 -- sign define LspDiagnosticsSignError text=❌ texthl= linehl= numhl=
 -- autocmd VimEnter * highlight LspDiagnosticsVirtualTextHint guibg=NONE guifg=green gui=bold
 -- autocmd VimEnter * highlight LspDiagnosticsVirtualTextWarning guibg=NONE guifg=yellow gui=bold
 -- autocmd VimEnter * highlight LspDiagnosticsVirtualTextError guibg=NONE guifg=red gui=bold
--- ]])
+-- ]]
 
--- }}}
--- nvim-compe{{{
---    use { 'hrsh7th/nvim-compe' }
---    require'compe'.setup {
---       enabled = true;
---       autocomplete = true;
---       debug = false;
---       min_length = 1;
---       preselect = 'enable';
---       throttle_time = 80;
---       source_timeout = 200;
---       incomplete_delay = 400;
---       max_abbr_width = 100;
---       max_kind_width = 100;
---       max_menu_width = 100;
---       documentation = true;
--- 
---       source = {
---          path = true;
---          buffer = true;
---          calc = true;
---          nvim_lsp = true;
---          nvim_lua = true;
---          vsnip = true;
---       };
---    }
 -- }}}
 -- spellsitter{{{
 -- use 'lewis6991/spellsitter.nvim'
@@ -806,4 +823,70 @@ autocmd FileType mail,json autocmd VimEnter * setlocal spell
 -- use {'Yggdroot/indentLine'}
 -- g.indentLine_char = '┊'
 -- }}}
+-- }}}
+-- qalam{{{
+-- =============================================================================
+--                              Qalam(For Arabic Writing)
+-- =============================================================================
+qalam_on = 0
+function qalam()
+  if qalam_on == 0 then
+    vim.api.nvim_win_set_option(0, 'spell', true)
+    vim.api.nvim_win_set_option(0, 'rightleft', true)
+    vim.api.nvim_set_option('delcombine', true)
+
+    m('i', 'a', 'ا')
+    m('i', 'b', 'ب')
+    m('i', 't', 'ت')
+    m('i', 'th', 'ث')
+    m('i', 'j', 'ج')
+    m('i', 'H', 'ح')
+    m('i', 'kh', 'خ')
+    m('i', 'd', 'د')
+    m('i', 'dh', 'ذ')
+    m('i', 'r', 'ر')
+    m('i', 'zh', 'ز')
+    m('i', 's', 'س')
+    m('i', 'sh', 'ش')
+    m('i', 'S', 'ص')
+    m('i', 'D', 'ض')
+    m('i', 'T', 'ط')
+    m('i', 'z', 'ظ')
+    m('i', 'e', 'ع')
+    m('i', 'g', 'غ')
+    m('i', 'f', 'ف')
+    m('i', 'k', 'ك')
+    m('i', 'K', 'ق')
+    m('i', 'l', 'ل')
+    m('i', 'm', 'م')
+    m('i', 'n', 'ن')
+    m('i', 'h', 'ه')
+    m('i', 'w', 'و')
+    m('i', 'y', 'ي')
+    m('i', 'Y', 'ى')
+    m('i', 'i', 'إ')
+    m('i', 'I', 'ِ')
+    m('i', 'A', 'أ')
+    m('i', 'u', 'أ')
+    m('i', 'U', 'ُ')
+    m('i', ',', '،')
+    m('i', ';t', 'ة')
+    m('i', ';A', 'آ')
+    m('i', ';a', 'ئ')
+    m('i', '?', '؟')
+
+    qalam_on = 1
+    print('Turned qalam on')
+  else
+    vim.api.nvim_win_set_option(0, 'spell', false)
+
+    vim.api.nvim_win_set_option(0, 'rightleft', false)
+    vim.api.nvim_set_option('delcombine', false)
+
+    qalam_on = 0
+    print('Turned qalam off')
+  end
+end
+vimscript [[ autocmd BufReadPost *.ar.* lua qalam() ]]
+m('n', 'ga', '<cmd>lua qalam()<cr>', {silent = true})
 -- }}}

@@ -5,13 +5,12 @@ EXPLORER=faint
 MAX_DEPTH=5
 
 PATHS="\
-/mnt/internal/git/own;
-/mnt/internal/git/suckless;
+/mnt/internal/git/system;
 /mnt/internal/git/work;
 /mnt/internal/torrents;
 /mnt/internal/downloads;
 /mnt/internal/toys_local;
-/mnt/internal/tutorials;
+/mnt/internal/git/daily;
 "
 
 # FILTERS="\

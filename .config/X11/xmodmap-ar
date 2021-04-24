@@ -46,6 +46,7 @@ keycode  26 = Arabic_ain Arabic_fatha
 keycode  27 = Arabic_ra
 keycode  28 = Arabic_teh Arabic_tah Arabic_tehmarbuta
 keycode  29 = Arabic_yeh Arabic_alefmaksura Arabic_hamzaonyeh
+! keycode  29 = Arabic_yeh Arabic_alefmaksura Arabic_hamzaunderyeh
 keycode  30 = Arabic_hamzaonalef Arabic_damma
 keycode  33 = p P
 keycode  34 = bracketleft braceleft

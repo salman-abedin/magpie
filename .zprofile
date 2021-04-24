@@ -23,12 +23,13 @@ export PATH=$PATH:~/.local/share/gem/ruby/2.7.0/bin # global ruby modules
 
 export WM="launch --dwm"
 export TERMINAL=st
-export DMENU=amenu
+export DMENU=dmenu
+# export DMENU=amenu
 export STATUSBAR="uniblocks -g"
 
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export BROWSER=firefox
+export BROWSER=brave
 export FILE=faint
 export READER=zathura
 export COMPOSITOR=xcompmgr
@@ -42,6 +43,7 @@ export COMPOSITOR=xcompmgr
 #                             System Stuff
 #===============================================================================
 
+export REPOS=/mnt/internal/git/system
 export ICONS=~/.local/share/icons/system
 export QT_QPA_PLATFORMTHEME="gtk2"
 export GROFF_FONT_PATH=~/.local/share/fonts/Groff

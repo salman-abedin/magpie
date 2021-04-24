@@ -18,7 +18,7 @@ alias -g yeh="root@yehbackend.tk"
 #---------------------------------------
 
 alias ..="cd .."
-alias a='adb connect 192.168.1.100'
+alias a='adb connect 192.168.1.101'
 alias c="clear"
 alias cc="calcurse"
 alias cLO="curl -LO"
@@ -43,6 +43,7 @@ alias fl="faint -l"
 alias fn="faint -n"
 alias fr="flutter run"
 alias g="bolt -g"
+alias gR="grep -R"
 alias ka="killall"
 alias l="launch -f"
 alias m="git checkout master > /dev/null 2>&1"
@@ -101,9 +102,9 @@ alias pQs="pacman -Qs"
 
 alias pSyu="paru -Syu"
 alias pSyun="pSyu --noconfirm"
-alias pS="paru -S"
-alias pSn="pS --noconfirm"
-alias pSnn="pS --noconfirm --needed"
+alias pSyy="paru -Syy"
+alias pSyyn="pSyy --noconfirm"
+alias pSyynn="pSyyn --needed"
 alias pRns="paru -Rns"
 alias pRnsn="pRns --noconfirm"
 
@@ -141,8 +142,10 @@ alias gpuo="gp -u origin"
 alias gra="git remote add"
 alias grc="git rebase --continue"
 alias grh="git reset --hard"
+alias grsuo="git remote set-url origin"
 alias grsuapo="git remote set-url --add --push origin"
 alias gs="git stash"
+alias gS="git switch"
 alias gsc="git stash clear"
 alias gsgsc="git stash && git stash clear"
 
@@ -192,12 +195,12 @@ alias dsf="da systemctl --failed"
 alias sab="systemd-analyze blame"
 alias dj="da journalctl -p 3 -xb"
 
-##---------------------------------------
-##              Runit
-##---------------------------------------
-#alias dsu="da sv up"
-#alias dsd="da sv down"
-#alias dss="da sv status"
+#---------------------------------------
+#              Runit
+#---------------------------------------
+alias dsu="da sv up"
+alias dsd="da sv down"
+alias dss="da sv status"
 
 #---------------------------------------
 # Misc
@@ -417,6 +420,13 @@ list() {
       sort -hr |
       head -25
 }
+
+# ntfs(){
+#   lsblk
+#   echo "Partition Letter and Digit"
+#   read -r PART
+#   doas -n -- mkntfs --fast --label thumbdrive /dev/sd$PART
+# }
 
 # H() {
 #    out=$($1 --help || $1 -h)

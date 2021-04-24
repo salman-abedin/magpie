@@ -2,11 +2,13 @@
 #
 # Magpie installer script
 
-read -r DISTRO < /etc/os-release
+ROOT=$PWD
 
 #===============================================================================
 #                             Info
 #===============================================================================
+
+read -r DISTRO < /etc/os-release
 
 echo "User Name?: "
 read -r user_name
@@ -18,11 +20,25 @@ read -r user_password
 #===============================================================================
 
 useradd -m -s /bin/zsh -g wheel -G input,video,audio "$user_name"
-chown -R "$user_name":wheel /home/"$user_name"
-# printf "%s\n%s\n" "$user_password" "$user_password" | passwd "$user_name"
 echo "$user_name:$user_password" | chpasswd
 unset "$user_password"
 echo "$user_name ALL=(ALL) ALL" >> /etc/sudoers
+
+#===============================================================================
+#                              Internal Storage Mounting
+#===============================================================================
+
+lsblk
+
+printf "Internal Partition (i.e. sd<LETTER><DIGIT>): "
+read -r partition
+mount /dev/sd"$partition" /mnt/internal
+
+case "$DISTRO" in
+  *Arch*) FSTAB_GEN_CMD=genfstab ;;
+  *) FSTAB_GEN_CMD=fstabgen ;;
+esac
+$FSTAB_GEN_CMD -U / > /etc/fstab
 
 #===============================================================================
 #                             Package Managers
@@ -32,12 +48,12 @@ echo "$user_name ALL=(ALL) ALL" >> /etc/sudoers
 #              Paru
 #---------------------------------------
 
-pacman -S --noconfirm --needed yarn ruby python python2 perl
+pacman -S --noconfirm --needed yarn
+# pacman -S --noconfirm --needed yarn ruby python python2 perl
 
 if ! command -v paru; then
   cd /tmp || exit
-  git clone https://aur.archlinux.org/paru.git
-  chown -R "$user_name":wheel paru
+  sudo -u "$user_name" git clone https://aur.archlinux.org/paru.git
   cd paru || exit
   sudo -u "$user_name" makepkg --noconfirm -si
 fi
@@ -46,71 +62,44 @@ fi
 #                             Packages
 #===============================================================================
 
-pacman -Syu --noconfirm
+cd $ROOT || exit 1
+grep "^\^" .local/share/package_lists/packages_essential \
+  | sed "s/\^ //" \
+  | pacman -Syy --noconfirm --needed -
 
-#---------------------------------------
-#               Essential
-#---------------------------------------
+grep "^@" .local/share/package_lists/packages_essential \
+  | sed "s/@ //" \
+  | sudo -u "$user_name" paru -Syy -
 
-# grep "^@" packagerc | sed "s/@ //" | sudo -u "$user_name" paru -S --noconfirm --needed -
-# grep "^[a-z]" packagerc | pacman -S --noconfirm --needed -
-
-while read -r package; do
-  case $package in
-    "#"*) continue ;;
-    @*) sudo -u "$user_name" paru -S --noconfirm --needed "${package#@}" ;;
-    "$"*)
-      cd /tmp || exit 1
-      git clone https://github.com/"${package#$}"
-      cd "${package#*/}" || exit 1
-      git checkout personal 2> /dev/null
-      sudo -u "$user_name" make && make install
-      ;;
-    *) pacman -S --noconfirm --needed "$package" ;;
-  esac
-done < ./.local/share/package_lists/packages_essential
-
-#===============================================================================
-#                              Dot Files
-#===============================================================================
-
-cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
-chown -R "$user_name":wheel /home/"$user_name"
+printf "Repository Path? "
+read -r path_repo
+sudo -u "$user_name" mkdir -p "$path_repo"
+grep "^\\$" .local/share/package_lists/packages_essential \
+  | sed 's/$ //' \
+  | while read -r repo; do
+    cd "$path_repo" || exit 1
+    # sudo -u "$user_name" git clone https://github.com/"$repo"
+    sudo -u "$user_name" git clone git@github.com:"$repo".git
+    cd "${repo##*/}" || exit 1
+    sudo -u "$user_name" make && make install
+  done
 
 #===============================================================================
 #                             Essential Mods
 #===============================================================================
 
 #---------------------------------------
-#              Bash to Dash
-#---------------------------------------
-# pacman -S --noconfirm dash
-# ln -sfT dash /usr/bin/sh
-# cat << eof > /usr/share/libalpm/hooks/block_bash_overwrite.hook
-# [Trigger]
-# Type = Package
-# Operation = Install
-# Operation = Upgrade
-# Target = bash
-#
-# [Action]
-# Description = Re-pointing /bin/sh symlink to dash...
-# When = PostTransaction
-# Exec = /usr/bin/ln -sfT dash /usr/bin/sh
-# Depends = dash
-# eof
-
-#---------------------------------------
 #              Trackpad
 #---------------------------------------
-# mkdir /etc/X11/xorg.conf.d
+mkdir -p /etc/X11/xorg.conf.d
 cat << eof > /etc/X11/xorg.conf.d/30-touchpad.conf
 Section "InputClass"
-   Identifier        "touchpad"
-   Driver            "libinput"
-   MatchIsTouchpad   "on"
-   Option            "Tapping"      "on"
-   Option            "ClickMethod"  "clickfinger"
+  Identifier      "touchpad"
+  Driver          "libinput"
+  MatchIsTouchpad "on"
+  Option          "Tapping"          "on"
+  Option          "ClickMethod"      "clickfinger"
+  Option          "NaturalScrolling" "true"
 EndSection
 eof
 
@@ -127,8 +116,9 @@ sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
 #---------------------------------------
 #        Pulseaudio & Bluetooth
 #---------------------------------------
-echo load-module module-switch-on-connect >> /etc/pulse/default.pa
-echo load-module module-echo-cancel >> /etc/pulse/default.pa
+# echo load-module module-switch-on-connect >> /etc/pulse/default.pa
+# echo load-module module-echo-cancel >> /etc/pulse/default.pa
+
 # sed -i "s/load-module module-sus/# &/" /etc/pulse/default.pa
 # printf "[Policy]\nAutoEnable=true\n" >> /etc/bluetooth/main.conf
 
@@ -145,24 +135,9 @@ case "$DISTRO" in
   *Arch*) systemctl enable fcron ;;
   *)
     pacman -S fcron-runit
-    ln -s /etc/runit/sv/fcron /etc/runit/runsvdir/default
+    ln -s /etc/runit/sv/fcron /etc/runit/runsvdir/default 2> /dev/null
     ;;
 esac
-
-#---------------------------------------
-#              Bluetooth
-#---------------------------------------
-
-case "$DISTRO" in
-  *Arch*) systemctl enable bluetoothd ;;
-  *)
-    pacman -S bluez-runit
-    ln -s /etc/runit/sv/bluetoothd /etc/runit/runsvdir/default
-    ;;
-esac
-
-# Calcurse
-# mkdir -p /home/"$user_name"/.local/share/calcurse/caldav
 
 #---------------------------------------
 #              Mail
@@ -201,71 +176,59 @@ esac
 #              Wget
 #---------------------------------------
 mkdir -p /home/"$user_name"/.config/wget
-: > ~/.config/wget/wgetrc
+: > /home/"$user_name"/.config/wget/wgetrc
 
 #---------------------------------------
-#               DBUS
+#               Remove extra ttys
 #---------------------------------------
 case "$DISTRO" in
   *Arch*) return ;;
-  *) dbus-uuidgen > /var/lib/dbus/machine-id ;;
+  *) for i in 4 5 6; do rm /etc/runit/runsvdir/default/agetty-tty"$i"; done ;;
 esac
 
-#===============================================================================
-#                             Keys
-#===============================================================================
+#---------------------------------------
+#               Dotfiles
+#---------------------------------------
 
-# curl -LO https://is.gd/sakeys
-# gpg -o keys.tar -d sakeys
-# tar xf keys.tar
-# rm keys.tar
+cd $ROOT || exit 1
+cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
+chown -R "$user_name":wheel $PWD /home/"$user_name"
+sudo -u "$user_name" fcrontab ~/.config/fcronrc
 
 #===============================================================================
 #                             Exp
 #===============================================================================
 
-# echo -e "%wheel ALL=(ALL) NOPASSWD: ALL\nDefaults !tty_tickets" >> /etc/sudoers
-# echo -e "%wheel ALL=(ALL) ALL #LARBS\n%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/packer -Syu,/usr/bin/packer -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/yay,/usr/bin/pacman -Syyuw --noconfirm" >> /etc/sudoers
+#---------------------------------------
+#              Bash to Dash
+#---------------------------------------
+# pacman -S --noconfirm dash
+# ln -sfT dash /usr/bin/sh
+# cat << eof > /usr/share/libalpm/hooks/block_bash_overwrite.hook
+# [Trigger]
+# Type = Package
+# Operation = Install
+# Operation = Upgrade
+# Target = bash
+#
+# [Action]
+# Description = Re-pointing /bin/sh symlink to dash...
+# When = PostTransaction
+# Exec = /usr/bin/ln -sfT dash /usr/bin/sh
+# Depends = dash
+# eof
 
-# grep "^$" packages.sh | sed 's/$//' |
-#    while read -r p; do
-#       cd /home/"$user_name"/.local/share/"$p" || return
-#       make install
-#       cd - || return
-#    done
+#---------------------------------------
+#               Keys
+#---------------------------------------
+# curl -LO https://is.gd/sakeys
+# gpg -o keys.tar -d sakeys
+# tar xf keys.tar
+# rm keys.tar
 
-# grep "^%" packages.sh | sed "s/%//" | sudo -u "$user_name" npm install -g -
-
-#===============================================================================
-#                             Dotfiles Setup
-#===============================================================================
-
-# echo "Git Name?: "
-# read -r gName
-# echo "Repo Name?: "
-# read -r rName
-# echo "Git Password?: "
-# read -r gpass
-
-# cd /home
-# git clone https://$gName:$gpass@github.com/$gName/$rName.git
-# mv $rName $user_name
-# cd $user_name
-# rm -f README.md LICENSE
-
-# cd .local/share/sarbs
-# cp postInstall.sh packagerc mod.sh /mnt/tmp
-
-# Remove extra ttys
-# for i in 4 5 6; do rm /etc/runit/runsvdir/default/agetty-tty"$i"; done
-
-# Journal Limit
-#mkdir /etc/systemd/journald.conf.d
-#printf "%s\n%s" "[Journal]" "SystemMaxUse=50M" > /etc/systemd/journald.conf.d/00-journal-size.conf
-
-#===============================================================================
-#                             Swap & Hibernation
-#===============================================================================
+#---------------------------------------
+#               Swap & Hibernation
+#---------------------------------------
 
 # dd if=/dev/zero of=/swapfile bs=1M count=2048 status=progress
 # # dd if=/dev/zero of=$SWAPFILE bs=1M count=4096 status=progress
@@ -279,9 +242,9 @@ esac
 # sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$RESUME_PARAMS/" /etc/default/grub
 # grub-mkconfig -o /boot/grub/grub.cfg
 
-#===============================================================================
-#                              Neovim
-#===============================================================================
+#---------------------------------------
+#               Neovim
+#---------------------------------------
 
 #sudo -u "$user_name" pip3 install neovim
 #sudo -u "$user_name" yarn global add neovim
@@ -289,9 +252,9 @@ esac
 #sudo -u "$user_name" cpan Neovim::Ext
 #sudo -u "$user_name" pacman -S --noconfirm tree-sitter
 
-#===============================================================================
-#                              Lua
-#===============================================================================
+#---------------------------------------
+#               Lua
+#---------------------------------------
 
 # git clone https://github.com/sumneko/lua-language-server
 # cd lua-language-server || exit
@@ -301,3 +264,29 @@ esac
 # ninja -f ninja/linux.ninja
 # cd ../..
 # ./3rd/luamake/luamake rebuild
+
+# #---------------------------------------
+# #              Bluetooth
+# #---------------------------------------
+# case "$DISTRO" in
+#   *Arch*) systemctl enable bluetoothd ;;
+#   *)
+#     pacman -S bluez-runit
+#     ln -s /etc/runit/sv/bluetoothd /etc/runit/runsvdir/default
+#     ;;
+# esac
+
+#---------------------------------------
+#               Misc
+#---------------------------------------
+
+# Calcurse
+# mkdir -p /home/"$user_name"/.local/share/calcurse/caldav
+
+# Journal Limit
+#mkdir /etc/systemd/journald.conf.d
+#printf "%s\n%s" "[Journal]" "SystemMaxUse=50M" > /etc/systemd/journald.conf.d/00-journal-size.conf
+
+# echo -e "%wheel ALL=(ALL) ALL #LARBS\n%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/packer -Syu,/usr/bin/packer -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/yay,/usr/bin/pacman -Syyuw --noconfirm" >> /etc/sudoers
+# grep "^%" packages.sh | sed "s/%//" | sudo -u "$user_name" npm install -g -
+# echo -e "%wheel ALL=(ALL) NOPASSWD: ALL\nDefaults !tty_tickets" >> /etc/sudoers

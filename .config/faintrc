@@ -80,17 +80,17 @@ tmux_window() {
   tmux new-window "$EDITOR $FILE_ARGS"
   # tmux swap-window -d -t :-
 }
-own() {
-  echo "$FILE_ARGS" \
-    | while read -r file; do
-      doas -n chown -R "$USER" "$file"
-    done
-}
+# own() {
+#   echo "$FILE_ARGS" \
+#     | while read -r file; do
+#       doas -n chown -R "$USER" "$file"
+#     done
+# }
 hulk() {
   kill -37 "$FAINT_PID"
   pkill -P "$FAINT_PID"
 }
-push2android() { adb push --sync "$FILE_ARGS" $CARD; }
+push2android() { adb connect 192.168.1.101 && adb push --sync "$FILE_ARGS" $CARD; }
 # push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
 push2yy() { rsync -aP "$FILE_ARGS" salman@192.168.95.131:/mnt/internal; }
 show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
@@ -101,12 +101,12 @@ rename() {
   kill -39 "$FAINT_PID"
   pkill -P "$FAINT_PID"
 }
-compress() {
-  echo "$FILE_ARGS" \
-    | while read -r file; do
-      tar cvzf "compressed.tar" "$file"
-    done
-}
+# compress() {
+#   echo "$FILE_ARGS" \
+#     | while read -r file; do
+#       tar cvzf "compressed.tar" "$file"
+#     done
+# }
 encrypt() {
   echo "$FILE_ARGS" \
     | while read -r file; do
@@ -114,10 +114,17 @@ encrypt() {
       gpg -esr "$GPG_MAIL" "$file" && rm "$file"
     done
 }
-
-rename() {
-  ns "$FILE_ARGS"
+decrypt() {
+  echo "$FILE_ARGS" \
+    | while read -r file; do
+      gpg -qd "$file" > "${file%.gpg}"
+      rm "$file"
+    done
 }
+
+# rename() {
+#   ns "$FILE_ARGS"
+# }
 
 OPS="\
 🏷  Rename:rename;
@@ -128,16 +135,17 @@ OPS="\
 ©  Yank:yank;
 🖌  Paste:paste;
 🚚 Move:move;
-😎 Own:own;
 📱 Push to Android:push2android;
 ℹ  Show Size:show_size;
 💊 Choose:launch_choose;
 📁 New Directory:make_dir;
-♦  Compress:compress;
 🗞  Soft Link:link_soft;
 🌴 Hard Link:link_hard;
-🔑 Encrypt:encrypt;
+🔒 Encrypt:encrypt;
+🔑 Decrypt:decrypt;
 "
+# 😎 Own:own;
+# ♦  Compress:compress;
 # 💻 Push to YY:push2yy;
 
 #===============================================================================
