@@ -233,113 +233,112 @@ require('packer').startup(function()
   use 'p00f/nvim-ts-rainbow'
   require'nvim-treesitter.configs'.setup {
     ensure_installed = 'all',
-    -- highlight = {enable = true},
-    highlight = {enable = false},
-    -- highlight = {enable = true, disable = {'vue'}},
+    highlight = {enable = true},
+    -- highlight = {enable = false},
     -- autotag = {enable = true}
     rainbow = {enable = true},
     indent = {enable = true}
   }
   -- }}}
-  -- lsps{{{
-  ----------------------------------------
-  --               LSP
-  ----------------------------------------
-  use 'neovim/nvim-lspconfig'
-  -- config{{{
-  --------------------
-  --       Config
-  --------------------
-  vim.lsp.handlers['textDocument/publishDiagnostics'] =
-      vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        --  see: ":help vim.lsp.diagnostic.set_signs()"
-        signs = false
-      })
-
-  vimscript [[
-
-" autocmd VimEnter * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
-" autocmd VimEnter * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=green gui=bold
-
-autocmd VimEnter * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
-autocmd VimEnter * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
-
-autocmd VimEnter * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=yellow gui=bold
-autocmd VimEnter * highlight LspDiagnosticsFloatingWarning guibg=none guifg=yellow gui=bold
-
-autocmd VimEnter * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
-autocmd VimEnter * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
-   ]]
-
-  m('n', 'gj', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
-  m('n', 'gk', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
-  -- }}}
-  -- languages{{{
-  --------------------
-  --       Languages
-  --------------------
-  lsp = require 'lspconfig'
-  lsp.bashls.setup {settings = {documentFormatting = false}}
-  lsp.clangd.setup {settings = {documentFormatting = false}}
-  lsp.tsserver.setup {settings = {documentFormatting = false}}
-  lsp.vuels.setup {settings = {documentFormatting = false}}
-
-  -- lsp.cssls.setup {
-  --    filetypes = {'css', 'sass'},
-  --    settings = {css = {validate = true}, sass = {validate = true}}
-  -- }
-  -- }}}
-  -- }}}
-  -- efm lsp{{{
-  -- -------------------------------------
-  --               EFM LSP
-  -- -------------------------------------
-  local lua_format = {
-    formatCommand = 'lua-format --indent-width 2 --double-quote-to-single-quote'
-  }
-
-  local shellcheck = {
-    LintCommand = 'shellcheck -f gcc -x',
-    lintFormats = {
-      '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
-    }
-  }
-  local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
-
-  local prettier = {formatCommand = 'prettier --tab-width 2'}
-  local prettier_javascript = {
-    formatCommand = 'prettier --single-quote --tab-width 2'
-  }
-
-  lsp.efm.setup {
-    init_options = {documentFormatting = true, codeAction = false},
-    filetypes = {
-      'sh', 'lua', 'markdown', 'javascript', 'yaml', 'json', 'html', 'css',
-      'vue'
-    },
-    settings = {
-      rootMarkers = {'.git/'},
-      languages = {
-        lua = {lua_format},
-        sh = {shellcheck, shfmt},
-        html = {prettier},
-        css = {prettier},
-        vue = {prettier_javascript},
-        javascript = {prettier_javascript},
-        json = {prettier},
-        yaml = {prettier},
-        markdown = {prettier}
-      }
-    }
-  }
-
-  vimscript [[
-autocmd FileType sh,markdown autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
-autocmd BufWritePre *.{lua,js,css,html,yaml,vue,json} silent lua vim.lsp.buf.formatting()
-	]]
-
-  -- }}}
+  --   -- lsps{{{
+  --   ----------------------------------------
+  --   --               LSP
+  --   ----------------------------------------
+  --   use 'neovim/nvim-lspconfig'
+  --   -- config{{{
+  --   --------------------
+  --   --       Config
+  --   --------------------
+  --   vim.lsp.handlers['textDocument/publishDiagnostics'] =
+  --       vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  --         virtual_text = false,
+  --         --  see: ":help vim.lsp.diagnostic.set_signs()"
+  --         signs = false
+  --       })
+  -- 
+  --   vimscript [[
+  -- 
+  -- " autocmd VimEnter * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
+  -- " autocmd VimEnter * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=green gui=bold
+  -- 
+  -- autocmd VimEnter * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
+  -- autocmd VimEnter * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
+  -- 
+  -- autocmd VimEnter * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=yellow gui=bold
+  -- autocmd VimEnter * highlight LspDiagnosticsFloatingWarning guibg=none guifg=yellow gui=bold
+  -- 
+  -- autocmd VimEnter * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
+  -- autocmd VimEnter * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
+  --    ]]
+  -- 
+  --   m('n', 'gj', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+  --   m('n', 'gk', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+  --   -- }}}
+  --   -- languages{{{
+  --   --------------------
+  --   --       Languages
+  --   --------------------
+  --   lsp = require 'lspconfig'
+  --   lsp.bashls.setup {settings = {documentFormatting = false}}
+  --   lsp.clangd.setup {settings = {documentFormatting = false}}
+  --   lsp.tsserver.setup {settings = {documentFormatting = false}}
+  --   lsp.vuels.setup {settings = {documentFormatting = false}}
+  -- 
+  --   -- lsp.cssls.setup {
+  --   --    filetypes = {'css', 'sass'},
+  --   --    settings = {css = {validate = true}, sass = {validate = true}}
+  --   -- }
+  --   -- }}}
+  --   -- }}}
+  --   -- efm lsp{{{
+  --   -- -------------------------------------
+  --   --               EFM LSP
+  --   -- -------------------------------------
+  --   local lua_format = {
+  --     formatCommand = 'lua-format --indent-width 2 --double-quote-to-single-quote'
+  --   }
+  -- 
+  --   local shellcheck = {
+  --     LintCommand = 'shellcheck -f gcc -x',
+  --     lintFormats = {
+  --       '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
+  --     }
+  --   }
+  --   local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
+  -- 
+  --   local prettier = {formatCommand = 'prettier --tab-width 2'}
+  --   local prettier_javascript = {
+  --     formatCommand = 'prettier --single-quote --tab-width 2'
+  --   }
+  -- 
+  --   lsp.efm.setup {
+  --     init_options = {documentFormatting = true, codeAction = false},
+  --     filetypes = {
+  --       'sh', 'lua', 'markdown', 'javascript', 'yaml', 'json', 'html', 'css',
+  --       'vue'
+  --     },
+  --     settings = {
+  --       rootMarkers = {'.git/'},
+  --       languages = {
+  --         lua = {lua_format},
+  --         sh = {shellcheck, shfmt},
+  --         html = {prettier},
+  --         css = {prettier},
+  --         vue = {prettier_javascript},
+  --         javascript = {prettier_javascript},
+  --         json = {prettier},
+  --         yaml = {prettier},
+  --         markdown = {prettier}
+  --       }
+  --     }
+  --   }
+  -- 
+  --   vimscript [[
+  -- autocmd FileType sh,markdown autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
+  -- autocmd BufWritePre *.{lua,js,css,html,yaml,vue,json} silent lua vim.lsp.buf.formatting()
+  -- 	]]
+  -- 
+  --   -- }}}
   -- misc{{{
   -- -------------------------------------
   --               Misc
@@ -349,6 +348,8 @@ autocmd BufWritePre *.{lua,js,css,html,yaml,vue,json} silent lua vim.lsp.buf.for
   --    'nvim-telescope/telescope.nvim',
   --    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   -- }
+
+  use 'neoclide/coc.nvim'
 
 end)
 -- }}}
@@ -434,6 +435,7 @@ window = {
 
   -- Never show the sign column (i.e. no more jerking)
   -- signcolumn = 'no',
+  signcolumn = 'yes',
 
   -- fdo = r('fdo', 'search'),
 
@@ -463,7 +465,7 @@ set_options(global, window, buffer)
 -- vimscript [[set iskeyword-=_]]
 -- vimscript [[set shortmess+=c]]
 
--- print(vim.o.backupcopy)
+-- print(vim.wo.signcolumn)
 
 -- }}}
 -- theme{{{
@@ -643,6 +645,9 @@ autocmd FileType sh autocmd BufWritePost * silent !compile %
 
 autocmd BufWritePost fcronrc silent !fcrontab %
 autocmd BufWritePost boltrc  silent !bolt -g
+
+autocmd BufWritePost tmux.conf silent !tmux source ~/.config/tmux/tmux.conf
+
 ]]
 
 -- vimscript [[
@@ -656,12 +661,8 @@ autocmd BufWritePost boltrc  silent !bolt -g
 -- autocmd BufWritePost *xmodmap*    silent !xmodmap %
 -- autocmd BufWritePost gebaard.toml silent !pkill -USR1 gebaard
 -- autocmd BufWritePost compton.conf silent !pkill -USR1 compton
--- autocmd BufWritePost fcronrc      silent !fcrontab %
 -- autocmd BufWritePost dunstrc
 --          \ silent !killall dunst && dunst & notify-send -i "$ICONS"/bell.png 'Head' 'Message'
--- autocmd BufWritePost tmux.conf
---          \ silent !tmux source ~/.config/tmux/tmux.conf
--- 
 -- autocmd BufWritePost */dwm/config.def.h silent !pkill dwm
 -- 
 -- "===============================================================================
@@ -835,7 +836,16 @@ function qalam()
     vim.api.nvim_win_set_option(0, 'rightleft', true)
     vim.api.nvim_set_option('delcombine', true)
 
-    m('i', 'a', 'ا')
+    m('i', 'a', 'أ')
+    -- m('i', 'A', 'ََ')
+
+    m('i', ';a', 'ا')
+    m('i', "'a", 'ء')
+
+    m('i', ';A', 'ئ')
+
+    m('i', 'aa', 'آ')
+
     m('i', 'b', 'ب')
     m('i', 't', 'ت')
     m('i', 'th', 'ث')
@@ -866,14 +876,28 @@ function qalam()
     m('i', 'Y', 'ى')
     m('i', 'i', 'إ')
     m('i', 'I', 'ِ')
-    m('i', 'A', 'أ')
     m('i', 'u', 'أ')
     m('i', 'U', 'ُ')
-    m('i', ',', '،')
     m('i', ';t', 'ة')
-    m('i', ';A', 'آ')
-    m('i', ';a', 'ئ')
     m('i', '?', '؟')
+
+    m('i', '1', '١')
+    m('i', '2', '٢')
+    m('i', '3', '٣')
+    m('i', '4', '٤')
+    m('i', '5', '٥')
+    m('i', '6', '٦')
+    m('i', '7', '٧')
+    m('i', '8', '٨')
+    m('i', '9', '٩')
+    m('i', '0', '٠')
+
+    m('i', '(', '﴾')
+    m('i', ')', '﴿')
+
+    m('i', ',', '،')
+    m('i', ';;', '؛')
+    m('i', '.', '۔')
 
     qalam_on = 1
     print('Turned qalam on')

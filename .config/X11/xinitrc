@@ -7,41 +7,34 @@
 #
 # X11 startup script
 
-xset -b &                        # Disable PC speaker
-xsetroot -cursor_name left_ptr & # Remove the ugly X cursor
-xbanish &                        # Hide cursor when idle
-
+xset -b & # Disable PC speaker
 {
   xmodmap "$LAYOUT_EN"
   xcape -e "Super_L=Escape;Mode_switch=Tab"
-} & # Bind Multi-purpose keys
-
+} &                                    # Bind Multi-purpose keys
 xss-lock -n 'backlight -D' -- 'lock' & # Set Dimmer & Locker
 xset s 300 300 &                       # Set Dimmer & Locker Delays
 libinput-gestures &                    # Bind gesture commands
 # dunst &                                # Launch notification server
 dbus-launch dunst &              # Launch notification server
-bolt --generate &                # Generate search list for bolt
 launch --tmux &                  # Launch tmux
 echo "$DISPLAY" > /tmp/DISPLAY & # For Udev & Fcron environment
+xbanish &                        # Hide cursor when idle
+xsetroot -cursor_name left_ptr & # Remove the ugly X cursor
+setdisplay --dpi --bg            # Set the correct DPI
+lock                             # Start locked
 
-#===============================================================================
-#                             UI
-#===============================================================================
-
-setdisplay --dpi --bg      # Set the correct DPI
-lock                       # Start locked
-$COMPOSITOR &              # Launch Compositor
-$STATUSBAR &               # Launch Compositor
-$TERMINAL -e tmux attach & # Launch terminal
-
-{ sleep 5 && pkill dwm; } & # Fix uniblocks glithes
+$COMPOSITOR &               # Launch Compositor
+$STATUSBAR &                # Launch Compositor
+$TERMINAL -e tmux attach &  # Launch terminal
+{ sleep 3 && pkill dwm; } & # Fix uniblocks glithes
 exec $WM                    # Launch Window Manager
 
 #===============================================================================
 #                             Exp
 #===============================================================================
 
+# bolt --generate &                # Generate search list for bolt
 # xcape -e "Super_L=Escape;Super_R=backslash;Mode_switch=Tab"
 # xset r rate 300 60 & # Speed key press delay & reapeat rate
 # transmission-daemon &      # Launch torrent daemon

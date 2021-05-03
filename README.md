@@ -10,7 +10,7 @@
 | -------------------- | ------------------------------------------------------------------------------------------------------- |
 | Shell                | [zsh](http://www.zsh.org/)                                                                              |
 | Text Editor          | [neovim](https://github.com/neovim/neovim)                                                              |
-| File Explorer        | [faint](https://github.com/salman-abedin/faint) & [bolt](https://github.com/salman-abedin/bolt)         |
+| File Explorer        | [faint](https://github.com/salman-abedin/faint)                                                         |
 | RSS Reader           | [newsboat](https://github.com/newsboat/newsboat)                                                        |
 | Mail Client          | [neomutt](https://github.com/neomutt/neomutt)                                                           |
 | Launcher/Dmenu       | [amenu](https://github.com/salman-abedin/amenu)                                                         |
@@ -26,7 +26,7 @@
 | Chat Client          | [weechat](https://weechat.org/)                                                                         |
 | Notification Daemon  | [dunst](https://github.com/dunst-project/dunst)                                                         |
 | Scripts              | [alfred](https://github.com/salman-abedin/alfred)                                                       |
-   | Wallpapers           | [eyelust](https://github.com/salman-abedin/eyelust)                                                     |
+| Wallpapers           | [eyelust](https://github.com/salman-abedin/eyelust)                                                     |
 | Wifi                 | [iwd](https://wiki.archlinux.org/index.php/Iwd) + [dhcpcd](https://wiki.archlinux.org/index.php/dhcpcd) |
 | Browser              | [qutebrowser](https://github.com/qutebrowser/qutebrowser)                                               |
 | Bookmark Manager     | [unimark](https://github.com/salman-abedin/unimark)                                                     |
