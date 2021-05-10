@@ -46,6 +46,8 @@ export COMPOSITOR=xcompmgr
 export REPOS=/mnt/internal/git/system
 export ICONS=~/.local/share/icons/system
 export QT_QPA_PLATFORMTHEME="gtk2"
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_SCALE_FACTOR=1
 export GROFF_FONT_PATH=~/.local/share/fonts/Groff
 export TZ="Asia/Dhaka"
 

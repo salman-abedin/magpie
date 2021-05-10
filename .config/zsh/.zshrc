@@ -23,7 +23,7 @@ alias c="clear"
 alias cc="calcurse"
 alias cLO="curl -LO"
 alias cpr="cp -r"
-alias t="git checkout -B test > /dev/null 2>&1"
+alias T="git checkout -B test > /dev/null 2>&1"
 alias d="doas --"
 alias dau="doas -u $USER --"
 alias dc="doas cfdisk"
@@ -54,6 +54,8 @@ alias n="nvim"
 # alias n="XDG_CONFIG_HOME=/mnt/internal/downloads/lua nvim5"
 # alias n="nvim5 --clean -S ~/.config/nvim/init.lua"
 # alias n="newsboat"
+alias off="leavex -s"
+alias offon="leavex -r"
 alias p="git checkout personal > /dev/null 2>&1"
 alias pf="pkill -f"
 alias pg="ps aux | grep"
@@ -61,7 +63,8 @@ alias psp1="patch -s -p1"
 alias rmr="rm -r"
 # alias s="bolt --search"
 alias sshp="ssh -p \$PORT \$PHONE"
-alias src=". ~/.config/zsh/functions && . ~/.config/zsh/aliases"
+alias tdm="toggle-dark-mode"
+# alias src=". ~/.config/zsh/functions && . ~/.config/zsh/aliases"
 alias user="who | head -1 | cut -d' ' -f1"
 alias W="weechat"
 alias x="xprop"
@@ -140,9 +143,12 @@ alias gpod="gpo -d"
 alias gpom="gpo master"
 alias gpuo="gp -u origin"
 alias gra="git remote add"
+alias grau="gra upstream"
 alias grc="git rebase --continue"
 alias grh="git reset --hard"
-alias grsuo="git remote set-url origin"
+alias grsu="git remote set-url"
+alias grsuo="grsu origin"
+# alias grsuu="grsu upstream"
 alias grsuapo="git remote set-url --add --push origin"
 alias gs="git stash"
 alias gS="git switch"
@@ -355,6 +361,18 @@ pi() {
 #---------------------------------------
 #               Misc
 #---------------------------------------
+
+b(){
+  setsid brave --force-device-scale-factor=$(get-dpi -f) > /dev/null 2>&1
+}
+
+t(){
+  setsid teams --force-device-scale-factor=$(get-dpi -f) > /dev/null 2>&1
+}
+
+q(){
+  setsid qutebrowser --force-device-scale-factor=$(get-dpi -f) > /dev/null 2>&1
+}
 
 img2webp(){
    find $PWD -name "*.jpg" -o -name "*.png" \

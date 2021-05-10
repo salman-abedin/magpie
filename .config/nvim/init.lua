@@ -74,18 +74,16 @@ require('packer').startup(function()
   --               Completion
   ----------------------------------------
 
-  -- use 'nvim-lua/completion-nvim'
-  -- g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
-  -- vimscript [[ autocmd BufEnter * lua require'completion'.on_attach() ]]
-  -- g.completion_confirm_key = '<c-y>'
-  -- vimscript [[ autocmd VimEnter * lua require'completion'.on_attach() ]]
-
-  -- m('i', '<tab>', 'pumvisible() ? "<C-n><C-y>" : "<Tab>"', {expr = true})
-  -- m('i', '<s-tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
-
+  use 'nvim-lua/completion-nvim'
+  g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+  vimscript [[ autocmd BufEnter * lua require'completion'.on_attach() ]]
   m('i', '<tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
   m('i', '<s-tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
-  m('i', '<CR>', 'pumvisible() ? "<C-y>" : "<CR>"', {expr = true})
+
+  -- g.completion_confirm_key = '<c-y>'
+  -- m('i', '<CR>', 'pumvisible() ? "<C-y>" : "<CR>"', {expr = true})
+  -- m('i', '<tab>', 'pumvisible() ? "<C-n><C-y>" : "<Tab>"', {expr = true})
+  -- m('i', '<s-tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 
   -- use 'hrsh7th/nvim-compe '
   -- require'compe'.setup {
@@ -129,7 +127,7 @@ require('packer').startup(function()
   use 'mhartington/oceanic-next'
   vimscript 'colorscheme OceanicNext'
 
-  -- use {'NLKNguyen/papercolor-theme'}
+  use {'NLKNguyen/papercolor-theme'}
   -- use {'rakr/vim-one'}
   -- vimscript('colorscheme one')
 
@@ -240,105 +238,105 @@ require('packer').startup(function()
     indent = {enable = true}
   }
   -- }}}
-  --   -- lsps{{{
-  --   ----------------------------------------
-  --   --               LSP
-  --   ----------------------------------------
-  --   use 'neovim/nvim-lspconfig'
-  --   -- config{{{
-  --   --------------------
-  --   --       Config
-  --   --------------------
-  --   vim.lsp.handlers['textDocument/publishDiagnostics'] =
-  --       vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  --         virtual_text = false,
-  --         --  see: ":help vim.lsp.diagnostic.set_signs()"
-  --         signs = false
-  --       })
-  -- 
-  --   vimscript [[
-  -- 
-  -- " autocmd VimEnter * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
-  -- " autocmd VimEnter * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=green gui=bold
-  -- 
-  -- autocmd VimEnter * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
-  -- autocmd VimEnter * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
-  -- 
-  -- autocmd VimEnter * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=yellow gui=bold
-  -- autocmd VimEnter * highlight LspDiagnosticsFloatingWarning guibg=none guifg=yellow gui=bold
-  -- 
-  -- autocmd VimEnter * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
-  -- autocmd VimEnter * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
-  --    ]]
-  -- 
-  --   m('n', 'gj', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
-  --   m('n', 'gk', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+  --  lsps{{{
+  ----------------------------------------
+  --               LSP
+  ----------------------------------------
+  use 'neovim/nvim-lspconfig'
+  -- config{{{
+  --------------------
+  --       Config
+  --------------------
+  vim.lsp.handlers['textDocument/publishDiagnostics'] =
+      vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+        --  see: ":help vim.lsp.diagnostic.set_signs()"
+        signs = false
+      })
+
+  vimscript [[
+
+  " autocmd VimEnter * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
+  " autocmd VimEnter * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=green gui=bold
+
+  autocmd VimEnter * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
+  autocmd VimEnter * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
+
+  autocmd VimEnter * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=yellow gui=bold
+  autocmd VimEnter * highlight LspDiagnosticsFloatingWarning guibg=none guifg=yellow gui=bold
+
+  autocmd VimEnter * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
+  autocmd VimEnter * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
+     ]]
+
+  m('n', 'gj', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+  m('n', 'gk', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+  -- }}}
+  -- languages{{{
+  --------------------
+  --       Languages
+  --------------------
+  lsp = require 'lspconfig'
+  lsp.bashls.setup {settings = {documentFormatting = false}}
+  lsp.clangd.setup {settings = {documentFormatting = false}}
+  lsp.tsserver.setup {settings = {documentFormatting = false}}
+  lsp.vuels.setup {settings = {documentFormatting = false}}
+
+  -- lsp.cssls.setup {
+  --    filetypes = {'css', 'sass'},
+  --    settings = {css = {validate = true}, sass = {validate = true}}
+  -- }
+  -- }}}
   --   -- }}}
-  --   -- languages{{{
-  --   --------------------
-  --   --       Languages
-  --   --------------------
-  --   lsp = require 'lspconfig'
-  --   lsp.bashls.setup {settings = {documentFormatting = false}}
-  --   lsp.clangd.setup {settings = {documentFormatting = false}}
-  --   lsp.tsserver.setup {settings = {documentFormatting = false}}
-  --   lsp.vuels.setup {settings = {documentFormatting = false}}
-  -- 
-  --   -- lsp.cssls.setup {
-  --   --    filetypes = {'css', 'sass'},
-  --   --    settings = {css = {validate = true}, sass = {validate = true}}
-  --   -- }
-  --   -- }}}
-  --   -- }}}
-  --   -- efm lsp{{{
-  --   -- -------------------------------------
-  --   --               EFM LSP
-  --   -- -------------------------------------
-  --   local lua_format = {
-  --     formatCommand = 'lua-format --indent-width 2 --double-quote-to-single-quote'
-  --   }
-  -- 
-  --   local shellcheck = {
-  --     LintCommand = 'shellcheck -f gcc -x',
-  --     lintFormats = {
-  --       '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
-  --     }
-  --   }
-  --   local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
-  -- 
-  --   local prettier = {formatCommand = 'prettier --tab-width 2'}
-  --   local prettier_javascript = {
-  --     formatCommand = 'prettier --single-quote --tab-width 2'
-  --   }
-  -- 
-  --   lsp.efm.setup {
-  --     init_options = {documentFormatting = true, codeAction = false},
-  --     filetypes = {
-  --       'sh', 'lua', 'markdown', 'javascript', 'yaml', 'json', 'html', 'css',
-  --       'vue'
-  --     },
-  --     settings = {
-  --       rootMarkers = {'.git/'},
-  --       languages = {
-  --         lua = {lua_format},
-  --         sh = {shellcheck, shfmt},
-  --         html = {prettier},
-  --         css = {prettier},
-  --         vue = {prettier_javascript},
-  --         javascript = {prettier_javascript},
-  --         json = {prettier},
-  --         yaml = {prettier},
-  --         markdown = {prettier}
-  --       }
-  --     }
-  --   }
-  -- 
-  --   vimscript [[
-  -- autocmd FileType sh,markdown autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
-  -- autocmd BufWritePre *.{lua,js,css,html,yaml,vue,json} silent lua vim.lsp.buf.formatting()
-  -- 	]]
-  -- 
-  --   -- }}}
+  -- efm lsp{{{
+  -- -------------------------------------
+  --               EFM LSP
+  -- -------------------------------------
+  local lua_format = {
+    formatCommand = 'lua-format --indent-width 2 --double-quote-to-single-quote'
+  }
+
+  local shellcheck = {
+    LintCommand = 'shellcheck -f gcc -x',
+    lintFormats = {
+      '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
+    }
+  }
+  local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
+
+  local prettier = {formatCommand = 'prettier --tab-width 2'}
+  local prettier_javascript = {
+    formatCommand = 'prettier --single-quote --tab-width 2'
+  }
+
+  lsp.efm.setup {
+    init_options = {documentFormatting = true, codeAction = false},
+    filetypes = {
+      'sh', 'lua', 'markdown', 'javascript', 'yaml', 'json', 'html', 'css',
+      'vue'
+    },
+    settings = {
+      rootMarkers = {'.git/'},
+      languages = {
+        lua = {lua_format},
+        sh = {shellcheck, shfmt},
+        html = {prettier},
+        css = {prettier},
+        vue = {prettier_javascript},
+        javascript = {prettier_javascript},
+        json = {prettier},
+        yaml = {prettier},
+        markdown = {prettier}
+      }
+    }
+  }
+
+  vimscript [[
+  autocmd FileType sh,markdown autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{lua,js,css,html,yaml,vue,json} silent lua vim.lsp.buf.formatting()
+  	]]
+
+  -- }}}
   -- misc{{{
   -- -------------------------------------
   --               Misc
@@ -349,7 +347,7 @@ require('packer').startup(function()
   --    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   -- }
 
-  use 'neoclide/coc.nvim'
+  -- use 'neoclide/coc.nvim'
 
 end)
 -- }}}
@@ -840,7 +838,7 @@ function qalam()
     -- m('i', 'A', 'ََ')
 
     m('i', ';a', 'ا')
-    m('i', "'a", 'ء')
+    m('i', '\'a', 'ء')
 
     m('i', ';A', 'ئ')
 

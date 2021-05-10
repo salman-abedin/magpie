@@ -23,8 +23,8 @@ scroll_right h
 scroll_left  l
 
 
-orient_3    .
-orient_1    ,
+# orient_3    .
+# orient_1    ,
 
 orient_3    r
 orient_1    R

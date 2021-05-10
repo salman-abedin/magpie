@@ -28,7 +28,7 @@
 | Scripts              | [alfred](https://github.com/salman-abedin/alfred)                                                       |
 | Wallpapers           | [eyelust](https://github.com/salman-abedin/eyelust)                                                     |
 | Wifi                 | [iwd](https://wiki.archlinux.org/index.php/Iwd) + [dhcpcd](https://wiki.archlinux.org/index.php/dhcpcd) |
-| Browser              | [qutebrowser](https://github.com/qutebrowser/qutebrowser)                                               |
+| Browser              | [brave](https://github.com/brave/brave-browser)                                                         |
 | Bookmark Manager     | [unimark](https://github.com/salman-abedin/unimark)                                                     |
 | Password Manager     | [unipass](https://github.com/salman-abedin/unipass)                                                     |
 | AUR Helper           | [paru](https://github.com/Morganamilo/paru)                                                             |

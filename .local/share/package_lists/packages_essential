@@ -11,8 +11,8 @@
 #              Dmenu
 #---------------------------------------
 ^ fzf
-$ salman-abedin/dmenu
-# $ salman-abedin/amenu
+$ salman-abedin/amenu
+# $ salman-abedin/dmenu
 # rofi
 
 #---------------------------------------
@@ -45,8 +45,8 @@ $ salman-abedin/faint
 #---------------------------------------
 ^ alsa-utils
 
-^ pulseaudio-alsa
-^ pavucontrol
+# ^ pulseaudio-alsa
+# ^ pavucontrol
 
 # pulseeffects
 
@@ -127,15 +127,13 @@ $ salman-abedin/uniblocks
 #---------------------------------------
 #               Monospace Fonts
 #---------------------------------------
-ttf-jetbrains-mono
-# @ nerd-fonts-sf-mono
+ttf-roboto-mono
 # ttf-dejavu
+# @ nerd-fonts-sf-mono
+# ttf-jetbrains-mono
 # @ nerd-fonts-iosevka
-# ttf-roboto-mono
 # ttf-cascadia-code
 # @ttf-iosevka
-# ttf-inconsolata
-# ttf-bitsream-vera
 # noto-fonts
 # @ nerd-fonts-hack
 # @ ttf-mononoki
@@ -192,8 +190,8 @@ ttf-jetbrains-mono
 #---------------------------------------
 #              Browser
 #---------------------------------------
-^ qutebrowser
-# @ brave-bin
+# ^ qutebrowser
+@ brave-bin
 # firefox
 # falkon
 

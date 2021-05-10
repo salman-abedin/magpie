@@ -104,6 +104,14 @@ EndSection
 eof
 
 #---------------------------------------
+#              Audio
+#---------------------------------------
+cat << eof > /etc/modprobe.d/intel.conf
+options snd-hda-intel dmic_detect=0
+blacklist snd-intel8x0m
+eof
+
+#---------------------------------------
 #              Pacman
 #---------------------------------------
 sed -i "s/#Color/Color/" /etc/pacman.conf
@@ -112,15 +120,6 @@ sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
 
 # Use all cores for compilation.
 sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
-
-#---------------------------------------
-#        Pulseaudio & Bluetooth
-#---------------------------------------
-# echo load-module module-switch-on-connect >> /etc/pulse/default.pa
-# echo load-module module-echo-cancel >> /etc/pulse/default.pa
-
-# sed -i "s/load-module module-sus/# &/" /etc/pulse/default.pa
-# printf "[Policy]\nAutoEnable=true\n" >> /etc/bluetooth/main.conf
 
 #---------------------------------------
 #              Doas
@@ -192,12 +191,32 @@ esac
 
 cd $ROOT || exit 1
 cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
-chown -R "$user_name":wheel $PWD /home/"$user_name"
+chown -R "$user_name":wheel $ROOT /home/"$user_name"
 sudo -u "$user_name" fcrontab ~/.config/fcronrc
 
 #===============================================================================
 #                             Exp
 #===============================================================================
+
+#---------------------------------------
+#        Pulseaudio & Bluetooth
+#---------------------------------------
+# echo load-module module-switch-on-connect >> /etc/pulse/default.pa
+# echo load-module module-echo-cancel >> /etc/pulse/default.pa
+
+# sed -i "s/load-module module-sus/# &/" /etc/pulse/default.pa
+# printf "[Policy]\nAutoEnable=true\n" >> /etc/bluetooth/main.conf
+
+# #---------------------------------------
+# #              Backlight
+# #---------------------------------------
+# cat << eof > /etc/X11/xorg.conf.d/20-intel_backlight.conf
+# Section "Device"
+#   Identifier  "Intel Graphics"
+#   Driver      "intel"
+#   Option      "Backlight"  "intel_backlight"
+# EndSection
+# eof
 
 #---------------------------------------
 #              Bash to Dash
