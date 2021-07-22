@@ -11,25 +11,25 @@ xset -b & # Disable PC speaker
 {
   xmodmap "$LAYOUT_EN"
   xcape -e "Super_L=Escape;Mode_switch=Tab"
-} &                                    # Bind Multi-purpose keys
-xss-lock -n 'backlight -D' -- 'lock' & # Set Dimmer & Locker
-xset s 300 300 &                       # Set Dimmer & Locker Delays
-libinput-gestures &                    # Bind gesture commands
+} & # Bind Multi-purpose keys
+# xss-lock -n 'backlight -D' -- 'lock' & # Set Dimmer & Locker
+# xset s 300 300 &                       # Set Dimmer & Locker Delays
+libinput-gestures & # Bind gesture commands
 # dunst &                                # Launch notification server
-dbus-launch dunst &               # Launch notification server
-launch --tmux &                   # Launch tmux
-echo "$DISPLAY" > /tmp/DISPLAY &  # For Udev & Fcron environment
-xbanish &                         # Hide cursor when idle
+dbus-launch dunst &              # Launch notification server
+launch --tmux &                  # Launch tmux
+echo "$DISPLAY" > /tmp/DISPLAY & # For Udev & Fcron environment
+# xbanish &                         # Hide cursor when idle
 xsetroot -cursor_name left_ptr &  # Remove the ugly X cursor
 xrandr --dpi "$(get-dpi --pixel)" # Set correct DPI
 backlight --max                   # Set maximum brightness
-lock                              # Start locked
+# lock                              # Start locked
 
 set-bg        # Set the last used wallpaper
 $COMPOSITOR & # Launch Compositor
 $STATUSBAR &  # Launch Compositor
 # $TERMINAL -e tmux attach &  # Launch terminal
-scratchpad -w 90 -x 250 -h 27 -y 50 tmux attach &
+scratchpad -w 86 -h 29 tmux attach &
 { sleep 5 && pkill dwm; } & # Fix uniblocks glithes
 exec $WM                    # Launch Window Manager
 

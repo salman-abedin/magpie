@@ -279,8 +279,16 @@ require('packer').startup(function()
   lsp = require 'lspconfig'
   lsp.bashls.setup {settings = {documentFormatting = false}}
   lsp.clangd.setup {settings = {documentFormatting = false}}
+
+  lsp.pyright.setup {}
+  -- lsp.jedi_language_server.setup{}
+  -- lsp.pylsp.setup{}
+
   lsp.tsserver.setup {settings = {documentFormatting = false}}
   lsp.vuels.setup {settings = {documentFormatting = false}}
+  lsp.stylelint_lsp.setup {}
+  lsp.html.setup {}
+  lsp.svelte.setup{}
 
   -- lsp.cssls.setup {
   --    filetypes = {'css', 'sass'},
@@ -332,7 +340,7 @@ require('packer').startup(function()
   }
 
   vimscript [[
-  autocmd FileType sh,markdown autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
+  autocmd FileType sh,markdown,python autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
   autocmd BufWritePre *.{lua,js,css,html,yaml,vue,json} silent lua vim.lsp.buf.formatting()
   	]]
 
@@ -440,14 +448,15 @@ window = {
   -- Set absolute line numbers
   number = true,
 
+  -- -- Disable line wrapping
+  -- wrap = false,
+
+  -- -- Disable folding at startup
+  -- foldlevel = 99,
+
   -- Set relative line numbers
-  relativenumber = true,
+  relativenumber = true
 
-  -- Disable folding at startup
-  foldlevel = 99,
-
-  -- Disable line wrapping
-  wrap = false
 }
 
 ----------------------------------------
@@ -769,6 +778,15 @@ vimscript [[
 " Enable Tree Sitter Code Folding
 autocmd FileType vue set foldmethod=expr
 autocmd FileType vue set foldexpr=nvim_treesitter#foldexpr()
+]]
+-- }}}
+-- python{{{
+-- -------------------------------------
+--               Python
+-- -------------------------------------
+vimscript [[
+" Enable Tree Sitter Code Folding
+autocmd VimEnter *.py inoremap ;p print()<left>
 ]]
 -- }}}
 -- misc{{{

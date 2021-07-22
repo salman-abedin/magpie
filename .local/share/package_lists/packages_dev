@@ -1,13 +1,4 @@
 #---------------------------------------
-#              Package Managers
-#---------------------------------------
-^ yarn
-# python-pip
-# python2-pip
-# ruby
-# npm
-
-#---------------------------------------
 #              General
 #---------------------------------------
 ^ efm-langserver
@@ -71,6 +62,8 @@
 #---------------------------------------
 #              HTML
 #---------------------------------------
+
+% vscode-langservers-extracted
 # wkhtmltopdf
 
 # % pug-cli
@@ -84,6 +77,8 @@
 #---------------------------------------
 #              CSS
 #---------------------------------------
+
+% stylelint-lsp
 
 #sassc
 #%sass-lint
@@ -176,12 +171,21 @@
 #---------------------------------------
 #              Python
 #---------------------------------------
+
+python-pip
+# python2-pip
+python-pipx
+
+pyright
+
 # autopep8
 # python-black
 # yapf
 
 # flake8
 # python-pylint
+
+# | jedi-language-server
 
 #---------------------------------------
 #              Latex
@@ -239,10 +243,14 @@
 #              Javascript
 #---------------------------------------
 
+^ yarn
+# ^ npm
+
 ^ typescript
 ^ prettier
-%typescript-language-server
-%vls
+% typescript-language-server
+% vls
+% svelte-language-server
 
 # eslint
 
@@ -266,13 +274,13 @@
 #          Image Optimizations
 #---------------------------------------
 
-^ libwebp
+# ^ libwebp
 
 #---------------------------------------
 #               Design
 #---------------------------------------
 
-^ inkscape
+# ^ inkscape
 
 #---------------------------------------
 #               Music
@@ -285,3 +293,4 @@
 #---------------------------------------
 
 @ teams
+discord

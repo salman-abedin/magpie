@@ -23,8 +23,7 @@ $ salman-abedin/amenu
 #---------------------------------------
 #              Editor
 #---------------------------------------
-# neovim
-@ neovim-git
+^ neovim
 # nano
 
 #---------------------------------------
@@ -128,8 +127,8 @@ $ salman-abedin/uniblocks
 #               Monospace Fonts
 #---------------------------------------
 ttf-roboto-mono
-# ttf-dejavu
 # @ nerd-fonts-sf-mono
+# ttf-dejavu
 # ttf-jetbrains-mono
 # @ nerd-fonts-iosevka
 # ttf-cascadia-code
@@ -173,8 +172,8 @@ ttf-roboto-mono
 ^ mpc
 ^ playerctl
 ^ ncmpcpp
-@ spotify
-@ spotify_dl
+# @ spotify
+# @ spotify_dl
 # @ spicetify-cli
 # youtube-dl
 
@@ -277,8 +276,8 @@ $ salman-abedin/tide
 #@ bitlbee-facebook
 
 # matrix
-^ libolm
-^ weechat-matrix
+# ^ libolm
+# ^ weechat-matrix
 
 # # slack
 # @ slack-term-bin
@@ -320,7 +319,6 @@ $ salman-abedin/alfred
 ^ man-db
 ^ make
 ^ fcron
-^ newsboat
 ^ mpv
 @ doas
 @ xbanish
@@ -328,4 +326,3 @@ $ salman-abedin/alfred
 ^ android-tools
 ^ zip
 ^ w3m
-# git

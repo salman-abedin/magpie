@@ -1,29 +1,26 @@
-#---------------------------------------
-#               Misc Essentials
-#---------------------------------------
-
-openvpn
-ripgrep
-fd
-htop
-sudo
+^ newsboat
+^ openvpn
+^ ripgrep
+^ fd
+^ htop
+^ sudo
 @ farbfeld
-nmap
-libxft
-libxinerama
-figlet
-bc
-screenkey
-calibre
-gcr
+^ nmap
+^ libxft
+^ libxinerama
+^ figlet
+^ bc
+^ screenkey
+^ calibre
+^ gcr
 @ sc-im
-ntfs-3g
-net-tools
-linux-zen-headers
-@droidcam
-highlight
-sdcv
-pacgraph
+^ ntfs-3g
+^ net-tools
+^ linux-zen-headers
+@ droidcam
+^ highlight
+^ sdcv
+^ pacgraph
 
 #===============================================================================
 #                              Exp

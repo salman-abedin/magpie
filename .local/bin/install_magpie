@@ -24,21 +24,6 @@ echo "$user_name:$user_password" | chpasswd
 unset "$user_password"
 echo "$user_name ALL=(ALL) ALL" >> /etc/sudoers
 
-#===============================================================================
-#                              Internal Storage Mounting
-#===============================================================================
-
-lsblk
-
-printf "Internal Partition (i.e. sd<LETTER><DIGIT>): "
-read -r partition
-mount /dev/sd"$partition" /mnt/internal
-
-case "$DISTRO" in
-  *Arch*) FSTAB_GEN_CMD=genfstab ;;
-  *) FSTAB_GEN_CMD=fstabgen ;;
-esac
-$FSTAB_GEN_CMD -U / > /etc/fstab
 
 #===============================================================================
 #                             Package Managers
@@ -48,7 +33,7 @@ $FSTAB_GEN_CMD -U / > /etc/fstab
 #              Paru
 #---------------------------------------
 
-pacman -S --noconfirm --needed yarn
+pacman -S --noconfirm --needed yarn python-pip
 # pacman -S --noconfirm --needed yarn ruby python python2 perl
 
 if ! command -v paru; then
@@ -62,14 +47,17 @@ fi
 #                             Packages
 #===============================================================================
 
+
+pacman -Rnsdd libxft
+
 cd $ROOT || exit 1
 grep "^\^" .local/share/package_lists/packages_essential \
   | sed "s/\^ //" \
-  | pacman -Syy --noconfirm --needed -
+  | sudo -u "$user_name" paru -S --needed --nconfirm -
 
 grep "^@" .local/share/package_lists/packages_essential \
   | sed "s/@ //" \
-  | sudo -u "$user_name" paru -Syy -
+  | sudo -u "$user_name" paru -S --needed --noconfirm -
 
 printf "Repository Path? "
 read -r path_repo
@@ -87,6 +75,19 @@ grep "^\\$" .local/share/package_lists/packages_essential \
 #===============================================================================
 #                             Essential Mods
 #===============================================================================
+
+#---------------------------------------
+#      Internal Storage Auto Mounting
+#---------------------------------------
+
+case "$DISTRO" in
+  *Arch*) FSTAB_GEN_CMD=genfstab ;;
+  *)
+	pacman -S --noconfirm --needed artools-base
+	FSTAB_GEN_CMD=fstabgen
+	;;
+esac
+$FSTAB_GEN_CMD -U / > /etc/fstab
 
 #---------------------------------------
 #              Trackpad
@@ -133,7 +134,7 @@ echo "permit nopass keepenv $user_name" > /etc/doas.conf
 case "$DISTRO" in
   *Arch*) systemctl enable fcron ;;
   *)
-    pacman -S fcron-runit
+    pacman -S --needed --noconfirm fcron-runit
     ln -s /etc/runit/sv/fcron /etc/runit/runsvdir/default 2> /dev/null
     ;;
 esac
@@ -189,10 +190,10 @@ esac
 #               Dotfiles
 #---------------------------------------
 
-cd $ROOT || exit 1
-cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
-chown -R "$user_name":wheel $ROOT /home/"$user_name"
-sudo -u "$user_name" fcrontab ~/.config/fcronrc
+# cd $ROOT || exit 1
+# cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
+# chown -R "$user_name":wheel $ROOT /home/"$user_name"
+# sudo -u "$user_name" fcrontab /home/"$user_name"/.config/fcronrc
 
 #===============================================================================
 #                             Exp
