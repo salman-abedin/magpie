@@ -1,0 +1,41 @@
+-- utils = require('utils')
+-- -- auto commands{{{
+-- --------------------------------------------------------------------------------
+-- --                              Autocommands
+-- --------------------------------------------------------------------------------
+-- utils.vimscript [[
+-- " Updates the buffer if changed elsewhere
+-- " autocmd FocusGained,BufEnter * checktime
+-- " Restore cursor to the last location
+-- " autocmd BufReadPost * call setpos(".", getpos("'\""))
+-- " Rename tmux window
+-- " autocmd VimEnter ?* silent !tmux-rename-window %
+-- " Record last path
+-- " autocmd VimLeave * silent !echo $PWD > ~/.local/share/nvim/LAST_PATH
+-- ]]
+-- -- --}}}
+-- lsp{{{
+-- utils.vimscript [[
+-- sign define LspDiagnosticsSignHint text=ℹ texthl= linehl= numhl=
+-- sign define LspDiagnosticsSignWarning text=⚠ texthl= linehl= numhl=
+-- sign define LspDiagnosticsSignError text=❌ texthl= linehl= numhl=
+-- autocmd VimEnter * highlight LspDiagnosticsVirtualTextHint guibg=NONE guifg=green gui=bold
+-- autocmd VimEnter * highlight LspDiagnosticsVirtualTextWarning guibg=NONE guifg=yellow gui=bold
+-- autocmd VimEnter * highlight LspDiagnosticsVirtualTextError guibg=NONE guifg=red gui=bold
+-- ]]
+-- }}}
+-- spellsitter{{{
+-- use 'lewis6991/spellsitter.nvim'
+-- require('spellsitter').setup {
+--    hl = 'SpellBad',
+--    captures = {}, -- set to {} to spellcheck everything
+--    hunspell_cmd = 'hunspell',
+--    hunspell_args = {}
+-- }
+-- }}}
+-- -- easymotion{{{
+-- use {'easymotion/vim-easymotion'}
+-- g.EasyMotion_do_mapping = 0
+-- g.EasyMotion_smartcase = 1
+-- m('n', 'e', '<Plug>(easymotion-overwin-w)', {noremap = false})
+-- -- }}}

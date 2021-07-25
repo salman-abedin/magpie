@@ -23,8 +23,7 @@ export PATH=$PATH:~/.local/share/gem/ruby/2.7.0/bin # global ruby modules
 
 export WM="launch --dwm"
 export TERMINAL=st
-export DMENU=dmenu
-# export DMENU=amenu
+export DMENU=amenu
 export STATUSBAR="uniblocks -g"
 
 export EDITOR=nvim

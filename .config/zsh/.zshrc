@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 # aliases{{{
 #===============================================================================
@@ -50,7 +50,8 @@ alias m="git checkout master > /dev/null 2>&1"
 alias M="neomutt 2>/dev/null"
 alias md="mkdir"
 alias ml="mpv --loop"
-alias n="nvim"
+alias n="nvim +'Telescope find_files'"
+#  alias n="nvim -c 'cd $(cat ~/.local/share/nvim/LAST_PATH) | Telescope find_files'"
 # alias n="XDG_CONFIG_HOME=/mnt/internal/downloads/lua nvim5"
 # alias n="nvim5 --clean -S ~/.config/nvim/init.lua"
 # alias n="newsboat"
@@ -99,6 +100,15 @@ alias pQs="pacman -Qs"
 # alias ySn="yS --needed"
 # alias ySnn="ySn --noconfirm"
 
+
+#---------------------------------------
+#               Neovim
+#---------------------------------------
+
+alias nn="nvim ~/.config/nvim/init.lua"
+alias nz="nvim ~/.config/zsh/.zshrc"
+alias nf="nvim ~/.config/faintrc"
+
 #---------------------------------------
 #               Paru
 #---------------------------------------
@@ -118,7 +128,7 @@ alias pRnsn="pRns --noconfirm"
 alias gP="git pull"
 alias gPr="git pull --rebase"
 alias gPn="git pull --no-rebase"
-alias gaa="git add ."
+alias gaa="git add -A"
 alias gb="git branch"
 alias gbm="gb -m"
 alias gba="gb -a"
@@ -323,21 +333,21 @@ alias scii="ssh-copy-id -i $GIT/own/magpie-private/.ssh/id_rsa.pub"
 #---------------------------------------
 
 griH() {
-   COMMIT_COUNT=$(git rev-list --count master)
-   git rebase -i HEAD~$((COMMIT_COUNT - 1))
+  COMMIT_COUNT=$(git rev-list --count master)
+  git rebase -i HEAD~$((COMMIT_COUNT - 1))
 }
 
 merge() {
-   git add .
-   if [ -z "$1" ]; then
-      git commit --amend --no-edit
-      # git commit --allow-empty-message -m ''
-   else
-      git commit -m "$*"
-   fi
-   git checkout master
-   git merge test
-   git branch -D test
+  git add .
+  if [ -z "$1" ]; then
+    git commit --amend --no-edit
+    # git commit --allow-empty-message -m ''
+  else
+    git commit -m "$*"
+  fi
+  git checkout master
+  git merge test
+  git branch -D test
 }
 
 gcg() { git clone git@gist.github.com:"$1".git; }
@@ -347,41 +357,61 @@ gcg() { git clone git@gist.github.com:"$1".git; }
 #---------------------------------------
 
 mi() {
-   [ -d /run/mysqld ] || doas -n mkdir /run/mysqld
-   doas -n chown -R salman /run/mysqld /var/lib/mysql
-   mysqld --user=salman
+  [ -d /run/mysqld ] || doas -n mkdir /run/mysqld
+  doas -n chown -R salman /run/mysqld /var/lib/mysql
+  mysqld --user=salman
 }
 
 pi() {
-   [ -d /run/postgresql ] || doas -n mkdir /run/postgresql
-   doas -u $USER chown -R $USER /run/postgresql /var/lib/postgres
-   postgres -D /var/lib/postgres/data
+  [ -d /run/postgresql ] || doas -n mkdir /run/postgresql
+  doas -u $USER chown -R $USER /run/postgresql /var/lib/postgres
+  postgres -D /var/lib/postgres/data
 }
 
 #---------------------------------------
 #               Misc
 #---------------------------------------
 
-b(){
-  setsid brave --force-device-scale-factor=$(get-dpi -f) > /dev/null 2>&1
+
+launch(){
+  setsid $1 --force-device-scale-factor=$(get-dpi -f) > /dev/null 2>&1
 }
 
-t(){
-  setsid teams --force-device-scale-factor=$(get-dpi -f) > /dev/null 2>&1
+fe(){
+  npx -p node-firestore-import-export firestore-export -a credentials.json -b backup.json
 }
 
-q(){
-  setsid qutebrowser --force-device-scale-factor=$(get-dpi -f) > /dev/null 2>&1
+b(){ launch brave; }
+dis(){ launch discord; }
+q(){ launch qutebrowser; }
+t(){ launch teams; }
+
+# img2webp(){
+#   find $PWD -name "*.jpg" -o -name "*.png" \
+#     -exec cwebp -o {}.webp -- {} \;
+# }
+
+tel() {
+  nvim +"cd $1 | Telescope find_files"
 }
 
-img2webp(){
-   find $PWD -name "*.jpg" -o -name "*.png" \
-      -exec cwebp -o {}.webp -- {} \;
+denim(){ tel /mnt/internal/git/work/denim/src; }
+3zc(){ tel /mnt/internal/git/work/3ZC/src; }
+
+oi(){
+  mogrify \
+    -strip \
+    -colorspace RGB \
+    -interlace Plane \
+    -gaussian-blur 0.05 \
+    -quality 85 \
+    -path $PWD/optimized/ \
+    $PWD/*.jpeg $PWD/*.jpg
 }
 
 A() {
-   adb kill-server
-   daas adb start-server
+  adb kill-server
+  daas adb start-server
 }
 
 packages() { expac '%m %n' | sort -n; }
@@ -391,15 +421,15 @@ gesr() { gpg -esr "$MAIL_BOX" "$1" && rm "$1"; }
 tcf() { tar cf "$1".tar "$1"; }
 
 h() {
-   tail -25 ~/.config/zsh/history |
-      sed -e 's/.*;//' \
-         -e '1i#!/bin/sh' |
+  tail -25 ~/.config/zsh/history |
+    sed -e 's/.*;//' \
+      -e '1i#!/bin/sh' |
       nvim
 }
 
 N() {
-   pidof mpd > /dev/null || mpd 2> /dev/null
-   ncmpcpp
+  pidof mpd > /dev/null || mpd 2> /dev/null
+  ncmpcpp
 }
 
 vpn() { doas -- openvpn --config ~/.local/share/misc/vpnbook-us1-tcp80.ovpn; }
@@ -409,13 +439,13 @@ dbt() {
    docker build -t "$1" "$PWD"
 }
 view() {
-   setsid -f qutebrowser \
-      localhost:"$1" > /dev/null 2>&1
+  setsid -f qutebrowser \
+    localhost:"$1" > /dev/null 2>&1
    # http://192.168.0.100:"$1" > /dev/null 2>&1
 }
 graph() {
-   setsid -f surf \
-      localhost:8022/graphql > /dev/null 2>&1
+  setsid -f surf \
+    localhost:8022/graphql > /dev/null 2>&1
 }
 pdf2png() { pdftoppm -png "$1" > converted.png; }
 u(){ sort "$@" | uniq -u }
@@ -433,10 +463,10 @@ dy(){
 #---------------------------------------
 
 list() {
-   pacman -Qi |
-      awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' |
-      sort -hr |
-      head -25
+  pacman -Qi |
+    awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' |
+    sort -hr |
+    head -25
 }
 
 # ntfs(){
@@ -739,24 +769,19 @@ bindkey -M menuselect 'l' vi-forward-char
 #               Sources
 #---------------------------------------
 
-
 # GIT_COMPLETION=/usr/share/git/completion/git-completion.zsh
 # [ -f $GIT_COMPLETION ]  && . $GIT_COMPLETION
 # PS1+='$(__git_ps1 "%s")'
 
-# # fzf
-# [ -f /usr/share/fzf/key-bindings.zsh ] && /usr/share/fzf/key-bindings.zsh
-# [ -f /usr/share/fzf/completion.zsh ] && /usr/share/fzf/completion.zsh
-
-#---------------------------------------
-#               Plugins
-#---------------------------------------
-
-# # autosuggestions
-# [ -f /home/git/others/zsh-autosuggestions/zsh-autosuggestions.zsh ] &&
-#    . /home/git/others/zsh-autosuggestions/zsh-autosuggestions.zsh
+#  # fzf
+#  [ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
+#  [ -f /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh
+#  . /mnt/internal/git/upstream/fzf-tab/fzf-tab.plugin.zsh 2>/dev/null
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
+
+. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 # powerleve10k
 # [ -f /home/git/others/zsh_powerlevel10k/powerlevel10k.zsh-theme ] &&
@@ -765,9 +790,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 # # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 # [[ ! -f ~/.config/zsh/.p10k.zsh ]] || . ~/.config/zsh/.p10k.zsh
 
-. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 #---------------------------------------
 #               Exp

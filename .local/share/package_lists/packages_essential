@@ -117,8 +117,8 @@ $ salman-abedin/uniblocks
 #              Sans & Serif Fonts
 #---------------------------------------
 
-^ ttf-ubuntu-font-family
-^ ttf-linux-libertine
+# ^ ttf-ubuntu-font-family
+# ^ ttf-linux-libertine
 # @ ttf-ms-fonts
 # @ ttf-vista-fonts
 # ttf-liberation
@@ -126,10 +126,10 @@ $ salman-abedin/uniblocks
 #---------------------------------------
 #               Monospace Fonts
 #---------------------------------------
-ttf-roboto-mono
+ttf-jetbrains-mono
+# ttf-roboto-mono
 # @ nerd-fonts-sf-mono
 # ttf-dejavu
-# ttf-jetbrains-mono
 # @ nerd-fonts-iosevka
 # ttf-cascadia-code
 # @ttf-iosevka
@@ -147,8 +147,8 @@ ttf-roboto-mono
 # Emojis & Glyphs
 #---------------------------------------
 @ libxft-bgra
-^ noto-fonts-emoji
-^ ttf-font-awesome
+# ^ noto-fonts-emoji
+# ^ ttf-font-awesome
 
 # ttf-joypixels
 # @ powerline-fonts-git
@@ -166,8 +166,9 @@ ttf-roboto-mono
 # intel-media-driver
 
 #---------------------------------------
-#              Music
+#              Media
 #---------------------------------------
+^ mpv
 ^ mpd
 ^ mpc
 ^ playerctl
@@ -231,8 +232,8 @@ $ salman-abedin/tide
 #              Syncing
 #---------------------------------------
 ^ rclone
-^ unison
 ^ rsync
+# ^ unison
 
 # sshfs
 # inotify-tools
@@ -252,6 +253,7 @@ $ salman-abedin/tide
 #---------------------------------------
 #              Archiving
 #---------------------------------------
+^ zip
 ^ unzip
 ^ unrar
 ^ p7zip
@@ -287,7 +289,7 @@ $ salman-abedin/tide
 #              Locker
 #---------------------------------------
 ^ xss-lock
-@ i3lock-color
+# @ i3lock-color
 
 # @ xidlehook
 # xterm
@@ -319,10 +321,8 @@ $ salman-abedin/alfred
 ^ man-db
 ^ make
 ^ fcron
-^ mpv
 @ doas
 @ xbanish
 ^ wget
 ^ android-tools
-^ zip
 ^ w3m

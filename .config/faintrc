@@ -18,8 +18,15 @@ BORDER=bottom       # rounder | sharp | horizontal | vertical | top | bottom | l
 #===============================================================================
 
 FILTERS="\
-node_modules$;
+node_modules+;
+build+;
+dist+;
+plugins+;
+static+;
 package-lock.json$;
+config.js$;
+config.mjs$;
+.browserslistrc$;
 pubspec.lock$;
 composer.lock$;
 .env$;
@@ -27,6 +34,7 @@ composer.lock$;
 .idea$;
 .gitignore$;
 .github$;
+.nvmrc$;
 .dart_tool$;
 .metadata$;
 ios$;
@@ -37,7 +45,6 @@ yarn-error.log$;
 .cache$;
 package.json$;
 tsconfig.json$;
-build$;
 Makefile$;
 docs$;
 config.mk$;
@@ -46,15 +53,11 @@ PKGBUILD$;
 .cache$;
 .nuxt$;
 /config$;
-dist$;
 README.md$;
 data/$;
 Procfile$;
 jsconfig.json$;
 nuxt.config.js$;
-plugins$;
-static$;
-layouts$;
 "
 # layouts;
 # nuxt.config.js;
@@ -101,6 +104,11 @@ rename() {
   kill -39 "$FAINT_PID"
   pkill -P "$FAINT_PID"
 }
+duplicate() {
+  echo "$FILE_ARGS" > "$FILE_LIST_PATH"
+  kill -40 "$FAINT_PID"
+  pkill -P "$FAINT_PID"
+}
 # compress() {
 #   echo "$FILE_ARGS" \
 #     | while read -r file; do
@@ -128,6 +136,7 @@ decrypt() {
 
 OPS="\
 🏷  Rename:rename;
+💕 Duplicate:duplicate;
 ✖  Tmux:tmux_window;
 😠 Hulk:hulk;
 🚮 Trash:trash;

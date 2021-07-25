@@ -31,7 +31,7 @@ GIT=/mnt/internal/git
 
 # All personal scripts from Alfred
 @ 5 DISPLAY=$(cat /tmp/DISPLAY) battery --monitor
-# @ 3h DISPLAY=$(cat /tmp/DISPLAY) mirror --git
+@ 3h DISPLAY=$(cat /tmp/DISPLAY) mirror --git
 @ 6h DISPLAY=$(cat /tmp/DISPLAY) mirror --calcurse
 @ 12h DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/internal 50
 # @ 24h DISPLAY=$(cat /tmp/DISPLAY) mirror --brave --drive
