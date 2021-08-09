@@ -1,6 +1,10 @@
 -- ===========================================================================
 -- =                             Packer 
 -- ===========================================================================
+-- bootstrap{{{
+------------------------------------------------
+-- -                   BootStrap 
+------------------------------------------------
 local execute = vim.api.nvim_command
 local install_path = vim.fn.stdpath('data') ..
                          '/site/pack/packer/start/packer.nvim'
@@ -10,26 +14,83 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
               install_path)
   execute 'packadd packer.nvim'
 end
+-- }}}
 
 if not pcall(require, 'packer') then return end
 
 require('packer').startup(function()
+  -- essentials{{{
+  ------------------------------------------------
+  -- -                   Essentials 
+  ------------------------------------------------
+  use {
+    'mhartington/oceanic-next',
+    config = 'vim.cmd[[colorscheme OceanicNext]]'
+  }
+  -- treesitter
+  use {'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate'}
+  use {'p00f/nvim-ts-rainbow', requires = 'nvim-treesitter/nvim-treesitter'}
+  use {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    requires = 'nvim-treesitter/nvim-treesitter'
+  }
+  -- fuzzy finder
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzy-native.nvim'
+    }
+  }
+
+  use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-compe'
+  use 'winston0410/commented.nvim'
+  use 'phaazon/hop.nvim'
+  use 'karb94/neoscroll.nvim'
+  -- }}}
+  -- misc{{{
+  ------------------------------------------------
+  -- -                   Misc 
+  ------------------------------------------------
+  use {'mattn/emmet-vim', ft = {'html', 'svelte', 'astro', 'vue'}}
+  use {'lukas-reineke/indent-blankline.nvim', ft = {'pug', 'python'}}
+  use {
+    'norcalli/nvim-colorizer.lua',
+    ft = {'sass', 'svelte', 'vue', 'css', 'scss'}
+  }
+
+  -- syntax
+  use 'pangloss/vim-javascript'
+  use 'evanleck/vim-svelte'
+  use 'posva/vim-vue'
+  use 'digitaltoad/vim-pug'
+
+  use 'wbthomason/packer.nvim'
+  -- }}}
+  -- experiments{{{
+  -- =========================================================================  
+  -- =                             Experiements 
+  -- =========================================================================  
 
   -- colorschemes{{{
   ------------------------------------------------
   -- -                   ColorSchemes 
   ------------------------------------------------
-  vim.api.nvim_set_option('bg', 'dark')
-  vim.api.nvim_set_option('termguicolors', true)
 
-  -- use 'tjdevries/colorbuddy.vim'
-  -- use 'Th3Whit3Wolf/onebuddy'
-  -- require('colorbuddy').colorscheme('onebuddy')
+  -- use {
+  -- 'Th3Whit3Wolf/onebuddy',
+  -- requires = 'tjdevries/colorbuddy.vim',
+  -- config = 'require(\'colorbuddy\').colorscheme(\'onebuddy\')'
+  -- }
 
-  use 'mhartington/oceanic-next'
-  vim.cmd 'colorscheme OceanicNext'
+  -- use {
+  -- 'sainnhe/gruvbox-material',
+  -- config = 'vim.cmd[[colorscheme gruvbox-material]]'
+  -- }
 
-  use {'NLKNguyen/papercolor-theme'}
+  -- use {'NLKNguyen/papercolor-theme'}
+
   -- use {'rakr/vim-one'}
   -- vim.cmd('colorscheme one')
 
@@ -63,51 +124,6 @@ require('packer').startup(function()
 
   -- }}}
 
-  ------------------------------------------------
-  -- -                   Essentials 
-  ------------------------------------------------
-  -- treesitter
-  use {'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate'}
-  use {'p00f/nvim-ts-rainbow', requires = 'nvim-treesitter/nvim-treesitter'}
-  use {
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    requires = 'nvim-treesitter/nvim-treesitter'
-  }
-  -- fuzzy finder
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim'
-    }
-  }
-
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-compe'
-  use 'winston0410/commented.nvim'
-  use 'phaazon/hop.nvim'
-
-  ------------------------------------------------
-  -- -                   Misc 
-  ------------------------------------------------
-  use {'mattn/emmet-vim', ft = {'html', 'svelte', 'astro', 'vue'}}
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'norcalli/nvim-colorizer.lua'
-  use 'karb94/neoscroll.nvim'
-
-  -- syntax
-  use 'pangloss/vim-javascript'
-  use 'evanleck/vim-svelte'
-  use 'posva/vim-vue'
-  use 'digitaltoad/vim-pug'
-
-  use 'wbthomason/packer.nvim'
-
-  -- experiments{{{
-  -- =========================================================================  
-  -- =                             Experiements 
-  -- =========================================================================  
-
   -- use {'tjdevries/express_line.nvim', requires = 'nvim-lua/plenary.nvim'}
 
   -- use 'Xuyuanp/scrollbar.nvim'
@@ -136,5 +152,4 @@ require('packer').startup(function()
   -- map('n', 'ss', 'gcc', {noremap = false})
 
   -- }}}
-
 end)

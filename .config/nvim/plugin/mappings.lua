@@ -38,15 +38,15 @@ map('n', '<leader>v', '<c-v>')
 map('i', 'kj', '<ESC>')
 
 -- buffers
-map('n', '<Tab>', ':bn<cr>', {silent = true})
+map('n', '<Tab>', ':bn<cr>')
 
 -- map('n', '<leader>h', '<c-o>')
 -- map('n', '<leader>l', '<c-i>')
 
--- map('n', '<cr>', '<cmd>silent wa<cr>', {silent = true})
-map('n', '<cr>', ':silent up<cr>', {silent = true})
-map('n', '<esc>', ':silent up | qa<cr>', {silent = true})
-map('n', '<leader><esc>', ':qa!<cr>', {silent = true})
+-- map('n', '<cr>', ':silent wa<cr>', {silent = true})
+map('n', '<cr>', ':silent up<cr>')
+map('n', '<esc>', ':silent up | qa<cr>')
+map('n', '<leader><esc>', ':qa!<cr>')
 
 -- paste last yanked text
 map('n', '<leader>p', '"0p')
@@ -66,7 +66,7 @@ map('n', '<leader>k', 'zM')
 -- map('n', '<leader>a', 'zg')
 -- map('n', '<leader>A', 'zug')
 
-map('n', 'u', '<cmd>silent undo<cr>', {silent = true})
+map('n', 'u', ':silent undo<cr>')
 map('n', '<leader>s', ':%s//gcI<left><left><left><left>')
 
 -- keep stuff centered

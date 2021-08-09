@@ -115,6 +115,8 @@ global = {
   modelines = 0, -- disable modelines
   writebackup = false, -- don't keep backups after writing
 
+  termguicolors = true,
+
   laststatus = 0 -- disable status line
 
   -- statusline = '%#rainbowcol3#' -- set color

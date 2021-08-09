@@ -5,13 +5,10 @@ vim.g.user_emmet_leader_key = ','
 
 vim.g.indent_blankline_show_first_indent_level = false
 vim.g.indent_blankline_use_treesitter = true
-vim.g.indent_blankline_filetype = {'pug', 'python'}
+-- vim.g.indent_blankline_filetype = {'pug', 'python'}
 -- vim.g.indent_blankline_char = '┊'
 -- vim.g.indent_blankline_enabled = false
 
-if pcall(require, 'colorizer') then
-  require'colorizer'.setup {'sass', 'svelte', 'vue', 'css', 'scss'}
-end
 
 if pcall(require, 'neoscroll') then
   require('neoscroll').setup()
@@ -37,6 +34,11 @@ if pcall(require, 'commented') then
     }
   }
 end
+
+
+-- if pcall(require, 'colorizer') then
+  -- require'colorizer'.setup {'sass', 'svelte', 'vue', 'css', 'scss'}
+-- end
 
 -- if pcall(require, 'nvim-web-devicons') then
 -- require'nvim-web-devicons'.setup {
