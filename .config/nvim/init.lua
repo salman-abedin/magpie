@@ -1,9 +1,7 @@
 -- ===========================================================================
 -- =                             Packer 
 -- ===========================================================================
---
 local execute = vim.api.nvim_command
-
 local install_path = vim.fn.stdpath('data') ..
                          '/site/pack/packer/start/packer.nvim'
 
@@ -18,9 +16,9 @@ if not pcall(require, 'packer') then return end
 require('packer').startup(function()
 
   -- colorschemes{{{
-  ----------------------------------------
-  --               Colorschemes
-  ----------------------------------------
+  ------------------------------------------------
+  -- -                   ColorSchemes 
+  ------------------------------------------------
   vim.api.nvim_set_option('bg', 'dark')
   vim.api.nvim_set_option('termguicolors', true)
 
@@ -65,6 +63,16 @@ require('packer').startup(function()
 
   -- }}}
 
+  ------------------------------------------------
+  -- -                   Essentials 
+  ------------------------------------------------
+  -- treesitter
+  use {'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate'}
+  use {'p00f/nvim-ts-rainbow', requires = 'nvim-treesitter/nvim-treesitter'}
+  use {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    requires = 'nvim-treesitter/nvim-treesitter'
+  }
   -- fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
@@ -74,36 +82,42 @@ require('packer').startup(function()
     }
   }
 
+  use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-compe'
+  use 'winston0410/commented.nvim'
+  use 'phaazon/hop.nvim'
+
+  ------------------------------------------------
+  -- -                   Misc 
+  ------------------------------------------------
+  use {'mattn/emmet-vim', ft = {'html', 'svelte', 'astro', 'vue'}}
+  use 'lukas-reineke/indent-blankline.nvim'
+  use 'norcalli/nvim-colorizer.lua'
+  use 'karb94/neoscroll.nvim'
+
   -- syntax
   use 'pangloss/vim-javascript'
   use 'evanleck/vim-svelte'
   use 'posva/vim-vue'
   use 'digitaltoad/vim-pug'
 
-  -- treesitter
-  use {'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate'}
-  use {'p00f/nvim-ts-rainbow', requires = 'nvim-treesitter/nvim-treesitter'}
-  use {
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    requires = 'nvim-treesitter/nvim-treesitter'
-  }
-
-  use 'nvim-lua/completion-nvim'
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'winston0410/commented.nvim'
-  use 'phaazon/hop.nvim'
-  use 'neovim/nvim-lspconfig'
-  use 'norcalli/nvim-colorizer.lua'
-  use {'mattn/emmet-vim', ft = {'html', 'svelte', 'astro', 'vue'}}
-  use 'Xuyuanp/scrollbar.nvim'
-  use 'karb94/neoscroll.nvim'
   use 'wbthomason/packer.nvim'
 
   -- experiments{{{
   -- =========================================================================  
   -- =                             Experiements 
   -- =========================================================================  
+
+  -- use {'tjdevries/express_line.nvim', requires = 'nvim-lua/plenary.nvim'}
+
+  -- use 'Xuyuanp/scrollbar.nvim'
+  -- use 'kyazdani42/nvim-web-devicons'
   -- use 'neoclide/coc.nvim'
+  -- use 'nvim-lua/completion-nvim'
+  -- use {
+  -- 'ibhagwan/fzf-lua',
+  -- requires = {'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons'}
+  -- }
 
   -- use {'lukas-reineke/indent-blankline.nvim', ft = {'svelte', 'vue'}}
 
@@ -120,30 +134,6 @@ require('packer').startup(function()
   -- map('v', 's', 'gc<esc>', {noremap = false})
   -- map('n', 's', 'gc', {noremap = false})
   -- map('n', 'ss', 'gcc', {noremap = false})
-
-  -- use 'hrsh7th/nvim-compe '
-  -- require'compe'.setup {
-  --   enabled = true,
-  --   autocomplete = true,
-  --   debug = false,
-  --   min_length = 1,
-  --   preselect = 'enable',
-  --   throttle_time = 80,
-  --   source_timeout = 200,
-  --   incomplete_delay = 400,
-  --   max_abbr_width = 100,
-  --   max_kind_width = 100,
-  --   max_menu_width = 100,
-  --   documentation = true,
-  --   source = {
-  --     path = true,
-  --     buffer = true,
-  --     calc = true,
-  --     nvim_lsp = true,
-  --     nvim_lua = true,
-  --     vsnip = true
-  --   }
-  -- }
 
   -- }}}
 

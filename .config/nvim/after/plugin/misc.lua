@@ -4,17 +4,13 @@ vim.g.emmet_html5 = 0
 vim.g.user_emmet_leader_key = ','
 
 vim.g.indent_blankline_show_first_indent_level = false
-vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_use_treesitter = true
+vim.g.indent_blankline_filetype = {'pug', 'python'}
+-- vim.g.indent_blankline_char = '┊'
+-- vim.g.indent_blankline_enabled = false
 
-if pcall(require, 'colorizer') then require'colorizer'.setup {'sass', 'svelte'} end
-
-if pcall(require, 'scrollbar') then
-  vim.cmd [[
-  autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-  autocmd WinEnter,FocusGained * silent! lua require('scrollbar').show()
-  autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
-]]
+if pcall(require, 'colorizer') then
+  require'colorizer'.setup {'sass', 'svelte', 'vue', 'css', 'scss'}
 end
 
 if pcall(require, 'neoscroll') then
@@ -41,3 +37,18 @@ if pcall(require, 'commented') then
     }
   }
 end
+
+-- if pcall(require, 'nvim-web-devicons') then
+-- require'nvim-web-devicons'.setup {
+-- -- override = {zsh = {icon = '', color = '#428850', name = 'Zsh'}},
+-- default = true
+-- }
+-- end
+
+-- if pcall(require, 'scrollbar') then
+-- vim.cmd [[
+-- autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+-- autocmd WinEnter,FocusGained * silent! lua require('scrollbar').show()
+-- autocmd WinLeave,FocusLost * silent! lua require('scrollbar').clear()
+-- ]]
+-- end

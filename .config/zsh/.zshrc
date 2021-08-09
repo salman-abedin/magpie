@@ -105,7 +105,8 @@ alias pQs="pacman -Qs"
 #               Neovim
 #---------------------------------------
 
-alias nn="nvim ~/.config/nvim/init.lua"
+alias nn="nvim +'cd /mnt/internal/git/system/magpie/.config/nvim | Telescope find_files'"
+alias nc="nvim +'cd /mnt/internal/git/system/magpie/.config | Telescope find_files'"
 alias nz="nvim ~/.config/zsh/.zshrc"
 alias nf="nvim ~/.config/faintrc"
 
@@ -385,6 +386,7 @@ b(){ launch brave; }
 dis(){ launch discord; }
 q(){ launch qutebrowser; }
 t(){ launch teams; }
+z(){ launch zoom; }
 
 # img2webp(){
 #   find $PWD -name "*.jpg" -o -name "*.png" \

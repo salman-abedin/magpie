@@ -32,7 +32,7 @@ vim.opt.shortmess = vim.opt.shortmess + 'c' -- Completion
 -- ===========================================================================
 window = {
   foldmethod = 'marker', -- User markers for folding
-  signcolumn = 'no', -- Never show the sign column (i.e. no more jerking)
+  signcolumn = 'yes', -- Always show the sign column (i.e. no more jerking)
   number = true, -- Set absolute line numbers
   relativenumber = true, -- Set relative line numbers
 
@@ -101,7 +101,6 @@ global = {
   showmatch = true, -- live match highlighting
   pumheight = 5, -- Makes popup menu smaller
   hlsearch = false, -- dont highlight matches
-  laststatus = 0, -- disable status line
   shiftround = true, -- always indent by multiple of shiftwidth
   lazyredraw = true, -- whether to redraw screen after macros
   sidescroll = 0, -- sidescroll in jumps because terminals are slow
@@ -109,21 +108,29 @@ global = {
   ruler = false, -- dont show file position in the bottom right
   smartcase = true, -- if there are uppercase letters, become case-sensitive.
   incsearch = true, -- live incremental searching
-  hidden = true, -- allow buffer switching without saving
+  -- hidden = true, -- allow buffer switching without saving
   ignorecase = true, -- case insensitive search
   viewoptions = 'cursor,folds', -- {mk/load}view just these
   updatecount = 0, -- update swapfiles every 0 typed chars
   modelines = 0, -- disable modelines
-  writebackup = false -- don't keep backups after writing
+  writebackup = false, -- don't keep backups after writing
+
+  laststatus = 0 -- disable status line
+
+  -- statusline = '%#rainbowcol3#' -- set color
+  -- -- filename
+  -- .. '📁 %f' .. '%=' -- go to right
+  -- .. '📖 %L' -- total lines count
+  -- .. '  | ' -- seperator
+  -- .. '🍨 %{&filetype}' -- filetype
+  -- .. ' | ' -- seperator
+  -- .. '🎁 %{&fileencoding?&fileencoding:&encoding}' -- encoding
+  -- .. '',
 
   -- fdo = remove('fdo', 'search'),
 
   -- wildoptions = 'pum',
   -- autochdir = true, -- change project directory to selected buffer path
-  --
-  -- Set completeopt to have a better completion experience
-  -- completeopt = 'menuone,noselect,noinsert',
-  -- completeopt = 'menuone,noselect',
 
 }
 

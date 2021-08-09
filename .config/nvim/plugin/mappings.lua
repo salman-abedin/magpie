@@ -40,10 +40,6 @@ map('i', 'kj', '<ESC>')
 -- buffers
 map('n', '<Tab>', ':bn<cr>', {silent = true})
 
--- telescope
-map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
-map('n', '<leader>b', '<cmd>Telescope buffers<cr>')
-
 -- map('n', '<leader>h', '<c-o>')
 -- map('n', '<leader>l', '<c-i>')
 
