@@ -1,6 +1,3 @@
--- ===========================================================================
--- =                             Packer 
--- ===========================================================================
 -- bootstrap{{{
 ------------------------------------------------
 -- -                   BootStrap 
@@ -19,14 +16,27 @@ end
 if not pcall(require, 'packer') then return end
 
 require('packer').startup(function()
+
   -- essentials{{{
   ------------------------------------------------
   -- -                   Essentials 
   ------------------------------------------------
+
+  -- use {
+  -- 'mhartington/oceanic-next',
+  -- config = 'vim.cmd[[colorscheme OceanicNext]]'
+  -- }
+
+  use {
+    'NLKNguyen/papercolor-theme',
+    config = 'vim.cmd[[colorscheme PaperColor]]'
+  }
+
   use {
     'mhartington/oceanic-next',
     config = 'vim.cmd[[colorscheme OceanicNext]]'
   }
+
   -- treesitter
   use {'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate'}
   use {'p00f/nvim-ts-rainbow', requires = 'nvim-treesitter/nvim-treesitter'}
@@ -152,4 +162,5 @@ require('packer').startup(function()
   -- map('n', 'ss', 'gcc', {noremap = false})
 
   -- }}}
+
 end)

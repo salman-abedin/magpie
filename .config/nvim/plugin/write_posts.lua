@@ -1,6 +1,6 @@
 vim.cmd [[
 " toys (setup for easily messing around with various programming languages)
-autocmd BufWritePost toy.* silent !toy %
+" autocmd BufWritePost toy.* silent !toy %
 " Auto compile
 autocmd BufWritePost *.{ms,c,h} silent !compile %
 autocmd FileType sh autocmd BufWritePost * silent !compile %

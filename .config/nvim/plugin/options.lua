@@ -28,6 +28,24 @@ vim.opt.shortmess = vim.opt.shortmess + 'c' -- Completion
 + 't' -- Startup
 
 -- ===========================================================================
+-- =                             Buffers 
+-- ===========================================================================
+
+buffer = {
+
+  expandtab = true, -- Use spaces instead of tabs
+  undofile = true, -- enable undoing between buffer closes
+
+  softtabstop = 2, -- spaces per tab (in insert mode)
+  shiftwidth = 2, -- spaces per tab (when shifting)
+  tabstop = 2 -- number of spaces per tab
+
+  -- backspace = 'indent,eol,start', -- Enable proper backspace behavior
+  -- smarttab = true, -- <tab>/<BS> indent/dedent in leading whitespace
+  -- autoindent = true, -- match indents new lines with previous line.
+}
+
+-- ===========================================================================
 -- =                             Window 
 -- ===========================================================================
 window = {
@@ -47,33 +65,6 @@ window = {
 }
 
 -- ===========================================================================
--- =                             Buffers 
--- ===========================================================================
-
-buffer = {
-  autoread = true, -- reload files if changed
-  swapfile = false, -- disable swap
-  spellfile = '~/.config/nvim/spell/en.utf-8.add', -- spell file path
-
-  backupcopy = 'yes', -- Disable Safe Write
-
-  smartindent = true, -- see help. XD
-  expandtab = true, -- Use spaces instead of tabs
-
-  cindent = true, -- see help
-
-  spellcapcheck = '', -- don't check for capital letters at start of sentence
-  synmaxcol = 200, -- don't bother syntax highlighting long lines
-
-  textwidth = 80 -- automatically hard wrap at 80 columns
-
-  -- backspace = 'indent,eol,start', -- Enable proper backspace behavior
-  -- smarttab = true, -- <tab>/<BS> indent/dedent in leading whitespace
-  -- autoindent = true, -- match indents new lines with previous line.
-
-}
-
--- ===========================================================================
 -- =                             Globals 
 -- ===========================================================================
 
@@ -87,7 +78,22 @@ global = {
 
   showbreak = string.rep(' ', 3), -- Make it so that long lines wrap smartly
 
-  undofile = true, -- enable undoing between buffer closes
+  cindent = true, -- see help
+
+  textwidth = 80, -- automatically hard wrap at 80 columns
+
+  autoread = true, -- reload files if changed
+  swapfile = false, -- disable swap
+  spellfile = '~/.config/nvim/spell/en.utf-8.add', -- spell file path
+
+  backupcopy = 'yes', -- Disable Safe Write
+
+  smartindent = true, -- see help. XD
+
+  spellcapcheck = '', -- don't check for capital letters at start of sentence
+  synmaxcol = 200, -- don't bother syntax highlighting long lines
+
+  -- foldopen = 'all', -- always open folds in need
 
   history = 100, -- the number of histories to record for various operations
   showcmd = false, -- dont show partial cmd in the last line
@@ -108,7 +114,7 @@ global = {
   ruler = false, -- dont show file position in the bottom right
   smartcase = true, -- if there are uppercase letters, become case-sensitive.
   incsearch = true, -- live incremental searching
-  -- hidden = true, -- allow buffer switching without saving
+  hidden = true, -- allow buffer switching without saving
   ignorecase = true, -- case insensitive search
   viewoptions = 'cursor,folds', -- {mk/load}view just these
   updatecount = 0, -- update swapfiles every 0 typed chars
@@ -116,6 +122,13 @@ global = {
   writebackup = false, -- don't keep backups after writing
 
   termguicolors = true,
+
+  expandtab = true, -- Use spaces instead of tabs
+  undofile = true, -- enable undoing between buffer closes
+
+  softtabstop = 2, -- spaces per tab (in insert mode)
+  shiftwidth = 2, -- spaces per tab (when shifting)
+  tabstop = 2, -- number of spaces per tab
 
   laststatus = 0 -- disable status line
 

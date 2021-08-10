@@ -24,7 +24,6 @@ echo "$user_name:$user_password" | chpasswd
 unset "$user_password"
 echo "$user_name ALL=(ALL) ALL" >> /etc/sudoers
 
-
 #===============================================================================
 #                             Package Managers
 #===============================================================================
@@ -46,7 +45,6 @@ fi
 #===============================================================================
 #                             Packages
 #===============================================================================
-
 
 pacman -Rnsdd libxft
 
@@ -83,9 +81,9 @@ grep "^\\$" .local/share/package_lists/packages_essential \
 case "$DISTRO" in
   *Arch*) FSTAB_GEN_CMD=genfstab ;;
   *)
-	pacman -S --noconfirm --needed artools-base
-	FSTAB_GEN_CMD=fstabgen
-	;;
+    pacman -S --noconfirm --needed artools-base
+    FSTAB_GEN_CMD=fstabgen
+    ;;
 esac
 $FSTAB_GEN_CMD -U / > /etc/fstab
 
@@ -279,6 +277,19 @@ esac
 # git clone https://github.com/sumneko/lua-language-server
 # cd lua-language-server || exit
 # git submodule update --init --recursive
+
+# cd 3rd/luamake || exit
+# ninja -f ninja/linux.ninja
+# cd ../..
+# ./3rd/luamake/luamake rebuild
+
+#---------------------------------------
+#               phpactor
+#---------------------------------------
+
+# git clone git@github.com:phpactor/phpactor
+# cd phpactor || exit
+# composer install && sudo -u $USER ln -s $PWD/bin/phpactor ~/.local/bin
 
 # cd 3rd/luamake || exit
 # ninja -f ninja/linux.ninja

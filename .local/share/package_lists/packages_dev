@@ -89,10 +89,10 @@ clang
 #              PHP
 #---------------------------------------
 
-# php
-# composer
+php
+composer
 
-# @ php-cs-fixer
+@ php-cs-fixer
 # @ php-codesniffer
 # @ php-stan
 
@@ -217,8 +217,11 @@ pyright
 #---------------------------------------
 #              Java
 #---------------------------------------
-# maven
+
+# @ java-language-server
 # @ google-java-format
+
+# maven
 
 # uncrustify
 # astyle

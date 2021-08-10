@@ -83,4 +83,4 @@ qalam = function()
 end
 
 vim.cmd [[ autocmd BufReadPost *.ar.* lua qalam() ]]
-require('utils').map('n', 'ga', '<cmd>lua qalam()<cr>', {silent = true})
+require('map')('n', 'ga', '<cmd>lua qalam()<cr>', {silent = true})

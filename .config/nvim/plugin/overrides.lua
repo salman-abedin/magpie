@@ -1,8 +1,8 @@
 overrides = function()
 
-  vim.bo.softtabstop = 2 -- spaces per tab (in insert mode)
-  vim.bo.shiftwidth = 2 -- spaces per tab (when shifting)
-  vim.bo.tabstop = 2 -- number of spaces per tab
+  -- vim.bo.softtabstop = 2 -- spaces per tab (in insert mode)
+  -- vim.bo.shiftwidth = 2 -- spaces per tab (when shifting)
+  -- vim.bo.tabstop = 2 -- number of spaces per tab
 
   vim.opt.formatoptions =
       vim.opt.formatoptions + 'c' -- comments respect textwidth

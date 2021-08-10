@@ -1,4 +1,6 @@
 -- vim.api.nvim_win_set_option(0, 'cursorline', true) -- show cursor line
+vim.o.bg = 'light'
+
 vim.cmd [[
 
 " cursor

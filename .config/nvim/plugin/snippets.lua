@@ -26,12 +26,12 @@ autocmd FileType javascript,vue,pug,svelte inoremap ,tc try{<cr>}catch (error){<
 -- ----------------------------------------
 vim.cmd [[
 " autocmd VimEnter *.sass setlocal shiftwidth=2
-autocmd VimEnter *.{sass,vue,svelte} inoremap ,dg  display: grid<cr>
-autocmd VimEnter *.{sass,vue,svelte} inoremap ,pic place-items: center<cr>
-autocmd VimEnter *.{sass,vue,svelte} inoremap ,m @media (min-width: 601px)<cr><tab>
-autocmd VimEnter *.{sass,vue,svelte} inoremap ,c calc()<left>
+autocmd FileType sass,vue,svelte inoremap ,dg  display: grid<cr>
+autocmd FileType sass,vue,svelte inoremap ,pic place-items: center<cr>
+autocmd FileType sass,vue,svelte inoremap ,m @media (min-width: 601px)<cr>
+autocmd FileType sass,vue,svelte inoremap ,c calc()<left>
 
-autocmd VimEnter *.{sass,vue,svelte} inoremap ,pr position: relative<esc>o
-autocmd VimEnter *.{sass,vue,svelte} inoremap ,pa position: absolute<esc>o
+autocmd FileType sass,vue,svelte inoremap ,pr position: relative<esc>o
+autocmd FileType sass,vue,svelte inoremap ,pa position: absolute<esc>o
 ]]
 -- }}}

@@ -11,5 +11,5 @@ require'nvim-treesitter.configs'.setup {
 
 -- Enable treesitter folding
 vim.cmd [[
-autocmd FileType sh,c,cpp,python,vue,svelte setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+autocmd FileType sh,c,cpp,python,vue setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 ]]

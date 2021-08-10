@@ -3,7 +3,7 @@ if not pcall(require, 'compe') then return end
 -- vim.o.completeopt = 'menuone,noselect'
 vim.o.completeopt = 'menuone,noselect,noinsert'
 
-local map = require('utils').map
+local map = require('map')
 
 map('i', '<tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
 map('i', '<s-tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})

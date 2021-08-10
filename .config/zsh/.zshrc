@@ -105,8 +105,9 @@ alias pQs="pacman -Qs"
 #               Neovim
 #---------------------------------------
 
-alias nn="nvim +'cd /mnt/internal/git/system/magpie/.config/nvim | Telescope find_files'"
-alias nc="nvim +'cd /mnt/internal/git/system/magpie/.config | Telescope find_files'"
+alias nn="nvim +'cd /mnt/internal/git/daily/notes | Telescope find_files'"
+alias nc="nvim +'cd /mnt/internal/git/system/magpie/.config/nvim | Telescope find_files'"
+alias nd="nvim +'cd /mnt/internal/git/system/magpie/.config | Telescope find_files'"
 alias nz="nvim ~/.config/zsh/.zshrc"
 alias nf="nvim ~/.config/faintrc"
 
@@ -406,9 +407,9 @@ oi(){
     -colorspace RGB \
     -interlace Plane \
     -gaussian-blur 0.05 \
-    -quality 85 \
+    -quality 50 \
     -path $PWD/optimized/ \
-    $PWD/*.jpeg $PWD/*.jpg
+    $PWD/*.jpg
 }
 
 A() {
