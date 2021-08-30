@@ -18,7 +18,7 @@ alias -g yeh="root@yehbackend.tk"
 #---------------------------------------
 
 alias ..="cd .."
-alias a='adb connect 192.168.1.101'
+alias a='adb connect 192.168.1.100'
 alias c="clear"
 alias cc="calcurse"
 alias cLO="curl -LO"

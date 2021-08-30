@@ -57,6 +57,7 @@ README.md$;
 data/$;
 Procfile$;
 jsconfig.json$;
+config.json$;
 nuxt.config.js$;
 "
 # layouts;
@@ -93,7 +94,7 @@ hulk() {
   kill -37 "$FAINT_PID"
   pkill -P "$FAINT_PID"
 }
-push2android() { adb connect 192.168.1.101 && adb push --sync "$FILE_ARGS" $CARD; }
+push2android() { adb connect 192.168.1.100 && adb push --sync "$FILE_ARGS" $CARD; }
 # push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
 push2yy() { rsync -aP "$FILE_ARGS" salman@192.168.95.131:/mnt/internal; }
 show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }

@@ -4,5 +4,6 @@ vim.cmd [[
 
  autocmd BufRead toy.php nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> terminal php % <cr>
  autocmd BufRead toy.java nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> terminal javac % && java Main<cr>
+ autocmd BufRead graph.js nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> terminal node % <cr>
 
 ]]
