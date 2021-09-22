@@ -53,6 +53,7 @@ map('i', '(i', '()<left>')
 map('i', '{i', '{}<left>')
 map('i', '[i', '[]<left>')
 map('i', '<i', '<><left>')
+map('i', '""i', '""""""<left><left><left>')
 
 map('i', '\'a', '\'\'')
 map('i', '"a', '""')
@@ -68,6 +69,7 @@ map('i', '`o', '`<cr>`<esc>O')
 map('i', '(o', '(<cr>)<esc>O')
 map('i', '{o', '{<cr>}<esc>O')
 map('i', '[o', '[<cr>]<esc>O')
+map('i', '""o', '"""<cr>"""<esc>O')
 -- }}}
 -- comment frames{{{
 map('i', ',bl', '<esc>075i=<esc>:Comment<cr>yypO=<esc>:Comment<cr>30A <esc>i')

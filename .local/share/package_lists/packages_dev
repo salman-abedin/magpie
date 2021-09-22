@@ -63,7 +63,7 @@ clang
 #              HTML
 #---------------------------------------
 
-% vscode-langservers-extracted
+# % vscode-langservers-extracted
 # wkhtmltopdf
 
 # % pug-cli
@@ -78,11 +78,11 @@ clang
 #              CSS
 #---------------------------------------
 
+#%vscode-css-languageserver-bin
 % stylelint-lsp
 
 #sassc
 #%sass-lint
-#%vscode-css-languageserver-bin
 #%stylelint
 
 #---------------------------------------
@@ -176,16 +176,14 @@ python-pip
 # python2-pip
 python-pipx
 
-pyright
+# pyright
 
-# autopep8
+autopep8
 # python-black
 # yapf
 
 # flake8
 # python-pylint
-
-# | jedi-language-server
 
 #---------------------------------------
 #              Latex
@@ -211,7 +209,7 @@ pyright
 #---------------------------------------
 ^ lua
 @ lua-format
-# ninja
+ninja
 # @ luacheck
 
 #---------------------------------------
@@ -296,5 +294,5 @@ pyright
 #               Work
 #---------------------------------------
 
-@ teams
 discord
+# @ teams

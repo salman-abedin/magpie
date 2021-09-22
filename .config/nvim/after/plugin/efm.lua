@@ -13,6 +13,8 @@ local shellcheck = {
   }
 }
 local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
+--  local autopep8 = {formatCommand = 'autopep8 --indent-size=2'}
+local autopep8 = {formatCommand = 'autopep8'}
 local google_java_format = {
   formatCommand = 'java -jar /usr/share/java/google-java-format/google-java-format.jar'
 }
@@ -22,16 +24,16 @@ local clang_format = {
 
 -- local clang_format = {formatCommand = 'clang-format --style="{BasedOnStyle: mozilla}"'}
 
-local prettier = {formatCommand = 'prettier --tab-width 2'}
+local prettier = {formatCommand = 'prettier'}
 local php_cs_fixer = {formatCommand = 'php-cs-fixer'}
-local prettier_javascript = {
-  formatCommand = 'prettier --single-quote --tab-width 2'
-}
+local prettier_javascript = {formatCommand = 'prettier --single-quote'}
 
 lsp.efm.setup {
   init_options = {documentFormatting = true, codeAction = false},
   filetypes = {
-    'c', 'cpp', 'javascript', 'sh', 'lua', 'markdown', 'yaml', 'json', 'html', 'css'
+    'c', 'cpp', 'javascript', 'sh', 'lua', 'markdown', 'yaml', 'json', 'html',
+    --  'python',
+    'css'
     --  'php'
     -- 'svelte',
     -- 'vue',
@@ -49,6 +51,7 @@ lsp.efm.setup {
       lua = {lua_format},
       markdown = {prettier},
       php = {php_cs_fixer},
+      python = {autopep8},
       sh = {shellcheck, shfmt},
       svelte = {prettier_javascript},
       vue = {prettier_javascript},

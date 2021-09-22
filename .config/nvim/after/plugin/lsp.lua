@@ -9,7 +9,7 @@ local map = require('map')
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       --  see: ":help vim.lsp.diagnostic.set_signs()"
-      virtual_text = false
+      --  virtual_text = false
       -- update_in_insert = true
       -- signs = false
     })
@@ -34,35 +34,81 @@ lsp.tsserver.setup {
   end
 }
 
--- lsp.stylelint_lsp.setup {
--- on_attach = function(client)
--- client.resolved_capabilities.document_formatting = false
--- end
--- }
+lsp.html.setup {
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = false
+  end
+}
+lsp.cssls.setup {
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = false
+  end,
+  filetypes = {'css', 'sass'},
+  settings = {sass = {validate = true}}
+}
+lsp.stylelint_lsp.setup {
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = false
+  end
+}
 
-lsp.html.setup {}
+lsp.pylsp.setup {
+  --  on_attach = function(client)
+    --  client.resolved_capabilities.document_formatting = false
+  --  end
+}
+--  lsp.pyright.setup {
+--  on_attach = function(client)
+--  client.resolved_capabilities.document_formatting = false
+--  end
+--  }
 
-lsp.pyright.setup {}
--- lsp.jedi_language_server.setup{}
--- lsp.pylsp.setup{}
-
-lsp.phpactor.setup {}
-
-lsp.svelte.setup {}
-lsp.vuels.setup {}
+--  lsp.svelte.setup {}
+--  lsp.vuels.setup {}
 
 --  lsp.java_language_server.setup {
 --  cmd = {'/usr/share/java/java-language-server/lang_server_linux.sh'}
 --  }
 
--- lsp.cssls.setup {
---    filetypes = {'css', 'sass'},
---    settings = {css = {validate = true}, sass = {validate = true}}
--- }
-
 -- vim.cmd [[
 -- autocmd BufWritePost *.js lua vim.lsp.diagnostic.set_loclist()
 -- ]]
+
+--  --------------------------------------------------
+--  -                   Lua 
+--  --------------------------------------------------
+
+local sumneko_root_path = '/mnt/internal/git/upstream/lua-language-server'
+local sumneko_binary =
+    '/mnt/internal/git/upstream/lua-language-server/bin/Linux/lua-language-server'
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+require'lspconfig'.sumneko_lua.setup {
+  cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'},
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'}
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file('', true)
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {enable = false}
+    }
+  }
+}
 
 -- }}}
 -- auto formatter{{{
@@ -71,8 +117,11 @@ lsp.vuels.setup {}
 -- ===========================================================================
 
 vim.cmd [[
-  autocmd FileType sh,python,php autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{lua,js,mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
+  " autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
+  " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
+
+  autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{css,html,lua} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
 -- mappings{{{
@@ -101,15 +150,15 @@ vim.fn.sign_define('LspDiagnosticsSignHint', {text = '💡'})
 
 vim.cmd [[
   " autocmd BufRead * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
-  " autocmd BufRead * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=green gui=bold
+  autocmd BufRead * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=blue gui=bold
 
-  autocmd BufRead * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
+  " autocmd BufRead * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
   autocmd BufRead * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
 
-  autocmd BufRead * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=yellow gui=bold
-  autocmd BufRead * highlight LspDiagnosticsFloatingWarning guibg=none guifg=yellow gui=bold
+  " autocmd BufRead * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=orange gui=bold
+  autocmd BufRead * highlight LspDiagnosticsFloatingWarning guibg=none guifg=orange gui=bold
 
-  autocmd BufRead * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
+  " autocmd BufRead * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
   autocmd BufRead * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
 ]]
 -- }}}

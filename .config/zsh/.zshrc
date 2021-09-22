@@ -18,7 +18,7 @@ alias -g yeh="root@yehbackend.tk"
 #---------------------------------------
 
 alias ..="cd .."
-alias a='adb connect 192.168.1.100'
+alias a='adb connect 192.168.1.104'
 alias c="clear"
 alias cc="calcurse"
 alias cLO="curl -LO"
@@ -188,9 +188,10 @@ alias yiy="yi -y"
 alias yl="y list"
 alias ys="y start"
 alias yt="y test"
-alias ysa="ys --android"
+alias ysA="ys --android"
 alias yr="y remove"
 alias yu="y upgrade"
+alias yuL="y upgrade --latest"
 
 #---------------------------------------
 #              Make
@@ -470,6 +471,11 @@ list() {
     awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' |
     sort -hr |
     head -25
+}
+
+dnmr() {
+  #  find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
+  find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
 }
 
 # ntfs(){

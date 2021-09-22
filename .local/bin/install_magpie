@@ -51,24 +51,24 @@ pacman -Rnsdd libxft
 cd $ROOT || exit 1
 grep "^\^" .local/share/package_lists/packages_essential \
   | sed "s/\^ //" \
-  | sudo -u "$user_name" paru -S --needed --nconfirm -
+  | sudo -u "$user_name" paru -S --needed -
 
 grep "^@" .local/share/package_lists/packages_essential \
   | sed "s/@ //" \
-  | sudo -u "$user_name" paru -S --needed --noconfirm -
+  | sudo -u "$user_name" paru -S --needed -
 
-printf "Repository Path? "
-read -r path_repo
-sudo -u "$user_name" mkdir -p "$path_repo"
-grep "^\\$" .local/share/package_lists/packages_essential \
-  | sed 's/$ //' \
-  | while read -r repo; do
-    cd "$path_repo" || exit 1
-    # sudo -u "$user_name" git clone https://github.com/"$repo"
-    sudo -u "$user_name" git clone git@github.com:"$repo".git
-    cd "${repo##*/}" || exit 1
-    sudo -u "$user_name" make && make install
-  done
+# printf "Repository Path? "
+# read -r path_repo
+# sudo -u "$user_name" mkdir -p "$path_repo"
+# grep "^\\$" .local/share/package_lists/packages_essential \
+# | sed 's/$ //' \
+# | while read -r repo; do
+# cd "$path_repo" || exit 1
+# # sudo -u "$user_name" git clone https://github.com/"$repo"
+# sudo -u "$user_name" git clone git@github.com:"$repo".git
+# cd "${repo##*/}" || exit 1
+# sudo -u "$user_name" make && make install
+# done
 
 #===============================================================================
 #                             Essential Mods
@@ -102,13 +102,13 @@ Section "InputClass"
 EndSection
 eof
 
-#---------------------------------------
-#              Audio
-#---------------------------------------
-cat << eof > /etc/modprobe.d/intel.conf
-options snd-hda-intel dmic_detect=0
-blacklist snd-intel8x0m
-eof
+# #---------------------------------------
+# #              Audio
+# #---------------------------------------
+# cat << eof > /etc/modprobe.d/intel.conf
+# options snd-hda-intel dmic_detect=0
+# blacklist snd-intel8x0m
+# eof
 
 #---------------------------------------
 #              Pacman
@@ -184,13 +184,12 @@ case "$DISTRO" in
   *) for i in 4 5 6; do rm /etc/runit/runsvdir/default/agetty-tty"$i"; done ;;
 esac
 
-#---------------------------------------
-#               Dotfiles
-#---------------------------------------
-
-# cd $ROOT || exit 1
-# cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
-# chown -R "$user_name":wheel $ROOT /home/"$user_name"
+# ---------------------------------------
+# Dotfiles
+# ---------------------------------------
+cd $ROOT || exit 1
+cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
+chown -R "$user_name":wheel $ROOT /home/"$user_name"
 # sudo -u "$user_name" fcrontab /home/"$user_name"/.config/fcronrc
 
 #===============================================================================

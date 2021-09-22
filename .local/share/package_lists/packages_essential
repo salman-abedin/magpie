@@ -223,7 +223,7 @@ $ salman-abedin/unipass
 #              Torrent
 #---------------------------------------
 ^ transmission-cli
-$ salman-abedin/tide
+# $ salman-abedin/tide
 
 # transmission-gtk
 # @ transmission-remote-cli-git
@@ -271,9 +271,10 @@ $ salman-abedin/tide
 #---------------------------------------
 #              Chatting
 #---------------------------------------
-^ weechat
-^ aspell
-^ aspell-en
+# ^ weechat
+# ^ aspell
+# ^ aspell-en
+
 #bitlbee
 #@ bitlbee-facebook
 
@@ -330,3 +331,4 @@ $ salman-abedin/alfred
 ^ w3m
 ^ fd
 ^ ripgrep
+^ libxinerama

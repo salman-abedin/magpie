@@ -56,11 +56,12 @@ window = {
 
   cursorline = true, -- Show cursor line
 
+  wrap = false, -- Disable line wrapping
+
   linebreak = true, -- break lines consistantly
   breakindent = true -- break indents consistantly
 
   -- list = true, -- show whitespace
-  -- wrap = false, -- Disable line wrapping
   -- foldlevel = 99, -- Disable folding at startup
 }
 
