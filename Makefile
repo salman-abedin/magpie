@@ -4,4 +4,7 @@ init:
 install:
 	@$$SHELL ./.local/bin/install_magpie
 	@echo Installation finished.
+dev:
+	@$$SHELL ./.local/bin/install_dev
+	@echo Installation finished.
 .PHONY: install

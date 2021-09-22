@@ -20,7 +20,7 @@
 #---------------------------------------
 #              C
 #---------------------------------------
-clang
+^ clang
 
 # astyle
 # ccls
@@ -79,7 +79,7 @@ clang
 #---------------------------------------
 
 #%vscode-css-languageserver-bin
-% stylelint-lsp
+n stylelint-lsp
 
 #sassc
 #%sass-lint
@@ -89,8 +89,8 @@ clang
 #              PHP
 #---------------------------------------
 
-php
-composer
+^ php
+^ composer
 
 @ php-cs-fixer
 # @ php-codesniffer
@@ -172,9 +172,9 @@ composer
 #              Python
 #---------------------------------------
 
-python-pip
+^ python-pip
 # python2-pip
-python-pipx
+^ python-pipx
 
 # pyright
 
@@ -249,9 +249,9 @@ ninja
 
 ^ typescript
 ^ prettier
-% typescript-language-server
-% vls
-% svelte-language-server
+n typescript-language-server
+n vls
+n svelte-language-server
 
 # eslint
 
@@ -294,5 +294,5 @@ ninja
 #               Work
 #---------------------------------------
 
-discord
+^ discord
 # @ teams

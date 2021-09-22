@@ -28,7 +28,7 @@ set-bg        # Set the last used wallpaper
 $COMPOSITOR & # Launch Compositor
 $STATUSBAR &  # Launch Compositor
 # $TERMINAL -e tmux attach &  # Launch terminal
-scratchpad -w 86 -h 29 tmux attach &
+scratchpad -w 86 -h 27 tmux attach &
 { sleep 5 && pkill dwm; } & # Fix uniblocks glithes
 exec $WM                    # Launch Window Manager
 

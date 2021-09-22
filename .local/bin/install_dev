@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# Dev setup installer script
+
+echo "User Name?: "
+read -r user_name
+
+grep "^\^" .local/share/package_lists/packages_dev \
+  | sed "s/\^ //" \
+  | pacman -S --needed --noconfirm -
+
+
+# grep "^@" .local/share/package_lists/packages_dev \
+  # | sed "s/@ //" \
+  # | sudo -u "$user_name" paru -S --needed -
+
+grep "^n " .local/share/package_lists/packages_dev \
+  | sed "s/n //" \
+  | xargs sudo -u "$user_name" yarn global add
+
+# printf "Repository Path? "
+# read -r path_repo
+# sudo -u "$user_name" mkdir -p "$path_repo"
+# grep "^\\$" .local/share/package_lists/packages_essential \
+# | sed 's/$ //' \
+# | while read -r repo; do
+# cd "$path_repo" || exit 1
+# # sudo -u "$user_name" git clone https://github.com/"$repo"
+# sudo -u "$user_name" git clone git@github.com:"$repo".git
+# cd "${repo##*/}" || exit 1
+# sudo -u "$user_name" make && make install
+# done
+
+# ===========================================================================
+# =                             Lua 
+# ===========================================================================
+
+# cd /mnt/internal/git/upstream || exit
+# git clone https://github.com/sumneko/lua-language-server
+# cd lua-language-server || exit
+# git submodule update --init --recursive
+# cd 3rd/luamake || exit
+# ./compile/install.sh
+# cd ../..
+# ./3rd/luamake/luamake rebuild
+
+# ===========================================================================
+# =                             Python 
+# ===========================================================================
+
+pipx install 'python-lsp-server[all]'
