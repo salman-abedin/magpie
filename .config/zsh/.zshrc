@@ -8,10 +8,15 @@
 #---------------------------------------
 #               Globals
 #---------------------------------------
-alias -g grey="ubuntu@3.0.101.215"
-alias -g yy="ubuntu@54.179.99.90"
-alias -g shaikh="ubuntu@sbys.tk"
-alias -g yeh="root@yehbackend.tk"
+#  alias -g grey="ubuntu@3.0.101.215"
+#  alias -g yy="ubuntu@54.179.99.90"
+#  alias -g shaikh="ubuntu@sbys.tk"
+#  alias -g yeh="root@yehbackend.tk"
+
+alias -g jc1="ubuntu@18.224.64.181"
+#  ec2-18-224-64-181.us-east-2.compute.amazonaws.com
+alias -g jc2="ubuntu@54.196.253.50"
+#  ec2-54-196-253-50.compute-1.amazonaws.com
 
 #---------------------------------------
 #              MVPS
@@ -23,7 +28,7 @@ alias c="clear"
 alias cc="calcurse"
 alias cLO="curl -LO"
 alias cpr="cp -r"
-alias T="git checkout -B test > /dev/null 2>&1"
+alias t="git checkout -B test > /dev/null 2>&1"
 alias d="doas --"
 alias dau="doas -u $USER --"
 alias dc="doas cfdisk"
@@ -63,6 +68,7 @@ alias pg="ps aux | grep"
 alias psp1="patch -s -p1"
 alias rmr="rm -r"
 # alias s="bolt --search"
+alias sk="ssh-keygen -t rsa -f key -P ''"
 alias sshp="ssh -p \$PORT \$PHONE"
 alias tdm="toggle-dark-mode"
 # alias src=". ~/.config/zsh/functions && . ~/.config/zsh/aliases"
@@ -116,6 +122,7 @@ alias nf="nvim ~/.config/faintrc"
 #               Paru
 #---------------------------------------
 
+alias pS="paru -S"
 alias pSyu="paru -Syu"
 alias pSyun="pSyu --noconfirm"
 alias pSyy="paru -Syy"
@@ -171,6 +178,27 @@ alias gsgsc="git stash && git stash clear"
 # alias grH="git reset HEAD"
 # alias gpsuo="git push --set-upstream origin"
 # ug="cd $DF; git commit -a -m"update\" && git push -u origin master"
+
+#  --------------------------------------------------
+#  -                   Python
+#  --------------------------------------------------
+alias pi="pip install"
+alias pfr="pip freeze > requirements.txt"
+alias pir="pip install -r requirements.txt"
+alias pL="pip list"
+alias pm="python -m"
+alias pmv="pm virtualenv"
+
+alias pu="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U 2> /dev/null"
+alias pU="pip uninstall"
+
+pI (){
+  [ -d env ] || virtualenv env
+  source env/bin/activate
+  [ -f requirements.txt ] && pip install -r requirements.txt
+}
+
+alias pl='source env/bin/activate && python src/main.py'
 
 
 #---------------------------------------
@@ -235,7 +263,7 @@ alias diff="diff --color=auto"
 # alias db="docker build"
 
 # SSH
-alias scii="ssh-copy-id -i $GIT/own/magpie-private/.ssh/id_rsa.pub"
+alias scii="ssh-copy-id -i $GIT/system/magpie-private/.ssh/id_rsa.pub"
 
 
 #---------------------------------------
@@ -366,11 +394,11 @@ mi() {
   mysqld --user=salman
 }
 
-pi() {
-  [ -d /run/postgresql ] || doas -n mkdir /run/postgresql
-  doas -u $USER chown -R $USER /run/postgresql /var/lib/postgres
-  postgres -D /var/lib/postgres/data
-}
+#  pi() {
+  #  [ -d /run/postgresql ] || doas -n mkdir /run/postgresql
+  #  doas -u $USER chown -R $USER /run/postgresql /var/lib/postgres
+  #  postgres -D /var/lib/postgres/data
+#  }
 
 #---------------------------------------
 #               Misc
@@ -387,9 +415,10 @@ fe(){
 
 b(){ launch brave; }
 dis(){ launch discord; }
+fire(){ launch firefox; }
 q(){ launch qutebrowser; }
-t(){ launch teams; }
 z(){ launch zoom; }
+vir(){ launch virtualbox; }
 
 # img2webp(){
 #   find $PWD -name "*.jpg" -o -name "*.png" \

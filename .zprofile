@@ -28,7 +28,7 @@ export STATUSBAR="uniblocks -g"
 
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export BROWSER=brave
+export BROWSER=firefox
 export FILE=faint
 export READER=zathura
 export COMPOSITOR=xcompmgr

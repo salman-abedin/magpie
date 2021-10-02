@@ -146,7 +146,6 @@ ttf-jetbrains-mono
 #---------------------------------------
 # Emojis & Glyphs
 #---------------------------------------
-@ libxft-bgra
 # ^ noto-fonts-emoji
 # ^ ttf-font-awesome
 
@@ -296,7 +295,7 @@ $ salman-abedin/unipass
 # xterm
 # cmatrix
 
-# ^ xtrlock
+^ xtrlock
 
 #---------------------------------------
 #              Calcurse

@@ -62,8 +62,7 @@
 #---------------------------------------
 #              HTML
 #---------------------------------------
-
-# % vscode-langservers-extracted
+n vscode-langservers-extracted
 # wkhtmltopdf
 
 # % pug-cli
@@ -178,12 +177,14 @@ n stylelint-lsp
 
 # pyright
 
-autopep8
-# python-black
-# yapf
+^ autopep8
+# ^ python-black
+# ^ yapf
 
 # flake8
 # python-pylint
+
+p virtualenv
 
 #---------------------------------------
 #              Latex
@@ -209,7 +210,7 @@ autopep8
 #---------------------------------------
 ^ lua
 @ lua-format
-ninja
+^ ninja
 # @ luacheck
 
 #---------------------------------------
@@ -296,3 +297,11 @@ n svelte-language-server
 
 ^ discord
 # @ teams
+
+# --------------------------------------------------
+# -                   VM 
+# --------------------------------------------------
+
+^ virtualbox
+^ virtualbox-host-modules-artix
+^ virtualbox-guest-iso

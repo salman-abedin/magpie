@@ -9,10 +9,9 @@ grep "^\^" .local/share/package_lists/packages_dev \
   | sed "s/\^ //" \
   | pacman -S --needed --noconfirm -
 
-
-# grep "^@" .local/share/package_lists/packages_dev \
-  # | sed "s/@ //" \
-  # | sudo -u "$user_name" paru -S --needed -
+grep "^@" .local/share/package_lists/packages_dev \
+  | sed "s/@ //" \
+  | sudo -u "$user_name" paru -S --needed --noconfirm -
 
 grep "^n " .local/share/package_lists/packages_dev \
   | sed "s/n //" \
@@ -32,7 +31,13 @@ grep "^n " .local/share/package_lists/packages_dev \
 # done
 
 # ===========================================================================
-# =                             Lua 
+# =                             Python
+# ===========================================================================
+
+pipx install 'python-lsp-server[all]'
+
+# ===========================================================================
+# =                             Lua
 # ===========================================================================
 
 # cd /mnt/internal/git/upstream || exit
@@ -45,7 +50,8 @@ grep "^n " .local/share/package_lists/packages_dev \
 # ./3rd/luamake/luamake rebuild
 
 # ===========================================================================
-# =                             Python 
+# =                             Virtualbox
 # ===========================================================================
 
-pipx install 'python-lsp-server[all]'
+# setup optical drive
+#   using "/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"

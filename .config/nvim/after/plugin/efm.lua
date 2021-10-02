@@ -15,6 +15,8 @@ local shellcheck = {
 local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
 --  local autopep8 = {formatCommand = 'autopep8 --indent-size=2'}
 local autopep8 = {formatCommand = 'autopep8'}
+--  local black = {formatCommand = 'black'}
+--  local yapf = {formatCommand = 'yapf'}
 local google_java_format = {
   formatCommand = 'java -jar /usr/share/java/google-java-format/google-java-format.jar'
 }
@@ -52,6 +54,8 @@ lsp.efm.setup {
       markdown = {prettier},
       php = {php_cs_fixer},
       python = {autopep8},
+      --  python = {black},
+      --  python = {yapf},
       sh = {shellcheck, shfmt},
       svelte = {prettier_javascript},
       vue = {prettier_javascript},

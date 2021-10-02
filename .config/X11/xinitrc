@@ -21,7 +21,7 @@ echo "$DISPLAY" > /tmp/DISPLAY &  # For Udev & Fcron environment
 xbanish &                         # Hide cursor when idle
 xsetroot -cursor_name left_ptr &  # Remove the ugly X cursor
 xrandr --dpi "$(get-dpi --pixel)" # Set correct DPI
-backlight --max                   # Set maximum brightness
+# backlight --max                   # Set maximum brightness
 # lock                              # Start locked
 
 set-bg        # Set the last used wallpaper

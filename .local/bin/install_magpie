@@ -48,11 +48,13 @@ pacman -Rnsdd libxft
 cd $ROOT || exit 1
 grep "^\^" .local/share/package_lists/packages_essential \
   | sed "s/\^ //" \
-  | pacman -S --needed -
+  | pacman -S --needed --noconfirm -
 
 grep "^@" .local/share/package_lists/packages_essential \
   | sed "s/@ //" \
-  | sudo -u "$user_name" paru -S --needed -
+  | sudo -u "$user_name" paru -S --noconfirm --needed -
+
+sudo -u "$user_name" paru -S libxft-bgra
 
 # printf "Repository Path? "
 # read -r path_repo

@@ -19,12 +19,16 @@ BORDER=bottom       # rounder | sharp | horizontal | vertical | top | bottom | l
 
 FILTERS="\
 node_modules+;
+env;
 __+;
 .svelte-kit+;
 build+;
 dist+;
 plugins+;
 package-lock.json$;
+main.spec$;
+requirements.txt$;
+pyvenv.cfg$;
 config.js$;
 config.mjs$;
 .browserslistrc$;
@@ -115,12 +119,13 @@ duplicate() {
   kill -40 "$FAINT_PID"
   pkill -P "$FAINT_PID"
 }
-# compress() {
-#   echo "$FILE_ARGS" \
-#     | while read -r file; do
-#       tar cvzf "compressed.tar" "$file"
-#     done
-# }
+compress() {
+  CURRENT=$PWD
+  LOCATION="${FILE_ARGS%/*}"
+  cd "$LOCATION" || exit
+  tar cfz compressed.tgz --exclude=./compressed.tgz .
+  cd "$CURRENT" || exit
+}
 encrypt() {
   echo "$FILE_ARGS" \
     | while read -r file; do
@@ -158,9 +163,9 @@ OPS="\
 🌴 Hard Link:link_hard;
 🔒 Encrypt:encrypt;
 🔑 Decrypt:decrypt;
+♦  Compress:compress;
 "
 # 😎 Own:own;
-# ♦  Compress:compress;
 # 💻 Push to YY:push2yy;
 
 #===============================================================================

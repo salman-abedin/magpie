@@ -54,7 +54,7 @@ lsp.stylelint_lsp.setup {
 
 lsp.pylsp.setup {
   --  on_attach = function(client)
-    --  client.resolved_capabilities.document_formatting = false
+  --  client.resolved_capabilities.document_formatting = false
   --  end
 }
 --  lsp.pyright.setup {
@@ -121,7 +121,7 @@ vim.cmd [[
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
   autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{css,html,lua} silent! lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{css,html,lua,yaml} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
 -- mappings{{{
@@ -129,8 +129,12 @@ vim.cmd [[
 -- =                             Mappings 
 -- ===========================================================================
 
-map('n', '<leader>w', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
-map('n', '<leader>W', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+--  map('n', '<leader>w', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+--  map('n', '<leader>W', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+
+map('n', '<leader>l', ':silent! lnext<cr>')
+map('n', '<leader>L', ':silent! lprev<cr>')
+
 -- map('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>')
 
 map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
@@ -162,3 +166,8 @@ vim.cmd [[
   autocmd BufRead * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
 ]]
 -- }}}
+
+vim.cmd [[
+  autocmd BufWrite *.py exec 'lua vim.lsp.diagnostic.set_loclist()' | res 3 | wincmd k
+  autocmd InsertEnter *.py silent! exec 'wincmd j | wincmd c'
+]]
