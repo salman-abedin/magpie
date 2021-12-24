@@ -13,6 +13,7 @@ local shellcheck = {
   }
 }
 local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
+local xmllint = {formatCommand = 'xmllint --format -'}
 --  local autopep8 = {formatCommand = 'autopep8 --indent-size=2'}
 local autopep8 = {formatCommand = 'autopep8'}
 --  local black = {formatCommand = 'black'}
@@ -33,11 +34,11 @@ local prettier_javascript = {formatCommand = 'prettier --single-quote'}
 lsp.efm.setup {
   init_options = {documentFormatting = true, codeAction = false},
   filetypes = {
-    'c', 'cpp', 'javascript', 'sh', 'lua', 'markdown', 'yaml', 'json', 'html',
+    'c', 'cpp', 'javascript', 'sh', 'markdown', 'yaml', 'json', 'html'
+    --  'xml'
+    --  'lua',
     --  'python',
-    'css'
-    --  'php'
-    -- 'svelte',
+    --  'php',
     -- 'vue',
   },
   settings = {
@@ -53,6 +54,7 @@ lsp.efm.setup {
       lua = {lua_format},
       markdown = {prettier},
       php = {php_cs_fixer},
+      xml = {xmllint},
       python = {autopep8},
       --  python = {black},
       --  python = {yapf},

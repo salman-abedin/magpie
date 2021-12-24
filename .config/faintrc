@@ -31,15 +31,19 @@ requirements.txt$;
 pyvenv.cfg$;
 config.js$;
 config.mjs$;
+example_.*$;
 .browserslistrc$;
 pubspec.lock$;
 composer.lock$;
+.ex4$;
+.dat$;
 .env$;
 .packages$;
 .idea$;
 .gitignore$;
 .github$;
 .nvmrc$;
+.log$;
 .dart_tool$;
 .metadata$;
 ios$;
@@ -103,9 +107,10 @@ hulk() {
   kill -37 "$FAINT_PID"
   pkill -P "$FAINT_PID"
 }
-push2android() { adb connect 192.168.1.104 && adb push --sync "$FILE_ARGS" $CARD; }
+# push2android() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
+push2android() { adb connect 10.25.10.24 && adb push --sync "$FILE_ARGS" $CARD; }
 # push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
-push2yy() { rsync -aP "$FILE_ARGS" salman@192.168.95.131:/mnt/internal; }
+push2arnold() { rsync -aP "$FILE_ARGS" root@178.128.127.199:~; }
 show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
 launch_choose() { /usr/local/bin/launch -c "$FILE_ARGS" & }
 make_dir() { kill -38 "$FAINT_PID" && pkill -P "$FAINT_PID"; }
@@ -120,12 +125,16 @@ duplicate() {
   pkill -P "$FAINT_PID"
 }
 compress() {
+
   CURRENT=$PWD
   LOCATION="${FILE_ARGS%/*}"
+  NAME="${FILE_ARGS##*/}"
   cd "$LOCATION" || exit
-  tar cfz compressed.tgz --exclude=./compressed.tgz .
+  # tar cfz compressed.tgz --exclude=./compressed.tgz .
+  zip -r "$NAME".zip "$NAME"
   cd "$CURRENT" || exit
 }
+
 encrypt() {
   echo "$FILE_ARGS" \
     | while read -r file; do
@@ -156,6 +165,7 @@ OPS="\
 🖌  Paste:paste;
 🚚 Move:move;
 📱 Push to Android:push2android;
+⏰ Push to Arnold:push2arnold;
 ℹ  Show Size:show_size;
 💊 Choose:launch_choose;
 📁 New Directory:make_dir;

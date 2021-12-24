@@ -3,7 +3,7 @@ local map = require('map')
 
 -- config{{{
 -- ===========================================================================
--- =                             Config 
+-- =                             Config
 -- ===========================================================================
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
@@ -57,6 +57,14 @@ lsp.pylsp.setup {
   --  client.resolved_capabilities.document_formatting = false
   --  end
 }
+
+lsp.phpactor.setup {}
+
+
+lsp.lemminx.setup{
+    cmd = { "/usr/bin/lemminx" }
+}
+
 --  lsp.pyright.setup {
 --  on_attach = function(client)
 --  client.resolved_capabilities.document_formatting = false
@@ -75,7 +83,7 @@ lsp.pylsp.setup {
 -- ]]
 
 --  --------------------------------------------------
---  -                   Lua 
+--  -                   Lua
 --  --------------------------------------------------
 
 local sumneko_root_path = '/mnt/internal/git/upstream/lua-language-server'
@@ -120,8 +128,8 @@ vim.cmd [[
   " autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
-  autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{css,html,lua,yaml} silent! lua vim.lsp.buf.formatting()
+  autocmd FileType sh,python,php,javascript,lua,xml autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{css,html,lua,yaml,yml,md,c,cpp} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
 -- mappings{{{
@@ -129,11 +137,11 @@ vim.cmd [[
 -- =                             Mappings 
 -- ===========================================================================
 
---  map('n', '<leader>w', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
---  map('n', '<leader>W', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+map('n', '<leader>w', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+map('n', '<leader>W', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
 
 map('n', '<leader>l', ':silent! lnext<cr>')
-map('n', '<leader>L', ':silent! lprev<cr>')
+map('n', '<leader>h', ':silent! lprev<cr>')
 
 -- map('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>')
 
@@ -142,32 +150,45 @@ map('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')
 map('n', '<leader>gR', '<cmd>lua vim.lsp.buf.rename()<cr>')
 map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
 -- }}}
+--  location list{{{
+vim.cmd [[
+  autocmd BufWrite *.{py,php} exec 'lua vim.lsp.diagnostic.set_loclist()' | res 1 | wincmd k
+  autocmd InsertEnter *.{py,php} silent! exec 'lclose'
+]]
+-- }}}
 -- theme{{{
 -- ===========================================================================
 -- =                             Theme
 -- ===========================================================================
 
 vim.fn.sign_define('LspDiagnosticsSignError', {text = '❌'})
-vim.fn.sign_define('LspDiagnosticsSignWarning', {text = '⚠'})
+vim.fn.sign_define('LspDiagnosticsSignWarning', {text = '💄'})
 vim.fn.sign_define('LspDiagnosticsSignInformation', {text = 'ℹ'})
-vim.fn.sign_define('LspDiagnosticsSignHint', {text = '💡'})
+vim.fn.sign_define('LspDiagnosticsSignHint', {text = '✅'})
 
 vim.cmd [[
   " autocmd BufRead * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
-  autocmd BufRead * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=blue gui=bold
+  " autocmd BufRead * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=blue gui=bold
 
   " autocmd BufRead * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
-  autocmd BufRead * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
+  " autocmd BufRead * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
 
   " autocmd BufRead * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=orange gui=bold
-  autocmd BufRead * highlight LspDiagnosticsFloatingWarning guibg=none guifg=orange gui=bold
+  " autocmd BufRead * highlight LspDiagnosticsFloatingWarning guibg=none guifg=orange gui=bold
 
   " autocmd BufRead * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
-  autocmd BufRead * highlight LspDiagnosticsFloatingError guibg=none guifg=red gui=bold
+
+  " autocmd BufRead * highlight LspDiagnosticsVirtualTextError guibg=grey70 guifg=red gui=bold
+  autocmd BufRead * highlight LspDiagnosticsVirtualTextError guibg=none guifg=red gui=bold
+  " autocmd BufRead * highlight LspDiagnosticsVirtualTextWarning guibg=grey50 guifg=orange gui=bold
+  autocmd BufRead * highlight LspDiagnosticsVirtualTextWarning guibg=none guifg=yellow gui=bold
+  
+  autocmd BufRead * highlight LspDiagnosticsVirtualTextHint guibg=none guifg=green gui=bold
+
+  autocmd BufRead * highlight LspDiagnosticsSignError guibg=none
+  autocmd BufRead * highlight LspDiagnosticsSignHint guibg=none
+  autocmd BufRead * highlight LspDiagnosticsSignWarning guibg=none
+
+
 ]]
 -- }}}
-
-vim.cmd [[
-  autocmd BufWrite *.py exec 'lua vim.lsp.diagnostic.set_loclist()' | res 3 | wincmd k
-  autocmd InsertEnter *.py silent! exec 'wincmd j | wincmd c'
-]]

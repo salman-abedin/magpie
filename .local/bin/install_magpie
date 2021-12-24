@@ -183,6 +183,28 @@ case "$DISTRO" in
   *) for i in 4 5 6; do rm /etc/runit/runsvdir/default/agetty-tty"$i"; done ;;
 esac
 
+#---------------------------------------
+#              Bluetooth
+#---------------------------------------
+case "$DISTRO" in
+  *Arch*) systemctl enable bluetoothd ;;
+  *)
+    pacman -S bluez-runit
+    ln -s /etc/runit/sv/bluetoothd /etc/runit/runsvdir/default
+    ;;
+esac
+
+# ---------------------------------------
+# Pulseaudio & Bluetooth
+# ---------------------------------------
+
+echo load-module module-switch-on-connect >> /etc/pulse/default.pa
+echo load-module module-echo-cancel >> /etc/pulse/default.pa
+
+sed -i "s/load-module module-sus/# &/" /etc/pulse/default.pa
+printf "[Policy]\nAutoEnable=true\n" >> /etc/bluetooth/main.conf
+sed -i "s/#ControllerMode.*/ControllerMode = bredr/" /etc/bluetooth/main.conf
+
 # ---------------------------------------
 # Dotfiles
 # ---------------------------------------
@@ -194,15 +216,6 @@ chown -R "$user_name":wheel $ROOT /home/"$user_name"
 #===============================================================================
 #                             Exp
 #===============================================================================
-
-#---------------------------------------
-#        Pulseaudio & Bluetooth
-#---------------------------------------
-# echo load-module module-switch-on-connect >> /etc/pulse/default.pa
-# echo load-module module-echo-cancel >> /etc/pulse/default.pa
-
-# sed -i "s/load-module module-sus/# &/" /etc/pulse/default.pa
-# printf "[Policy]\nAutoEnable=true\n" >> /etc/bluetooth/main.conf
 
 # #---------------------------------------
 # #              Backlight
@@ -293,17 +306,6 @@ chown -R "$user_name":wheel $ROOT /home/"$user_name"
 # ninja -f ninja/linux.ninja
 # cd ../..
 # ./3rd/luamake/luamake rebuild
-
-# #---------------------------------------
-# #              Bluetooth
-# #---------------------------------------
-# case "$DISTRO" in
-#   *Arch*) systemctl enable bluetoothd ;;
-#   *)
-#     pacman -S bluez-runit
-#     ln -s /etc/runit/sv/bluetoothd /etc/runit/runsvdir/default
-#     ;;
-# esac
 
 #---------------------------------------
 #               Misc

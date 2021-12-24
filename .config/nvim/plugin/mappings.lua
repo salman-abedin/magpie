@@ -39,6 +39,7 @@ map('n', '<leader>R', ':%s//gcI<left><left><left><left>')
 -- }}}
 -- saves & quites{{{
 map('n', '<cr>', ':silent! up<cr>')
+map('n', '<leader><cr>', ':silent! exec "up | !compile % &"<cr>')
 map('n', '<esc>', ':silent! up | qa<cr>')
 map('n', '<leader><esc>', ':qa!<cr>')
 -- }}}
@@ -72,9 +73,16 @@ map('i', '[o', '[<cr>]<esc>O')
 map('i', '""o', '"""<cr>"""<esc>O')
 -- }}}
 -- comment frames{{{
-map('i', ',bl', '<esc>075i=<esc>:Comment<cr>yypO=<esc>:Comment<cr>30A <esc>i')
-map('i', ',bm', '<esc>050i-<esc>:Comment<cr>yypO-<esc>:Comment<cr>20A <esc>i')
-map('i', ',bs', '<esc>025i.<esc>:Comment<cr>yypO.<esc>:Comment<cr>10A <esc>i')
+
+--  map('i', ',bl', '<esc>075i=<esc>:Comment<cr>yypO=<esc>:Comment<cr>30A <esc>i')
+--  map('i', ',bm', '<esc>050i-<esc>:Comment<cr>yypO-<esc>:Comment<cr>20A <esc>i')
+--  map('i', ',bs', '<esc>025i.<esc>:Comment<cr>yypO.<esc>:Comment<cr>10A <esc>i')
+
+map('i', ',bl', '╔<esc>70a═<esc>:Comment<cr>o╚<esc>70a═<esc>:Comment<cr>O║<esc>:Comment<cr>30A <esc>a')
+map('i', ',bm', '╔<esc>40a═<esc>:Comment<cr>o╚<esc>40a═<esc>:Comment<cr>O║<esc>:Comment<cr>20A <esc>a')
+map('i', ',bs', '╔<esc>20a═<esc>:Comment<cr>o╚<esc>20a═<esc>:Comment<cr>O║<esc>:Comment<cr>A ')
+
+
 -- }}}
 -- keep stuff centered{{{
 map('n', 'n', 'nzzzv') -- go to next search
@@ -104,15 +112,15 @@ map('n', '<leader><tab>', ':silent! execute "bd | cclose')
 map('n', '<leader>r', 'q:icfdo %s//gcI | up<esc>F/i<c-c>')
 -- }}}
 -- spellings{{{
-map('n', '<leader>q', '1z=')
-map('n', '<leader>Q', 'i<C-X><C-S>')
+map('n', '<leader>c', '1z=')
+map('n', '<leader>C', 'i<C-X><C-S>')
 map('n', '<leader>a', 'zg')
 map('n', '<leader>A', 'zug')
 -- }}}
 -- git{{{
 map('n', '<leader>q', 'q:i!git add -A && git commit -m ""<esc>i<c-c>')
 -- }}}
-
+-- exp{{{
 -- ===========================================================================
 -- =                             Exp 
 -- ===========================================================================
@@ -147,4 +155,4 @@ map('n', '<leader>q', 'q:i!git add -A && git commit -m ""<esc>i<c-c>')
 -- map('', 'K', '<c-u>', {noremap = false})
 
 -- map('n', '<leader><cr>', ':!wc -w %<cr>')
-
+-- }}}

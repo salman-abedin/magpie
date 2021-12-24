@@ -2,13 +2,15 @@ vim.cmd [[
 " toys (setup for easily messing around with various programming languages)
 " autocmd BufWritePost toy.* silent !toy %
 " Auto compile
-autocmd BufWritePost *.{ms,c,h} silent !compile %
+autocmd BufWritePost *.{ms,c,h,mq4} silent !compile % > /dev/null 2>&1 &
 autocmd FileType sh autocmd BufWritePost * silent !compile %
 
 autocmd BufWritePost fcronrc silent !fcrontab %
 autocmd BufWritePost boltrc  silent !bolt -g
 
 autocmd BufWritePost tmux.conf silent !tmux source ~/.config/tmux/tmux.conf
+
+autocmd BufWritePost */qtile/config.py silent !xdotool key super+q
 
 ]]
 

@@ -16,10 +16,13 @@ vim.cmd [[
 	" Spell
 	autocmd BufNewFile,BufRead *.md setlocal spell
 
+	" MQL
+	autocmd BufNewFile,BufRead *.mq{4,h} setlocal commentstring=//%s
+
 ]]
 
 -- ===========================================================================
--- =                             Exp 
+-- =                             Exp
 -- ===========================================================================
 
 -- vim.cmd [[

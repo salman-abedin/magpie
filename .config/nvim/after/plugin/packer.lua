@@ -19,23 +19,19 @@ require('packer').startup(function()
 
   -- essentials{{{
   ------------------------------------------------
-  -- -                   Essentials 
+  -- -                   Essentials
   ------------------------------------------------
 
-  -- use {
-  -- 'mhartington/oceanic-next',
-  -- config = 'vim.cmd[[colorscheme OceanicNext]]'
-  -- }
+  --  use {
+  --  'mhartington/oceanic-next',
+  --  config = 'vim.cmd[[colorscheme OceanicNext]]'
+  --  }
 
   use {
     'NLKNguyen/papercolor-theme',
-    config = 'vim.cmd[[colorscheme PaperColor]]'
+     config = 'vim.cmd[[colorscheme PaperColor]]'
   }
 
-  use {
-    'mhartington/oceanic-next',
-    config = 'vim.cmd[[colorscheme OceanicNext]]'
-  }
 
   -- treesitter
   use {'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate'}
@@ -44,6 +40,15 @@ require('packer').startup(function()
     'JoosepAlviste/nvim-ts-context-commentstring',
     requires = 'nvim-treesitter/nvim-treesitter'
   }
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    requires = 'nvim-treesitter/nvim-treesitter'
+  }
+  use {
+    'code-biscuits/nvim-biscuits',
+    requires = 'nvim-treesitter/nvim-treesitter'
+  }
+
   -- fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
@@ -64,7 +69,7 @@ require('packer').startup(function()
   -- -                   Misc 
   ------------------------------------------------
   use {'mattn/emmet-vim', ft = {'html', 'svelte', 'astro', 'vue'}}
-  use {'lukas-reineke/indent-blankline.nvim', ft = {'pug', 'python'}}
+  use {'lukas-reineke/indent-blankline.nvim', ft = {'pug', 'python', 'mql4'}}
   use {
     'norcalli/nvim-colorizer.lua',
     ft = {'sass', 'svelte', 'vue', 'css', 'scss'}
@@ -76,30 +81,86 @@ require('packer').startup(function()
   use 'posva/vim-vue'
   use 'digitaltoad/vim-pug'
 
+  use 'vobornik/vim-mql4'
+  use 'rupurt/vim-mql5'
+
   use 'wbthomason/packer.nvim'
   -- }}}
   -- experiments{{{
   -- =========================================================================  
-  -- =                             Experiements 
+  -- =                             Experiements
   -- =========================================================================  
 
   -- colorschemes{{{
   ------------------------------------------------
-  -- -                   ColorSchemes 
+  -- -                   ColorSchemes
   ------------------------------------------------
+  --  .........................
+  --  .         Light
+  --  .........................
 
-  -- use {
-  -- 'Th3Whit3Wolf/onebuddy',
-  -- requires = 'tjdevries/colorbuddy.vim',
-  -- config = 'require(\'colorbuddy\').colorscheme(\'onebuddy\')'
-  -- }
+  --  use {
+    --  'rafamadriz/neon',
+     --  config = 'vim.cmd[[colorscheme neon]]'
+  --  }
+
+  --  use {
+    --  'RRethy/nvim-base16',
+     --  config = 'vim.cmd[[colorscheme base16-one-light]]'
+  --  }
+
+  --  use 'olimorris/onedarkpro.nvim'
+  --  local onedarkpro = require('onedarkpro')
+  --  onedarkpro.setup({
+    --  theme = 'onelight'
+  --  })
+  --  onedarkpro.load()
+
+  --  use 'norcalli/nvim-base16.lua'
+  --  local base16 = require 'base16'
+  --  local one_dark = base16.theme_from_array {
+    --  '282C34', 'E06C75', '98C379', 'E5C07B',
+    --  '61AFEF', 'C678DD', '56B6C2', 'ABB2BF',
+    --  '282C34', 'E06C75', '98C379', 'E5C07B',
+    --  '61AFEF', 'C678DD', '56B6C2', 'ABB2BF'
+  --  }
+  --  base16(one_dark, true)
+
+  --  use {
+    --  'marko-cerovac/material.nvim',
+     --  config = 'vim.cmd[[colorscheme material]]'
+  --  }
+
+  --  use {
+    --  'sainnhe/edge',
+     --  config = 'vim.cmd[[colorscheme edge]]'
+  --  }
+
+  --  use {
+    --  'Th3Whit3Wolf/one-nvim',
+     --  config = 'vim.cmd[[colorscheme one-nvim]]'
+  --  }
+
+  --  use {
+    --  'Th3Whit3Wolf/space-nvim',
+     --  config = 'vim.cmd[[colorscheme space-nvim]]'
+  --  }
+
+  --  use {
+    --  'Shatur/neovim-ayu',
+     --  config = 'vim.cmd[[colorscheme ayu]]'
+  --  }
+
+  --  use {
+    --  'Th3Whit3Wolf/onebuddy',
+    --  requires = 'tjdevries/colorbuddy.vim',
+    --  config = 'require(\'colorbuddy\').colorscheme(\'onebuddy\')'
+  --  }
 
   -- use {
   -- 'sainnhe/gruvbox-material',
   -- config = 'vim.cmd[[colorscheme gruvbox-material]]'
   -- }
-
-  -- use {'NLKNguyen/papercolor-theme'}
 
   -- use {'rakr/vim-one'}
   -- vim.cmd('colorscheme one')
@@ -110,7 +171,7 @@ require('packer').startup(function()
   -- use 'sainnhe/sonokai'
   -- vim.cmd('colorscheme sonokai')
 
-  -- use 'tanvirtin/monokai.nvim'
+  --  use 'tanvirtin/monokai.nvim'
   -- vim.cmd('colorscheme monokai')
 
   -- use 'Th3Whit3Wolf/one-nvim'
@@ -119,14 +180,6 @@ require('packer').startup(function()
   -- use 'sainnhe/edge'
   -- vim.cmd('colorscheme edge')
 
-  -- use 'norcalli/nvim-base16.lua'
-  -- local base16 = require 'base16'
-  -- local one_dark = base16.theme_from_array {
-  --    '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD', '56B6C2',
-  --    'ABB2BF', '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD',
-  --    '56B6C2', 'ABB2BF'
-  -- }
-  -- base16(one_dark, true)
 
   -- use 'RRethy/nvim-base16'
   -- local colorscheme = require('base16-colorscheme')
@@ -164,3 +217,4 @@ require('packer').startup(function()
   -- }}}
 
 end)
+

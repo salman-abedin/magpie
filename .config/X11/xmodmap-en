@@ -6,8 +6,8 @@ keycode  93 = space NoSymbol space
 ! Caps Lock
 clear lock
 keycode  66 = Super_L Super_L
-! Right Alt
-keycode  108 = Caps_Lock NoSymbol Caps_Lock
+! Right Ctrl
+keycode 105 = Caps_Lock NoSymbol Caps_Lock
 keycode  31 = i I Caps_Lock
 
 ! Return
@@ -120,9 +120,10 @@ keycode 101 = Hiragana_Katakana NoSymbol Hiragana_Katakana
 keycode 102 = Muhenkan NoSymbol Muhenkan
 keycode 103 =
 keycode 104 = KP_Enter NoSymbol KP_Enter
-keycode 105 = Control_R NoSymbol Control_R
+!  keycode 105 = Control_R NoSymbol Control_R
 keycode 106 = KP_Divide KP_Divide KP_Divide KP_Divide KP_Divide KP_Divide XF86Ungrab
 keycode 107 = Print Sys_Req Print Sys_Req
+keycode 108 = Alt_R Meta_R Alt_R Meta_R
 keycode 109 = Linefeed NoSymbol Linefeed
 keycode 110 = Home NoSymbol Home
 keycode 111 = Up NoSymbol Up

@@ -1,6 +1,7 @@
 #!/bin/zsh
 
-# aliases{{{
+#  aliases{{{
+
 #===============================================================================
 #                              Aliases
 #===============================================================================
@@ -13,7 +14,70 @@
 #  alias -g shaikh="ubuntu@sbys.tk"
 #  alias -g yeh="root@yehbackend.tk"
 
+
+#  alias -g phone="-p 8022 192.168.1.101"
+alias -g phone="-p 8022 10.25.10.24"
+#  alias -g phone="-p 8022 192.168.31.47"
+alias -g own="root@139.59.248.77"
+
+alias -g arnold="root@178.128.127.199"
+alias -g barry="root@188.166.217.157"
+va(){
+  ssh -fL 9901:localhost:5901 -C -N -l root 178.128.127.199
+  vncviewer \
+      localhost:9901
+  pkill -f ssh
+}
+vb(){
+  ssh -fL 9901:localhost:5901 -C -N -l root 188.166.217.157
+  vncviewer \
+      localhost:9901
+  pkill -f ssh
+}
+
 alias -g jc1="ubuntu@18.224.64.181"
+vjc1(){
+  ssh -fL 9901:localhost:5901 -C -N -l ubuntu 18.224.64.181
+  vncviewer localhost:9901
+  pkill -f ssh
+}
+
+send_mql(){
+
+  scp -r \
+    /mnt/internal/windows/mt4_development/MQL4/Experts/5m_scalper.ex4 \
+    root@188.166.217.157:~/mt4_production/johnny_test/MQL4/Experts
+
+  #  scp -r \
+    #  /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \
+    #  root@188.166.217.157:~/mt4_production/johnny_test/MQL4/Experts
+
+  #  scp -r \
+    #  /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \
+    #  root@188.166.217.157:~/mt4_production/johnny_cash/MQL4/Experts
+
+
+
+  #  scp -r \
+    #  /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \
+    #  root@188.166.217.157:~/mt4_production/funded_next/MQL4/Experts
+
+  #  scp -r \
+    #  /mnt/internal/windows/mt4/TradeMaster/subscriber/MQL4/Scripts/TradeMasterSubscriber.ex4 \
+    #  root@178.128.127.199:~/jayed_corp/pafx/MQL4/Scripts
+
+  #  scp -r \
+    #  /mnt/internal/windows/mt4/TradeMaster/subscriber/MQL4/Scripts/TradeMasterSubscriber.ex4 \
+    #  root@178.128.127.199:~/jayed_corp/pascalp/MQL4/Scripts
+
+  #  scp -r \
+    #  /mnt/internal/windows/mt4/TradeMaster/subscriber/MQL4/Scripts/TradeMasterSubscriber.ex4 \
+    #  root@178.128.127.199:~/jayed_corp/megafx/MQL4/Scripts
+
+  #  ssh ubuntu@18.224.64.181 sudo pkill -f terminal.exe
+  #  ssh ubuntu@18.224.64.181 wine "~/subscriber/terminal.exe"
+}
+
 #  ec2-18-224-64-181.us-east-2.compute.amazonaws.com
 alias -g jc2="ubuntu@54.196.253.50"
 #  ec2-54-196-253-50.compute-1.amazonaws.com
@@ -23,9 +87,10 @@ alias -g jc2="ubuntu@54.196.253.50"
 #---------------------------------------
 
 alias ..="cd .."
+alias ...="cd ../.."
 alias a='adb connect 192.168.1.104'
 alias c="clear"
-alias cc="calcurse"
+alias cc="rm ~/.local/share/calcurse/.calcurse.pid; calcurse"
 alias cLO="curl -LO"
 alias cpr="cp -r"
 alias t="git checkout -B test > /dev/null 2>&1"
@@ -33,6 +98,7 @@ alias d="doas --"
 alias dau="doas -u $USER --"
 alias dc="doas cfdisk"
 alias dcpr="da cp -r"
+alias dfh="df -h"
 alias dka="da killall"
 alias dlf="da lf"
 alias dm="doas mount"
@@ -68,9 +134,9 @@ alias pg="ps aux | grep"
 alias psp1="patch -s -p1"
 alias rmr="rm -r"
 # alias s="bolt --search"
-alias sk="ssh-keygen -t rsa -f key -P ''"
 alias sshp="ssh -p \$PORT \$PHONE"
 alias tdm="toggle-dark-mode"
+alias tfl="tail -f *.log"
 # alias src=". ~/.config/zsh/functions && . ~/.config/zsh/aliases"
 alias user="who | head -1 | cut -d' ' -f1"
 alias v="nvim"
@@ -148,12 +214,14 @@ alias gcB="gc -B"
 alias gcl="git clone"
 alias gcan="git commit --amend --no-edit"
 alias gd="git diff"
+alias gfa="git fetch --all"
 alias gi="git init"
 alias glo="git log --oneline"
 alias glogda="git log --oneline --graph --decorate --all"
 alias gm="git merge"
 alias gmn="git merge --no-ff"
 alias gp="git push"
+alias gpdo="git push -d origin"
 alias gpf="gp -f"
 alias gpfo="gpf origin"
 alias gpfom="gp -f origin master"
@@ -166,6 +234,7 @@ alias gra="git remote add"
 alias grau="gra upstream"
 alias grc="git rebase --continue"
 alias grh="git reset --hard"
+alias grir="git rebase -i --root"
 alias grsu="git remote set-url"
 alias grsuo="grsu origin"
 # alias grsuu="grsu upstream"
@@ -183,6 +252,7 @@ alias gsgsc="git stash && git stash clear"
 #  -                   Python
 #  --------------------------------------------------
 alias pi="pip install"
+alias piU="pip install -U"
 alias pfr="pip freeze > requirements.txt"
 alias pir="pip install -r requirements.txt"
 alias pL="pip list"
@@ -198,7 +268,7 @@ pI (){
   [ -f requirements.txt ] && pip install -r requirements.txt
 }
 
-alias pl='source env/bin/activate && python src/main.py'
+alias pl='source env/bin/activate && nodemon src/main.py'
 
 
 #---------------------------------------
@@ -354,7 +424,7 @@ alias scii="ssh-copy-id -i $GIT/system/magpie-private/.ssh/id_rsa.pub"
 
 # alias nu="ncu -u"
 # }}}
-# functions{{{
+#  functions{{{
 
 #===============================================================================
 #                              Functions
@@ -364,10 +434,10 @@ alias scii="ssh-copy-id -i $GIT/system/magpie-private/.ssh/id_rsa.pub"
 #               Git
 #---------------------------------------
 
-griH() {
-  COMMIT_COUNT=$(git rev-list --count master)
-  git rebase -i HEAD~$((COMMIT_COUNT - 1))
-}
+#  griH() {
+  #  COMMIT_COUNT=$(git rev-list --count master)
+  #  git rebase -i HEAD~$((COMMIT_COUNT - 1))
+#  }
 
 merge() {
   git add .
@@ -406,17 +476,22 @@ mi() {
 
 
 launch(){
-  setsid $1 --force-device-scale-factor=$(get-dpi -f) > /dev/null 2>&1
+  program=$1
+  shift
+  arguments=$*
+  setsid $program --force-device-scale-factor=$(get-dpi -f) $arguments > /dev/null 2>&1
 }
 
 fe(){
   npx -p node-firestore-import-export firestore-export -a credentials.json -b backup.json
 }
 
-b(){ launch brave; }
+b(){ launch brave $*; }
 dis(){ launch discord; }
 fire(){ launch firefox; }
+muse(){ launch musescore; }
 q(){ launch qutebrowser; }
+s(){ launch spotify; }
 z(){ launch zoom; }
 vir(){ launch virtualbox; }
 
@@ -492,6 +567,10 @@ dy(){
   mv /mnt/internal/git/work/yy_ventures/dist/dist.zip /mnt/internal/downloads
 }
 
+# skp(){
+  # ssh-keygen -t rsa -q -b 4096 -f /tmp/key -N '' && cat /tmp/key | xsel -b
+# }
+
 #---------------------------------------
 #               Exp
 #---------------------------------------
@@ -506,6 +585,19 @@ list() {
 dnmr() {
   #  find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
   find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+}
+
+sk(){
+  LOCATION=$PWD
+  cd /tmp
+  rm key key.pub
+  ssh-keygen -t rsa -f key -q -N '' && cat key | xsel -b
+  ssh-copy-id -i key.pub "$1"
+  cd $LOCATION
+}
+
+share(){
+  curl --upload-file "$1" https://transfer.sh
 }
 
 # ntfs(){

@@ -7,8 +7,11 @@ vim.cmd [[
  " autocmd BufRead graph.js nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal node % <cr>
  " autocmd BufRead fetch.js nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal node % <cr>
 
+ autocmd BufRead toy.sh nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal sh % <cr>
  autocmd BufRead toy.js nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal node % <cr>
- autocmd BufRead toy.py,get.py,post.py,regex.py nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal python % <cr>
- autocmd BufRead toy.php nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal php % <cr>
+ autocmd BufRead *toys/python/*.{py,pyw} nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal python % <cr>
+ autocmd BufRead *toys/php/*.php nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal php % <cr>
+
+ autocmd BufWritePost mq4.py silent !python %  &
 
 ]]

@@ -44,16 +44,16 @@ $ salman-abedin/faint
 #---------------------------------------
 ^ alsa-utils
 
-# ^ pulseaudio-alsa
-# ^ pavucontrol
+^ pulseaudio-alsa
+^ pavucontrol
 
 # pulseeffects
 
 #---------------------------------------
 #               Bluetooth
 #---------------------------------------
-# ^ pulseaudio-bluetooth
-# ^ bluez-utils
+^ bluez-utils
+^ pulseaudio-bluetooth
 
 #---------------------------------------
 #              Trackpad
@@ -83,14 +83,15 @@ $ salman-abedin/faint
 #---------------------------------------
 #              Terminal Emulator
 #---------------------------------------
-$ salman-abedin/st
-# alacritty
+^ alacritty
+# $ salman-abedin/st
 # termite
 
 #---------------------------------------
 #              Window Manager
 #---------------------------------------
-$ salman-abedin/dwm
+^ qtile
+# $ salman-abedin/dwm
 # bspwm
 # spectrwm
 
@@ -126,7 +127,7 @@ $ salman-abedin/uniblocks
 #---------------------------------------
 #               Monospace Fonts
 #---------------------------------------
-ttf-jetbrains-mono
+# ttf-jetbrains-mono
 # ttf-roboto-mono
 # @ nerd-fonts-sf-mono
 # ttf-dejavu
@@ -172,10 +173,10 @@ ttf-jetbrains-mono
 ^ mpc
 ^ playerctl
 ^ ncmpcpp
+^ youtube-dl
 # @ spotify
 # @ spotify_dl
 # @ spicetify-cli
-# youtube-dl
 
 #---------------------------------------
 #              Image Tools
@@ -285,17 +286,20 @@ $ salman-abedin/unipass
 # @ slack-term-bin
 # python-websocket-client
 
+# @ telegram-cli-git
+
 #---------------------------------------
 #              Locker
 #---------------------------------------
 ^ xss-lock
-# @ i3lock-color
+@ i3lock-color
 
+# ^ xautolock
 # @ xidlehook
 # xterm
 # cmatrix
 
-^ xtrlock
+# ^ xtrlock
 
 #---------------------------------------
 #              Calcurse
@@ -331,3 +335,4 @@ $ salman-abedin/alfred
 ^ fd
 ^ ripgrep
 ^ libxinerama
+^ python-iwlib

@@ -3,13 +3,15 @@
 #---------------------------------------
 ^ efm-langserver
 ^ ctags
+^ dnsutils
+^ tree
 
 #---------------------------------------
 #              Shell
 #---------------------------------------
+^ bash-language-server
 ^ shellcheck
 ^ shfmt
-# bash-language-server
 
 #---------------------------------------
 #              Vim
@@ -63,6 +65,7 @@
 #              HTML
 #---------------------------------------
 n vscode-langservers-extracted
+
 # wkhtmltopdf
 
 # % pug-cli
@@ -251,8 +254,12 @@ p virtualenv
 ^ typescript
 ^ prettier
 n typescript-language-server
-n vls
-n svelte-language-server
+n nodemon
+
+# n vls
+# n svelte-language-server
+
+n markserv
 
 # eslint
 
@@ -271,6 +278,12 @@ n svelte-language-server
 
 # %@ typescript-eslint/eslint-plugin
 # %@ typescript-eslint/parser
+
+#---------------------------------------
+#              XML
+#---------------------------------------
+
+@ lemminx
 
 #---------------------------------------
 #          Image Optimizations
@@ -295,13 +308,19 @@ n svelte-language-server
 #               Work
 #---------------------------------------
 
-^ discord
+# ^ discord
 # @ teams
 
 # --------------------------------------------------
-# -                   VM 
+# -                   Virtualization
 # --------------------------------------------------
 
 ^ virtualbox
 ^ virtualbox-host-modules-artix
 ^ virtualbox-guest-iso
+
+^ wine
+^ wine-gecko
+^ wine-mono
+
+^ tigervnc

@@ -1,8 +1,8 @@
 overrides = function()
 
-  vim.bo.softtabstop = 2 -- spaces per tab (in insert mode)
-  vim.bo.shiftwidth = 2 -- spaces per tab (when shifting)
-  vim.bo.tabstop = 2 -- number of spaces per tab
+  vim.bo.softtabstop = 4 -- spaces per tab (in insert mode)
+  vim.bo.shiftwidth = 4 -- spaces per tab (when shifting)
+  vim.bo.tabstop = 4 -- number of spaces per tab
 
   vim.opt.formatoptions =
       vim.opt.formatoptions + 'c' -- comments respect textwidth
@@ -17,12 +17,12 @@ overrides = function()
 
 end
 
-python_overrides = function()
-  vim.bo.softtabstop = 4 -- spaces per tab (in insert mode)
-  vim.bo.shiftwidth = 4 -- spaces per tab (when shifting)
-  vim.bo.tabstop = 4 -- number of spaces per tab
-end
-
 vim.cmd [[ autocmd BufNewFile,BufRead * lua overrides() ]]
-vim.cmd [[ autocmd FileType python autocmd BufNewFile,BufRead * lua python_overrides() ]]
 
+
+--  python_overrides = function()
+  --  vim.bo.softtabstop = 4 -- spaces per tab (in insert mode)
+  --  vim.bo.shiftwidth = 4 -- spaces per tab (when shifting)
+  --  vim.bo.tabstop = 4 -- number of spaces per tab
+--  end
+--  vim.cmd [[ autocmd FileType python autocmd BufNewFile,BufRead * lua python_overrides() ]]

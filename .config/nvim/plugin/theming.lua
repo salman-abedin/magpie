@@ -1,28 +1,29 @@
--- vim.api.nvim_win_set_option(0, 'cursorline', true) -- show cursor line
 vim.o.bg = 'light'
 
 vim.cmd [[
 
-" cursor
 autocmd VimEnter * highlight clear CursorLine
-autocmd VimEnter * highlight clear SpellBad
-
 autocmd VimEnter * highlight CursorLine gui=underline
+
+autocmd VimEnter * highlight Normal       guibg=NONE
+autocmd VimEnter * highlight SignColumn   guibg=NONE
+autocmd VimEnter * highlight LineNR       guibg=NONE
+autocmd VimEnter * highlight CursorLineNR guibg=NONE
+autocmd VimEnter * highlight EndOfBuffer  guibg=NONE
+autocmd VimEnter * highlight Pmenu        guibg=NONE
+autocmd VimEnter * highlight Folded       guibg=NONE
+autocmd VimEnter * highlight Visual       guibg=NONE guifg=yellow gui=bold
+autocmd VimEnter * highlight QuickFixLine guibg=NONE gui=bold
+autocmd VimEnter * highlight SpellBad     guibg=NONE guifg=red gui=bold
 
 autocmd InsertEnter * set nocursorline
 autocmd InsertLeave * set cursorline
 
-" transparency
-autocmd VimEnter * highlight Normal       guibg=NONE
-autocmd VimEnter * highlight SignColumn   guibg=NONE
-autocmd VimEnter * highlight Folded       guibg=NONE
-autocmd VimEnter * highlight Pmenu        guibg=NONE
-autocmd VimEnter * highlight EndOfBuffer  guibg=NONE
-autocmd VimEnter * highlight LineNR       guibg=NONE
-autocmd VimEnter * highlight CursorLineNR guibg=NONE
-autocmd VimEnter * highlight Visual       guibg=NONE guifg=yellow gui=bold
-autocmd VimEnter * highlight SpellBad     guibg=NONE guifg=red gui=bold
 ]]
+
+--  ===========================================================================
+--  =                             Exp
+--  ===========================================================================
 
 --------------------------------------------------------------------------------
 --                              Space Characters
@@ -43,3 +44,8 @@ autocmd VimEnter * highlight SpellBad     guibg=NONE guifg=red gui=bold
 
 -- DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
 -- if has('linebreak') | let &showbreak='↳ ' | endif
+
+-- vim.api.nvim_win_set_option(0, 'cursorline', true) -- show cursor line
+
+--  " autocmd BufEnter * highlight clear SpellBad
+--  ]]

@@ -6,7 +6,14 @@ if not pcall(require, 'telescope') then return end
 
 require('telescope').setup {
   defaults = {
-    file_ignore_patterns = {'node_modules/.*', '%.env', '%.lock', '%.astro'},
+    file_ignore_patterns = {
+        'node_modules/.*',
+        '%.env',
+        '%.lock',
+        '%.astro',
+        '%.ex4',
+        '%.set',
+    },
     mappings = {i = {['kj'] = 'close', ['<ESC>'] = 'close'}}
   },
 
