@@ -1,6 +1,0 @@
-#!/bin/bash
-
-for cursor in `ls *.cursor`
-do
-xcursorgen $cursor `echo $cursor | cut -f1 -d'.'`
-done
