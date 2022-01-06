@@ -22,7 +22,8 @@ read -r user_password
 useradd -m -s /bin/zsh -g wheel -G input,video,audio "$user_name"
 echo "$user_name:$user_password" | chpasswd
 unset "$user_password"
-echo "$user_name ALL=(ALL) ALL" >> /etc/sudoers
+echo "$user_name ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# echo "$user_name ALL=(ALL) ALL" >> /etc/sudoers
 
 #===============================================================================
 #                             Package Managers
@@ -184,9 +185,9 @@ esac
 # ---------------------------------------
 # Dotfiles
 # ---------------------------------------
-cd $ROOT || exit 1
-cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
-chown -R "$user_name":wheel $ROOT /home/"$user_name"
+cd "$ROOT" || exit 1
+sudo -u "$user_name" cp -frs $(readlink -f .config .local .zprofile) /home/"$user_name"
+# chown -R "$user_name":wheel $ROOT /home/"$user_name"
 # sudo -u "$user_name" fcrontab /home/"$user_name"/.config/fcronrc
 
 #===============================================================================
