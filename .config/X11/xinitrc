@@ -26,13 +26,14 @@ lock                                                   # Start locked
 
 set-bg        # Set the last used wallpaper
 $COMPOSITOR & # Launch Compositor
-scratchpad &  # launch scratchpad
-exec $WM      # Launch Window Manager
+alacritty -e tmux a &
+exec $WM # Launch Window Manager
 
 #===============================================================================
 #                             Exp
 #===============================================================================
 
+# scratchpad &  # launch scratchpad
 # backlight --max                   # Set maximum brightness
 # qtile start # Launch Window Manager
 # { sleep 5 && pkill dwm; } & # Fix uniblocks glithes

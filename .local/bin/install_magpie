@@ -54,8 +54,6 @@ grep "^@" .local/share/package_lists/packages_essential \
   | sed "s/@ //" \
   | sudo -u "$user_name" paru -S --noconfirm --needed -
 
-sudo -u "$user_name" paru -S libxft-bgra
-
 # printf "Repository Path? "
 # read -r path_repo
 # sudo -u "$user_name" mkdir -p "$path_repo"
@@ -182,28 +180,6 @@ case "$DISTRO" in
   *Arch*) return ;;
   *) for i in 4 5 6; do rm /etc/runit/runsvdir/default/agetty-tty"$i"; done ;;
 esac
-
-#---------------------------------------
-#              Bluetooth
-#---------------------------------------
-case "$DISTRO" in
-  *Arch*) systemctl enable bluetoothd ;;
-  *)
-    pacman -S bluez-runit
-    ln -s /etc/runit/sv/bluetoothd /etc/runit/runsvdir/default
-    ;;
-esac
-
-# ---------------------------------------
-# Pulseaudio & Bluetooth
-# ---------------------------------------
-
-echo load-module module-switch-on-connect >> /etc/pulse/default.pa
-echo load-module module-echo-cancel >> /etc/pulse/default.pa
-
-sed -i "s/load-module module-sus/# &/" /etc/pulse/default.pa
-printf "[Policy]\nAutoEnable=true\n" >> /etc/bluetooth/main.conf
-sed -i "s/#ControllerMode.*/ControllerMode = bredr/" /etc/bluetooth/main.conf
 
 # ---------------------------------------
 # Dotfiles

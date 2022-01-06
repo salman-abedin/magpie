@@ -20,7 +20,7 @@ alias -g phone="-p 8022 10.25.10.24"
 #  alias -g phone="-p 8022 192.168.31.47"
 alias -g own="root@139.59.248.77"
 
-alias -g arnold="root@178.128.127.199"
+#  alias -g arnold="root@178.128.127.199"
 alias -g barry="root@188.166.217.157"
 va(){
   ssh -fL 9901:localhost:5901 -C -N -l root 178.128.127.199
@@ -44,13 +44,13 @@ vjc1(){
 
 send_mql(){
 
-  scp -r \
-    /mnt/internal/windows/mt4_development/MQL4/Experts/5m_scalper.ex4 \
-    root@188.166.217.157:~/mt4_production/johnny_test/MQL4/Experts
-
   #  scp -r \
-    #  /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \
+    #  /mnt/internal/windows/mt4_development/MQL4/Experts/5m_scalper.ex4 \
     #  root@188.166.217.157:~/mt4_production/johnny_test/MQL4/Experts
+
+  scp -r \
+    /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \
+    root@188.166.217.157:~/mt4_production/johnny_test/MQL4/Experts
 
   #  scp -r \
     #  /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \

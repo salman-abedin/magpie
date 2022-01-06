@@ -44,16 +44,16 @@ $ salman-abedin/faint
 #---------------------------------------
 ^ alsa-utils
 
-^ pulseaudio-alsa
-^ pavucontrol
+#  ^ pulseaudio-alsa
+#  ^ pavucontrol
 
 # pulseeffects
 
-#---------------------------------------
-#               Bluetooth
-#---------------------------------------
-^ bluez-utils
-^ pulseaudio-bluetooth
+#  #---------------------------------------
+#  #               Bluetooth
+#  #---------------------------------------
+#  ^ bluez-utils
+#  ^ pulseaudio-bluetooth
 
 #---------------------------------------
 #              Trackpad
@@ -90,7 +90,7 @@ $ salman-abedin/faint
 #---------------------------------------
 #              Window Manager
 #---------------------------------------
-^ qtile
+# ^ qtile
 # $ salman-abedin/dwm
 # bspwm
 # spectrwm

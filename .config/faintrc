@@ -110,7 +110,7 @@ hulk() {
 # push2android() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
 push2android() { adb connect 10.25.10.24 && adb push --sync "$FILE_ARGS" $CARD; }
 # push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
-push2arnold() { rsync -aP "$FILE_ARGS" root@178.128.127.199:~; }
+push2barry() { rsync -aP "$FILE_ARGS" root@188.166.217.157:~; }
 show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
 launch_choose() { /usr/local/bin/launch -c "$FILE_ARGS" & }
 make_dir() { kill -38 "$FAINT_PID" && pkill -P "$FAINT_PID"; }
@@ -165,7 +165,7 @@ OPS="\
 🖌  Paste:paste;
 🚚 Move:move;
 📱 Push to Android:push2android;
-⏰ Push to Arnold:push2arnold;
+⏰ Push to Barry:push2barry;
 ℹ  Show Size:show_size;
 💊 Choose:launch_choose;
 📁 New Directory:make_dir;

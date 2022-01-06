@@ -35,8 +35,8 @@ keys = [
     Key([mod], "Return", lazy.spawn(r'tmux new-session -d \; switch-client')),
 
 
-    Key([], "F3", lazy.spawn('backlight --down')),
-    Key([], "F4", lazy.spawn('backlight --up')),
+    #  Key([], "F3", lazy.spawn('backlight --down')),
+    #  Key([], "F4", lazy.spawn('backlight --up')),
 
     #  Key([], "F5", lazy.spawn('setplayer --vol toggle')),
     #  Key([], "F6", lazy.spawn('setplayer --vol down')),
