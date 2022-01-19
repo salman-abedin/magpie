@@ -55,3 +55,9 @@ pipx install 'python-lsp-server[all]'
 
 # setup optical drive
 #   using "/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"
+
+# ╔══════════════════════════════════════════════════════════════════════
+# ║                              Python
+# ╚══════════════════════════════════════════════════════════════════════
+
+pipx install 'python-lsp-server[all]'

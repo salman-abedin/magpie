@@ -8,7 +8,7 @@ vim.cmd [[
  " autocmd BufRead fetch.js nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal node % <cr>
 
  autocmd BufRead toy.sh nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal sh % <cr>
- autocmd BufRead toy.js nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal node % <cr>
+ autocmd BufRead toy.js nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 2sleep <bar> terminal node % <cr>
  autocmd BufRead *toys/python/*.{py,pyw} nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal python % <cr>
  autocmd BufRead *toys/php/*.php nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal php % <cr>
 

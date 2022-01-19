@@ -23,7 +23,7 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 
-  highlight = {enable = true, disable = {'c', 'cpp'}}
+  highlight = {enable = true, disable = {'c', 'cpp', 'markdown'}}
   -- autotag = {enable = true}
 }
 

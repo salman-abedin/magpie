@@ -68,7 +68,7 @@ require('packer').startup(function()
   ------------------------------------------------
   -- -                   Misc 
   ------------------------------------------------
-  use {'mattn/emmet-vim', ft = {'html', 'svelte', 'astro', 'vue'}}
+  use {'mattn/emmet-vim', ft = {'html', 'svelte', 'astro', 'vue', 'typescriptreact'}}
   use {'lukas-reineke/indent-blankline.nvim', ft = {'pug', 'python', 'mql4'}}
   use {
     'norcalli/nvim-colorizer.lua',

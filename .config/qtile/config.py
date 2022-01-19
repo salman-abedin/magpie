@@ -47,7 +47,10 @@ keys = [
     Key([mod], "bracketright", lazy.spawn('setplayer --vol up')),
 
     Key([mod], "s", lazy.spawn('record -d')),
-    Key([mod], "f", lazy.spawn('xdotool sleep 0.25 key F11')),
+    #  Key([mod], "s", lazy.spawn('record -s')),
+    #  Key([mod], "f", lazy.spawn('xdotool sleep 0.25 key F11')),
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
+    #  Key([mod], "b", lazy.spawn('xdotool sleep 0.25 key F11')),
 
     # Switch between windows
     #  Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),

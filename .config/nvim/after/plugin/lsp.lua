@@ -46,11 +46,12 @@ lsp.cssls.setup {
   filetypes = {'css', 'sass'},
   settings = {sass = {validate = true}}
 }
-lsp.stylelint_lsp.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end
-}
+
+--  lsp.stylelint_lsp.setup {
+  --  on_attach = function(client)
+    --  client.resolved_capabilities.document_formatting = false
+  --  end
+--  }
 
 lsp.pylsp.setup {
   --  on_attach = function(client)
@@ -129,7 +130,7 @@ vim.cmd [[
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
   autocmd FileType sh,python,php,javascript,lua,xml autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{css,html,lua,yaml,yml,md,c,cpp} silent! lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{css,html,lua,yaml,yml,md,c,cpp,tsx} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
 -- mappings{{{
@@ -161,34 +162,14 @@ vim.cmd [[
 -- =                             Theme
 -- ===========================================================================
 
-vim.fn.sign_define('LspDiagnosticsSignError', {text = '❌'})
-vim.fn.sign_define('LspDiagnosticsSignWarning', {text = '💄'})
-vim.fn.sign_define('LspDiagnosticsSignInformation', {text = 'ℹ'})
-vim.fn.sign_define('LspDiagnosticsSignHint', {text = '✅'})
+vim.fn.sign_define('DiagnosticSignError', {text = '❌'})
+vim.fn.sign_define('DiagnosticSignWarning', {text = '💄'})
+vim.fn.sign_define('DiagnosticSignInfo', {text = 'ℹ'})
 
 vim.cmd [[
-  " autocmd BufRead * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=green gui=bold
-  " autocmd BufRead * highlight LspDiagnosticsFloatingInformation guibg=NONE guifg=blue gui=bold
-
-  " autocmd BufRead * highlight LspDiagnosticsUnderlineHint guibg=none guifg=green gui=bold
-  " autocmd BufRead * highlight LspDiagnosticsFloatingHint guibg=none guifg=green gui=bold
-
-  " autocmd BufRead * highlight LspDiagnosticsUnderlineWarning guibg=none guifg=orange gui=bold
-  " autocmd BufRead * highlight LspDiagnosticsFloatingWarning guibg=none guifg=orange gui=bold
-
-  " autocmd BufRead * highlight LspDiagnosticsUnderlineError guibg=none guifg=red gui=bold
-
-  " autocmd BufRead * highlight LspDiagnosticsVirtualTextError guibg=grey70 guifg=red gui=bold
-  autocmd BufRead * highlight LspDiagnosticsVirtualTextError guibg=none guifg=red gui=bold
-  " autocmd BufRead * highlight LspDiagnosticsVirtualTextWarning guibg=grey50 guifg=orange gui=bold
-  autocmd BufRead * highlight LspDiagnosticsVirtualTextWarning guibg=none guifg=yellow gui=bold
-  
-  autocmd BufRead * highlight LspDiagnosticsVirtualTextHint guibg=none guifg=green gui=bold
-
-  autocmd BufRead * highlight LspDiagnosticsSignError guibg=none
-  autocmd BufRead * highlight LspDiagnosticsSignHint guibg=none
-  autocmd BufRead * highlight LspDiagnosticsSignWarning guibg=none
-
-
+  autocmd BufRead * highlight DiagnosticError   guibg=none gui=bold
+  autocmd BufRead * highlight DiagnosticWarning guibg=none gui=bold
+  autocmd BufRead * highlight DiagnosticInfo    guibg=none gui=bold
+  autocmd BufRead * highlight DiagnosticHint    guibg=none gui=bold
 ]]
 -- }}}

@@ -34,7 +34,8 @@ local prettier_javascript = {formatCommand = 'prettier --single-quote'}
 lsp.efm.setup {
   init_options = {documentFormatting = true, codeAction = false},
   filetypes = {
-    'c', 'cpp', 'javascript', 'sh', 'markdown', 'yaml', 'json', 'html'
+    'c', 'cpp', 'javascript', 'typescriptreact', 'sh', 'markdown', 'yaml', 'json', 'html'
+    --  'typescript', 
     --  'xml'
     --  'lua',
     --  'python',
@@ -50,6 +51,8 @@ lsp.efm.setup {
       html = {prettier},
       java = {google_java_format},
       javascript = {prettier_javascript},
+      typescript = {prettier_javascript},
+      typescriptreact = {prettier_javascript},
       json = {prettier},
       lua = {lua_format},
       markdown = {prettier},

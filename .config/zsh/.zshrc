@@ -1,86 +1,12 @@
 #!/bin/zsh
 
+. ~/.config/zsh/zshrc_private
+
 #  aliases{{{
 
 #===============================================================================
 #                              Aliases
 #===============================================================================
-
-#---------------------------------------
-#               Globals
-#---------------------------------------
-#  alias -g grey="ubuntu@3.0.101.215"
-#  alias -g yy="ubuntu@54.179.99.90"
-#  alias -g shaikh="ubuntu@sbys.tk"
-#  alias -g yeh="root@yehbackend.tk"
-
-
-#  alias -g phone="-p 8022 192.168.1.101"
-alias -g phone="-p 8022 10.25.10.24"
-#  alias -g phone="-p 8022 192.168.31.47"
-alias -g own="root@139.59.248.77"
-
-#  alias -g arnold="root@178.128.127.199"
-alias -g barry="root@188.166.217.157"
-va(){
-  ssh -fL 9901:localhost:5901 -C -N -l root 178.128.127.199
-  vncviewer \
-      localhost:9901
-  pkill -f ssh
-}
-vb(){
-  ssh -fL 9901:localhost:5901 -C -N -l root 188.166.217.157
-  vncviewer \
-      localhost:9901
-  pkill -f ssh
-}
-
-alias -g jc1="ubuntu@18.224.64.181"
-vjc1(){
-  ssh -fL 9901:localhost:5901 -C -N -l ubuntu 18.224.64.181
-  vncviewer localhost:9901
-  pkill -f ssh
-}
-
-send_mql(){
-
-  #  scp -r \
-    #  /mnt/internal/windows/mt4_development/MQL4/Experts/5m_scalper.ex4 \
-    #  root@188.166.217.157:~/mt4_production/johnny_test/MQL4/Experts
-
-  scp -r \
-    /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \
-    root@188.166.217.157:~/mt4_production/johnny_test/MQL4/Experts
-
-  #  scp -r \
-    #  /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \
-    #  root@188.166.217.157:~/mt4_production/johnny_cash/MQL4/Experts
-
-
-
-  #  scp -r \
-    #  /mnt/internal/windows/mt4_development/MQL4/Experts/TradeMasterSubscriber.ex4 \
-    #  root@188.166.217.157:~/mt4_production/funded_next/MQL4/Experts
-
-  #  scp -r \
-    #  /mnt/internal/windows/mt4/TradeMaster/subscriber/MQL4/Scripts/TradeMasterSubscriber.ex4 \
-    #  root@178.128.127.199:~/jayed_corp/pafx/MQL4/Scripts
-
-  #  scp -r \
-    #  /mnt/internal/windows/mt4/TradeMaster/subscriber/MQL4/Scripts/TradeMasterSubscriber.ex4 \
-    #  root@178.128.127.199:~/jayed_corp/pascalp/MQL4/Scripts
-
-  #  scp -r \
-    #  /mnt/internal/windows/mt4/TradeMaster/subscriber/MQL4/Scripts/TradeMasterSubscriber.ex4 \
-    #  root@178.128.127.199:~/jayed_corp/megafx/MQL4/Scripts
-
-  #  ssh ubuntu@18.224.64.181 sudo pkill -f terminal.exe
-  #  ssh ubuntu@18.224.64.181 wine "~/subscriber/terminal.exe"
-}
-
-#  ec2-18-224-64-181.us-east-2.compute.amazonaws.com
-alias -g jc2="ubuntu@54.196.253.50"
-#  ec2-54-196-253-50.compute-1.amazonaws.com
 
 #---------------------------------------
 #              MVPS
@@ -182,6 +108,7 @@ alias nn="nvim +'cd /mnt/internal/git/daily/notes | Telescope find_files'"
 alias nc="nvim +'cd /mnt/internal/git/system/magpie/.config/nvim | Telescope find_files'"
 alias nd="nvim +'cd /mnt/internal/git/system/magpie/.config | Telescope find_files'"
 alias nz="nvim ~/.config/zsh/.zshrc"
+alias nzp="nvim ~/.config/zsh/zshrc_private"
 alias nf="nvim ~/.config/faintrc"
 
 #---------------------------------------
@@ -282,6 +209,7 @@ alias yc="y create"
 alias yd="y dev"
 alias yg="y generate"
 alias yga="y global add"
+alias ygr="y global remove"
 alias yi="y init"
 alias yiy="yi -y"
 alias yl="y list"
