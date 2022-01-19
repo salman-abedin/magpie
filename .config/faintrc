@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. ~/.config/faintrc_private
+
 #===============================================================================
 #                             Default Settings
 #===============================================================================
@@ -107,10 +109,8 @@ hulk() {
   kill -37 "$FAINT_PID"
   pkill -P "$FAINT_PID"
 }
-# push2android() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
-push2android() { adb connect 10.25.10.24 && adb push --sync "$FILE_ARGS" $CARD; }
+push2android() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
 # push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
-push2barry() { rsync -aP "$FILE_ARGS" root@188.166.217.157:~; }
 show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
 launch_choose() { /usr/local/bin/launch -c "$FILE_ARGS" & }
 make_dir() { kill -38 "$FAINT_PID" && pkill -P "$FAINT_PID"; }
