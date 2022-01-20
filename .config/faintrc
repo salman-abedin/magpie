@@ -109,6 +109,7 @@ hulk() {
   kill -37 "$FAINT_PID"
   pkill -P "$FAINT_PID"
 }
+upload() { curl -F"file=@$FILE_ARGS" https://0x0.st | xsel -b; }
 push2android() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
 # push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
 show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
@@ -174,6 +175,7 @@ OPS="\
 🔒 Encrypt:encrypt;
 🔑 Decrypt:decrypt;
 ♦  Compress:compress;
+⬆  Upload:upload;
 "
 # 😎 Own:own;
 # 💻 Push to YY:push2yy;
