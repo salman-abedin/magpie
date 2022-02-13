@@ -256,7 +256,6 @@ sudo -u "$user_name" cp -frs $(readlink -f .config .local .zprofile) /home/"$use
 #sudo -u "$user_name" yarn global add neovim
 #sudo -u "$user_name" gem install neovim
 #sudo -u "$user_name" cpan Neovim::Ext
-#sudo -u "$user_name" pacman -S --noconfirm tree-sitter
 
 #---------------------------------------
 #               Lua
@@ -298,3 +297,11 @@ sudo -u "$user_name" cp -frs $(readlink -f .config .local .zprofile) /home/"$use
 # echo -e "%wheel ALL=(ALL) ALL #LARBS\n%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/packer -Syu,/usr/bin/packer -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/yay,/usr/bin/pacman -Syyuw --noconfirm" >> /etc/sudoers
 # grep "^%" packages.sh | sed "s/%//" | sudo -u "$user_name" npm install -g -
 # echo -e "%wheel ALL=(ALL) NOPASSWD: ALL\nDefaults !tty_tickets" >> /etc/sudoers
+
+# cat << eof > /etc/X11/xorg.conf.d/20-intel.conf
+# Section "Device"
+# Identifier  "Intel Graphics"
+# Driver      "intel"
+# Option      "TearFree"  "true"
+# EndSection
+# eof

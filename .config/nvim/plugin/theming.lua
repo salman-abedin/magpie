@@ -1,4 +1,4 @@
-vim.o.bg = 'light'
+--  vim.o.bg = 'light'
 
 vim.cmd [[
 

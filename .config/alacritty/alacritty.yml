@@ -4,12 +4,12 @@ cursor:
     blinking: Always
   blink_interval: 500
 
-background_opacity: 0.90
+# background_opacity: 0.90
 
 font:
   normal:
     family: mono
-    style: bold
+    #  style: bold
   # bold:
   #   family: monospace
   #   style: bold
@@ -19,7 +19,7 @@ font:
   # bold_italic:
   #   family: monospace
   #   style: Bold Italic
-  size: 11.0
+  size: 10.0
   # offset:
   # x: 0
   # y: 5
@@ -35,6 +35,8 @@ key_bindings:
   # - { key: Return, mods: Control, action: SpawnNewInstance }
 
 window:
+  opacity: 1.00
+  #  opacity: 0.80
   padding:
     x: 25
     y: 25
@@ -554,89 +556,93 @@ window:
 #                             Colors
 #===============================================================================
 
-#  #=======================================
-#  #              Gruvbox Material
-#  #=======================================
-#  colors:
-#  primary:
-#  background: "#000000"
-#  # background: '0x282828'
-#  foreground: "0xdfbf8e"
-#  normal:
-#  black: "0x665c54"
-#  red: "0xea6962"
-#  green: "0xa9b665"
-#  yellow: "0xe78a4e"
-#  blue: "0x7daea3"
-#  magenta: "0xd3869b"
-#  cyan: "0x89b482"
-#  white: "0xdfbf8e"
-#  bright:
-#  black: "0x928374"
-#  red: "0xea6962"
-#  green: "0xa9b665"
-#  yellow: "0xe3a84e"
-#  blue: "0x7daea3"
-#  magenta: "0xd3869b"
-#  cyan: "0x89b482"
-#  white: "0xdfbf8e"
+#=======================================
+#              Gruvbox Material
+#=======================================
+colors:
+
+    primary:
+
+        #  background: "#000000"
+        background: '0x282828'
+        foreground: "0xdfbf8e"
+
+    normal:
+
+        black: "0x665c54"
+        red: "0xea6962"
+        green: "0xa9b665"
+        yellow: "0xe78a4e"
+        blue: "0x7daea3"
+        magenta: "0xd3869b"
+        cyan: "0x89b482"
+        white: "0xdfbf8e"
+        bright:
+        black: "0x928374"
+        red: "0xea6962"
+        green: "0xa9b665"
+        yellow: "0xe3a84e"
+        blue: "0x7daea3"
+        magenta: "0xd3869b"
+        cyan: "0x89b482"
+        white: "0xdfbf8e"
 
 #  --------------------------------------------------
 #  -                   OneDark
 #  --------------------------------------------------
 
-#colors:
-#   primary:
-#      # background: '0x1e2127'
-#      background: '#000000'
-#      foreground: '0xabb2bf'
-#   normal:
-#      black: '0x1e2127'
-#      red: '0xe06c75'
-#      green: '0x98c379'
-#      yellow: '0xd19a66'
-#      blue: '0x61afef'
-#      magenta: '0xc678dd'
-#      cyan: '0x56b6c2'
-#      white: '0xabb2bf'
-#   bright:
-#      black: '0x5c6370'
-#      red: '0xe06c75'
-#      green: '0x98c379'
-#      yellow: '0xd19a66'
-#      blue: '0x61afef'
-#      magenta: '0xc678dd'
-#      cyan: '0x56b6c2'
-#      white: '0xffffff'
+#  colors:
+    #  primary:
+        #  background: '0x1e2127'
+        #  #  background: '#000000'
+        #  foreground: '0xabb2bf'
+    #  normal:
+        #  black: '0x1e2127'
+        #  red: '0xe06c75'
+        #  green: '0x98c379'
+        #  yellow: '0xd19a66'
+        #  blue: '0x61afef'
+        #  magenta: '0xc678dd'
+        #  cyan: '0x56b6c2'
+        #  white: '0xabb2bf'
+        #  bright:
+        #  black: '0x5c6370'
+        #  red: '0xe06c75'
+        #  green: '0x98c379'
+        #  yellow: '0xd19a66'
+        #  blue: '0x61afef'
+        #  magenta: '0xc678dd'
+        #  cyan: '0x56b6c2'
+        #  white: '0xffffff'
 
 #=======================================
 #              Gruvbox
 #=======================================
 
-# colors:
-#    primary:
-#       # background: '#282828'
-#       # soft contrast: background = '#32302f'
-#       background: '#000000'
-#       foreground: '#ebdbb2'
-#    normal:
-#       black: '#282828'
-#       red: '#cc241d'
-#       green: '#98971a'
-#       yellow: '#d79921'
-#       blue: '#458588'
-#       magenta: '#b16286'
-#       cyan: '#689d6a'
-#       white: '#a89984'
-#    bright:
-#       black: '#928374'
-#       red: '#fb4934'
-#       green: '#b8bb26'
-#       yellow: '#fabd2f'
-#       blue: '#83a598'
-#       magenta: '#d3869b'
-#       cyan: '#8ec07c'
-#       white: '#ebdbb2'
+#  colors:
+    #  primary:
+        #  # background: '#282828'
+        #  # soft contrast: background = '#32302f'
+        #  background: '#000000'
+        #  foreground: '#ebdbb2'
+    #  normal:
+        #  black: '#282828'
+        #  red: '#cc241d'
+        #  green: '#98971a'
+        #  yellow: '#d79921'
+        #  blue: '#458588'
+        #  magenta: '#b16286'
+        #  cyan: '#689d6a'
+        #  white: '#a89984'
+        #  bright:
+        #  black: '#928374'
+        #  red: '#fb4934'
+        #  green: '#b8bb26'
+        #  yellow: '#fabd2f'
+        #  blue: '#83a598'
+        #  magenta: '#d3869b'
+        #  cyan: '#8ec07c'
+        #  white: '#ebdbb2'
 
 #  --------------------------------------------------
 #  -                   Gotham
@@ -704,25 +710,26 @@ window:
 #  --------------------------------------------------
 #  -                   PaperColor
 #  --------------------------------------------------
-colors:
-  primary:
-    background: "#cccccc"
-    foreground: "#000000"
-  normal:
-    black: "#eeeeee"
-    red: "#af0000"
-    green: "#008700"
-    yellow: "#5f8700"
-    blue: "#0087af"
-    magenta: "#878787"
-    cyan: "#005f87"
-    white: "#444444"
-  bright:
-    black: "#bcbcbc"
-    red: "#d70000"
-    green: "#d70087"
-    yellow: "#8700af"
-    blue: "#d75f00"
-    magenta: "#d75f00"
-    cyan: "#005faf"
-    white: "#005f87"
+
+#  colors:
+  #  primary:
+    #  background: "#cccccc"
+    #  foreground: "#000000"
+  #  normal:
+    #  black: "#eeeeee"
+    #  red: "#af0000"
+    #  green: "#008700"
+    #  yellow: "#5f8700"
+    #  blue: "#0087af"
+    #  magenta: "#878787"
+    #  cyan: "#005f87"
+    #  white: "#444444"
+  #  bright:
+    #  black: "#bcbcbc"
+    #  red: "#d70000"
+    #  green: "#d70087"
+    #  yellow: "#8700af"
+    #  blue: "#d75f00"
+    #  magenta: "#d75f00"
+    #  cyan: "#005faf"
+    #  white: "#005f87"

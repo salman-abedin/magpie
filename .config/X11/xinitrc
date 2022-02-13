@@ -7,25 +7,25 @@
 #
 # X11 startup script
 
-xset -b & # Disable PC speaker
+xset -b &            # Disable PC speaker
+xset r rate 200 30 & # Speed key press delay & reapeat rate
 {
   xmodmap "$LAYOUT_EN"
   xcape -e "Super_L=Escape;Mode_switch=Tab"
-} &                                                    # Bind Multi-purpose keys
-xss-lock -n 'backlight -D' -- 'lock' &                 # Set Dimmer & Locker
-xautolock -detectsleep -time 10 -locker 'savescreen' & # Set Screen Saver
-xset s 300 300 &                                       # Set Dimmer & Locker Delays
-libinput-gestures &                                    # Bind gesture commands
-dunst &                                                # Launch notification server
-launch --tmux &                                        # Launch tmux
-echo "$DISPLAY" > /tmp/DISPLAY &                       # For Udev & Fcron environment
-xbanish &                                              # Hide cursor when idle
-xsetroot -cursor_name left_ptr &                       # Remove the ugly X cursor
-xrandr --dpi "$(get-dpi --pixel)"                      # Set correct DPI
-lock                                                   # Start locked
+} &                                    # Bind Multi-purpose keys
+xss-lock -n 'backlight -D' -- 'lock' & # Set Dimmer & Locker
+xset s 300 300 &                       # Set Dimmer & Locker Delays
+libinput-gestures &                    # Bind gesture commands
+dunst &                                # Launch notification server
+launch --tmux &                        # Launch tmux
+echo "$DISPLAY" > /tmp/DISPLAY &       # For Udev & Fcron environment
+xbanish &                              # Hide cursor when idle
+xsetroot -cursor_name left_ptr &       # Remove the ugly X cursor
+xrandr --dpi "$(get-dpi --pixel)"      # Set correct DPI
+lock                                   # Start locked
 
-set-bg        # Set the last used wallpaper
-$COMPOSITOR & # Launch Compositor
+set-bg # Set the last used wallpaper
+# $COMPOSITOR & # Launch Compositor
 alacritty -e tmux a &
 exec $WM # Launch Window Manager
 
@@ -33,6 +33,7 @@ exec $WM # Launch Window Manager
 #                             Exp
 #===============================================================================
 
+# xautolock -detectsleep -time 10 -locker 'savescreen' & # Set Screen Saver
 # scratchpad &  # launch scratchpad
 # backlight --max                   # Set maximum brightness
 # qtile start # Launch Window Manager

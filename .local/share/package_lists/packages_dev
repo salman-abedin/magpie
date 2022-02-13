@@ -2,9 +2,10 @@
 #              General
 #---------------------------------------
 ^ efm-langserver
-^ ctags
-^ dnsutils
-^ tree
+^ tree-sitter
+#  ^ ctags
+#  ^ dnsutils
+#  ^ tree
 
 #---------------------------------------
 #              Shell
@@ -50,6 +51,7 @@
 #---------------------------------------
 
 # sqlite
+# sqlitebrowser
 
 # @ sqlfmt-bin
 
@@ -253,13 +255,14 @@ p virtualenv
 
 ^ typescript
 ^ prettier
+
 n typescript-language-server
 n nodemon
 
 # n vls
 # n svelte-language-server
 
-n markserv
+#  n markserv
 
 # eslint
 
@@ -315,9 +318,9 @@ n markserv
 # -                   Virtualization
 # --------------------------------------------------
 
-^ virtualbox
-^ virtualbox-host-modules-artix
-^ virtualbox-guest-iso
+#  ^ virtualbox
+#  ^ virtualbox-host-modules-artix
+#  ^ virtualbox-guest-iso
 
 ^ wine
 ^ wine-gecko

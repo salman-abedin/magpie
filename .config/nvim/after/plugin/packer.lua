@@ -22,15 +22,21 @@ require('packer').startup(function()
   -- -                   Essentials
   ------------------------------------------------
 
-  --  use {
-  --  'mhartington/oceanic-next',
-  --  config = 'vim.cmd[[colorscheme OceanicNext]]'
-  --  }
 
   use {
-    'NLKNguyen/papercolor-theme',
-     config = 'vim.cmd[[colorscheme PaperColor]]'
+    'sainnhe/gruvbox-material',
+    config = 'vim.cmd[[colorscheme gruvbox-material]]'
   }
+
+  --  use {
+    --  'mhartington/oceanic-next',
+    --  config = 'vim.cmd[[colorscheme OceanicNext]]'
+  --  }
+
+  --  use {
+    --  'NLKNguyen/papercolor-theme',
+     --  config = 'vim.cmd[[colorscheme PaperColor]]'
+  --  }
 
 
   -- treesitter
@@ -157,10 +163,6 @@ require('packer').startup(function()
     --  config = 'require(\'colorbuddy\').colorscheme(\'onebuddy\')'
   --  }
 
-  -- use {
-  -- 'sainnhe/gruvbox-material',
-  -- config = 'vim.cmd[[colorscheme gruvbox-material]]'
-  -- }
 
   -- use {'rakr/vim-one'}
   -- vim.cmd('colorscheme one')

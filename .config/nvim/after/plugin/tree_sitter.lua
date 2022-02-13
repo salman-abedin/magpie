@@ -3,25 +3,25 @@ if not pcall(require, 'nvim-treesitter') then return end
 require'nvim-treesitter.configs'.setup {
   ensure_installed = 'all',
 
-  textobjects = {
-    select = {
-      enable = true,
-      -- Automatically jump forward to textobj, similar to targets.vim 
-      lookahead = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-        ["iF"] = {
-          python = "(function_definition) @function",
-          cpp = "(function_definition) @function",
-          c = "(function_definition) @function",
-          java = "(method_declaration) @function",
-        },
-      },
-    },
-  },
+  --  textobjects = {
+    --  select = {
+      --  enable = true,
+      --  -- Automatically jump forward to textobj, similar to targets.vim 
+      --  lookahead = true,
+      --  keymaps = {
+        --  ["af"] = "@function.outer",
+        --  ["if"] = "@function.inner",
+        --  ["ac"] = "@class.outer",
+        --  ["ic"] = "@class.inner",
+        --  ["iF"] = {
+          --  python = "(function_definition) @function",
+          --  cpp = "(function_definition) @function",
+          --  c = "(function_definition) @function",
+          --  java = "(method_declaration) @function",
+        --  },
+      --  },
+    --  },
+  --  },
 
   highlight = {enable = true, disable = {'c', 'cpp', 'markdown'}}
   -- autotag = {enable = true}

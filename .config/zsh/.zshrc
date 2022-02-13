@@ -351,6 +351,14 @@ alias scii="ssh-copy-id -i $GIT/system/magpie-private/.ssh/id_rsa.pub"
 # alias nrb="npm run build"
 
 # alias nu="ncu -u"
+
+
+#  ╔════════════════════════════════════════
+#  ║                    Fastboot
+#  ╚════════════════════════════════════════
+alias ffs="fastboot flash system"
+alias fr="fastboot reboot"
+
 # }}}
 #  functions{{{
 
@@ -392,11 +400,20 @@ mi() {
   mysqld --user=salman
 }
 
-#  pi() {
-  #  [ -d /run/postgresql ] || doas -n mkdir /run/postgresql
-  #  doas -u $USER chown -R $USER /run/postgresql /var/lib/postgres
-  #  postgres -D /var/lib/postgres/data
-#  }
+post() {
+
+  if [ ! -d /run/postgresql ]; then
+    doas -n mkdir -p /run/postgresql
+    doas -u $USER chown -R $USER /run/postgresql
+  fi
+
+  if [ ! -d /usr/local/var/postgres ]; then
+    doas -n mkdir -p /usr/local/var/postgres
+    doas -u $USER chown -R $USER /usr/local/var/postgres
+  fi
+
+  postgres -D /usr/local/var/postgres
+}
 
 #---------------------------------------
 #               Misc
@@ -414,6 +431,7 @@ fe(){
   npx -p node-firestore-import-export firestore-export -a credentials.json -b backup.json
 }
 
+#  alias b="setsid brave > /dev/null 2>&1"
 b(){ launch brave $*; }
 dis(){ launch discord; }
 fire(){ launch firefox; }

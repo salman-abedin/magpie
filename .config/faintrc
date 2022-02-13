@@ -110,7 +110,7 @@ hulk() {
   pkill -P "$FAINT_PID"
 }
 upload() { curl -F"file=@$FILE_ARGS" https://0x0.st | xsel -b; }
-push2android() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
+push_to_arnie() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
 # push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
 show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
 launch_choose() { /usr/local/bin/launch -c "$FILE_ARGS" & }
@@ -165,8 +165,11 @@ OPS="\
 ©  Yank:yank;
 🖌  Paste:paste;
 🚚 Move:move;
-📱 Push to Android:push2android;
-⏰ Push to Barry:push2barry;
+📱 Push to Arnie:push_to_arnie;
+⏰ Push to Barry:push_to_barry;
+⏰ Push to Cathy:push_to_cathy;
+⏰ Push to GSS:push_to_gss;
+⏰ Push to Silvie:push_to_silvie;
 ℹ  Show Size:show_size;
 💊 Choose:launch_choose;
 📁 New Directory:make_dir;

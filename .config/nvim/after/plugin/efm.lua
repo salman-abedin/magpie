@@ -61,10 +61,10 @@ lsp.efm.setup {
       python = {autopep8},
       --  python = {black},
       --  python = {yapf},
+      --  yaml = {prettier}
       sh = {shellcheck, shfmt},
       svelte = {prettier_javascript},
       vue = {prettier_javascript},
-      yaml = {prettier}
     }
   }
 }

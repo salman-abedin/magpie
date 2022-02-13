@@ -153,10 +153,13 @@ layouts = [
 
 widget_defaults = dict(
     #  font='Share',
-    font='Share bold',
+    #  font='Share bold',
+    font='Share',
     fontsize=25,
     padding=10,
-    foreground='#000000',
+    #  foreground='#000000',
+    #  foreground='#abb2bf',
+    foreground='#dfbf8e',  # gruvbox
 )
 extension_defaults = widget_defaults.copy()
 
@@ -203,7 +206,10 @@ screens = [
                 widget.Systray(),
             ],
             30,
-            background="#dddddddd",
+            background="#282828",  # gruvbox
+            #  background="#000000",
+            #  background="#1e2127",
+            #  background="#dddddddd",
         ),
     ),
 ]
