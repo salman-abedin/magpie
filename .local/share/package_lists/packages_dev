@@ -327,3 +327,8 @@ n nodemon
 ^ wine-mono
 
 ^ tigervnc
+
+#  ^ qemu
+#  ^ libvirt
+#  ^ libvirt-runit
+#  ^ virt-manager
