@@ -190,6 +190,11 @@ sudo -u "$user_name" cp -frs $(readlink -f .config .local .zprofile) /home/"$use
 # chown -R "$user_name":wheel $ROOT /home/"$user_name"
 # sudo -u "$user_name" fcrontab /home/"$user_name"/.config/fcronrc
 
+# ╔════════════════════════════════════════
+# ║                    Qtile
+# ╚════════════════════════════════════════
+pip install qtile
+
 #===============================================================================
 #                             Exp
 #===============================================================================

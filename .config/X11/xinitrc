@@ -25,7 +25,6 @@ xrandr --dpi "$(get-dpi --pixel)"      # Set correct DPI
 lock                                   # Start locked
 
 set-bg # Set the last used wallpaper
-# $COMPOSITOR & # Launch Compositor
 alacritty -e tmux a &
 exec $WM # Launch Window Manager
 
@@ -34,6 +33,7 @@ exec $WM # Launch Window Manager
 #===============================================================================
 
 # xautolock -detectsleep -time 10 -locker 'savescreen' & # Set Screen Saver
+# $COMPOSITOR & # Launch Compositor
 # scratchpad &  # launch scratchpad
 # backlight --max                   # Set maximum brightness
 # qtile start # Launch Window Manager

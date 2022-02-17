@@ -49,6 +49,10 @@ $ salman-abedin/faint
 
 # pulseeffects
 
+^ pipewire
+^ pipewire-alsa
+^ pipewire-pulse
+
 #  #---------------------------------------
 #  #               Bluetooth
 #  #---------------------------------------
@@ -94,7 +98,6 @@ $ salman-abedin/faint
 # $ salman-abedin/dwm
 # bspwm
 # spectrwm
-
 
 #---------------------------------------
 #              Panel
