@@ -55,6 +55,7 @@ pipx install 'python-lsp-server[all]'
 
 # setup optical drive
 #   using "/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"
+modeprobe vboxdrv
 
 # ╔══════════════════════════════════════════════════════════════════════
 # ║                              Python
@@ -66,38 +67,27 @@ pipx install 'python-lsp-server[all]'
 # ║                              Postgres
 # ╚══════════════════════════════════════════════════════════════════════
 
-/usr/bin/createuser -s postgres
+# /usr/bin/createuser -s postgres
 
 # ╔══════════════════════════════════════════════════════════════════════
 # ║                              SSH
 # ╚══════════════════════════════════════════════════════════════════════
 
-sudo ssh-keygen -A
-sudo /usr/bin/sshd
+# sudo ssh-keygen -A
+# sudo /usr/bin/sshd
 
 # ╔══════════════════════════════════════════════════════════════════════
 # ║                              KVM
 # ╚══════════════════════════════════════════════════════════════════════
 
-sudo -n ln -s /etc/runit/sv/libvirtd /run/runit/service
-# sudo -n sv up libvirtd
+# sudo -n ln -s /etc/runit/sv/libvirtd /run/runit/service
+# # sudo -n sv up libvirtd
 
-sudo -n ln -s /etc/runit/sv/virtlogd /run/runit/service
-# sudo -n sv up virtlogd
+# sudo -n ln -s /etc/runit/sv/virtlogd /run/runit/service
+# # sudo -n sv up virtlogd
 
 # ╔══════════════════════════════════════════════════════════════════════
-# ║                              Pipewire
+# ║                              DSI
 # ╚══════════════════════════════════════════════════════════════════════
 
-mkdir /etc/runit/sv/pipewire
-cat << eof1 | tee /etc/runit/sv/pipewire/run
-#!/bin/sh
-/usr/bin/pipewire >/dev/null 2>&1 &
-/usr/bin/sleep 1
-/usr/bin/pipewire-pulse >/dev/null 2>&1 &
-/usr/bin/sleep 1
-/usr/bin/pipewire-media-session >/dev/null 2>&1 &
-eof1
-
-chmod +x /etc/runit/sv/pipewire/run
-ln -s /etc/runit/sv/pipewire /etc/runit/runsvdir/default
+echo "10.1.0.26 kb.dsinnovators.com" >> /etc/hosts

@@ -23,7 +23,7 @@
 #---------------------------------------
 #              C
 #---------------------------------------
-^ clang
+#  ^ clang
 
 # astyle
 # ccls
@@ -66,7 +66,7 @@
 #---------------------------------------
 #              HTML
 #---------------------------------------
-n vscode-langservers-extracted
+#  n vscode-langservers-extracted
 
 # wkhtmltopdf
 
@@ -83,7 +83,7 @@ n vscode-langservers-extracted
 #---------------------------------------
 
 #%vscode-css-languageserver-bin
-n stylelint-lsp
+#  n stylelint-lsp
 
 #sassc
 #%sass-lint
@@ -93,10 +93,10 @@ n stylelint-lsp
 #              PHP
 #---------------------------------------
 
-^ php
-^ composer
+#  ^ php
+#  ^ composer
 
-@ php-cs-fixer
+#  @ php-cs-fixer
 # @ php-codesniffer
 # @ php-stan
 
@@ -251,7 +251,7 @@ p virtualenv
 #---------------------------------------
 
 ^ yarn
-# ^ npm
+^ npm
 
 ^ typescript
 ^ prettier
@@ -286,7 +286,7 @@ n nodemon
 #              XML
 #---------------------------------------
 
-@ lemminx
+#  @ lemminx
 
 #---------------------------------------
 #          Image Optimizations
@@ -305,7 +305,7 @@ n nodemon
 #               Music
 #---------------------------------------
 
-^ musescore
+#  ^ musescore
 
 #---------------------------------------
 #               Work
@@ -318,9 +318,9 @@ n nodemon
 # -                   Virtualization
 # --------------------------------------------------
 
-#  ^ virtualbox
-#  ^ virtualbox-host-modules-artix
-#  ^ virtualbox-guest-iso
+^ virtualbox
+^ virtualbox-host-modules-artix
+^ virtualbox-guest-iso
 
 ^ wine
 ^ wine-gecko

@@ -45,9 +45,10 @@ $ salman-abedin/faint
 ^ alsa-utils
 
 #  ^ pulseaudio-alsa
-#  ^ pavucontrol
+# ^ pulseeffects
 
-# pulseeffects
+^ pavucontrol
+
 
 ^ pipewire
 ^ pipewire-alsa
@@ -121,7 +122,7 @@ $ salman-abedin/uniblocks
 #              Sans & Serif Fonts
 #---------------------------------------
 
-# ^ ttf-ubuntu-font-family
+^ ttf-ubuntu-font-family
 # ^ ttf-linux-libertine
 # @ ttf-ms-fonts
 # @ ttf-vista-fonts
@@ -130,7 +131,7 @@ $ salman-abedin/uniblocks
 #---------------------------------------
 #               Monospace Fonts
 #---------------------------------------
-# ttf-jetbrains-mono
+^ ttf-jetbrains-mono
 # ttf-roboto-mono
 # @ nerd-fonts-sf-mono
 # ttf-dejavu
@@ -153,7 +154,7 @@ $ salman-abedin/uniblocks
 # ^ noto-fonts-emoji
 # ^ ttf-font-awesome
 
-# ttf-joypixels
+^ ttf-joypixels
 # @ powerline-fonts-git
 # @ nerd-fonts-complete
 # @ ttf-symbola-free
