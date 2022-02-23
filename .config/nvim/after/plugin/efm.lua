@@ -12,7 +12,7 @@ local shellcheck = {
     '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
   }
 }
-local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
+local shfmt = {formatCommand = 'shfmt -ci -s -sr -bn'}
 local xmllint = {formatCommand = 'xmllint --format -'}
 --  local autopep8 = {formatCommand = 'autopep8 --indent-size=2'}
 local autopep8 = {formatCommand = 'autopep8'}

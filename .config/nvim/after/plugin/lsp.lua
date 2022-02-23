@@ -59,12 +59,14 @@ lsp.pylsp.setup {
   --  end
 }
 
-lsp.phpactor.setup {}
+lsp.perlls.setup{}
+
+--  lsp.phpactor.setup {}
 
 
-lsp.lemminx.setup{
-    cmd = { "/usr/bin/lemminx" }
-}
+--  lsp.lemminx.setup{
+    --  cmd = { "/usr/bin/lemminx" }
+--  }
 
 --  lsp.pyright.setup {
 --  on_attach = function(client)

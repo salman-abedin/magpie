@@ -57,7 +57,8 @@ $ salman-abedin/faint
 #  #---------------------------------------
 #  #               Bluetooth
 #  #---------------------------------------
-#  ^ bluez-utils
+^ bluez-runit
+^ bluez-utils
 #  ^ pulseaudio-bluetooth
 
 #---------------------------------------
