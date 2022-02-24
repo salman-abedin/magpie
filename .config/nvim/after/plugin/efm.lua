@@ -3,7 +3,7 @@ if not pcall(require, 'lspconfig') then return end
 local lsp = require 'lspconfig'
 
 local lua_format = {
-  formatCommand = 'lua-format --indent-width 2 --double-quote-to-single-quote'
+  formatCommand = 'lua-format --double-quote-to-single-quote'
 }
 
 local shellcheck = {
@@ -34,10 +34,9 @@ local prettier_javascript = {formatCommand = 'prettier --single-quote'}
 lsp.efm.setup {
   init_options = {documentFormatting = true, codeAction = false},
   filetypes = {
-    'c', 'cpp', 'javascript', 'typescriptreact', 'sh', 'markdown', 'yaml', 'json', 'html'
+    'c', 'cpp', 'javascript', 'typescriptreact', 'sh', 'markdown', 'yaml', 'json', 'html', 'lua'
     --  'typescript', 
     --  'xml'
-    --  'lua',
     --  'python',
     --  'php',
     -- 'vue',

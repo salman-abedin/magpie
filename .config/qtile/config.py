@@ -43,8 +43,13 @@ keys = [
     #  Key([], "F7", lazy.spawn('setplayer --vol up')),
 
     Key([mod], "backslash", lazy.spawn('setplayer --vol toggle')),
+
     Key([mod], "bracketleft", lazy.spawn('setplayer --vol down')),
     Key([mod], "bracketright", lazy.spawn('setplayer --vol up')),
+
+    Key([mod, 'shift'], "bracketleft", lazy.spawn('setplayer --play prev')),
+    Key([mod, 'shift'], "bracketright", lazy.spawn('setplayer --play next')),
+    Key([mod, 'shift'], "backslash", lazy.spawn('setplayer --play toggle')),
 
     Key([mod], "s", lazy.spawn('record -d')),
     #  Key([mod], "s", lazy.spawn('record -s')),

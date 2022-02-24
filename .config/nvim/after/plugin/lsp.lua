@@ -91,7 +91,7 @@ lsp.perlls.setup{}
 
 local sumneko_root_path = '/mnt/internal/git/upstream/lua-language-server'
 local sumneko_binary =
-    '/mnt/internal/git/upstream/lua-language-server/bin/Linux/lua-language-server'
+    '/mnt/internal/git/upstream/lua-language-server/bin/lua-language-server'
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
@@ -131,8 +131,8 @@ vim.cmd [[
   " autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
-  autocmd FileType sh,python,php,javascript,lua,xml autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{css,html,lua,yaml,yml,md,c,cpp,tsx} silent! lua vim.lsp.buf.formatting()
+  autocmd FileType sh,python,php,javascript,lua,xml,perl autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{css,html,yaml,yml,md,c,cpp,tsx} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
 -- mappings{{{
@@ -155,8 +155,8 @@ map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
 -- }}}
 --  location list{{{
 vim.cmd [[
-  autocmd BufWrite *.{py,php} exec 'lua vim.lsp.diagnostic.set_loclist()' | res 1 | wincmd k
-  autocmd InsertEnter *.{py,php} silent! exec 'lclose'
+  "  autocmd BufWrite *.{py,php} exec 'lua vim.lsp.diagnostic.set_loclist()' | res 1 | wincmd k
+  "  autocmd InsertEnter *.{py,php} silent! exec 'lclose'
 ]]
 -- }}}
 -- theme{{{

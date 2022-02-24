@@ -899,3 +899,5 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 # }}}
+
+alias luamake=/mnt/internal/git/upstream/lua-language-server/3rd/luamake/luamake
