@@ -20,6 +20,9 @@ keys = [
     Key([mod, "mod1"], "l", lazy.layout.grow_right()),
     Key([mod, "mod1"], "h", lazy.layout.grow_left()),
 
+    Key([mod], "period", lazy.layout.swap_column_right()),
+    Key([mod], "comma", lazy.layout.swap_column_left()),
+
     Key([mod], "q", lazy.restart()),
 
     Key([mod], "e", lazy.spawn('insertemoji')),
@@ -51,7 +54,8 @@ keys = [
     Key([mod, 'shift'], "bracketright", lazy.spawn('setplayer --play next')),
     Key([mod, 'shift'], "backslash", lazy.spawn('setplayer --play toggle')),
 
-    Key([mod], "s", lazy.spawn('record -d')),
+    Key([mod], "s", lazy.spawn('lock')),
+    Key([mod, 'shift'], "s", lazy.spawn('record -d')),
     #  Key([mod], "s", lazy.spawn('record -s')),
     #  Key([mod], "f", lazy.spawn('xdotool sleep 0.25 key F11')),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
@@ -118,7 +122,7 @@ groups = [
         label='🧪', 
         matches=[
             Match(wm_class=["terminal.exe"]),
-            Match(wm_class=["VirtualBox Manager"]),
+            #  Match(wm_class=["VirtualBox Manager"]),
         ]
     ),
 ]
@@ -197,8 +201,8 @@ screens = [
 
                 widget.Spacer(bar.STRETCH),
                 widget.Sep(),
-                widget.Volume(fmt='🎧 {}'),
-                widget.Sep(),
+                #  widget.Volume(fmt='🎧 {}'),
+                #  widget.Sep(),
                 widget.GenPollText(update_interval=30, func=lambda: check_output('panel -w'.split()).decode("utf-8")),
                 widget.Sep(),
                 widget.GenPollText(update_interval=60, func=lambda: check_output('panel -b'.split()).decode("utf-8")),

@@ -267,6 +267,7 @@ alias scii="ssh-copy-id -i $GIT/system/magpie-private/.ssh/id_rsa.pub"
 #---------------------------------------
 #               Exp
 #---------------------------------------
+alias mvm="sshfs -p 3022 salman@127.0.0.1:/ /mnt/external"
 
 # #---------------------------------------
 # #              Laravel

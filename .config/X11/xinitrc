@@ -10,8 +10,8 @@
 xset -b &            # Disable PC speaker
 xset r rate 200 30 & # Speed key press delay & reapeat rate
 {
-  xmodmap "$LAYOUT_EN"
-  xcape -e "Super_L=Escape;Mode_switch=Tab"
+	xmodmap "$LAYOUT_EN"
+	xcape -e "Super_L=Escape;Mode_switch=Tab"
 } &                                    # Bind Multi-purpose keys
 xss-lock -n 'backlight -D' -- 'lock' & # Set Dimmer & Locker
 xset s 300 300 &                       # Set Dimmer & Locker Delays
@@ -25,6 +25,7 @@ set-display                            # Switch to external monitor if connected
 xrandr --dpi "$(get-dpi --pixel)"      # Set correct DPI
 lock                                   # Start locked
 
+bluetoothctl power on # Turn bluetooth on
 pipe
 set-bg # Set the last used wallpaper
 alacritty -e tmux a &

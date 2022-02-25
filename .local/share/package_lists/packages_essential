@@ -241,8 +241,8 @@ $ salman-abedin/unipass
 ^ rsync
 # ^ unison
 
-# sshfs
-# inotify-tools
+^ sshfs
+^ inotify-tools
 
 # git-annex
 

@@ -55,7 +55,7 @@ cd ../..
 
 # setup optical drive
 #   using "/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"
-modeprobe vboxdrv
+modprobe vboxdrv
 
 # ╔══════════════════════════════════════════════════════════════════════
 # ║                              Python
@@ -85,12 +85,6 @@ pipx install 'python-lsp-server[all]'
 
 # sudo -n ln -s /etc/runit/sv/virtlogd /run/runit/service
 # # sudo -n sv up virtlogd
-
-# ╔══════════════════════════════════════════════════════════════════════
-# ║                              DSI
-# ╚══════════════════════════════════════════════════════════════════════
-
-echo "10.1.0.26 kb.dsinnovators.com" >> /etc/hosts
 
 # ╔══════════════════════════════════════════════════════════════════════
 # ║                              Bluez

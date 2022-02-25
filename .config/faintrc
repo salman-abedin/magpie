@@ -20,6 +20,7 @@ BORDER=bottom       # rounder | sharp | horizontal | vertical | top | bottom | l
 #===============================================================================
 
 FILTERS="\
+.vscode+;
 node_modules+;
 env;
 __+;
