@@ -3,7 +3,7 @@ if not pcall(require, 'lspconfig') then return end
 local lsp = require 'lspconfig'
 
 local lua_format = {
-  formatCommand = 'lua-format --indent-width 2 --double-quote-to-single-quote'
+  formatCommand = 'lua-format --double-quote-to-single-quote'
 }
 
 local shellcheck = {
@@ -12,7 +12,7 @@ local shellcheck = {
     '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
   }
 }
-local shfmt = {formatCommand = 'shfmt -i 2 -ci -s -sr -bn'}
+local shfmt = {formatCommand = 'shfmt -i 4 -ci -s -sr -bn'}
 local xmllint = {formatCommand = 'xmllint --format -'}
 --  local autopep8 = {formatCommand = 'autopep8 --indent-size=2'}
 local autopep8 = {formatCommand = 'autopep8'}

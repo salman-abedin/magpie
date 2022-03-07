@@ -86,18 +86,12 @@ sudo -n ln -s /etc/runit/sv/virtlogd /run/runit/service
 # sudo -n sv up virtlogd
 
 # ╔══════════════════════════════════════════════════════════════════════
-# ║                              Pipewire
+# ║                              Bluetooth
 # ╚══════════════════════════════════════════════════════════════════════
 
-mkdir /etc/runit/sv/pipewire
-cat << eof1 | tee /etc/runit/sv/pipewire/run
-#!/bin/sh
-/usr/bin/pipewire >/dev/null 2>&1 &
-/usr/bin/sleep 1
-/usr/bin/pipewire-pulse >/dev/null 2>&1 &
-/usr/bin/sleep 1
-/usr/bin/pipewire-media-session >/dev/null 2>&1 &
-eof1
+sudo -n ln -s /etc/runit/sv/bluetoothd /run/runit/service
 
-chmod +x /etc/runit/sv/pipewire/run
-ln -s /etc/runit/sv/pipewire /etc/runit/runsvdir/default
+# ╔════════════════════════════════════════
+# ║                    Perl
+# ╚════════════════════════════════════════
+cpan Perl::LanguageServer

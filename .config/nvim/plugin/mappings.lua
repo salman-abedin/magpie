@@ -40,7 +40,7 @@ map('n', '<leader>R', ':%s//gcI<left><left><left><left>')
 -- saves & quites{{{
 map('n', '<cr>', ':silent! up<cr>')
 map('n', '<leader><cr>', ':silent! exec "up | !compile % &"<cr>')
---  map('n', '<esc>', ':silent! up | qa<cr>')
+map('n', '<esc>', ':silent! up | qa<cr>')
 map('n', '<leader><esc>', ':qa!<cr>')
 -- }}}
 -- auto pairs{{{

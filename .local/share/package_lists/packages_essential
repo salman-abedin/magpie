@@ -45,7 +45,7 @@ $ salman-abedin/faint
 ^ alsa-utils
 
 #  ^ pulseaudio-alsa
-#  ^ pavucontrol
+^ pavucontrol
 
 # pulseeffects
 
@@ -56,6 +56,7 @@ $ salman-abedin/faint
 #  #---------------------------------------
 #  #               Bluetooth
 #  #---------------------------------------
+#  ^ bluez-runit
 #  ^ bluez-utils
 #  ^ pulseaudio-bluetooth
 
@@ -195,8 +196,8 @@ $ salman-abedin/uniblocks
 #              Browser
 #---------------------------------------
 # ^ qutebrowser
-@ brave-bin
-# firefox
+#  @ brave-bin
+firefox
 # falkon
 
 # @ vdhcoapp

@@ -59,12 +59,14 @@ lsp.pylsp.setup {
   --  end
 }
 
-lsp.phpactor.setup {}
+--  lsp.phpactor.setup {}
 
 
-lsp.lemminx.setup{
-    cmd = { "/usr/bin/lemminx" }
-}
+--  lsp.lemminx.setup{
+    --  cmd = { "/usr/bin/lemminx" }
+--  }
+
+lsp.perlls.setup{}
 
 --  lsp.pyright.setup {
 --  on_attach = function(client)
@@ -129,7 +131,7 @@ vim.cmd [[
   " autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
-  autocmd FileType sh,python,php,javascript,lua,xml autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
+  autocmd FileType sh,python,php,javascript,lua,xml,perl autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   autocmd BufWritePre *.{css,html,lua,yaml,yml,md,c,cpp,tsx} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}

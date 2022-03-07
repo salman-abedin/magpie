@@ -352,7 +352,6 @@ alias scii="ssh-copy-id -i $GIT/system/magpie-private/.ssh/id_rsa.pub"
 
 # alias nu="ncu -u"
 
-
 #  ╔════════════════════════════════════════
 #  ║                    Fastboot
 #  ╚════════════════════════════════════════

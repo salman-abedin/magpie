@@ -24,6 +24,7 @@ xsetroot -cursor_name left_ptr &       # Remove the ugly X cursor
 xrandr --dpi "$(get-dpi --pixel)"      # Set correct DPI
 lock                                   # Start locked
 
+pipe   # launches pipewire
 set-bg # Set the last used wallpaper
 alacritty -e tmux a &
 exec $WM # Launch Window Manager
