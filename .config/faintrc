@@ -166,8 +166,9 @@ OPS="\
 🖌  Paste:paste;
 🚚 Move:move;
 📱 Push to Arnie:push_to_arnie;
-⏰ Push to Barry:push_to_barry;
+⏰ Push to Bond:push_to_bond;
 ⏰ Push to GSS:push_to_gss;
+⏰ Push to Lenny:push_to_lenny;
 ⏰ Push to Silvie:push_to_silvie;
 ℹ  Show Size:show_size;
 💊 Choose:launch_choose;
