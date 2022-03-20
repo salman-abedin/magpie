@@ -155,8 +155,8 @@ map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
 -- }}}
 --  location list{{{
 vim.cmd [[
-  autocmd BufWrite *.{py,php} exec 'lua vim.lsp.diagnostic.set_loclist()' | res 1 | wincmd k
-  autocmd InsertEnter *.{py,php} silent! exec 'lclose'
+  "  autocmd BufWrite *.{py,php} exec 'lua vim.lsp.diagnostic.set_loclist()' | res 1 | wincmd k
+  "  autocmd InsertEnter *.{py,php} silent! exec 'lclose'
 ]]
 -- }}}
 -- theme{{{
