@@ -28,10 +28,10 @@ export STATUSBAR="uniblocks -g"
 
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export BROWSER=brave
+export BROWSER=firefox
 export FILE=faint
 export READER=zathura
-export COMPOSITOR=xcompmgr
+export COMPOSITOR=picom
 
 # export MANPAGER="$EDITOR +Man!"
 # export PAGER="$EDITOR -R"
@@ -93,6 +93,8 @@ export ANDROID_EMULATOR_HOME=~/.local/share/android/
 export MOZ_USE_XINPUT2="1" # Smooth Scrolling
 
 export LESS=-R
+
+export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)_RUNTIME_DIR.XXX)
 
 # export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
 # export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"

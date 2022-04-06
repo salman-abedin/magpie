@@ -16,6 +16,8 @@ local shellcheck = {
 }
 local shfmt = {formatCommand = 'shfmt -i 4 -ci -s -sr -bn'}
 local xmllint = {formatCommand = 'xmllint --format -'}
+local tidy = {formatCommand = 'tidy -xml -i -q -'}
+local xmlpp = {formatCommand = 'xml_pp'}
 --  local autopep8 = {formatCommand = 'autopep8 --indent-size=2'}
 local autopep8 = {formatCommand = 'autopep8'}
 --  local black = {formatCommand = 'black'}
@@ -32,14 +34,14 @@ local clang_format = {
 local prettier = {formatCommand = 'prettier'}
 local php_cs_fixer = {formatCommand = 'php-cs-fixer'}
 local prettier_javascript = {formatCommand = 'prettier --single-quote'}
+local prettier_yaml = {formatCommand = 'prettier --tab-width 4'}
 
 lsp.efm.setup {
     init_options = {documentFormatting = true, codeAction = false},
     filetypes = {
         'c', 'cpp', 'javascript', 'typescriptreact', 'sh', 'markdown', 'yaml',
-        'json', 'html', 'lua'
+        'json', 'xml', 'html', 'lua'
         --  'typescript', 
-        --  'xml'
         --  'python',
         --  'php',
         -- 'vue',
@@ -59,11 +61,13 @@ lsp.efm.setup {
             lua = {lua_format},
             markdown = {prettier},
             php = {php_cs_fixer},
-            xml = {xmllint},
+            --  xml = {xmllint},
+            --  xml = {tidy},
+            xml = {xmlpp},
             python = {autopep8},
             --  python = {black},
             --  python = {yapf},
-            --  yaml = {prettier}
+            yaml = {prettier_yaml},
             sh = {shellcheck, shfmt},
             svelte = {prettier_javascript},
             vue = {prettier_javascript}

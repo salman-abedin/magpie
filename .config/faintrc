@@ -84,21 +84,21 @@ nuxt.config.js$;
 #===============================================================================
 
 link_soft() {
-  echo "$FILE_LIST" \
-    | while read -r file; do
-      ln -rs "$file" "$LAST_DIR"
-      # cp -frs "$file" "$LAST_DIR"
-    done
+    echo "$FILE_LIST" \
+        | while read -r file; do
+            ln -rs "$file" "$LAST_DIR"
+            # cp -frs "$file" "$LAST_DIR"
+        done
 }
 link_hard() {
-  echo "$FILE_LIST" \
-    | while read -r file; do
-      cp -frl "$file" "$LAST_DIR"
-    done
+    echo "$FILE_LIST" \
+        | while read -r file; do
+            cp -frl "$file" "$LAST_DIR"
+        done
 }
 tmux_window() {
-  tmux new-window "$EDITOR $FILE_ARGS"
-  # tmux swap-window -d -t :-
+    tmux new-window "$EDITOR $FILE_ARGS"
+    # tmux swap-window -d -t :-
 }
 # own() {
 #   echo "$FILE_ARGS" \
@@ -107,8 +107,8 @@ tmux_window() {
 #     done
 # }
 hulk() {
-  kill -37 "$FAINT_PID"
-  pkill -P "$FAINT_PID"
+    kill -37 "$FAINT_PID"
+    pkill -P "$FAINT_PID"
 }
 upload() { curl -F"file=@$FILE_ARGS" https://0x0.st | xsel -b; }
 push_to_arnie() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
@@ -117,39 +117,39 @@ show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
 launch_choose() { /usr/local/bin/launch -c "$FILE_ARGS" & }
 make_dir() { kill -38 "$FAINT_PID" && pkill -P "$FAINT_PID"; }
 rename() {
-  echo "$FILE_ARGS" > "$FILE_LIST_PATH"
-  kill -39 "$FAINT_PID"
-  pkill -P "$FAINT_PID"
+    echo "$FILE_ARGS" > "$FILE_LIST_PATH"
+    kill -39 "$FAINT_PID"
+    pkill -P "$FAINT_PID"
 }
 duplicate() {
-  echo "$FILE_ARGS" > "$FILE_LIST_PATH"
-  kill -40 "$FAINT_PID"
-  pkill -P "$FAINT_PID"
+    echo "$FILE_ARGS" > "$FILE_LIST_PATH"
+    kill -40 "$FAINT_PID"
+    pkill -P "$FAINT_PID"
 }
 compress() {
 
-  CURRENT=$PWD
-  LOCATION="${FILE_ARGS%/*}"
-  NAME="${FILE_ARGS##*/}"
-  cd "$LOCATION" || exit
-  # tar cfz compressed.tgz --exclude=./compressed.tgz .
-  zip -r "$NAME".zip "$NAME"
-  cd "$CURRENT" || exit
+    CURRENT=$PWD
+    LOCATION="${FILE_ARGS%/*}"
+    NAME="${FILE_ARGS##*/}"
+    cd "$LOCATION" || exit
+    # tar cfz compressed.tgz --exclude=./compressed.tgz .
+    zip -r "$NAME".zip "$NAME"
+    cd "$CURRENT" || exit
 }
 
 encrypt() {
-  echo "$FILE_ARGS" \
-    | while read -r file; do
-      # gpg -esr "salmanabedin@disroot.org" "$file" && rm "$file"
-      gpg -esr "$GPG_MAIL" "$file" && rm "$file"
-    done
+    echo "$FILE_ARGS" \
+        | while read -r file; do
+            # gpg -esr "salmanabedin@disroot.org" "$file" && rm "$file"
+            gpg -esr "$GPG_MAIL" "$file" && rm "$file"
+        done
 }
 decrypt() {
-  echo "$FILE_ARGS" \
-    | while read -r file; do
-      gpg -qd "$file" > "${file%.gpg}"
-      rm "$file"
-    done
+    echo "$FILE_ARGS" \
+        | while read -r file; do
+            gpg -qd "$file" > "${file%.gpg}"
+            rm "$file"
+        done
 }
 
 # rename() {
@@ -167,10 +167,8 @@ OPS="\
 🖌  Paste:paste;
 🚚 Move:move;
 📱 Push to Arnie:push_to_arnie;
-⏰ Push to Barry:push_to_barry;
-⏰ Push to Cathy:push_to_cathy;
+⏰ Push to Lenny:push_to_lenny;
 ⏰ Push to GSS:push_to_gss;
-⏰ Push to Silvie:push_to_silvie;
 ℹ  Show Size:show_size;
 💊 Choose:launch_choose;
 📁 New Directory:make_dir;
@@ -208,5 +206,5 @@ ts|js:🎮;
 "
 
 execute() {
-  /usr/local/bin/launch -f "$*"
+    /usr/local/bin/launch -f "$*"
 }

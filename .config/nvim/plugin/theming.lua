@@ -1,9 +1,8 @@
 --  vim.o.bg = 'light'
-
 vim.cmd [[
 
-"  autocmd VimEnter * highlight clear CursorLine
-"  autocmd VimEnter * highlight CursorLine gui=underline
+autocmd VimEnter * highlight clear CursorLine
+autocmd VimEnter * highlight CursorLine gui=underline
 
 autocmd VimEnter * highlight Normal       guibg=NONE
 autocmd VimEnter * highlight SignColumn   guibg=NONE
@@ -16,8 +15,8 @@ autocmd VimEnter * highlight Visual       guibg=NONE guifg=yellow gui=bold
 autocmd VimEnter * highlight QuickFixLine guibg=NONE gui=bold
 autocmd VimEnter * highlight SpellBad     guibg=NONE guifg=red gui=bold
 
-"  autocmd InsertEnter * set nocursorline
-"  autocmd InsertLeave * set cursorline
+autocmd InsertEnter * set nocursorline
+autocmd InsertLeave * set cursorline
 
 ]]
 

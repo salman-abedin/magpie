@@ -13,7 +13,9 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 -- }}}
 
-if not pcall(require, 'packer') then return end
+if not pcall(require, 'packer') then
+    return
+end
 
 require('impatient')
 
@@ -34,9 +36,22 @@ require('packer').startup(function()
     --  config = 'vim.cmd[[colorscheme OceanicNext]]'
     --  }
 
+    --  use {'Th3Whit3Wolf/one-nvim', config = 'vim.cmd[[colorscheme one-nvim]]'}
+
+    --  use {
+    --  'tanvirtin/monokai.nvim',
+    --  --  config = 'require(\'monokai\').setup {}'
+    --  config = 'require(\'monokai\').setup { palette = require(\'monokai\').pro  }'
+    --  }
+
     --  use {
     --  'NLKNguyen/papercolor-theme',
     --  config = 'vim.cmd[[colorscheme PaperColor]]'
+    --  }
+
+    --  use {
+    --  'luisiacc/gruvbox-baby',
+    --  config = 'vim.cmd[[colorscheme gruvbox-baby]]'
     --  }
 
     -- treesitter
@@ -131,10 +146,9 @@ require('packer').startup(function()
     --  use 'norcalli/nvim-base16.lua'
     --  local base16 = require 'base16'
     --  local one_dark = base16.theme_from_array {
-    --  '282C34', 'E06C75', '98C379', 'E5C07B',
-    --  '61AFEF', 'C678DD', '56B6C2', 'ABB2BF',
-    --  '282C34', 'E06C75', '98C379', 'E5C07B',
-    --  '61AFEF', 'C678DD', '56B6C2', 'ABB2BF'
+    --  '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD', '56B6C2',
+    --  'ABB2BF', '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD',
+    --  '56B6C2', 'ABB2BF'
     --  }
     --  base16(one_dark, true)
 
@@ -146,11 +160,6 @@ require('packer').startup(function()
     --  use {
     --  'sainnhe/edge',
     --  config = 'vim.cmd[[colorscheme edge]]'
-    --  }
-
-    --  use {
-    --  'Th3Whit3Wolf/one-nvim',
-    --  config = 'vim.cmd[[colorscheme one-nvim]]'
     --  }
 
     --  use {
@@ -175,14 +184,7 @@ require('packer').startup(function()
     -- use 'Th3Whit3Wolf/space-nvim'
     -- vim.cmd('colorscheme space-nvim')
 
-    -- use 'sainnhe/sonokai'
-    -- vim.cmd('colorscheme sonokai')
-
-    --  use 'tanvirtin/monokai.nvim'
-    -- vim.cmd('colorscheme monokai')
-
-    -- use 'Th3Whit3Wolf/one-nvim'
-    -- vim.cmd('colorscheme one-nvim')
+    --  use {'sainnhe/sonokai', config = 'vim.cmd[[colorscheme sonokai]]'}
 
     -- use 'sainnhe/edge'
     -- vim.cmd('colorscheme edge')

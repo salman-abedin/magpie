@@ -268,6 +268,8 @@ alias scii="ssh-copy-id -i $GIT/system/magpie-private/.ssh/id_rsa.pub"
 #               Exp
 #---------------------------------------
 alias mvm="sshfs -p 3022 salman@127.0.0.1:/ /mnt/external"
+alias mle="sshfs -p 717 root@45.118.133.235:/root /mnt/external"
+alias ue="umount /mnt/external"
 
 # #---------------------------------------
 # #              Laravel
@@ -514,9 +516,9 @@ dy(){
   mv /mnt/internal/git/work/yy_ventures/dist/dist.zip /mnt/internal/downloads
 }
 
-# skp(){
-  # ssh-keygen -t rsa -q -b 4096 -f /tmp/key -N '' && cat /tmp/key | xsel -b
-# }
+#  skp(){
+  #  ssh-keygen -t rsa -q -b 4096 -f /tmp/key -N '' && cat /tmp/key | xsel -b
+#  }
 
 #---------------------------------------
 #               Exp
@@ -538,8 +540,9 @@ sk(){
   LOCATION=$PWD
   cd /tmp
   rm key key.pub
-  ssh-keygen -t rsa -f key -q -N '' && cat key | xsel -b
-  ssh-copy-id -i key.pub "$1"
+  #  ssh-keygen -t rsa -f key -q -N '' && cat key | xsel -b
+  ssh-keygen -t rsa -f key -q -N '' && cat key.pub | xsel -b
+  #  ssh-copy-id -i key.pub "$1"
   cd $LOCATION
 }
 

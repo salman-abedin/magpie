@@ -1,4 +1,6 @@
-if not pcall(require, 'lspconfig') then return end
+if not pcall(require, 'lspconfig') then
+    return
+end
 local map = require('map')
 
 -- config{{{
@@ -8,64 +10,63 @@ local map = require('map')
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      --  see: ":help vim.lsp.diagnostic.set_signs()"
-      --  virtual_text = false
-      -- update_in_insert = true
-      -- signs = false
+        --  see: ":help vim.lsp.diagnostic.set_signs()"
+        --  virtual_text = false
+        -- update_in_insert = true
+        -- signs = false
     })
 
 local lsp = require 'lspconfig'
 
 lsp.bashls.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+    end
 }
 
 lsp.clangd.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+    end
 }
 
 lsp.tsserver.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+    end
 }
 
 lsp.html.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+    end
 }
 lsp.cssls.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end,
-  filetypes = {'css', 'sass'},
-  settings = {sass = {validate = true}}
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+    end,
+    filetypes = {'css', 'sass'},
+    settings = {sass = {validate = true}}
 }
 
 --  lsp.stylelint_lsp.setup {
-  --  on_attach = function(client)
-    --  client.resolved_capabilities.document_formatting = false
-  --  end
+--  on_attach = function(client)
+--  client.resolved_capabilities.document_formatting = false
+--  end
 --  }
 
 lsp.pylsp.setup {
-  --  on_attach = function(client)
-  --  client.resolved_capabilities.document_formatting = false
-  --  end
+    --  on_attach = function(client)
+    --  client.resolved_capabilities.document_formatting = false
+    --  end
 }
 
-lsp.perlls.setup{}
+lsp.perlls.setup {}
 
 --  lsp.phpactor.setup {}
 
-
 --  lsp.lemminx.setup{
-    --  cmd = { "/usr/bin/lemminx" }
+--  cmd = { "/usr/bin/lemminx" }
 --  }
 
 --  lsp.pyright.setup {
@@ -98,27 +99,27 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 require'lspconfig'.sumneko_lua.setup {
-  cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'},
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'}
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true)
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {enable = false}
+    cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'},
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+                -- Setup your lua path
+                path = runtime_path
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'}
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file('', true)
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {enable = false}
+        }
     }
-  }
 }
 
 -- }}}
@@ -131,8 +132,8 @@ vim.cmd [[
   " autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
-  autocmd FileType sh,python,php,javascript,lua,xml,perl autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{css,html,yaml,yml,md,c,cpp,tsx} silent! lua vim.lsp.buf.formatting()
+  autocmd FileType sh,python,php,javascript,lua,perl autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{css,html,yaml,yml,md,c,cpp,tsx,xml} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
 -- mappings{{{

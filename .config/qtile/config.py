@@ -25,6 +25,7 @@ keys = [
 
     Key([mod], "q", lazy.restart()),
 
+    Key([mod], "a", lazy.spawn('blue -m')),
     Key([mod], "e", lazy.spawn('insertemoji')),
     Key([mod], "i", lazy.spawn('unipass fetch')),
     Key([mod, 'shift'], "i", lazy.spawn('unipass add')),
@@ -169,6 +170,7 @@ widget_defaults = dict(
     #  foreground='#000000',
     #  foreground='#abb2bf',
     foreground='#dfbf8e',  # gruvbox
+    #  foreground='#abb2bf',  # One Dark
 )
 extension_defaults = widget_defaults.copy()
 

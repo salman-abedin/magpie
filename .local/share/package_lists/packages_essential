@@ -49,7 +49,6 @@ $ salman-abedin/faint
 
 ^ pavucontrol
 
-
 ^ pipewire
 ^ pipewire-alsa
 ^ pipewire-pulse
@@ -112,10 +111,10 @@ $ salman-abedin/uniblocks
 #              Compositor
 #---------------------------------------
 
-^ xcompmgr
+#  ^ xcompmgr
 # @ transset-df
 
-# @ picom-jonaburg-git
+@ picom-jonaburg-git
 # @ compton-tryone-git
 # picom
 
@@ -152,7 +151,7 @@ $ salman-abedin/uniblocks
 #---------------------------------------
 # Emojis & Glyphs
 #---------------------------------------
-# ^ noto-fonts-emoji
+^ noto-fonts-emoji
 # ^ ttf-font-awesome
 
 ^ ttf-joypixels
@@ -213,7 +212,7 @@ $ salman-abedin/unipass
 #              Reader
 #---------------------------------------
 
-# @ masterpdfeditor-free
+@ masterpdfeditor-free
 # @ foxitreader
 
 ^ zathura
