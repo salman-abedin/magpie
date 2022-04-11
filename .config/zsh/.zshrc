@@ -270,6 +270,7 @@ alias scii="ssh-copy-id -i $GIT/system/magpie-private/.ssh/id_rsa.pub"
 alias mvm="sshfs -p 3022 salman@127.0.0.1:/ /mnt/external"
 alias mle="sshfs -p 717 root@45.118.133.235:/root /mnt/external"
 alias ue="umount /mnt/external"
+alias ta="tmux attach || tmux"
 
 # #---------------------------------------
 # #              Laravel
@@ -294,9 +295,6 @@ alias ue="umount /mnt/external"
 # alias pamr="pa migrate:rollback"
 
 
-# # tmux
-# alias ta="tmux attach || tmux"
-# alias tl="tmux ls"
 
 # # XBPS
 # alias

@@ -6,16 +6,16 @@ echo "User Name?: "
 read -r user_name
 
 grep "^\^" .local/share/package_lists/packages_dev \
-	| sed "s/\^ //" \
-	| pacman -S --needed --noconfirm -
+    | sed "s/\^ //" \
+    | pacman -S --needed --noconfirm -
 
 grep "^@" .local/share/package_lists/packages_dev \
-	| sed "s/@ //" \
-	| sudo -u "$user_name" paru -S --needed --noconfirm -
+    | sed "s/@ //" \
+    | sudo -u "$user_name" paru -S --needed --noconfirm -
 
 grep "^n " .local/share/package_lists/packages_dev \
-	| sed "s/n //" \
-	| xargs sudo -u "$user_name" yarn global add
+    | sed "s/n //" \
+    | xargs sudo -u "$user_name" yarn global add
 
 # printf "Repository Path? "
 # read -r path_repo
@@ -85,9 +85,3 @@ pipx install 'python-lsp-server[all]'
 
 # sudo -n ln -s /etc/runit/sv/virtlogd /run/runit/service
 # # sudo -n sv up virtlogd
-
-# ╔══════════════════════════════════════════════════════════════════════
-# ║                              Bluez
-# ╚══════════════════════════════════════════════════════════════════════
-
-sudo -n ln -s /etc/runit/sv/bluetoothd /run/runit/service

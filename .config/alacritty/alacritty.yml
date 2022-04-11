@@ -17,7 +17,7 @@ font:
     # bold_italic:
     #   family: monospace
     #   style: Bold Italic
-    size: 14.0
+    size: 15.0
     # offset:
     # x: 0
     # y: 5
@@ -33,9 +33,7 @@ key_bindings:
     # - { key: Return, mods: Control, action: SpawnNewInstance }
 
 window:
-    #  opacity: 1.00
-    opacity: 0.90
-    #  opacity: 0.75
+    opacity: 0.85
     padding:
         x: 25
         y: 25

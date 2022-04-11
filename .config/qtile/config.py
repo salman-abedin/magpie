@@ -25,7 +25,7 @@ keys = [
 
     Key([mod], "q", lazy.restart()),
 
-    Key([mod], "a", lazy.spawn('blue -m')),
+    Key([mod], "apostrophe", lazy.spawn('blue -m')),
     Key([mod], "e", lazy.spawn('insertemoji')),
     Key([mod], "i", lazy.spawn('unipass fetch')),
     Key([mod, 'shift'], "i", lazy.spawn('unipass add')),

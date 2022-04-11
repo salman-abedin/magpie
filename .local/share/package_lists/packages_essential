@@ -133,7 +133,7 @@ $ salman-abedin/uniblocks
 #---------------------------------------
 ^ ttf-jetbrains-mono
 # ttf-roboto-mono
-# @ nerd-fonts-sf-mono
+#  @ nerd-fonts-sf-mono
 # ttf-dejavu
 # @ nerd-fonts-iosevka
 # ttf-cascadia-code
