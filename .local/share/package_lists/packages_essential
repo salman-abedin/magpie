@@ -179,7 +179,7 @@ $ salman-abedin/uniblocks
 ^ ncmpcpp
 ^ youtube-dl
 @ nuclear-player-bin
-# @ spotify
+@ spotify
 # @ spotify_dl
 # @ spicetify-cli
 
@@ -325,6 +325,12 @@ $ salman-abedin/unipass
 #              scripts
 #---------------------------------------
 $ salman-abedin/alfred
+
+#---------------------------------------
+#              encryption
+#---------------------------------------
+^ encfs
+^ pam_mount
 
 #---------------------------------------
 #               Misc
