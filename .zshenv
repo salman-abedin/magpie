@@ -6,7 +6,7 @@
 #===============================================================================
 #                              Sources
 #===============================================================================
-[ -L ~/.private ] && . ~/.private
+. ~/.private 2> /dev/null
 # }}}
 # paths{{{
 #===============================================================================
@@ -66,6 +66,16 @@ export LAYOUT_BN=~/.config/X11/xmodmap-bn
 
 export GPG_MAIL=salmanabedin@disroot.org
 # }}}
+# server stuff{{{
+#===============================================================================
+#                             Server Stuff
+#===============================================================================
+
+export TERM=linux
+export PATH=$PATH:~/.local/share/miniconda/bin
+export PATH=$PATH:~/.local/share/nvim-linux64/bin
+
+# }}}
 # housekeeping{{{
 #===============================================================================
 #                             Housekeeping
@@ -111,8 +121,13 @@ export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)_RUNTIME_DIR.XXX)
 #                         Auto Start X on TTY1
 #===============================================================================
 
-[ "$(fgconsole 2> /dev/null)" = 1 ] &&
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
    exec startx ~/.config/X11/xinitrc -- vt1 > /dev/null 2>&1
+fi
+
+#  [ "$(fgconsole 2> /dev/null)" = 1 ] &&
+   #  exec startx ~/.config/X11/xinitrc -- vt1 > /dev/null 2>&1
+
 # }}}
 # escape swap{{{
 #===============================================================================

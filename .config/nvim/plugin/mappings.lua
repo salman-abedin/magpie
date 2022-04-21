@@ -39,13 +39,14 @@ map('n', '<leader>R', ':%s//gcI<left><left><left><left>')
 -- }}}
 -- saves & quites{{{
 map('n', '<cr>', ':silent! up<cr>')
-map('n', '<leader><cr>', ':silent! exec "up | !compile % &"<cr>')
+--  map('n', '<leader><cr>', ':silent! exec "up | !compile % &"<cr>')
+map('n', '<leader><cr>', ':silent! w !sudo tee %<cr>')
 map('n', '<esc>', ':silent! up | qa<cr>')
 map('n', '<leader><esc>', ':qa!<cr>')
 -- }}}
 -- auto pairs{{{
 ------------------------------------------------
--- -                   Auto Pairs 
+-- -                   Auto Pairs
 ------------------------------------------------
 map('i', '\'i', '\'\'<left>')
 map('i', '"i', '""<left>')
@@ -122,7 +123,7 @@ map('n', '<leader>q', 'q:i!git add -A && git commit -m ""<esc>i<c-c>')
 -- }}}
 -- exp{{{
 -- ===========================================================================
--- =                             Exp 
+-- =                             Exp
 -- ===========================================================================
 
 -- saves & quites{{{

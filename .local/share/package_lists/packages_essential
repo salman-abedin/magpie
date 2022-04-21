@@ -112,12 +112,11 @@ $ salman-abedin/uniblocks
 #              Compositor
 #---------------------------------------
 
-^ xcompmgr
+#  ^ xcompmgr
 # @ transset-df
 
-# @ picom-jonaburg-git
-# @ compton-tryone-git
-# picom
+#  @ picom-jonaburg-git
+# ^ picom
 
 #---------------------------------------
 #              Sans & Serif Fonts

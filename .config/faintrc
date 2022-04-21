@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ~/.config/faintrc_private
+[ -f ~/.config/faintrc_private ] && . ~/.config/faintrc_private
 
 #===============================================================================
 #                             Default Settings

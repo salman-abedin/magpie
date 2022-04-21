@@ -36,7 +36,7 @@ key_bindings:
 
 window:
   opacity: 1.00
-  #  opacity: 0.80
+  #  opacity: 0.90
   padding:
     x: 25
     y: 25

@@ -91,7 +91,7 @@ lsp.perlls.setup{}
 
 local sumneko_root_path = '/mnt/internal/git/upstream/lua-language-server'
 local sumneko_binary =
-    '/mnt/internal/git/upstream/lua-language-server/bin/Linux/lua-language-server'
+    '/mnt/internal/git/upstream/lua-language-server/bin/lua-language-server'
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
