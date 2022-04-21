@@ -13,6 +13,8 @@ autocmd BufWritePost tmux.conf silent !tmux source ~/.config/tmux/tmux.conf
 autocmd BufWritePost */qtile/config.py silent !xdotool key super+q
 autocmd BufWritePost *.dfa silent !xdotool key super+l key alt+f+1 key super+l
 
+autocmd BufWritePost .{bash,input,vim}rc silent !for server in jump:~ rht:~; do scp % $server &; done
+
 ]]
 
 -- utils.vimscript [[

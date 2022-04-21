@@ -104,7 +104,7 @@ alias pQs="pacman -Qs"
 #               Neovim
 #---------------------------------------
 
-alias nn="nvim +'cd /mnt/internal/git/daily/notes | Telescope find_files'"
+alias nn="nvim +'cd /mnt/decrypted/git/notes | Telescope find_files'"
 alias nc="nvim +'cd /mnt/internal/git/system/magpie/.config/nvim | Telescope find_files'"
 alias nd="nvim +'cd /mnt/internal/git/system/magpie/.config | Telescope find_files'"
 alias nz="nvim ~/.config/zsh/.zshrc"
@@ -271,6 +271,8 @@ alias mvm="sshfs -p 3022 salman@127.0.0.1:/ /mnt/external"
 alias mle="sshfs -p 717 root@45.118.133.235:/root /mnt/external"
 alias ue="umount /mnt/external"
 alias ta="tmux attach || tmux"
+#  alias luamake=/mnt/internal/git/upstream/lua-language-server/3rd/luamake/luamake
+alias fu="fusermount -u"
 
 # #---------------------------------------
 # #              Laravel
@@ -902,4 +904,3 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 # fi
 # }}}
 
-alias luamake=/mnt/internal/git/upstream/lua-language-server/3rd/luamake/luamake
