@@ -141,18 +141,24 @@ vim.cmd [[
 -- =                             Mappings 
 -- ===========================================================================
 
-map('n', '<leader>w', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
-map('n', '<leader>W', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+--  map('n', '<leader>w', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+--  map('n', '<leader>W', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
 
-map('n', '<leader>l', ':silent! lnext<cr>')
-map('n', '<leader>h', ':silent! lprev<cr>')
+--  map('n', '<leader>l', ':silent! lnext<cr>')
+--  map('n', '<leader>h', ':silent! lprev<cr>')
 
--- map('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>')
+--  map('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>')
 
-map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-map('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-map('n', '<leader>gR', '<cmd>lua vim.lsp.buf.rename()<cr>')
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+map('n', 'gj', '<cmd>cnext<cr>')
+map('n', 'gk', '<cmd>cprev<cr>')
+
+map('n', 'gh', '<cmd>cclose<cr>')
+--  map('n', 'gh', '`j')
+
 map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
+--  map('n', '<leader>gR', '<cmd>lua vim.lsp.buf.rename()<cr>')
 -- }}}
 --  location list{{{
 vim.cmd [[

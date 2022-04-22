@@ -124,8 +124,8 @@
 #---------------------------------------
 #              Devops
 #---------------------------------------
-# docker
-# docker-compose
+^ docker-runit
+^ docker-compose
 
 # aws-cli
 

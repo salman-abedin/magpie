@@ -17,8 +17,6 @@ if not pcall(require, 'packer') then
     return
 end
 
-require('impatient')
-
 require('packer').startup(function()
 
     -- essentials{{{

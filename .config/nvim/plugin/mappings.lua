@@ -39,7 +39,8 @@ map('n', '<leader>R', ':%s//gcI<left><left><left><left>')
 -- }}}
 -- saves & quites{{{
 map('n', '<cr>', ':silent! up<cr>')
-map('n', '<leader><cr>', ':silent! exec "up | !compile % &"<cr>')
+--  map('n', '<leader><cr>', ':silent! exec "up | !compile % &"<cr>')
+map('n', '<leader><cr>', ':silent! w !sudo tee %<cr>')
 map('n', '<esc>', ':silent! up | qa<cr>')
 map('n', '<leader><esc>', ':qa!<cr>')
 -- }}}
@@ -78,10 +79,12 @@ map('i', '""o', '"""<cr>"""<esc>O')
 --  map('i', ',bm', '<esc>050i-<esc>:Comment<cr>yypO-<esc>:Comment<cr>20A <esc>i')
 --  map('i', ',bs', '<esc>025i.<esc>:Comment<cr>yypO.<esc>:Comment<cr>10A <esc>i')
 
-map('i', ',bl', '╔<esc>70a═<esc>:Comment<cr>o╚<esc>70a═<esc>:Comment<cr>O║<esc>:Comment<cr>30A <esc>a')
-map('i', ',bm', '╔<esc>40a═<esc>:Comment<cr>o╚<esc>40a═<esc>:Comment<cr>O║<esc>:Comment<cr>20A <esc>a')
-map('i', ',bs', '╔<esc>20a═<esc>:Comment<cr>o╚<esc>20a═<esc>:Comment<cr>O║<esc>:Comment<cr>A ')
-
+map('i', ',bl',
+    '╔<esc>70a═<esc>:Comment<cr>o╚<esc>70a═<esc>:Comment<cr>O║<esc>:Comment<cr>30A <esc>a')
+map('i', ',bm',
+    '╔<esc>40a═<esc>:Comment<cr>o╚<esc>40a═<esc>:Comment<cr>O║<esc>:Comment<cr>20A <esc>a')
+map('i', ',bs',
+    '╔<esc>20a═<esc>:Comment<cr>o╚<esc>20a═<esc>:Comment<cr>O║<esc>:Comment<cr>A ')
 
 -- }}}
 -- keep stuff centered{{{
@@ -106,10 +109,12 @@ map('v', '<leader><c-j>', ':m \'>+1<cr>gv=gv')
 map('v', '<leader><c-k>', ':m \'<-2<cr>gv=gv')
 -- }}}
 -- quickfixlist & buffer management{{{
+
 map('n', '<tab>', ':silent! execute "bp | copen | cn | cc | cclose"<cr>')
 map('n', '<s-tab>', ':silent! execute "bn | copen | cp | cc | cclose"<cr>')
 map('n', '<leader><tab>', ':silent! execute "bd | cclose')
 map('n', '<leader>r', 'q:icfdo %s//gcI | up<esc>F/i<c-c>')
+
 -- }}}
 -- spellings{{{
 map('n', '<leader>c', '1z=')
