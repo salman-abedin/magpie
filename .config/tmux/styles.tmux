@@ -12,9 +12,8 @@ set -g status-left-length 30
 
 # set-option -g status-left '💻 #[fg=magenta]#S                    '
 # set -g status-right '                                #(date +"🕰  %H:%M")'
-set-option -g status-left '💻 #[fg=magenta]#S '
+set-option -g status-left '📙 #[fg=magenta]#S '
 set -g status-right ''
-
 
 #---------------------------------------
 #               Pane

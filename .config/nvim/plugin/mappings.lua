@@ -127,7 +127,7 @@ map('n', '<leader>q', 'q:i!git add -A && git commit -m ""<esc>i<c-c>')
 -- }}}
 -- exp{{{
 -- ===========================================================================
--- =                             Exp 
+-- =                             Exp
 -- ===========================================================================
 
 -- saves & quites{{{
@@ -141,7 +141,11 @@ map('n', '<leader>q', 'q:i!git add -A && git commit -m ""<esc>i<c-c>')
 -- map('n', '<leader><tab>', '<cmd>cclose<cr>')
 -- }}}
 
+map('n', '<leader>n', ':set rnu!<cr>')
+
 -- map('n', '<leader>h', '<c-o>')
+-- map('n', '<leader>l', '<c-i>')
+
 -- map('n', '<leader>l', '<c-i>')
 
 -- joins

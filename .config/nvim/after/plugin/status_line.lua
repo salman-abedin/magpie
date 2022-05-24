@@ -1,45 +1,97 @@
-if not pcall(require, 'el') then return end
+if not pcall(require, 'lualine') then return end
 
-local generator = function()
-  local extensions = require('el.extensions')
-  local subscribe = require('el.subscribe')
-  local segments = {}
+--  colors{{{
+local gruvbox_material_custom = require'lualine.themes.gruvbox-material'
 
-  table.insert(segments, '%#rainbowcol4#') -- set color
+--  local background_color = nil
+local background_color = '#282828'
+--  local background_color = '#665c54'
 
-  table.insert(segments, '📁 %f') -- filename
+local foreground_color = '#dfbf8e'
+--  local foreground_color = '#111111'
 
-  table.insert(segments, '%=') -- go to right
+gruvbox_material_custom.normal.a.bg = '#222222'
+gruvbox_material_custom.normal.b.bg = '#333333'
+gruvbox_material_custom.normal.c.bg = '#444444'
 
-  table.insert(segments,
-               subscribe.buf_autocmd('el_git_branch', 'BufEnter',
-                                     function(window, buffer)
-    local branch = extensions.git_branch(window, buffer)
-    if branch then return '🌴 ' .. branch end
-  end))
+gruvbox_material_custom.insert.a.bg = '#222222'
+gruvbox_material_custom.insert.b.bg = '#333333'
+gruvbox_material_custom.insert.c.bg = '#444444'
 
-  table.insert(segments,
-               subscribe.buf_autocmd('el_git_status', 'BufWritePost',
-                                     function(window, buffer)
-    local changes = extensions.git_changes(window, buffer)
-    if changes then return ' 🔧 ' .. changes end
-  end))
+gruvbox_material_custom.visual.a.bg = '#222222'
+gruvbox_material_custom.visual.b.bg = '#333333'
+gruvbox_material_custom.visual.c.bg = '#444444'
 
-  -- table.insert(segments, '📖 %L') -- total lines count
+gruvbox_material_custom.command.a.bg = '#222222'
+gruvbox_material_custom.command.b.bg = '#333333'
+gruvbox_material_custom.command.c.bg = '#444444'
 
-  -- table.insert(segments,
-  -- subscribe.buf_autocmd('el_file_icon', 'BufRead',
-  -- function(_, buffer)
-  -- return extensions.file_icon(_, buffer)
-  -- end))
+gruvbox_material_custom.normal.a.fg = foreground_color
+gruvbox_material_custom.normal.b.fg = foreground_color
+gruvbox_material_custom.normal.c.fg = foreground_color
 
-  -- table.insert(segments, ' | ') -- seperator
-  -- table.insert(segments, '🍨 %{&filetype}') -- filetype
+gruvbox_material_custom.insert.a.fg = foreground_color
+gruvbox_material_custom.insert.b.fg = foreground_color
+gruvbox_material_custom.insert.c.fg = foreground_color
 
-  -- table.insert(segments, ' | ') -- seperator
-  -- table.insert(segments, '🎁 %{&fileencoding?&fileencoding:&encoding}') -- encoding
+gruvbox_material_custom.visual.a.fg = foreground_color
+gruvbox_material_custom.visual.b.fg = foreground_color
+gruvbox_material_custom.visual.c.fg = foreground_color
 
-  return segments
+gruvbox_material_custom.command.a.fg =foreground_color
+gruvbox_material_custom.command.b.fg =foreground_color
+gruvbox_material_custom.command.c.fg =foreground_color
+
+vim.cmd [[
+autocmd VimEnter * highlight DiagnosticLualineError guibg=#444444 guifg=red
+autocmd VimEnter * highlight DiagnosticLualineWarn guibg=#444444 guifg=yellow
+autocmd VimEnter * highlight DiagnosticLualineHint guibg=#444444 guifg=orange
+autocmd VimEnter * highlight DiagnosticLualineInfo guibg=#444444 guifg=green
+]]
+
+-- }}}
+--  functions{{{
+local function total_lines() return ' ' .. vim.api.nvim_buf_line_count(0) end
+local function machine()
+    local cmd_user = io.popen('echo $USER')
+    local user = string.gsub(cmd_user:read('*a'), '\n', '')
+    cmd_user:close()
+
+    local cmd_host = io.popen('cat /proc/sys/kernel/hostname')
+    local host = string.gsub(cmd_host:read('*a'), '\n', '')
+    cmd_host:close()
+
+    return ' ' .. user .. '  ' .. host
 end
+-- }}}
 
-require('el').setup {generator = generator}
+require('lualine').setup {
+  options = { theme = gruvbox_material_custom},
+  sections = {
+    lualine_a = {{machine}},
+    lualine_b = {{'branch'}},
+    lualine_c = {{'filename', icon = {''}}},
+    lualine_x = {
+        {
+            'diagnostics',
+            diagnostics_color = {
+                error = 'DiagnosticLualineError',
+                warn  = 'DiagnosticLualineWarn',
+                info  = 'DiagnosticLualineInfo',
+                hint  = 'DiagnosticLualineHint',
+            },
+            symbols = {error = ' ', warn = '! ', info = ' ', hint = ' '},
+        }
+    },
+    lualine_y = {{total_lines}},
+    lualine_z = {{'filetype', fmt = function(str) return ' ' .. str end}},
+  },
+}
+
+--  ╔══════════════════════════════════════════════════════════════════════
+--  ║                              Exp
+--  ╚══════════════════════════════════════════════════════════════════════
+
+--  local function file_name()
+    --  return ' ' .. string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd() .. '/', '')
+--  end

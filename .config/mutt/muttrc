@@ -43,7 +43,7 @@ set postponed = +Drafts
 
 set sig_on_top # Puts signature on top
 
-# mailboxes       = +INBOX +Drafts
+mailboxes       = +INBOX +Drafts
 # set imap_check_subscribed
 # set folder = "~/.local/share/mail/"
 # }}}
@@ -125,12 +125,13 @@ set index_format="%Z %-25.25L | %-75.75s | %{%H:%M,%a,%d-%b}"
 #              Sidebar
 #---------------------------------------
 
-# unset sidebar_visible
-# set sidebar_width = 20
-# set sidebar_short_path
-# set sidebar_next_new_wrap
-# set mail_check_stats
-# set sidebar_format = "%B%?F? [%F]?%* %?N?%N/? %?S?%S?"
+#  unset sidebar_visible
+set sidebar_visible
+set sidebar_width = 15
+#  set sidebar_short_path
+#  set sidebar_next_new_wrap
+#  set mail_check_stats
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%?S?%S?"
 
 #---------------------------------------
 #               Exp
@@ -261,12 +262,12 @@ bind index,pager R group-reply
 # macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search term to find with notmuch: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;s/\^id:// for@a;$,=\"|\";print@a' | perl -le '@a=<>; chomp@a; s/\\+/\\\\+/ for@a;print@a' \`\"<enter>" "show only messages matching a notmuch pattern"
 
 # # Sidebar
-# bind index,pager \Ch sidebar-toggle-visible
-# bind index,pager \Ck sidebar-prev
-# bind index,pager \Cj sidebar-next
-# bind index,pager \Cl sidebar-open
-# bind index,pager \CN sidebar-prev-new
-# bind index,pager \Cn sidebar-next-new
+bind index,pager b sidebar-toggle-visible
+#  bind index,pager w sidebar-prev
+#  bind index,pager e sidebar-next
+#  bind index,pager w sidebar-open
+#  bind index,pager e sidebar-prev-new
+#  bind index,pager w sidebar-next-new
 # }}}
 # colors{{{
 #===============================================================================

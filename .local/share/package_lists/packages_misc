@@ -11,7 +11,6 @@
 ^ screenkey
 ^ calibre
 ^ gcr
-@ sc-im
 ^ net-tools
 ^ linux-zen-headers
 @ droidcam
@@ -46,7 +45,6 @@
 # code
 # incron
 # @ drive
-# libreoffice-still
 # @ toilet
 # lsd
 # neofetch

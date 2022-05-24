@@ -38,9 +38,9 @@ vim.g.indent_blankline_use_treesitter = true
 -- vim.g.indent_blankline_char = '┊'
 -- vim.g.indent_blankline_enabled = false
 
--- if pcall(require, 'colorizer') then
--- require'colorizer'.setup {'sass', 'svelte', 'vue', 'css', 'scss'}
--- end
+if pcall(require, 'colorizer') then
+    require'colorizer'.setup {'sass', 'svelte', 'vue', 'css', 'scss', 'yaml'}
+end
 
 -- if pcall(require, 'nvim-web-devicons') then
 -- require'nvim-web-devicons'.setup {

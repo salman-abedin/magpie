@@ -50,7 +50,7 @@ require('nvim-biscuits').setup {
 }
 
 -- Enable treesitter folding
-vim.cmd [[
-autocmd FileType sh,c,cpp,vue setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
-]]
+--  vim.cmd [[
+--  " autocmd FileType sh,c,cpp,vue setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+--  ]]
 

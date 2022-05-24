@@ -85,6 +85,8 @@ require('packer').startup(function()
 
     use 'lewis6991/impatient.nvim'
 
+    use 'nvim-lualine/lualine.nvim'
+
     -- }}}
     -- misc{{{
     ------------------------------------------------
@@ -95,10 +97,7 @@ require('packer').startup(function()
         ft = {'html', 'svelte', 'astro', 'vue', 'typescriptreact'}
     }
     use {'lukas-reineke/indent-blankline.nvim', ft = {'pug', 'python', 'mql4'}}
-    use {
-        'norcalli/nvim-colorizer.lua',
-        ft = {'sass', 'svelte', 'vue', 'css', 'scss'}
-    }
+    use 'norcalli/nvim-colorizer.lua'
 
     -- syntax
     --  use 'pangloss/vim-javascript'
@@ -110,6 +109,7 @@ require('packer').startup(function()
     use 'rupurt/vim-mql5'
 
     use 'wbthomason/packer.nvim'
+
     -- }}}
     -- experiments{{{
     -- =========================================================================  

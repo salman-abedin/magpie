@@ -85,3 +85,9 @@ pipx install 'python-lsp-server[all]'
 
 # sudo -n ln -s /etc/runit/sv/virtlogd /run/runit/service
 # # sudo -n sv up virtlogd
+
+# ╔══════════════════════════════════════════════════════════════════════
+# ║                              Printer
+# ╚══════════════════════════════════════════════════════════════════════
+
+sudo -n ln -s /etc/runit/sv/cupsd /run/runit/service

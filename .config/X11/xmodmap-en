@@ -35,7 +35,9 @@ keycode  46 = l L Right
 keycode  57 = n N BackSpace
 
 keycode  47 = semicolon colon
-keycode  48 = apostrophe quotedbl
+!  keycode  48 = apostrophe quotedbl
+keycode  48 = Super_R Super_R
+keycode  97 = apostrophe quotedbl
 
 keycode  30 = u U
 keycode  32 = o O End

@@ -14,6 +14,7 @@ autocmd VimEnter * highlight Folded       guibg=NONE
 autocmd VimEnter * highlight Visual       guibg=NONE guifg=yellow gui=bold
 autocmd VimEnter * highlight QuickFixLine guibg=NONE gui=bold
 autocmd VimEnter * highlight SpellBad     guibg=NONE guifg=red gui=bold
+autocmd VimEnter * highlight StatusLine   guibg=NONE
 
 autocmd InsertEnter * set nocursorline
 autocmd InsertLeave * set cursorline

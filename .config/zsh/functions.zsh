@@ -61,22 +61,23 @@ merge() {
 #---------------------------------------
 
 
-#  launch(){
-  #  program=$1
-  #  shift
-  #  arguments=$*
-  #  setsid $program --force-device-scale-factor=$(get-dpi -f) $arguments > /dev/null 2>&1
-#  }
+launch_dpi(){
+  program=$1
+  shift
+  arguments=$*
+  setsid $program --force-device-scale-factor=$(get-dpi -f) $arguments > /dev/null 2>&1
+}
 
 #  alias b="setsid brave > /dev/null 2>&1"
-b(){ launch brave $*; }
-dis(){ launch discord; }
-fire(){ launch firefox; }
-muse(){ launch musescore; }
-q(){ launch qutebrowser; }
-s(){ launch spotify; }
-z(){ launch zoom; }
-vir(){ launch virtualbox; }
+b(){ launch_dpi brave $*; }
+dis(){ launch_dpi discord; }
+fire(){ launch_dpi firefox; }
+muse(){ launch_dpi musescore; }
+q(){ launch_dpi qutebrowser; }
+s(){ launch_dpi spotify; }
+S(){ launch_dpi skypeforlinux; }
+z(){ launch_dpi zoom; }
+vir(){ launch_dpi virtualbox; }
 
 #  fe(){
   #  npx -p node-firestore-import-export firestore-export -a credentials.json -b backup.json
@@ -272,3 +273,14 @@ share(){
 # }
 
 # god() { gpg -o "${1%.gpg}" -d "$1"; }
+
+tdg(){
+    if grep gitlab /etc/hosts > /dev/null; then
+        doas -n sed -i '$d' /etc/hosts
+        notify-send 'Disabled Gitlab SSH'
+    else
+        echo 10.1.0.47 gitlab.dsinnovators.com | doas -n tee -a /etc/hosts
+        ssh-keygen -R gitlab.dsinnovators.com
+        notify-send 'Enabled Gitlab SSH'
+    fi
+}

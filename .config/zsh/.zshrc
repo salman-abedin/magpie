@@ -5,4 +5,4 @@
 . ~/.config/zsh/functions.zsh
 . ~/.config/zsh/options.zsh
 
-[ -z "$TMUX" ] && tmux
+#  [ -z "$TMUX" ] && tmux -u

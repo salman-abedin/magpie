@@ -11,7 +11,7 @@ xset -b &            # Disable PC speaker
 xset r rate 200 30 & # Speed key press delay & reapeat rate
 {
     xmodmap "$LAYOUT_EN"
-    xcape -e "Super_L=Escape;Mode_switch=Tab"
+    xcape -e "Super_L=Escape;Super_R=apostrophe;Mode_switch=Tab"
 } &                                    # Bind Multi-purpose keys
 xss-lock -n 'backlight -D' -- 'lock' & # Set Dimmer & Locker
 xset s 300 300 &                       # Set Dimmer & Locker Delays
@@ -29,7 +29,7 @@ $COMPOSITOR &         # Launch Compositor
 bluetoothctl power on # Turn bluetooth on
 pipe
 set-bg # Set the last used wallpaper
-alacritty -e tmux a &
+alacritty -e tmux -u &
 exec $WM # Launch Window Manager
 
 #===============================================================================
@@ -47,6 +47,7 @@ exec $WM # Launch Window Manager
 # /usr/lib/notification-daemon-1.0/notification-daemon & # Launch notification daemon
 # bolt --generate &                # Generate search list for bolt
 # xcape -e "Super_L=Escape;Super_R=backslash;Mode_switch=Tab"
+# xcape -e "Super_L=Escape;Mode_switch=Tab"
 # xset r rate 300 60 & # Speed key press delay & reapeat rate
 # mirror --mail &                            # Sync mails
 # pulseaudio --exit-idle-time -1 -D & # Fix pulseaduio bug

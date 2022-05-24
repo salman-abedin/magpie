@@ -1,6 +1,6 @@
 local map = require('map')
 
-qalam_on = 0
+local qalam_on = 0
 
 qalam = function()
   if qalam_on == 0 then

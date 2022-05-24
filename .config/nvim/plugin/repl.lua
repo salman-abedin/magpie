@@ -10,6 +10,7 @@ vim.cmd [[
  autocmd BufRead toy.lua nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal lua % <cr>
  autocmd BufRead toy.pl nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal perl % <cr>
  autocmd BufRead toy.sh nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal sh % <cr>
+ autocmd BufRead toy.bash nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> terminal bash % <cr>
  autocmd BufRead toy.js nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 2sleep <bar> terminal node % <cr>
  autocmd BufRead *toys/python/*.{py,pyw} nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal python % <cr>
  autocmd BufRead *toys/php/*.php nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal php % <cr>

@@ -132,8 +132,7 @@ global = {
   shiftwidth = 2, -- spaces per tab (when shifting)
   tabstop = 2, -- number of spaces per tab
 
-
-  laststatus = 0 -- disable status line
+  --  statusline = '%L' -- set color
 
   -- statusline = '%#rainbowcol3#' -- set color
   -- -- filename

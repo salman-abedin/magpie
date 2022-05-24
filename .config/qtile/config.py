@@ -30,6 +30,7 @@ keys = [
     Key([mod], "i", lazy.spawn('unipass fetch')),
     Key([mod, 'shift'], "i", lazy.spawn('unipass add')),
     Key([mod], "n", lazy.spawn('pkill -f dunst')),
+    Key([mod, 'shift'], "n", lazy.spawn('toggle -n')),
     Key([mod], "p", lazy.spawn('scratchpad')),
     Key([mod], "r", lazy.spawn('amenu -l')),
     Key([mod], "t", lazy.spawn('alacritty -e tmux')),
@@ -37,7 +38,6 @@ keys = [
     Key([mod], "w", lazy.spawn('set-bg -s')),
 
     Key([mod], "Return", lazy.spawn(r'tmux new-session -d \; switch-client')),
-
 
     #  Key([], "F3", lazy.spawn('backlight --down')),
     #  Key([], "F4", lazy.spawn('backlight --up')),
@@ -102,7 +102,7 @@ keys = [
 groups = [
     Group(
         '1',
-        label='🏠'
+        label='🖥'
     ),
     Group(
         '2',
@@ -114,33 +114,47 @@ groups = [
             Match(wm_class=["Tk"]),
         ]
     ),
+
     Group(
         '3',
-        label='💼'
-    ),
-    Group(
-        '4',
-        label='🧪', 
+        label='💼',
         matches=[
-            Match(wm_class=["terminal.exe"]),
-            #  Match(wm_class=["VirtualBox Manager"]),
+            Match(wm_class=["Skype"]),
         ]
     ),
+
+    Group(
+        '4',
+        label='📈',
+        matches=[
+            Match(wm_class=["TradingView"]),
+        ]
+    ),
+
+    Group(
+        '5',
+        label='🎵',
+        matches=[
+            Match(wm_class=["Spotify"]),
+        ]
+    ),
+
+    Group(
+        '6',
+        label='💻'
+    ),
+
 ]
 
 for i in groups:
     keys.extend([
         # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
-            desc="Switch to group {}".format(i.name)),
-
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)),
+        Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to group {}".format(i.name)),
+        #  mod1 + shift + letter of group = switch to & move focused window to group
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True), desc="Switch to & move focused window to group {}".format(i.name)),
         # Or, use below if you prefer not to switch to that group.
         # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-        #     desc="move focused window to group {}".format(i.name)),
+        #  Key([mod, "shift"], i.name, lazy.window.togroup(i.name), desc="move focused window to group {}".format(i.name)),
     ])
 
 layouts = [
@@ -182,8 +196,6 @@ screens = [
                 #  widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Sep(),
-                widget.GenPollText(update_interval=5, func=lambda: check_output('panel -s'.split()).decode("utf-8")),
-                widget.Sep(),
                 #  widget.Prompt(),
                 #  widget.WindowName(),
                 #  widget.Chord(
@@ -205,9 +217,11 @@ screens = [
                 widget.Sep(),
                 #  widget.Volume(fmt='🎧 {}'),
                 #  widget.Sep(),
-                widget.GenPollText(update_interval=30, func=lambda: check_output('panel -w'.split()).decode("utf-8")),
-                widget.Sep(),
-                widget.GenPollText(update_interval=60, func=lambda: check_output('panel -b'.split()).decode("utf-8")),
+                #  widget.GenPollText(update_interval=30, func=lambda: check_output('panel -w'.split()).decode("utf-8")),
+                #  widget.Sep(),
+                #  widget.GenPollText(update_interval=60, func=lambda: check_output('panel -b'.split()).decode("utf-8")),
+                #  widget.Sep(),
+                widget.GenPollText(update_interval=5, func=lambda: check_output('panel -s'.split()).decode("utf-8")),
                 widget.Sep(),
                 widget.GenPollText(update_interval=60, func=lambda: check_output('panel -d'.split()).decode("utf-8")),
                 widget.Sep(),

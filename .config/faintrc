@@ -166,6 +166,8 @@ OPS="\
 ©  Yank:yank;
 🖌  Paste:paste;
 🚚 Move:move;
+🖥  Push to RH2:push_to_rh2;
+🖥  Push to RHS2:push_to_rhs2;
 📱 Push to Arnie:push_to_arnie;
 ⏰ Push to Lenny:push_to_lenny;
 ⏰ Push to GSS:push_to_gss;

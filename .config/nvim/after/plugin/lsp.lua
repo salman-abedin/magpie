@@ -1,8 +1,7 @@
-if not pcall(require, 'lspconfig') then
-    return
-end
+--  init{{{
+if not pcall(require, 'lspconfig') then return end
 local map = require('map')
-
+-- }}}
 -- config{{{
 -- ===========================================================================
 -- =                             Config
@@ -132,7 +131,7 @@ vim.cmd [[
   " autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
-  autocmd FileType sh,python,php,javascript,lua,perl autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
+  autocmd FileType php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   autocmd BufWritePre *.{css,html,yaml,yml,md,c,cpp,tsx,xml} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
@@ -141,8 +140,8 @@ vim.cmd [[
 -- =                             Mappings 
 -- ===========================================================================
 
---  map('n', '<leader>w', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
---  map('n', '<leader>W', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+map('n', '<leader>w', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+map('n', '<leader>W', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
 
 --  map('n', '<leader>l', ':silent! lnext<cr>')
 --  map('n', '<leader>h', ':silent! lprev<cr>')
@@ -153,12 +152,32 @@ map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
 map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
 map('n', 'gj', '<cmd>cnext<cr>')
 map('n', 'gk', '<cmd>cprev<cr>')
+--  map('n', 'gk', '<c-o>')
 
 map('n', 'gh', '<cmd>cclose<cr>')
 --  map('n', 'gh', '`j')
 
-map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
+--  map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
 --  map('n', '<leader>gR', '<cmd>lua vim.lsp.buf.rename()<cr>')
+
+lsp_enabled = 0
+lsp_on = 0
+
+toggle_lsp = function()
+    if lsp_enabled == 1 then
+        vim.diagnostic.disable()
+        lsp_enabled = 0
+        lsp_on = 0
+    else
+        vim.diagnostic.enable()
+        lsp_enabled = 1
+        lsp_on = 1
+    end
+end
+
+
+map('n', '<leader>l', '<cmd>lua toggle_lsp()<cr>')
+
 -- }}}
 --  location list{{{
 vim.cmd [[
@@ -171,14 +190,45 @@ vim.cmd [[
 -- =                             Theme
 -- ===========================================================================
 
-vim.fn.sign_define('DiagnosticSignError', {text = '❌'})
-vim.fn.sign_define('DiagnosticSignWarning', {text = '💄'})
-vim.fn.sign_define('DiagnosticSignInfo', {text = 'ℹ'})
+local signs = { Error = " ", Warn = "! ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 vim.cmd [[
-  autocmd BufRead * highlight DiagnosticError   guibg=none gui=bold
-  autocmd BufRead * highlight DiagnosticWarning guibg=none gui=bold
-  autocmd BufRead * highlight DiagnosticInfo    guibg=none gui=bold
-  autocmd BufRead * highlight DiagnosticHint    guibg=none gui=bold
+autocmd VimEnter * highlight DiagnosticSignError guibg=NONE guifg=red
+autocmd VimEnter * highlight DiagnosticVirtualTextError guibg=NONE guifg=red
+
+autocmd VimEnter * highlight DiagnosticSignWarn guibg=NONE guifg=yellow
+autocmd VimEnter * highlight DiagnosticVirtualTextWarn guibg=NONE guifg=yellow
+
+autocmd VimEnter * highlight DiagnosticSignHint guibg=NONE guifg=orange
+autocmd VimEnter * highlight DiagnosticVirtualTextHint guifg=orange
+
+autocmd VimEnter * highlight DiagnosticSignInfo guibg=NONE guifg=green
+autocmd VimEnter * highlight DiagnosticSignInfo guibg=NONE guifg=green
+
+
+]]
+
+-- }}}
+--  autocommands{{{
+
+toggle_lsp_insert = function()
+    if lsp_enabled == 0 then return end
+    if lsp_on == 1 then
+        vim.diagnostic.disable()
+        lsp_on = 0
+    else
+        vim.diagnostic.enable()
+        lsp_on = 1
+    end
+end
+
+vim.cmd [[
+    autocmd VimEnter * lua vim.diagnostic.disable()
+    autocmd InsertEnter * lua toggle_lsp_insert()
+    autocmd InsertLeave * lua toggle_lsp_insert()
 ]]
 -- }}}
