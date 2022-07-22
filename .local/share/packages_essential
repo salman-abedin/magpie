@@ -195,7 +195,7 @@ $ salman-abedin/uniblocks
 #---------------------------------------
 #              Browser
 #---------------------------------------
-# ^ qutebrowser
+#  ^ qutebrowser
 @ brave-bin
 # firefox
 # falkon
@@ -348,6 +348,7 @@ $ salman-abedin/alfred
 ^ libxinerama
 ^ python-iwlib
 ^ ntfs-3g
+^ glow
 
 #  ╔══════════════════════════════════════════════════════════════════════
 #  ║                              Package Managers

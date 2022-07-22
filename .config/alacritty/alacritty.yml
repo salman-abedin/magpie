@@ -24,8 +24,9 @@ font:
     # draw_bold_text_with_bright_colors: false
 
 key_bindings:
-    - { key: K, mods: Control, action: IncreaseFontSize }
-    - { key: J, mods: Control, action: DecreaseFontSize }
+    - { key: Minus, mods: Alt, action: DecreaseFontSize }
+    - { key: Equals, mods: Alt, action: IncreaseFontSize }
+    - { key: Key0, mods: Alt, action: ResetFontSize }
     # - { key: K, mods: Control, action: ScrollLineUp }
     # - { key: L, mods: Control, action: ScrollLineDown }
     # - { key: J, mods: Control, action: ScrollPageUp }

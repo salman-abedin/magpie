@@ -56,6 +56,7 @@ keys = [
     Key([mod, 'shift'], "backslash", lazy.spawn('setplayer --play toggle')),
 
     Key([mod], "s", lazy.spawn('lock')),
+    Key([mod], "c", lazy.spawn('record -S')),
     Key([mod, 'shift'], "s", lazy.spawn('record -d')),
     #  Key([mod], "s", lazy.spawn('record -s')),
     #  Key([mod], "f", lazy.spawn('xdotool sleep 0.25 key F11')),
@@ -108,10 +109,10 @@ groups = [
         '2',
         label='🕸',
         matches=[
-            Match(wm_class=["Brave-browser"]),
+            Match(wm_class=["brave-browser"]),
             Match(wm_class=["firefox"]),
-            Match(wm_class=["Vncviewer"]),
-            Match(wm_class=["Tk"]),
+            Match(wm_class=["vncviewer"]),
+            Match(wm_class=["tk"]),
         ]
     ),
 

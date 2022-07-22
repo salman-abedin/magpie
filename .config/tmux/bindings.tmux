@@ -7,7 +7,7 @@ set -g prefix M-Space
 # bind -n M-o new-window -c "#{pane_current_path}" 
 
 bind -n M-o new-window -c "#{pane_current_path}" \; \
-        send "xdotool sleep 0.1 key quoteright && faint" Enter
+        send "xdotool sleep 0.1 key quoteright && faint; read -r faint_last_dir < ~/.local/share/faint/FAINT_FINAL; cd \$faint_last_dir || exit; clear" Enter
         # send "bolt --search" Enter
 bind -n M-Enter new-window -c "#{pane_current_path}"
 
@@ -20,7 +20,7 @@ bind -n M-K swap-window -d -t :+
 bind -n M-J swap-window -d -t :-
 
 # Rename
-bind -n M-N command -I "#W" "rename-window -- '%%'"
+bind -n M-n command -I "#W" "rename-window -- '%%'"
 
 # # Complement tmux-center-pane; Dynamically kills pane
 # bind -n M-';' run '{ [ "$(tmux list-panes | wc -l)" -gt 3 ] && tmux kill-pane; } || tmux kill-window'
@@ -33,7 +33,7 @@ bind -n M-l switch-client -n
 bind -n M-h switch-client -p
 
 # Rename
-bind -n M-n command -I "#S" "rename-session -- '%%'"
+bind -n M-N command -I "#S" "rename-session -- '%%'"
 
 # List
 bind l choose-tree
@@ -130,7 +130,9 @@ bind -n M-m resize-pane -Z
 #         send "clear" Enter
 
 # Kill
-bind -n M-';' kill-pane
+#  bind -n M-';' kill-pane
+bind -n M-';' kill-window
+
 #  bind -n M-';' kill-pane \; \
         #  select-layout main-vertical \; \
         #  select-pane -t :.1

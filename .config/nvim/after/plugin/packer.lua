@@ -96,7 +96,10 @@ require('packer').startup(function()
         'mattn/emmet-vim',
         ft = {'html', 'svelte', 'astro', 'vue', 'typescriptreact'}
     }
-    use {'lukas-reineke/indent-blankline.nvim', ft = {'pug', 'python', 'mql4'}}
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        ft = {'pug', 'python', 'mql4', 'sh'}
+    }
     use 'norcalli/nvim-colorizer.lua'
 
     -- syntax

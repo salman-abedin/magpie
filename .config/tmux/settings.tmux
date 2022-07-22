@@ -41,7 +41,7 @@ set -g mouse on
 set -g history-limit 102400
 set -g monitor-activity off
 set -g detach-on-destroy off
-set -wg automatic-rename on
+set -wg automatic-rename off
 set -g display-panes-time 200
 set -g repeat-time 500
 
@@ -49,11 +49,8 @@ set -g repeat-time 500
 #               Exp
 #---------------------------------------
 
-# # But don't change tmux's own window titles.
-# set -wg automatic-rename off
-
-# # Don't wait for an escape sequence after seeing prefix
-# set -s escape-time 0
+# Don't wait for an escape sequence after seeing prefix
+set -s escape-time 0
 
 # set -g set-clipboard external
 

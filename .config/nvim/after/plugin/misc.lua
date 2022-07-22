@@ -1,32 +1,32 @@
 local map = require('map')
 
 if pcall(require, 'hop') then
-  require'hop'.setup {quit_key = ';'}
-  map('n', '<leader>e', '<cmd>lua require\'hop\'.hint_words()<cr>',
-      {noremap = false})
-  map('v', '<leader>e', '<cmd>lua require\'hop\'.hint_words()<cr>',
-      {noremap = false})
-  map('n', '<leader>E', '<cmd>lua require\'hop\'.hint_char1()<cr>',
-      {noremap = false})
-  map('v', '<leader>E', '<cmd>lua require\'hop\'.hint_char1()<cr>',
-      {noremap = false})
+    require'hop'.setup {quit_key = ';'}
+    map('n', '<leader>e', '<cmd>lua require\'hop\'.hint_words()<cr>',
+        {noremap = false})
+    map('v', '<leader>e', '<cmd>lua require\'hop\'.hint_words()<cr>',
+        {noremap = false})
+    map('n', '<leader>E', '<cmd>lua require\'hop\'.hint_char1()<cr>',
+        {noremap = false})
+    map('v', '<leader>E', '<cmd>lua require\'hop\'.hint_char1()<cr>',
+        {noremap = false})
 end
 
 if pcall(require, 'commented') then
-  require('commented').setup {
-    keybindings = {n = '<leader>s', v = '<leader>s', nl = '<leader>ss'},
-    hooks = {
-      before_comment = require('ts_context_commentstring.internal').update_commentstring
+    require('commented').setup {
+        keybindings = {n = '<leader>s', v = '<leader>s', nl = '<leader>ss'},
+        hooks = {
+            before_comment = require('ts_context_commentstring.internal').update_commentstring
+        }
     }
-  }
 end
 
 if pcall(require, 'neoscroll') then
-  require('neoscroll').setup()
-  require('neoscroll.config').set_mappings {
-    J = {'scroll', {'vim.api.nvim_win_get_height(0)', 'false', '250'}},
-    K = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'false', '250'}}
-  }
+    require('neoscroll').setup()
+    require('neoscroll.config').set_mappings {
+        J = {'scroll', {'vim.api.nvim_win_get_height(0)', 'false', '250'}},
+        K = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'false', '250'}}
+    }
 end
 
 vim.g.emmet_html5 = 0

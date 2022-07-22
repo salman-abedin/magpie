@@ -47,18 +47,18 @@ fi
 pacman -Rnsdd libxft
 
 cd $ROOT || exit 1
-grep "^\^" .local/share/package_lists/packages_essential \
+grep "^\^" .local/share/packages_essential \
   | sed "s/\^ //" \
   | pacman -S --needed --noconfirm -
 
-grep "^@" .local/share/package_lists/packages_essential \
+grep "^@" .local/share/packages_essential \
   | sed "s/@ //" \
   | sudo -u "$user_name" paru -S --noconfirm --needed -
 
 # printf "Repository Path? "
 # read -r path_repo
 # sudo -u "$user_name" mkdir -p "$path_repo"
-# grep "^\\$" .local/share/package_lists/packages_essential \
+# grep "^\\$" .local/share/packages_essential \
 # | sed 's/$ //' \
 # | while read -r repo; do
 # cd "$path_repo" || exit 1
@@ -195,6 +195,27 @@ sudo -u "$user_name" cp -frs $(readlink -f .config .local .zprofile) /home/"$use
 # ╚════════════════════════════════════════
 pip install qtile
 
+# hibernation{{{
+# ╔════════════════════════════════════════
+# ║                    Hibernation
+# ╚════════════════════════════════════════
+
+swap_file_path=/mnt/internal/swapfile
+sudo dd if=/dev/zero of=$swap_file_path bs=1G count=25 status=progress
+sudo chmod 600 $swap_file_path
+sudo mkswap $swap_file_path
+sudo swapon $swap_file_path
+echo "$swap_file_path none swap defaults 0 0" | sudo tee -a /etc/fstab
+
+RESUME_PARAMS="resume=UUID=$(findmnt /mnt/internal -o UUID -n) resume_offset=$(sudo filefrag -v $swap_file_path | awk 'NR==4{gsub(/\./,"");print $4;}') "
+sudo sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$RESUME_PARAMS/" /etc/default/grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+sudo sed -i "s/^HOOKS=(/HOOKS=(resume /" /etc/mkinitcpio.conf
+sudo mkinitcpio -P
+
+#}}}
+# exp{{{
 #===============================================================================
 #                             Exp
 #===============================================================================
@@ -237,21 +258,6 @@ pip install qtile
 # tar xf keys.tar
 # rm keys.tar
 
-#---------------------------------------
-#               Swap & Hibernation
-#---------------------------------------
-
-# dd if=/dev/zero of=/swapfile bs=1M count=2048 status=progress
-# # dd if=/dev/zero of=$SWAPFILE bs=1M count=4096 status=progress
-# chmod 600 /swapfile
-# mkswap /swapfile
-# swapon /swapfile
-# echo "/swapfile none swap defaults 0 0" >> /etc/fstab
-
-# RESUME_PARAMS="resume=UUID=$(findmnt / -o UUID -n) resume_offset=$(sudo filefrag -v /swapfile | awk 'NR==4{gsub(/\./,"");print $4;}') "
-# echo "$RESUME_PARAMS"
-# sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$RESUME_PARAMS/" /etc/default/grub
-# grub-mkconfig -o /boot/grub/grub.cfg
 
 #---------------------------------------
 #               Neovim
@@ -310,3 +316,10 @@ pip install qtile
 # Option      "TearFree"  "true"
 # EndSection
 # eof
+
+# ╔════════════════════════════════════════
+# ║                    Disable Swap
+# ╚════════════════════════════════════════
+# swapoff $swap_file_path
+# rm -f $swap_file_path
+#}}}

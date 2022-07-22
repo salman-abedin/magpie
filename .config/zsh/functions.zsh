@@ -1,5 +1,12 @@
 #!/usr/bin/env zsh
 
+f(){
+    faint
+    read -r faint_last_dir < ~/.local/share/faint/FAINT_FINAL
+    cd "$faint_last_dir" || exit
+    clear
+}
+
 pI (){
   [ -d env ] || virtualenv env
   source env/bin/activate
@@ -69,12 +76,12 @@ launch_dpi(){
 }
 
 #  alias b="setsid brave > /dev/null 2>&1"
-b(){ launch_dpi brave $*; }
+br(){ launch_dpi brave $*; }
 dis(){ launch_dpi discord; }
 fire(){ launch_dpi firefox; }
 muse(){ launch_dpi musescore; }
 q(){ launch_dpi qutebrowser; }
-s(){ launch_dpi spotify; }
+#  s(){ launch_dpi spotify; }
 S(){ launch_dpi skypeforlinux; }
 z(){ launch_dpi zoom; }
 vir(){ launch_dpi virtualbox; }
@@ -275,12 +282,45 @@ share(){
 # god() { gpg -o "${1%.gpg}" -d "$1"; }
 
 tdg(){
-    if grep gitlab /etc/hosts > /dev/null; then
-        doas -n sed -i '$d' /etc/hosts
-        notify-send 'Disabled Gitlab SSH'
-    else
-        echo 10.1.0.47 gitlab.dsinnovators.com | doas -n tee -a /etc/hosts
-        ssh-keygen -R gitlab.dsinnovators.com
+    if grep "26 git" /etc/hosts > /dev/null; then
+        doas -n sed -i 's/26 git/47 git/' /etc/hosts
+        ssh-keygen -R gitlab.dsinnovators.com > /dev/null 2>&1
         notify-send 'Enabled Gitlab SSH'
+    else
+        doas -n sed -i 's/47 git/26 git/' /etc/hosts
+        notify-send 'Disabled Gitlab SSH'
     fi
+}
+
+sus(){ echo "mem" | doas -n tee /sys/power/state > /dev/null }
+hib(){ echo "disk" | doas -n tee /sys/power/state > /dev/null; lock; }
+infoimage_encrypt() {
+    gpg --batch --quiet --passphrase ")0(9*8&7" -c "$1" "$1.pgp"
+}
+
+archive_by_size() {
+    file_dir=$1
+    split_size_kb=$2
+    zip_name=$3
+    last_dir=$PWD
+
+    cumulated_size=0
+    split_part_id=1
+
+    cd "$file_dir" || exit
+    for file in ./*; do
+        cumulated_size=$(ls -l --block-size=1K "$file" | awk '{print $5}' | xargs -I% echo "$cumulated_size" + % | bc)
+        if [ "$cumulated_size" -lt "$split_size_kb" ]; then
+            echo "$file" >> /tmp/split_list
+            continue
+        fi
+
+        zip "$zip_name"_"$(printf "%04d" "$split_part_id")" -@ < /tmp/split_list
+        echo "$file" > /tmp/split_list
+        split_part_id=$((split_part_id + 1))
+        cumulated_size=0
+    done
+
+    rm /tmp/split_list
+    cd "$last_dir" || exit
 }

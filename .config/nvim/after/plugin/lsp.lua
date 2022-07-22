@@ -1,5 +1,7 @@
 --  init{{{
-if not pcall(require, 'lspconfig') then return end
+if not pcall(require, 'lspconfig') then
+    return
+end
 local map = require('map')
 -- }}}
 -- config{{{
@@ -34,6 +36,8 @@ lsp.tsserver.setup {
         client.resolved_capabilities.document_formatting = false
     end
 }
+
+lsp.solargraph.setup {}
 
 lsp.html.setup {
     on_attach = function(client)
@@ -75,7 +79,7 @@ lsp.perlls.setup {}
 --  }
 
 --  lsp.svelte.setup {}
---  lsp.vuels.setup {}
+lsp.vuels.setup {}
 
 --  lsp.java_language_server.setup {
 --  cmd = {'/usr/share/java/java-language-server/lang_server_linux.sh'}
@@ -131,8 +135,8 @@ vim.cmd [[
   " autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
-  autocmd FileType php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{css,html,yaml,yml,md,c,cpp,tsx,xml} silent! lua vim.lsp.buf.formatting()
+  autocmd FileType php,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{css,html,yaml,yml,c,cpp,tsx,xml} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
 -- mappings{{{
@@ -155,6 +159,9 @@ map('n', 'gk', '<cmd>cprev<cr>')
 --  map('n', 'gk', '<c-o>')
 
 map('n', 'gh', '<cmd>cclose<cr>')
+
+map('n', '<leader>a', '<cmd>lua vim.lsp.buf.formatting()<cr>')
+
 --  map('n', 'gh', '`j')
 
 --  map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
@@ -175,7 +182,6 @@ toggle_lsp = function()
     end
 end
 
-
 map('n', '<leader>l', '<cmd>lua toggle_lsp()<cr>')
 
 -- }}}
@@ -190,10 +196,10 @@ vim.cmd [[
 -- =                             Theme
 -- ===========================================================================
 
-local signs = { Error = " ", Warn = "! ", Hint = " ", Info = " " }
+local signs = {Error = ' ', Warn = '! ', Hint = ' ', Info = ' '}
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    local hl = 'DiagnosticSign' .. type
+    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 end
 
 vim.cmd [[
@@ -216,7 +222,9 @@ autocmd VimEnter * highlight DiagnosticSignInfo guibg=NONE guifg=green
 --  autocommands{{{
 
 toggle_lsp_insert = function()
-    if lsp_enabled == 0 then return end
+    if lsp_enabled == 0 then
+        return
+    end
     if lsp_on == 1 then
         vim.diagnostic.disable()
         lsp_on = 0

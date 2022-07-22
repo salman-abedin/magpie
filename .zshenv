@@ -3,12 +3,14 @@
 # Environemnt script
 
 # sources{{{
-. ~/.private 2> /dev/null
+. ~/.personal 2> /dev/null
 # }}}
 # paths{{{
 export PATH=$PATH:~/.local/bin                      # local scripts
 export PATH=$PATH:~/.yarn/bin                       # global node packages
-export PATH=$PATH:~/.local/share/gem/ruby/2.7.0/bin # global ruby modules
+if command -v ruby > /dev/null; then
+    export PATH=$PATH:$(ruby -e 'puts Gem.user_dir')/bin # global ruby modules
+fi
 # }}}
 # default programs{{{
 #===============================================================================

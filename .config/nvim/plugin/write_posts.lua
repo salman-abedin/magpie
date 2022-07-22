@@ -8,13 +8,14 @@ autocmd FileType sh autocmd BufWritePost * silent !compile %
 autocmd BufWritePost fcronrc silent !fcrontab %
 autocmd BufWritePost boltrc  silent !bolt -g
 
-autocmd BufWritePost tmux.conf silent !tmux source ~/.config/tmux/tmux.conf
+autocmd BufWritePost *.tmux silent !tmux source ~/.config/tmux/tmux.conf
 
 autocmd BufWritePost */qtile/config.py silent !xdotool key super+q
-autocmd BufWritePost *.dfa silent !xdotool key super+l key alt+f+1 key super+l
+" autocmd BufWritePost *.dfa silent !xdotool key super+l key alt+f+1 key super+l
 
 " autocmd BufWritePost .{bash,input,vim}rc silent !for server in jump:~ rht:~; do scp % $server &; done
-autocmd BufWritePost sefcea2_{process,runner}.sh silent !rsync -aP % rhs2:~ &
+autocmd BufWritePost *_runner*,*_process*,isisdisk.sh silent !rsync -aP % rhs2:/z/salman/tmp &
+" autocmd BufWritePost  silent !rsync -aP % dsi:/z/salman/tmp &
 
 ]]
 

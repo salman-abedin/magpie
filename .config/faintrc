@@ -111,6 +111,7 @@ hulk() {
     pkill -P "$FAINT_PID"
 }
 upload() { curl -F"file=@$FILE_ARGS" https://0x0.st | xsel -b; }
+push_to_testmain() { rsync -aPv "$FILE_ARGS" testmain:/home/test/isis/docdef; }
 push_to_arnie() { adb connect 192.168.0.100 && adb push --sync "$FILE_ARGS" $CARD; }
 # push2android() { rsync -aP "$FILE_ARGS" $PHONE:$CARD; }
 show_size() { notify-send "$(du -sh "$FILE_ARGS" | cut -f1)"; }
@@ -171,6 +172,7 @@ OPS="\
 📱 Push to Arnie:push_to_arnie;
 ⏰ Push to Lenny:push_to_lenny;
 ⏰ Push to GSS:push_to_gss;
+⏰ Push to Test Main:push_to_testmain;
 ℹ  Show Size:show_size;
 💊 Choose:launch_choose;
 📁 New Directory:make_dir;
@@ -180,6 +182,9 @@ OPS="\
 🔑 Decrypt:decrypt;
 ♦  Compress:compress;
 ⬆  Upload:upload;
+🔒 InfoImage Encrypt:infoimage_encrypt;
+🔑 InfoImage Decrypt:infoimage_decrypt;
+📃 View Markdown:view_markdown;
 "
 # 😎 Own:own;
 # 💻 Push to YY:push2yy;
@@ -189,6 +194,7 @@ OPS="\
 #===============================================================================
 
 ICONS="\
+pwd:🏠;
 DIR:📁;
 FILE:📃;
 LINK:⛓;

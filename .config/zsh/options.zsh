@@ -98,8 +98,12 @@ setopt sharehistory         # share history across shells
 ## History in cache directory:
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
-HISTFILE=~/.config/zsh/history
 
+if [ -f /mnt/decrypted/git/magpie-private/.config/zsh/history ]; then
+    HISTFILE=/mnt/internal/git/system/magpie-personal/.config/zsh/history
+else
+    HISTFILE=~/.local/share/zsh/history
+fi
 
 ## Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -143,7 +147,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-bindkey -M vicmd '\e' fzf-history-widget
+#  bindkey -M vicmd '\e' fzf-history-widget
+bindkey -M vicmd 'q' fzf-history-widget
 
 # bindkey -M vicmd 'j' vi-backward-char
 # bindkey -M vicmd ';' vi-forward-char
