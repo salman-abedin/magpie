@@ -95,3 +95,9 @@ sudo -n ln -s /etc/runit/sv/bluetoothd /run/runit/service
 # ║                    Perl
 # ╚════════════════════════════════════════
 cpan Perl::LanguageServer
+
+# ╔══════════════════════════════════════════════════════════════════════
+# ║                              DavFs
+# ╚══════════════════════════════════════════════════════════════════════
+
+sudo usermod -a -G network salman

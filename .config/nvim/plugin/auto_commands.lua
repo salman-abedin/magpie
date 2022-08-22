@@ -12,6 +12,7 @@ vim.cmd [[
 	" Custom filetypes
 	autocmd BufNewFile,BufRead calcurse-note.* setlocal filetype=markdown
 	autocmd BufNewFile,BufRead *.astro setlocal filetype=astro
+	autocmd BufNewFile,BufRead *.tmux setlocal filetype=tmux
 
 	" Spell
 	autocmd BufNewFile,BufRead *.md setlocal spell

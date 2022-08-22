@@ -3,18 +3,12 @@
 # Environemnt script
 
 # sources{{{
-#===============================================================================
-#                              Sources
-#===============================================================================
 . ~/.private 2> /dev/null
 # }}}
 # paths{{{
-#===============================================================================
-#                              Paths
-#===============================================================================
 export PATH=$PATH:~/.local/bin                      # local scripts
 export PATH=$PATH:~/.yarn/bin                       # global node packages
-export PATH=$PATH:~/.local/share/gem/ruby/2.7.0/bin # global ruby modules
+export PATH=$PATH:$(ruby -e 'puts Gem.user_dir' 2> /dev/null)/bin # global ruby modules
 # }}}
 # default programs{{{
 #===============================================================================
@@ -24,14 +18,13 @@ export PATH=$PATH:~/.local/share/gem/ruby/2.7.0/bin # global ruby modules
 export WM="qtile start"
 export TERMINAL=alacritty
 export DMENU=amenu
-export STATUSBAR="uniblocks -g"
 
 export EDITOR=nvim
 export VISUAL=$EDITOR
 export BROWSER=firefox
 export FILE=faint
 export READER=zathura
-export COMPOSITOR=xcompmgr
+export COMPOSITOR=picom
 
 # export MANPAGER="$EDITOR +Man!"
 # export PAGER="$EDITOR -R"
@@ -104,7 +97,8 @@ export MOZ_USE_XINPUT2="1" # Smooth Scrolling
 
 export LESS=-R
 
-export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)_RUNTIME_DIR.XXX)
+export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)_RUNTIME_DIR.XXX 2> /dev/null)
+unset LD_PRELOAD # Termux Bug Fix
 
 # export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
 # export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
@@ -136,9 +130,9 @@ fi
 
 # doas -n loadkeys ~/.local/share/misc/tty_maps.kmap
 # }}}
-# experiments{{{
+# graveyard{{{
 #===============================================================================
-#                             Exp
+#                             Graveyard
 #===============================================================================
 
 # export XDG_OPEN=launch
@@ -170,4 +164,5 @@ fi
 # export MOZ_SERVICES_HEALTHREPORT=0
 # [ -L ~/.config/lf/lf_icons ] && . ~/.config/lf/lf_icons
 # export PERL5LIB=~/perl5/lib/perl5
+#  export STATUSBAR="uniblocks -g"
 # }}}

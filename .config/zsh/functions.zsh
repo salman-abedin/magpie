@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
 
+f(){
+   faint
+   read -r last_dir < ~/.local/share/faint/FAINT_FINAL
+   cd $last_dir
+}
+
 pI (){
   [ -d env ] || virtualenv env
   source env/bin/activate
@@ -61,7 +67,7 @@ merge() {
 #---------------------------------------
 
 
-launch(){
+run(){
   program=$1
   shift
   arguments=$*
@@ -69,14 +75,14 @@ launch(){
 }
 
 #  alias b="setsid brave > /dev/null 2>&1"
-b(){ launch brave $*; }
-dis(){ launch discord; }
-fire(){ launch firefox; }
-muse(){ launch musescore; }
-q(){ launch qutebrowser; }
-s(){ launch spotify; }
-z(){ launch zoom; }
-vir(){ launch virtualbox; }
+b(){ run brave $*; }
+dis(){ run discord; }
+fire(){ run firefox; }
+muse(){ run musescore; }
+q(){ run qutebrowser; }
+s(){ run spotify; }
+z(){ run zoom; }
+vir(){ run virtualbox; }
 
 #  fe(){
   #  npx -p node-firestore-import-export firestore-export -a credentials.json -b backup.json

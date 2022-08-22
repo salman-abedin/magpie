@@ -2,8 +2,8 @@
 
 vim.cmd [[
 
-" autocmd VimEnter * highlight clear CursorLine
-" autocmd VimEnter * highlight CursorLine gui=underline
+autocmd VimEnter * highlight clear CursorLine
+autocmd VimEnter * highlight CursorLine gui=underline
 
 autocmd VimEnter * highlight Normal       guibg=NONE
 autocmd VimEnter * highlight SignColumn   guibg=NONE

@@ -22,6 +22,7 @@ echo "$DISPLAY" > /tmp/DISPLAY &       # For Udev & Fcron environment
 xbanish &                              # Hide cursor when idle
 xsetroot -cursor_name left_ptr &       # Remove the ugly X cursor
 xrandr --dpi "$(get-dpi --pixel)"      # Set correct DPI
+mount /mnt/disroot                     # Mount WebDav
 lock                                   # Start locked
 
 pipe   # launches pipewire

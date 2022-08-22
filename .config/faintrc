@@ -188,6 +188,7 @@ OPS="\
 #===============================================================================
 
 ICONS="\
+pwd:🏠;
 DIR:📁;
 FILE:📃;
 LINK:⛓;
@@ -207,5 +208,5 @@ ts|js:🎮;
 "
 
 execute() {
-    /usr/local/bin/launch -f "$*"
+    /usr/local/bin/launch -f "$*" 2> /dev/null || nvim "$*"
 }
