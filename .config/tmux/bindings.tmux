@@ -91,8 +91,8 @@ bind m select-pane -m
 bind r new-window -c "#{pane_current_path}" \; join-pane \; last-pane \; kill-pane
 
 # Misc
-bind h split-window -h -c "#{pane_current_path}"
-bind H split-window -c "#{pane_current_path}"
+bind h split-window -c "#{pane_current_path}"
+bind H split-window -h -c "#{pane_current_path}"
 
 # Navigation
 bind -n M-. select-pane -Z -t :.+ \; display-panes
@@ -130,7 +130,7 @@ bind -n M-m resize-pane -Z
 #         send "clear" Enter
 
 # Kill
-#  bind -n M-';' kill-pane
+bind -n M-: kill-pane
 bind -n M-';' kill-window
 
 #  bind -n M-';' kill-pane \; \

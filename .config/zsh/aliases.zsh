@@ -53,15 +53,16 @@ alias raPv="rsync -aPv"
 #  alias rst="rsync -aHAXxv --numeric-ids  --progress -e 'ssh -T -c aes128-gcm@openssh.com -o Compression=no -x '"
 alias s="ssh"
 alias t="TERM=tmux-256color tmux -u attach || TERM=tmux-256color tmux -u"
+alias tra="transmission-remote -a"
 alias to=": >"
 alias u="uniq"
 alias v="nvim"
 alias wl="wc -l"
 alias x="xprop"
+alias xv="x11vnc -display \$DISPLAY -ncache 10 -nopw --shared"
 alias xek="xev -event keyboard"
 alias yda="youtube-dl -x --embed-thumbnail --audio-format mp3"
 alias ydv="youtube-dl -f best"
-alias tra="transmission-remote -a"
 
 #---------------------------------------
 #              Pacman & Yay
@@ -132,6 +133,8 @@ alias gd="git diff"
 alias gfa="git fetch --all"
 alias gi="git init"
 alias glo="git log --oneline"
+alias glog="glo --graph"
+alias gloga="glog --all"
 alias glogda="git log --oneline --graph --decorate --all"
 alias gm="git merge"
 alias gmn="git merge --no-ff"
@@ -223,6 +226,11 @@ alias dss="da sv status"
 #              Docker 
 #---------------------------------------
 # alias db="docker build"
+alias dpa="docker ps -a"
+alias di="docker images"
+alias dr="docker rmi"
+alias drf="docker rm -f"
+alias dcub="docker compose up --build"
 
 #  ╔════════════════════════════════════════
 #  ║                    GPG

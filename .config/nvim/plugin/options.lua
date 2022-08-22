@@ -62,7 +62,7 @@ window = {
 
     cursorline = true, -- Show cursor line
 
-    --  wrap = false, -- Disable line wrapping
+    wrap = false, -- Disable line wrapping
 
     foldlevel = 99, -- Disable folding at startup
 

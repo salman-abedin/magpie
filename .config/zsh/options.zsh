@@ -99,8 +99,9 @@ setopt sharehistory         # share history across shells
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 
-if [ -f /mnt/decrypted/git/magpie-private/.config/zsh/history ]; then
-    HISTFILE=/mnt/internal/git/system/magpie-personal/.config/zsh/history
+histfile=/mnt/internal/git/system/magpie-personal/.config/zsh/history
+if [ -f $histfile ]; then
+    HISTFILE=$histfile
 else
     HISTFILE=~/.local/share/zsh/history
 fi

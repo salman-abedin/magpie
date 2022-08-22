@@ -1,5 +1,5 @@
 # Set coorect $TERM value
-#  set -g default-terminal "${TERM}"
+set -g default-terminal "${TERM}"
 #  set -g default-terminal "tmux-256color"
 #  set -g default-terminal "screen-256color"
 #  set -g default-terminal "screen-256color-bce"
