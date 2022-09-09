@@ -65,6 +65,7 @@ lsp.pylsp.setup {
 }
 
 lsp.perlls.setup {}
+--  lsp.perlpls.setup {}
 
 --  lsp.phpactor.setup {}
 
@@ -81,9 +82,11 @@ lsp.perlls.setup {}
 --  lsp.svelte.setup {}
 lsp.vuels.setup {}
 
---  lsp.java_language_server.setup {
---  cmd = {'/usr/share/java/java-language-server/lang_server_linux.sh'}
---  }
+--  lsp.jdtls.setup {}
+
+lsp.java_language_server.setup {
+cmd = {'/usr/share/java/java-language-server/lang_server_linux.sh'}
+}
 
 -- vim.cmd [[
 -- autocmd BufWritePost *.js lua vim.lsp.diagnostic.set_loclist()
@@ -136,7 +139,7 @@ vim.cmd [[
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
   autocmd FileType php,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{css,html,yaml,yml,c,cpp,tsx,xml} silent! lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.{css,html,yaml,yml,c,cpp,tsx,xml,java} silent! lua vim.lsp.buf.formatting()
 ]]
 -- }}}
 -- mappings{{{

@@ -56,8 +56,7 @@ keys = [
     Key([mod, 'shift'], "backslash", lazy.spawn('setplayer --play toggle')),
 
     Key([mod], "s", lazy.spawn('lock')),
-    Key([mod], "c", lazy.spawn('record -S')),
-    Key([mod, 'shift'], "s", lazy.spawn('record -d')),
+    Key([mod, 'shift'], "s", lazy.spawn('record -S')),
     #  Key([mod], "s", lazy.spawn('record -s')),
     #  Key([mod], "f", lazy.spawn('xdotool sleep 0.25 key F11')),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
@@ -110,7 +109,6 @@ groups = [
         label='🕸',
         matches=[
             Match(wm_class=["brave-browser"]),
-            Match(wm_class=["firefox"]),
             Match(wm_class=["vncviewer"]),
             Match(wm_class=["tk"]),
         ]
@@ -120,6 +118,7 @@ groups = [
         '3',
         label='💼',
         matches=[
+            Match(wm_class=["firefox"]),
             Match(wm_class=["Skype"]),
         ]
     ),

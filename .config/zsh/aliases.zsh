@@ -31,12 +31,10 @@ alias g="grep --color=auto"
 alias gR="grep -R"
 alias h="loginctl hibernate"
 alias ka="killall"
-alias l="ls -hN --color=auto --group-directories-first"
-alias ll="l -l"
-alias lla="ll -a"
-alias llh="ll -h"
-alias llt="ll -t"
-alias lltr="llt -r"
+alias l="ls"
+alias lhl="l -hl"
+alias lhlrt="lhl -rt"
+alias lhla="lhl -a"
 alias m="git checkout master > /dev/null 2>&1"
 alias mvm="sshfs -p 3022 salman@localhost:/ /mnt/external"
 alias M="neomutt 2>/dev/null"
@@ -52,11 +50,11 @@ alias raPv="rsync -aPv"
 #  alias rs="rsync -aPSvW --inplace"
 #  alias rst="rsync -aHAXxv --numeric-ids  --progress -e 'ssh -T -c aes128-gcm@openssh.com -o Compression=no -x '"
 alias s="ssh"
+alias sp="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 alias t="TERM=tmux-256color tmux -u attach || TERM=tmux-256color tmux -u"
 alias tra="transmission-remote -a"
 alias to=": >"
 alias u="uniq"
-alias v="nvim"
 alias wl="wc -l"
 alias x="xprop"
 alias xv="x11vnc -display \$DISPLAY -ncache 10 -nopw --shared"
@@ -89,11 +87,13 @@ alias pQs="pacman -Qs"
 #---------------------------------------
 #               Neovim
 #---------------------------------------
-alias n="nvim +'Telescope find_files'"
-alias nn="nvim +'cd /mnt/internal/git/daily/notes | Telescope find_files'"
+alias v="$EDITOR"
+alias dif="$EDITOR -d"
+alias n="$EDITOR +'Telescope find_files'"
+alias nn="$EDITOR +'cd /mnt/internal/git/daily/notes | Telescope find_files'"
 #  alias nc="nvim +'cd /mnt/internal/git/system/magpie/.config/nvim | Telescope find_files'"
-alias nm="nvim +'cd /mnt/internal/git/system/magpie/.config | Telescope find_files'"
-alias np="nvim +'cd /mnt/internal/git/system/magpie-private/.config | Telescope find_files'"
+alias nm="$EDITOR +'cd /mnt/internal/git/system/magpie/.config | Telescope find_files'"
+alias np="$EDITOR +'cd /mnt/internal/git/system/magpie-private/.config | Telescope find_files'"
 
 #---------------------------------------
 #               Paru
@@ -106,6 +106,7 @@ alias pSyy="paru -Syy"
 alias pSyyn="pSyy --noconfirm"
 alias pSyynn="pSyyn --needed"
 alias pRns="paru -Rns"
+alias pRdd="paru -Rdd"
 alias pRnsn="pRns --noconfirm"
 
 #---------------------------------------
@@ -225,12 +226,13 @@ alias dss="da sv status"
 #---------------------------------------
 #              Docker 
 #---------------------------------------
-# alias db="docker build"
-alias dpa="docker ps -a"
-alias di="docker images"
-alias dr="docker rmi"
-alias drf="docker rm -f"
-alias dcub="docker compose up --build"
+
+#  alias db="docker build"
+alias dpa="d docker ps -a"
+#  alias di="d docker images"
+#  alias dr="d docker rmi"
+#  alias drf="d docker rm -f"
+#  alias dcub="d docker compose up --build"
 
 #  ╔════════════════════════════════════════
 #  ║                    GPG

@@ -15,7 +15,7 @@ autocmd BufWritePost */qtile/config.py silent !xdotool key super+q
 
 " autocmd BufWritePost .{bash,input,vim}rc silent !for server in jump:~ rht:~; do scp % $server &; done
 autocmd BufWritePost *_process*,frstls1.sh silent !rsync -aP % dsi:/z/salmanA/tmp &
-" autocmd BufWritePost  silent !rsync -aP % dsi:/z/salman/tmp &
+autocmd BufWritePost .bash{rc,_profile} silent !rsync -a % dsi:/z/salmanA &
 
 ]]
 

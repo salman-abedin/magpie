@@ -66,10 +66,11 @@ window = {
 
     foldlevel = 99, -- Disable folding at startup
 
+    --  list = true, -- show whitespace
+
     linebreak = true, -- break lines consistantly
     breakindent = true -- break indents consistantly
 
-    -- list = true, -- show whitespace
 }
 
 -- ===========================================================================
@@ -159,12 +160,21 @@ global = {
 
 set_options(global, window, buffer)
 
+--  vim.opt.listchars = {
+--  nbsp = '⦸',
+--  extends = '»',
+--  precedes = '«',
+--  tab = '▷⋯',
+--  trail = '•'
+--  }
+
 vim.opt.listchars = {
-    nbsp = '⦸',
-    extends = '»',
-    precedes = '«',
-    tab = '▷⋯',
-    trail = '•'
+    eol = '$',
+    space = '.',
+    tab = '>.',
+    trail = '~',
+    extends = '<',
+    precedes = '>'
 }
 
 vim.opt.fillchars = {diff = '∙', eob = ' ', fold = '·', vert = '┃'}

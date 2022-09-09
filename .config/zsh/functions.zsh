@@ -281,17 +281,6 @@ share(){
 
 # god() { gpg -o "${1%.gpg}" -d "$1"; }
 
-tdg(){
-    if grep "26 git" /etc/hosts > /dev/null; then
-        doas -n sed -i 's/26 git/47 git/' /etc/hosts
-        ssh-keygen -R gitlab.dsinnovators.com > /dev/null 2>&1
-        notify-send 'Enabled Gitlab SSH'
-    else
-        doas -n sed -i 's/47 git/26 git/' /etc/hosts
-        notify-send 'Disabled Gitlab SSH'
-    fi
-}
-
 sus(){ echo "mem" | doas -n tee /sys/power/state > /dev/null }
 hib(){ echo "disk" | doas -n tee /sys/power/state > /dev/null; lock; }
 infoimage_encrypt() {

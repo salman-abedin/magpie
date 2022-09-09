@@ -23,7 +23,7 @@ export DMENU=amenu
 
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export BROWSER=firefox
+export BROWSER=brave
 export FILE=faint
 export READER=zathura
 export COMPOSITOR=picom
@@ -60,15 +60,10 @@ export LAYOUT_AR=~/.config/X11/xmodmap-ar
 export LAYOUT_BN=~/.config/X11/xmodmap-bn
 
 export GPG_MAIL=salmanabedin@disroot.org
-# }}}
-# server stuff{{{
-#===============================================================================
-#                             Server Stuff
-#===============================================================================
 
-export TERM=linux
-export PATH=$PATH:~/.local/share/miniconda/bin
-export PATH=$PATH:~/.local/share/nvim-linux64/bin
+export UNIPASS_SOURCE=/mnt/decrypted/git/magpie-private/.local/share/misc/passwords
+export UNIMARK_SOURCE=/mnt/internal/git/system/magpie-personal/.local/share/bookmarks
+
 
 # }}}
 # housekeeping{{{
@@ -111,6 +106,22 @@ export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)_RUNTIME_DIR.XXX)
 # export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
 # }}}
+# work stuff{{{
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              Work Stuff
+#  ╚══════════════════════════════════════════════════════════════════════
+
+if [ -f $HOME/.local/share/nvim-linux64/bin/nvim ] &> /dev/null; then
+    export EDITOR='LD_LIBRARY_PATH=$HOME/.local/lib nvim'
+elif command -v nvim &> /dev/null; then
+    export EDITOR=nvim
+elif command -v vim &> /dev/null; then
+    export EDITOR=vim
+else
+    export EDITOR=vi
+fi
+
+# }}}
 # autostart{{{
 #===============================================================================
 #                         Auto Start X on TTY1
@@ -142,7 +153,7 @@ fi
 
 # cat /etc/*-release | grep \"void\" >/dev/null && export TERMINAL=alacritty
 
-# export NPM_CONFIG_PREFIX=~/.local/share/npm
+#  export NPM_CONFIG_PREFIX=~/.local
 #export VIMINIT="if !has('nvim') | source $XDG_CONFIG_HOME/vim/vimrc | endif"
 # export GNUPGHOME=~/.local/share/gnupg
 

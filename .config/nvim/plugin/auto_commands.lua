@@ -20,8 +20,7 @@ vim.cmd [[
 	" MQL
 	autocmd BufNewFile,BufRead *.mq{4,h} setlocal commentstring=//%s
 
-
-    " autocmd FileType expect autocmd BufNewFile,BufRead * setlocal commentstring=//%s
+    autocmd FileType expect setlocal commentstring=#%s
 
 ]]
 
