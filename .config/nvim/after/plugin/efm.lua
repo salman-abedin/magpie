@@ -35,6 +35,7 @@ local prettier = {formatCommand = 'prettier'}
 local php_cs_fixer = {formatCommand = 'php-cs-fixer'}
 local prettier_javascript = {formatCommand = 'prettier --single-quote'}
 local prettier_yaml = {formatCommand = 'prettier --tab-width 4'}
+local prettier_json = {formatCommand = 'prettier --tab-width 4'}
 
 lsp.efm.setup {
     init_options = {documentFormatting = true, codeAction = false},
@@ -57,7 +58,7 @@ lsp.efm.setup {
             javascript = {prettier_javascript},
             typescript = {prettier_javascript},
             typescriptreact = {prettier_javascript},
-            json = {prettier},
+            json = {prettier_json},
             lua = {lua_format},
             markdown = {prettier},
             php = {php_cs_fixer},

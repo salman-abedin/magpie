@@ -283,33 +283,34 @@ share(){
 
 sus(){ echo "mem" | doas -n tee /sys/power/state > /dev/null }
 hib(){ echo "disk" | doas -n tee /sys/power/state > /dev/null; lock; }
-infoimage_encrypt() {
-    gpg --batch --quiet --passphrase ")0(9*8&7" -c "$1" "$1.pgp"
-}
 
-archive_by_size() {
-    file_dir=$1
-    split_size_kb=$2
-    zip_name=$3
-    last_dir=$PWD
+#  infoimage_encrypt() {
+    #  gpg --batch --quiet --passphrase ")0(9*8&7" -c "$1" "$1.pgp"
+#  }
 
-    cumulated_size=0
-    split_part_id=1
+#  archive_by_size() {
+    #  file_dir=$1
+    #  split_size_kb=$2
+    #  zip_name=$3
+    #  last_dir=$PWD
 
-    cd "$file_dir" || exit
-    for file in ./*; do
-        cumulated_size=$(ls -l --block-size=1K "$file" | awk '{print $5}' | xargs -I% echo "$cumulated_size" + % | bc)
-        if [ "$cumulated_size" -lt "$split_size_kb" ]; then
-            echo "$file" >> /tmp/split_list
-            continue
-        fi
+    #  cumulated_size=0
+    #  split_part_id=1
 
-        zip "$zip_name"_"$(printf "%04d" "$split_part_id")" -@ < /tmp/split_list
-        echo "$file" > /tmp/split_list
-        split_part_id=$((split_part_id + 1))
-        cumulated_size=0
-    done
+    #  cd "$file_dir" || exit
+    #  for file in ./*; do
+        #  cumulated_size=$(ls -l --block-size=1K "$file" | awk '{print $5}' | xargs -I% echo "$cumulated_size" + % | bc)
+        #  if [ "$cumulated_size" -lt "$split_size_kb" ]; then
+            #  echo "$file" >> /tmp/split_list
+            #  continue
+        #  fi
 
-    rm /tmp/split_list
-    cd "$last_dir" || exit
-}
+        #  zip "$zip_name"_"$(printf "%04d" "$split_part_id")" -@ < /tmp/split_list
+        #  echo "$file" > /tmp/split_list
+        #  split_part_id=$((split_part_id + 1))
+        #  cumulated_size=0
+    #  done
+
+    #  rm /tmp/split_list
+    #  cd "$last_dir" || exit
+#  }

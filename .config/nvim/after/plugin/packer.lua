@@ -98,7 +98,9 @@ require('packer').startup(function()
     }
     use {
         'lukas-reineke/indent-blankline.nvim',
-        ft = {'pug', 'python', 'mql4', 'sh'}
+        ft = {
+            'pug', 'python', 'mql4', 'sh', 'javascript', 'java', 'bash', 'json'
+        }
     }
     use 'norcalli/nvim-colorizer.lua'
 

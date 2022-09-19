@@ -1,0 +1,10 @@
+{
+	"$schema": "https://joplinapp.org/schema/settings.json",
+	"locale": "en_US",
+	"api.token": "4ba107aaab68186acc998f91f54d09123aa2565b12bb7aea002bee5402cc2f3617a812278cd7d4b642febe5d2db6553c5ff541745a67b58d32258b594ae4cd1e",
+	"markdown.plugin.softbreaks": false,
+	"markdown.plugin.typographer": false,
+	"sync.target": 6,
+	"sync.6.path": "https://cloud.disroot.org/remote.php/dav/files/salmanabedin/joplin",
+	"sync.6.username": "SalmanAbedin@disroot.org"
+}

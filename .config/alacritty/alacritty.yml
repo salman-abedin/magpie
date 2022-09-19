@@ -34,7 +34,7 @@ key_bindings:
     # - { key: Return, mods: Control, action: SpawnNewInstance }
 
 window:
-    opacity: 0.90
+    opacity: 0.80
     padding:
         x: 25
         y: 25

@@ -34,6 +34,9 @@ lsp.clangd.setup {
 lsp.tsserver.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
+    end,
+    root_dir = function()
+        return vim.loop.cwd()
     end
 }
 
@@ -82,11 +85,24 @@ lsp.perlls.setup {}
 --  lsp.svelte.setup {}
 lsp.vuels.setup {}
 
---  lsp.jdtls.setup {}
-
-lsp.java_language_server.setup {
-cmd = {'/usr/share/java/java-language-server/lang_server_linux.sh'}
+lsp.jdtls.setup {
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+    end,
+    root_dir = function()
+        return vim.loop.cwd()
+    end
 }
+
+--  lsp.java_language_server.setup {
+--  on_attach = function(client)
+--  client.resolved_capabilities.document_formatting = false
+--  end,
+--  root_dir = function()
+--  return vim.loop.cwd()
+--  end,
+--  cmd = {'/usr/share/java/java-language-server/lang_server_linux.sh'}
+--  }
 
 -- vim.cmd [[
 -- autocmd BufWritePost *.js lua vim.lsp.diagnostic.set_loclist()

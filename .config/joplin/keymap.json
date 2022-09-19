@@ -1,0 +1,58 @@
+[
+    { "keys": [":"], "type": "function", "command": "enter_command_line_mode" },
+    { "keys": ["w"], "type": "function", "command": "focus_next" },
+    { "keys": ["b"], "type": "function", "command": "focus_previous" },
+    { "keys": ["k"], "type": "function", "command": "move_up" },
+    { "keys": ["j"], "type": "function", "command": "move_down" },
+    { "keys": ["K"], "type": "function", "command": "page_up" },
+    { "keys": ["J"], "type": "function", "command": "page_down" },
+    { "keys": [";"], "type": "function", "command": "activate" },
+    { "keys": ["d"], "type": "function", "command": "delete" },
+    { "keys": [" "], "command": "todo toggle $n" },
+    { "keys": ["w"], "type": "function", "command": "next_link" },
+    { "keys": ["W"], "type": "function", "command": "previous_link" },
+    { "keys": ["o"], "type": "function", "command": "open_link" },
+    { "keys": ["c"], "type": "function", "command": "toggle_console" },
+    { "keys": ["M"], "type": "function", "command": "toggle_metadata" },
+    {
+        "keys": ["/"],
+        "type": "prompt",
+        "command": "search ''",
+        "cursorPosition": -2
+    },
+    {
+        "keys": ["n"],
+        "type": "prompt",
+        "command": "mknote ''",
+        "cursorPosition": -2
+    },
+    {
+        "keys": ["a"],
+        "type": "prompt",
+        "command": "mktodo ''",
+        "cursorPosition": -2
+    },
+    {
+        "keys": ["r"],
+        "type": "prompt",
+        "command": "ren $c "
+    },
+    {
+        "keys": ["m"],
+        "type": "prompt",
+        "command": "mv $n ''",
+        "cursorPosition": -2
+    },
+    {
+        "keys": ["t"],
+        "type": "prompt",
+        "command": "tag add '' $n",
+        "cursorPosition": -5
+    },
+    {
+        "keys": ["N"],
+        "type": "prompt",
+        "command": "mkbook ''",
+        "cursorPosition": -2
+    }
+]
