@@ -2,6 +2,8 @@
 #                              Settings
 #===============================================================================
 
+set realname = "Salman Abedin"
+
 set mbox_type=Maildir
 # set imap_check_subscribed
 set header_cache = ~/.local/share/cache/mutt

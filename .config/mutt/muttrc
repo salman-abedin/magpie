@@ -4,34 +4,7 @@
 #  / / / / / // /_/ // /_ / /_ / /   / /_
 # /_/ /_/ /_/ \__,_/ \__/ \__//_/    \___/
 
-#===============================================================================
-#                              Mailbox
-#===============================================================================
-
-set realname = "Salman Abedin"
-
-
 source ~/.config/mutt/notmuch
-
-#  set folder = "~/.local/share/mail"
-#  set virtual_spoolfile=yes
-#  virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
-#  virtual-mailboxes "sent" "notmuch://?query=tag:sent"
-
-#  source ~/.config/mutt/mailbox-dsi
-#  source ~/.config/mutt/mailbox-disroot
-
-# source ~/.local/share/misc/outlook
-# set from = "salman@yy.ventures"
-# set folder    = "imaps://$from@outlook.office365.com"
-# set smtp_url = "smtp://$from:$imap_pass@smtp.office365.com"
-# set record = "+Sent Items"
-# set trash = "+Deleted Items"
-# set signature="~/.config/mutt/signature_work"
-
-#  set signature="~/.config/mutt/signature_personal"
-#  set postponed = +Drafts
-
 source ~/.config/mutt/settings
 source ~/.config/mutt/bindings
 source ~/.config/mutt/colors
