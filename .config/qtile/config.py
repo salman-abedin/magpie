@@ -56,8 +56,7 @@ keys = [
     Key([mod, 'shift'], "backslash", lazy.spawn('setplayer --play toggle')),
 
     Key([mod], "s", lazy.spawn('lock')),
-    Key([mod], "c", lazy.spawn('record -S')),
-    Key([mod, 'shift'], "s", lazy.spawn('record -d')),
+    Key([mod, 'shift'], "s", lazy.spawn('record -S')),
     #  Key([mod], "s", lazy.spawn('record -s')),
     #  Key([mod], "f", lazy.spawn('xdotool sleep 0.25 key F11')),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
@@ -213,6 +212,8 @@ screens = [
 
                 widget.Spacer(bar.STRETCH),
                 widget.GenPollText(update_interval=60, func=lambda: check_output('panel -t'.split()).decode("utf-8")),
+                #  widget.Sep(),
+                #  widget.GenPollText(update_interval=60, func=lambda: check_output('panel -T'.split()).decode("utf-8")),
 
                 widget.Spacer(bar.STRETCH),
                 widget.Sep(),
@@ -220,11 +221,11 @@ screens = [
                 #  widget.Sep(),
                 #  widget.GenPollText(update_interval=30, func=lambda: check_output('panel -w'.split()).decode("utf-8")),
                 #  widget.Sep(),
-                #  widget.GenPollText(update_interval=60, func=lambda: check_output('panel -b'.split()).decode("utf-8")),
-                #  widget.Sep(),
                 widget.GenPollText(update_interval=5, func=lambda: check_output('panel -s'.split()).decode("utf-8")),
                 widget.Sep(),
                 widget.GenPollText(update_interval=60, func=lambda: check_output('panel -d'.split()).decode("utf-8")),
+                widget.Sep(),
+                widget.GenPollText(update_interval=60, func=lambda: check_output('panel -b'.split()).decode("utf-8")),
                 widget.Sep(),
                 widget.Systray(),
             ],

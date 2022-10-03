@@ -1,0 +1,112 @@
+#===============================================================================
+#                              Bindings
+#===============================================================================
+#---------------------------------------
+#              Navigation
+#---------------------------------------
+
+bind pager,attach h exit
+
+bind index,attach        j next-entry
+bind pager               j next-line
+bind index,pager,browser J half-down
+
+bind index,attach        k previous-entry
+bind pager               k previous-line
+bind index,pager,browser K half-up
+
+bind index   "l" display-message
+bind pager   "l" view-attachments
+bind attach  "l" view-mailcap
+bind browser "l" select-entry
+
+bind index,attach g first-entry
+bind index,attach G  last-entry
+
+macro index,pager o "<pipe-entry>tee /tmp/muttb<enter><shell-escape>tmux split-window 'puri /tmp/muttb && rm -f /tmp/muttb'<enter>"
+macro index,pager o "<pipe-message>tee /tmp/muttb<enter><shell-escape>tmux split-window 'puri /tmp/muttb && rm -f /tmp/muttb'<enter>"
+
+bind index d delete-message
+bind index D undelete-message
+
+macro index,pager U <clear-flag>O "Mark as read"
+macro index,pager u <set-flag>O   "Mark as unread"
+
+bind index,pager s sync-mailbox
+# macro index m "<shell-escape>mirror -m<enter>" "run mbsync to sync all mail"
+bind index,pager m imap-fetch-mail
+
+bind editor <Tab> complete-query
+
+macro index h "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+bind index,pager i mail
+
+bind index,pager f search
+bind index,pager F search-reverse
+
+# bind index,pager m search-next
+# bind index,pager M search-opposite
+
+bind index,pager ';' quit
+
+bind index <Space> tag-entry
+
+# Mailboxes
+#  macro index 1 "<change-folder> =INBOX<enter>"
+#  macro index 2 "<change-folder> =Drafts<enter>"
+# macro index 4 "<change-folder> =Trash<enter>"
+
+#---------------------------------------
+#               Exp
+#---------------------------------------
+bind index,pager R group-reply
+
+# macro index,pager    o "<pipe-message> urlscan -Hdcr 'launch --link {}'<Enter>"
+# macro attach,compose o "<pipe-entry> urlscan -Hdcr 'launch --link {}'<Enter>"
+
+# macro index,pager o "<pipe-entry>tee /tmp/muttb<enter><shell-escape>puri /tmp/muttb<enter>"
+# macro index,pager o "<pipe-message>tee /tmp/muttb<enter><shell-escape>puri /tmp/muttb<enter>"
+
+# bind index 					d 			purge-message
+
+# bind index <space> tag-entry
+
+# bind pager       <ESC> noop
+# bind index,pager <ESC> quit
+# bind index,pager n     quit
+
+# macro index A "<limit>all\n" "show all messages (undo limit)"
+
+
+# bind index,pager <Esc><Tab> noop
+# bind index,pager <Esc>C noop
+# bind index,pager <Esc>P noop
+# bind index,pager <Esc>V noop
+# bind index,pager <Esc>b noop
+# bind index,pager <Esc>c noop
+# bind index,pager <Esc>d noop
+# bind index,pager <Esc>e noop
+# bind index,pager <Esc>i noop
+# bind index,pager <Esc>k noop
+# bind index,pager <Esc>l noop
+# bind index,pager <Esc>n noop
+# bind index,pager <Esc>p noop
+# bind index,pager <Esc>r noop
+# bind index,pager <Esc>s noop
+# bind index,pager <Esc>t noop
+# bind index,pager <Esc>u noop
+# bind index,pager <Esc>v noop
+
+# Abook & Notmuch
+# macro index,pager a "<enter-command>set my_pipe_decode=\$pipe_decode pipe_decode<return><pipe-message>abook --add-email<return><enter-command>set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<return>" "add the sender address to abook"
+# macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+# macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search term to find with notmuch: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;s/\^id:// for@a;$,=\"|\";print@a' | perl -le '@a=<>; chomp@a; s/\\+/\\\\+/ for@a;print@a' \`\"<enter>" "show only messages matching a notmuch pattern"
+
+# # Sidebar
+bind index,pager b sidebar-toggle-visible
+#  bind index,pager w sidebar-prev
+#  bind index,pager e sidebar-next
+#  bind index,pager w sidebar-open
+#  bind index,pager e sidebar-prev-new
+#  bind index,pager w sidebar-next-new

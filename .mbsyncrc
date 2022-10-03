@@ -1,0 +1,78 @@
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Sync the movement of messages between folders and deletions, add after making sure the sync works
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              Disroot
+#  ╚══════════════════════════════════════════════════════════════════════
+
+#  ╔════════════════════════════════════════
+#  ║                    Credentials
+#  ╚════════════════════════════════════════
+
+IMAPAccount disroot
+Host disroot.org
+User salmanabedin@disroot.org
+PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/disroot,/{print $3}'"
+SSLType IMAPS
+
+#  ╔════════════════════════════════════════
+#  ║                    Mailboxes
+#  ╚════════════════════════════════════════
+
+IMAPStore disroot-remote
+Account disroot
+
+MaildirStore disroot-local
+Path ~/.local/share/mail/disroot/
+
+Channel disroot-inbox
+Far :disroot-remote:"INBOX"
+Near :disroot-local:inbox
+
+Group disroot
+Channel dsi-inbox
+
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              DSI
+#  ╚══════════════════════════════════════════════════════════════════════
+
+#  ╔════════════════════════════════════════
+#  ║                    Credentials
+#  ╚════════════════════════════════════════
+
+IMAPAccount dsi
+Host imap.gmail.com
+User salman.abedin@dsinnovators.com
+PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/dsi_gmail_app,/{print $3}'"
+SSLType IMAPS
+
+#  ╔════════════════════════════════════════
+#  ║                    Mailboxes
+#  ╚════════════════════════════════════════
+
+IMAPStore dsi-remote
+Account dsi
+
+MaildirStore dsi-local
+Path ~/.local/share/mail/dsi/
+
+Channel dsi-inbox
+Far :dsi-remote:"INBOX"
+Near :dsi-local:inbox
+
+Channel dsi-starred
+Far :dsi-remote:"[Gmail]/Starred"
+Near :dsi-local:starred
+
+Channel dsi-tickets
+Far :dsi-remote:"tickets"
+Near :dsi-local:tickets
+
+Group dsi
+Channel dsi-inbox
+Channel dsi-starred
+Channel dsi-tickets

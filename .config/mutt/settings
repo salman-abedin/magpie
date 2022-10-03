@@ -1,0 +1,106 @@
+#===============================================================================
+#                              Settings
+#===============================================================================
+
+set mbox_type=Maildir
+# set imap_check_subscribed
+set header_cache = ~/.local/share/cache/mutt
+set message_cachedir = ~/.local/share/cache/mutt
+
+# Edit Headers in the editor
+set edit_headers
+
+# Disable Pre-edit prompts
+set autoedit
+
+# Check mail after mentioned secods
+set timeout = 21600
+
+set new_mail_command='notify-send -t 0 -i "$ICONS/mail.png" \
+                     "$(echo "%n new messages\n%u unread")" &'
+
+set sort = 'reverse-date'
+# set sort = 'threads'
+# set sort_aux = 'reverse-last-date-received'
+
+set ssl_force_tls
+set ssl_starttls
+
+set mailcap_path = "~/.config/mutt/mailcap"
+
+# set sort = "reverse-date"
+
+# set mbox_type = Maildir  # mailbox type
+unset move               # Don't move read mail to All Mail
+# set delete               # don't ask, just do
+# unset confirmappend      # don't ask, just do!
+# set quit                 # don't ask, just do !!
+set delete           # Don't ask to confirm purge deleted message on sync
+# unset mark_old           # read/new is good enough for me
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+unset recall            # Don't ask to recall postponed message when Composing
+set beep_new             # bell on new mails
+
+set sleep_time = 0             # Pause 0 seconds for informational messages
+unset markers                  # Disables the `+` displayed at line wraps
+unset mark_old                 # Unread mail stay unread until read
+set mime_forward               # attachments are forwarded with mail
+unset wait_key                 # mutt won't ask "press key to continue"
+set fast_reply                 # skip to compose when replying
+set fcc_attach                 # save attachments with the body
+set forward_format = "Fwd: %s" # format of subject when forwarding
+set forward_quote              # include message in forwards
+set reverse_name               # reply as whomever it was to
+set include                    # include message in replies
+unset help                     # remove help bar
+
+# set editor='$EDITOR'
+
+set query_command = "abook --mutt-query '%s'"
+
+# ignore "Authentication-Results:"
+# ignore "DomainKey-Signature:"
+# ignore "DKIM-Signature:"
+
+set auto_tag
+
+hdr_order Date From To Cc
+
+set index_format="%Z %-25.25L | %-75.75s | %{%H:%M,%a,%d-%b}"
+
+# set askcc 
+
+#---------------------------------------
+#              Sidebar
+#---------------------------------------
+
+#  unset sidebar_visible
+set sidebar_visible
+set sidebar_width = 15
+#  set sidebar_short_path
+#  set sidebar_next_new_wrap
+#  set mail_check_stats
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%?S?%S?"
+
+#---------------------------------------
+#               Exp
+#---------------------------------------
+
+# send-hook . set signature="~/.config/mutt/signature"
+
+# set markers = no # Disables the `+` displayed at line wraps
+
+# Keep the IMAP connection alive by polling intermittently (in seconds).
+# set imap_keepalive = 10
+
+# How often to check for new mail (in seconds).
+# set mail_check = 10
+
+# Allow Mutt to open a new IMAP connection automatically.
+unset imap_passive
+
+# unmailboxes *
+# set imap_qresync
+
+# set new_mail_command = 'beep; DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send New Mail!'

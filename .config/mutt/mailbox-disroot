@@ -1,0 +1,9 @@
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              Disroot Mailbox Configs
+#  ╚══════════════════════════════════════════════════════════════════════
+
+set from = "salmanabedin@disroot.org"
+set smtp_url = "smtps://$from@disroot.org"
+set smtp_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/disroot,/{print $3}'`
+set folder = "~/.local/share/mail/disroot"
+set spoolfile = "~/.local/share/mail/disroot/inbox"

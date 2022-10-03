@@ -1,0 +1,13 @@
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              DSI Mailbox Configs
+#  ╚══════════════════════════════════════════════════════════════════════
+
+set from = "salman.abedin@dsinnovators.com"
+set imap_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/dsi_gmail_app,/{print $3}'`
+set smtp_url = "smtps://$from@imap.gmail.com"
+set smtp_pass = $imap_pass
+set folder = "~/.local/share/mail/dsi"
+set spoolfile = "~/.local/share/mail/dsi/tickets"
+mailboxes +tickets +inbox
+macro index 1 "<change-folder> =tickets<enter>"
+macro index 2 "<change-folder> =inbox<enter>"

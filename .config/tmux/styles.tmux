@@ -43,7 +43,7 @@ set-hook -g session-created "run tmux-renumber-sessions"
 set-hook -g session-closed "run tmux-renumber-sessions"
 
 # Auto Center Pane
-set-hook -g pane-focus-in 'run tmux-center-pane'
+#  set-hook -g pane-focus-in 'run tmux-center-pane'
 
 # Show bells in window titles.
 set -g window-status-bell-style fg=yellow,bold,underscore
