@@ -1,0 +1,12 @@
+# NotMuch config
+
+set virtual_spoolfile=yes
+set folder = "/mnt/internal/mail"
+
+virtual-mailboxes "unread" "notmuch://?query=tag:unread"
+virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
+virtual-mailboxes "tickets" 'notmuch://?query=from:infocare@infoimageinc.com and to:salman.abedin@dsinnovators.com and subject:"assigned you"'
+
+macro index 1 "<change-vfolder>unread<enter>"
+macro index 2 "<change-vfolder>inbox<enter>"
+macro index 3 "<change-vfolder>tickets<enter>"

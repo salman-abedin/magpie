@@ -3,7 +3,21 @@
 #  ╚══════════════════════════════════════════════════════════════════════
 
 set from = "salmanabedin@disroot.org"
-set smtp_url = "smtps://$from@disroot.org"
-set smtp_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/disroot,/{print $3}'`
+
+macro index m "<shell-escape>mbsync disroot<enter>"
+macro index 1 "<change-folder> =inbox<enter>"
+macro index 2 "<change-folder> =sent<enter>"
+macro index 3 "<change-folder> =trash<enter>"
+
 set folder = "~/.local/share/mail/disroot"
 set spoolfile = "~/.local/share/mail/disroot/inbox"
+set record = "~/.local/share/mail/disroot/sent"
+set trash = "~/.local/share/mail/disroot/trash"
+mailboxes +inbox +sent +trash
+
+#  set folder    = "imaps://$from@disroot.org/"
+#  set imap_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/^disroot,/{print $3}'`
+#  set spoolfile = +INBOX
+
+#  set smtp_url = "smtps://$from@disroot.org"
+#  set smtp_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/disroot,/{print $3}'`

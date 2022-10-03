@@ -81,7 +81,8 @@ set sidebar_width = 15
 #  set sidebar_short_path
 #  set sidebar_next_new_wrap
 #  set mail_check_stats
-set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%?S?%S?"
+#  set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%?S?%S?"
+set sidebar_format = "%D%?F? [%F]?%* %?N?%N/?%?S?%S?"
 
 #---------------------------------------
 #               Exp
@@ -104,3 +105,7 @@ unset imap_passive
 # set imap_qresync
 
 # set new_mail_command = 'beep; DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send New Mail!'
+
+set sig_on_top # Puts signature on top
+
+set imap_check_subscribed

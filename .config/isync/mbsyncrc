@@ -1,0 +1,104 @@
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Sync the movement of messages between folders and deletions, add after making sure the sync works
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+MaildirStore mail
+Path /mnt/internal/mail/
+
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              Disroot
+#  ╚══════════════════════════════════════════════════════════════════════
+
+IMAPAccount disroot
+Host disroot.org
+User salmanabedin@disroot.org
+PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/^disroot,/{print $3}'"
+SSLType IMAPS
+
+IMAPStore disroot-remote
+Account disroot
+
+Channel disroot
+Far :disroot-remote:
+Near :mail:disroot
+
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              GMail
+#  ╚══════════════════════════════════════════════════════════════════════
+
+IMAPAccount gmail
+Host imap.gmail.com
+User salman104alvi@gmail.com
+PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/^google,/{print $3}'"
+SSLType IMAPS
+
+IMAPStore gmail-remote
+Account gmail
+
+Channel gmail
+Far :gmail-remote:
+Near :mail:gmail
+
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              DSI
+#  ╚══════════════════════════════════════════════════════════════════════
+
+IMAPAccount dsi
+Host imap.gmail.com
+User salman.abedin@dsinnovators.com
+PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/dsi_gmail_app,/{print $3}'"
+SSLType IMAPS
+
+IMAPStore dsi-remote
+Account dsi
+
+Channel dsi
+Far :dsi-remote:
+Near :mail:dsi
+
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              Exp
+#  ╚══════════════════════════════════════════════════════════════════════
+
+#  MaildirStore dsi-local
+#  Path ~/.local/share/mail/dsi/
+
+#  Channel dsi-inbox
+#  Far :dsi-remote:"INBOX"
+#  Near :dsi-local:inbox
+
+#  Channel dsi-starred
+#  Far :dsi-remote:"[Gmail]/Starred"
+#  Near :dsi-local:starred
+
+#  Channel dsi-tickets
+#  Far :dsi-remote:"tickets"
+#  Near :dsi-local:tickets
+
+#  Group dsi
+#  Channel dsi-inbox
+#  Channel dsi-starred
+#  Channel dsi-tickets
+
+#  MaildirStore disroot-local
+#  Path ~/.local/share/mail/disroot/
+
+#  Channel disroot-inbox
+#  Far :disroot-remote:"INBOX"
+#  Near :disroot-local:inbox
+
+#  Channel disroot-sent
+#  Far :disroot-remote:"Sent"
+#  Near :disroot-local:sent
+
+#  Channel disroot-trash
+#  Far :disroot-remote:"Trash"
+#  Near :disroot-local:trash
+
+#  Group disroot
+#  Channel disroot-inbox
+#  Channel disroot-sent
+#  Channel disroot-trash

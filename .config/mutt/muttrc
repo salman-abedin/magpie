@@ -4,14 +4,22 @@
 #  / / / / / // /_/ // /_ / /_ / /   / /_
 # /_/ /_/ /_/ \__,_/ \__/ \__//_/    \___/
 
-# mailbox{{{
 #===============================================================================
 #                              Mailbox
 #===============================================================================
 
 set realname = "Salman Abedin"
 
-source ~/.config/mutt/mailbox-dsi
+
+source ~/.config/mutt/notmuch
+
+#  set folder = "~/.local/share/mail"
+#  set virtual_spoolfile=yes
+#  virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
+#  virtual-mailboxes "sent" "notmuch://?query=tag:sent"
+
+#  source ~/.config/mutt/mailbox-dsi
+#  source ~/.config/mutt/mailbox-disroot
 
 # source ~/.local/share/misc/outlook
 # set from = "salman@yy.ventures"
@@ -21,30 +29,8 @@ source ~/.config/mutt/mailbox-dsi
 # set trash = "+Deleted Items"
 # set signature="~/.config/mutt/signature_work"
 
-#  set from = "salmanabedin@disroot.org"
-#  set imap_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/disroot,/{print $3}'`
-#  set folder    = "imaps://$from@disroot.org/"
-#  set smtp_url = "smtps://$from@disroot.org"
-#  set smtp_pass = $imap_pass
-#  set record = "+Sent"
-#  set trash = "+Trash"
-#  macro index 3 "<change-folder> =Sent<enter>"
 #  set signature="~/.config/mutt/signature_personal"
-#  set spoolfile = +INBOX
 #  set postponed = +Drafts
-
-#  set from = "salman104alvi@gmail.com"
-#  set imap_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/google,/{print $3}'`
-#  set folder    = "imaps://$from@imap.gmail.com"
-
-#---------------------------------------
-#               Exp
-#---------------------------------------
-
-set sig_on_top # Puts signature on top
-
-set imap_check_subscribed
-# }}}
 
 source ~/.config/mutt/settings
 source ~/.config/mutt/bindings

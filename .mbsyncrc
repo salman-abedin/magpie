@@ -16,7 +16,7 @@ SyncState *
 IMAPAccount disroot
 Host disroot.org
 User salmanabedin@disroot.org
-PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/disroot,/{print $3}'"
+PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/^disroot,/{print $3}'"
 SSLType IMAPS
 
 #  ╔════════════════════════════════════════
@@ -33,8 +33,18 @@ Channel disroot-inbox
 Far :disroot-remote:"INBOX"
 Near :disroot-local:inbox
 
+Channel disroot-sent
+Far :disroot-remote:"Sent"
+Near :disroot-local:sent
+
+Channel disroot-trash
+Far :disroot-remote:"Trash"
+Near :disroot-local:trash
+
 Group disroot
-Channel dsi-inbox
+Channel disroot-inbox
+Channel disroot-sent
+Channel disroot-trash
 
 #  ╔══════════════════════════════════════════════════════════════════════
 #  ║                              DSI

@@ -11,3 +11,5 @@ set spoolfile = "~/.local/share/mail/dsi/tickets"
 mailboxes +tickets +inbox
 macro index 1 "<change-folder> =tickets<enter>"
 macro index 2 "<change-folder> =inbox<enter>"
+
+#  set folder    = "imaps://$from@imap.gmail.com"

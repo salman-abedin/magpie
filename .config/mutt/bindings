@@ -33,8 +33,9 @@ macro index,pager U <clear-flag>O "Mark as read"
 macro index,pager u <set-flag>O   "Mark as unread"
 
 bind index,pager s sync-mailbox
-# macro index m "<shell-escape>mirror -m<enter>" "run mbsync to sync all mail"
-bind index,pager m imap-fetch-mail
+#  macro index m "<shell-escape>mbsync -m<enter>"
+#  bind index,pager m imap-fetch-mail
+macro index s "<vfolder-from-query>" "Search mailbox"
 
 bind editor <Tab> complete-query
 
