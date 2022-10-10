@@ -5,8 +5,15 @@ set folder = "/mnt/internal/mail"
 
 virtual-mailboxes "unread" "notmuch://?query=tag:unread"
 virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
-virtual-mailboxes "tickets" 'notmuch://?query=from:infocare@infoimageinc.com and to:salman.abedin@dsinnovators.com and subject:"assigned you"'
+virtual-mailboxes "gmail" 'notmuch://?query=to:"salman104alvi" and tag:inbox'
+virtual-mailboxes "disroot" 'notmuch://?query=to:"salmanabedin@disroot.org" and tag:inbox'
+virtual-mailboxes "bracu" 'notmuch://?query=to:"salman.abedin2" and tag:inbox'
+virtual-mailboxes "dsi" 'notmuch://?query=to:"salman.abedin@dsinnovators.com" and tag:inbox'
+virtual-mailboxes "print" 'notmuch://?query=from:"infocare" and to:"salman.abedin" and subject:"assigned group DSi"'
+virtual-mailboxes "tickets" 'notmuch://?query=from:"infocare" and to:"salman.abedin" and subject:"assigned you"'
 
-macro index 1 "<change-vfolder>unread<enter>"
-macro index 2 "<change-vfolder>inbox<enter>"
-macro index 3 "<change-vfolder>tickets<enter>"
+#  macro index 1 "<change-vfolder>unread<enter>"
+#  macro index 2 "<change-vfolder>inbox<enter>"
+#  macro index 3 "<change-vfolder>tickets<enter>"
+#  macro index 4 "<change-vfolder>print<enter>"
+#  macro index 5 "<change-vfolder>disroot<enter>"

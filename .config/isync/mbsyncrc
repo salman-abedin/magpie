@@ -6,6 +6,7 @@ Expunge Both
 SyncState *
 
 MaildirStore mail
+SubFolders Verbatim
 Path /mnt/internal/mail/
 
 #  ╔══════════════════════════════════════════════════════════════════════
@@ -23,7 +24,8 @@ Account disroot
 
 Channel disroot
 Far :disroot-remote:
-Near :mail:disroot
+Near :mail:disroot/
+Patterns *
 
 #  ╔══════════════════════════════════════════════════════════════════════
 #  ║                              GMail
@@ -32,7 +34,7 @@ Near :mail:disroot
 IMAPAccount gmail
 Host imap.gmail.com
 User salman104alvi@gmail.com
-PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/^google,/{print $3}'"
+PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/^google_app,/{print $3}'"
 SSLType IMAPS
 
 IMAPStore gmail-remote
@@ -40,7 +42,26 @@ Account gmail
 
 Channel gmail
 Far :gmail-remote:
-Near :mail:gmail
+Near :mail:gmail/
+Patterns *
+
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              BRACU
+#  ╚══════════════════════════════════════════════════════════════════════
+
+IMAPAccount bracu
+Host imap.gmail.com
+User salman.abedin2@g.bracu.ac.bd
+PassCmd "gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/^gsuite_bracu_app,/{print $3}'"
+SSLType IMAPS
+
+IMAPStore bracu-remote
+Account bracu
+
+Channel bracu
+Far :bracu-remote:
+Near :mail:bracu/
+Patterns *
 
 #  ╔══════════════════════════════════════════════════════════════════════
 #  ║                              DSI
@@ -57,7 +78,8 @@ Account dsi
 
 Channel dsi
 Far :dsi-remote:
-Near :mail:dsi
+Near :mail:dsi/
+Patterns *
 
 #  ╔══════════════════════════════════════════════════════════════════════
 #  ║                              Exp
