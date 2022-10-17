@@ -9,9 +9,11 @@ from subprocess import check_output
 mod = "mod4"
 
 keys = [
+    Key([mod], "c", lazy.spawn('record -s')),
     Key([mod], "m", lazy.next_layout()),
     Key([mod], "semicolon", lazy.window.kill()),
 
+    Key([mod], "o", lazy.spawn('pick-workspace')),
     Key([mod], "j", lazy.screen.prev_group()),
     Key([mod], "k", lazy.screen.next_group()),
 
@@ -57,7 +59,6 @@ keys = [
 
     Key([mod], "s", lazy.spawn('lock')),
     Key([mod, 'shift'], "s", lazy.spawn('record -S')),
-    #  Key([mod], "s", lazy.spawn('record -s')),
     #  Key([mod], "f", lazy.spawn('xdotool sleep 0.25 key F11')),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     #  Key([mod], "b", lazy.spawn('xdotool sleep 0.25 key F11')),
@@ -109,40 +110,47 @@ groups = [
         label='🕸',
         matches=[
             Match(wm_class=["brave-browser"]),
-            Match(wm_class=["vncviewer"]),
-            Match(wm_class=["tk"]),
+            Match(wm_class=["firefox"]),
+            #  Match(wm_class=["vncviewer"]),
+            #  Match(wm_class=["tk"]),
         ]
     ),
 
     Group(
         '3',
-        label='💼',
+        label='☎',
         matches=[
-            Match(wm_class=["firefox"]),
             Match(wm_class=["Skype"]),
+            Match(title=["Skype"]),
         ]
     ),
 
     Group(
         '4',
-        label='📈',
+        label='🎫',
         matches=[
-            Match(wm_class=["TradingView"]),
+            Match(title=["TeamSupport"]),
+            #  Match(wm_class=["TradingView"]),
         ]
     ),
+
+    #  Group(
+        #  '5',
+        #  label='🎵',
+        #  matches=[
+            #  Match(wm_class=["Spotify"]),
+        #  ]
+    #  ),
 
     Group(
         '5',
-        label='🎵',
+        label='💻',
         matches=[
-            Match(wm_class=["Spotify"]),
+            Match(wm_class=["VirtualBox Manager"]),
+            Match(wm_class=["VirtualBox Machine"]),
         ]
     ),
 
-    Group(
-        '6',
-        label='💻'
-    ),
 
 ]
 

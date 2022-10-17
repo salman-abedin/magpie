@@ -99,12 +99,14 @@ setopt sharehistory         # share history across shells
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 
-histfile=/mnt/internal/git/system/magpie-personal/.config/zsh/history
-if [ -f $histfile ]; then
-    HISTFILE=$histfile
-else
-    HISTFILE=~/.local/share/zsh/history
-fi
+#  histfile=/mnt/internal/git/system/magpie-personal/.config/zsh/history
+#  if [ -f $histfile ]; then
+    #  HISTFILE=$histfile
+#  else
+    #  HISTFILE=~/.local/share/zsh/history
+#  fi
+
+HISTFILE=~/.local/share/zsh/history
 
 ## Change cursor shape for different vi modes.
 function zle-keymap-select {

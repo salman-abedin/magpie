@@ -4,42 +4,39 @@
 #  / __// /__ / /   / /_/ // / / // /   / /__
 # /_/   \___//_/    \____//_/ /_//_/    \___/
 
-#===============================================================================
-#                             Config
-#===============================================================================
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              Config
+#  ╚══════════════════════════════════════════════════════════════════════
 
-#---------------------------------------
-# Add paths for scripts 
-#---------------------------------------
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:usr/local/sbin
-
-#---------------------------------------------
-# libnotify environment variables
-#---------------------------------------------
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/home/salman/.local/bin
 XAUTHORITY=/home/salman/.config/X11/Xauthority
 ICONS=~/.local/share/icons/system
 GIT=/mnt/internal/git
 
-#===============================================================================
-#                             Tabs
-#===============================================================================
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              Tabs
+#  ╚══════════════════════════════════════════════════════════════════════
 
-# All personal scripts from Alfred
 @ 5 DISPLAY=$(cat /tmp/DISPLAY) battery --monitor
-# @ 3h DISPLAY=$(cat /tmp/DISPLAY) mirror --git
-@ 4h DISPLAY=$(cat /tmp/DISPLAY) joplyn sync
-@ 4h DISPLAY=$(cat /tmp/DISPLAY) mirror --calcurse --pp
-@ 12h DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/internal 50
-@ 12h DISPLAY=$(cat /tmp/DISPLAY) mirror -hno
-# @ 24h DISPLAY=$(cat /tmp/DISPLAY) mirror --brave --drive
-@ 7d DISPLAY=$(cat /tmp/DISPLAY) housekeep
+
+#  ╔════════════════════════════════════════
+#  ║                    Office Stuff
+#  ╚════════════════════════════════════════
+#  */5 18-22 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) check-tickets
+1 18-22 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) check-mails
+1 18-22 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) mirror --calcurse --pp -hno
+1 18-22 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/internal 50
+
+#  ╔══════════════════════════════════════════════════════════════════════
+#  ║                              Exp
+#  ╚══════════════════════════════════════════════════════════════════════
+
+#  @ 7d DISPLAY=$(cat /tmp/DISPLAY) housekeep
 # @ 7d DISPLAY=$(cat /tmp/DISPLAY) mirror --system --repos --upstream
 # @ 7d DISPLAY=$(cat /tmp/DISPLAY) mirror --system
-
-#===============================================================================
-#                             EXP
-#===============================================================================
-
+# @ 24h DISPLAY=$(cat /tmp/DISPLAY) mirror --brave --drive
+# @ 3h DISPLAY=$(cat /tmp/DISPLAY) mirror --git
+#  @ 1h DISPLAY=$(cat /tmp/DISPLAY) joplyn sync
 # 0 06,18 * * * DISPLAY=$(cat /tmp/DISPLAY) toggle --dark
 # @ 24h da updatedb
 

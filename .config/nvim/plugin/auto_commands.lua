@@ -6,8 +6,8 @@ vim.cmd [[
 	" Highlight yanked lines
 	autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='Visual', timeout=200 }
 
-	" Auto rename tmux window
-	autocmd BufReadPost * silent! !tmux-rename-window %
+	"  " Auto rename tmux window
+	"  autocmd BufReadPost * silent! !tmux-rename-window %
 
 	" Custom filetypes
 	autocmd BufNewFile,BufRead calcurse-note.* setlocal filetype=markdown

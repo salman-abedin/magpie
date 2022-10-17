@@ -145,9 +145,17 @@ mkdir -p /home/"$user_name"/.local/share/mail
 #---------------------------------------
 cat << eof > /etc/udev/rules.d/battery.rules
 SUBSYSTEM=="power_supply", ATTR{online}=="1", \
-RUN+="/usr/bin/su $user_name -c '/usr/local/bin/battery --plugged true'"
+RUN+="/bin/su $user_name -c '/usr/local/bin/battery --plugged true'"
 SUBSYSTEM=="power_supply", ATTR{online}=="0", \
-RUN+="/usr/bin/su $user_name -c '/usr/local/bin/battery --plugged false'"
+RUN+="/bin/su $user_name -c '/usr/local/bin/battery --plugged false'"
+eof
+
+#---------------------------------------
+#              Monitor Toggle
+#---------------------------------------
+cat << eof > /etc/udev/rules.d/monitor.rules
+SUBSYSTEM=="drm", ACTION=="change", ENV{DISPLAY}=":0", \
+    RUN+="/bin/su $user_name -c '/home/$user_name/.local/bin/set-display'"
 eof
 
 #---------------------------------------

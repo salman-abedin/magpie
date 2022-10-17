@@ -35,9 +35,11 @@ lsp.tsserver.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
     end,
+
     root_dir = function()
         return vim.loop.cwd()
     end
+
 }
 
 lsp.solargraph.setup {}
@@ -67,8 +69,13 @@ lsp.pylsp.setup {
     --  end
 }
 
-lsp.perlls.setup {}
---  lsp.perlpls.setup {}
+--  lsp.perlls.setup {
+--  root_dir = function()
+--  return vim.loop.cwd()
+--  end
+--  }
+
+lsp.perlpls.setup {}
 
 --  lsp.phpactor.setup {}
 

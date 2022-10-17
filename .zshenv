@@ -61,7 +61,7 @@ export LAYOUT_BN=~/.config/X11/xmodmap-bn
 
 export GPG_MAIL=salmanabedin@disroot.org
 
-export UNIPASS_SOURCE=/mnt/decrypted/git/magpie-private/.local/share/misc/passwords
+export UNIPASS_SOURCE=/mnt/decrypted/git/unimind/private/passwords
 export UNIMARK_SOURCE=/mnt/internal/git/system/magpie-personal/.local/share/bookmarks
 
 

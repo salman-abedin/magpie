@@ -1,0 +1,18 @@
+# NotMuch config
+
+set virtual_spoolfile=yes
+set folder = "/mnt/internal/mail"
+
+virtual-mailboxes "u" "notmuch://?query=tag:unread"
+virtual-mailboxes "i" "notmuch://?query=tag:inbox"
+virtual-mailboxes "ni" 'notmuch://?query=not from:"infocare" and to:"salman.abedin"
+virtual-mailboxes "tm" 'notmuch://?query=from:"infocare" and to:"salman.abedin" and subject:"assigned you"'
+virtual-mailboxes "ts" 'notmuch://?query=subject:"/(Salman|Nouros|Rakibul).*modified/"'
+virtual-mailboxes "h" 'notmuch://?query=from:hradmin
+#  virtual-mailboxes "tickets-print" 'notmuch://?query=from:"infocare" and to:"salman.abedin" and subject:"assigned group DSi"'
+
+macro index 1 "<change-vfolder>unread<enter>"
+macro index 2 "<change-vfolder>inbox<enter>"
+macro index 3 "<change-vfolder>tickets-mine<enter>"
+macro index 4 "<change-vfolder>tickets-print<enter>"
+macro index 5 "<change-vfolder>hr<enter>"

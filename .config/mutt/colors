@@ -1,0 +1,126 @@
+#===============================================================================
+#                              Colors
+#===============================================================================
+#---------------------------------------
+#               Index
+#---------------------------------------
+
+color indicator black white
+# color normal default default
+color status blue default
+
+#---------------------------------------
+#              Default
+#---------------------------------------
+
+color index yellow default '.*'
+color index_author green default '.*'
+color index_subject default default '.*'
+
+#---------------------------------------
+#              New
+#---------------------------------------
+
+color index yellow black "~N"
+color index_author green black "~N"
+color index_subject default black "~N"
+
+#---------------------------------------
+#              Tag
+#---------------------------------------
+
+color index brightyellow blue "~T"
+color index_author brightred blue "~T"
+color index_subject brightcyan blue "~T"
+
+#---------------------------------------
+#               Misc
+#---------------------------------------
+
+# color normal brightyellow default
+color error red default
+color tilde black default
+color message cyan default
+color markers red white
+color attachment white default
+color search brightmagenta default
+color hdrdefault brightgreen default
+color quoted green default
+color quoted1 blue default
+color quoted2 cyan default
+color quoted3 yellow default
+color quoted4 red default
+color quoted5 brightred default
+color signature brightgreen default
+color bold black default
+color underline black default
+# color normal default default
+
+#---------------------------------------
+#               Regular Expressions
+#---------------------------------------
+
+color header blue default ".*"
+color header brightmagenta default "^(From)"
+color header brightcyan default "^(Subject)"
+color header brightwhite default "^(CC|BCC)"
+color body brightred default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+color body brightblue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+color body green default "\`[^\`]*\`" # Green text between ` and `
+color body brightblue default "^# \.*" # Headings as bold blue
+color body brightcyan default "^## \.*" # Subheadings as bold cyan
+color body brightgreen default "^### \.*" # Subsubheadings as bold green
+color body yellow default "^(\t| )*(-|\\*) \.*" # List items as yellow
+color body brightcyan default "[;:][-o][)/(|]" # emoticons
+color body brightcyan default "[;:][)(|]" # emoticons
+color body brightcyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body brightcyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+color body red default "(BAD signature)"
+color body cyan default "(Good signature)"
+color body brightblack default "^gpg: Good signature .*"
+color body brightyellow default "^gpg: "
+color body brightyellow red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+
+# mono bold bold
+# mono underline underline
+# mono indicator reverse
+# mono error bold
+
+# color sidebar_highlight red default
+# color sidebar_divider brightblack black
+# color sidebar_flagged red black
+# color sidebar_new green black
+
+#---------------------------------------
+#               Exp
+#---------------------------------------
+
+# color index_number default default
+
+# color hdrdefault cyan default
+# color attachment yellow default
+
+# color header brightyellow default "From: "
+# color header brightyellow default "Subject: "
+# color header brightyellow default "Date: "
+
+# color quoted green default
+# color quoted1 cyan default
+# color quoted2 green default
+# color quoted3 cyan default
+
+# color error     red             default         # error messages
+# color message   white           default         # message  informational messages
+# color indicator white           red             # indicator for the "current message"
+# color status    white           blue            # status lines in the folder index sed for the mini-help line
+# color tree      red             default         # the "tree" display of threads within the folder index
+# color search    white           blue            # search matches found with search within the internal pager
+# color markers   red             default         # The markers indicate a wrapped line hen showing messages with looong lines
+
+# color index     yellow default  '~O'
+# color index     yellow default  '~N'
+# color index     brightred       default '~F'    # Flagged Messages are important!
+# color index     blue default    '~D'            # Deleted Mails - use dark color as these are already "dealt with"

@@ -181,8 +181,6 @@ OPS="\
 🔑 Decrypt:decrypt;
 ♦  Compress:compress;
 ⬆  Upload:upload;
-🔒 InfoImage Encrypt:infoimage_encrypt;
-🔑 InfoImage Decrypt:infoimage_decrypt;
 📃 View Markdown:view_markdown;
 "
 # 😎 Own:own;

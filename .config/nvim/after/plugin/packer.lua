@@ -67,6 +67,10 @@ require('packer').startup(function()
         'code-biscuits/nvim-biscuits',
         requires = 'nvim-treesitter/nvim-treesitter'
     }
+    use {
+        'nvim-treesitter/nvim-treesitter-context',
+        requires = 'nvim-treesitter/nvim-treesitter'
+    }
 
     -- fuzzy finder
     use {

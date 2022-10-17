@@ -268,7 +268,8 @@ $ salman-abedin/unipass
 #              Mail
 #---------------------------------------
 ^ neomutt
-# isync
+^ isync
+^ notmuch
 # abook
 # msmtp
 # pass
