@@ -125,6 +125,10 @@ require('packer').startup(function()
     -- =                             Experiements
     -- =========================================================================  
 
+    -- Database
+    use {'tpope/vim-dadbod'}
+    use {'kristijanhusak/vim-dadbod-ui'}
+
     -- colorschemes{{{
     ------------------------------------------------
     -- -                   ColorSchemes

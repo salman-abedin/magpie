@@ -23,6 +23,7 @@ xbanish &                              # Hide cursor when idle
 xsetroot -cursor_name left_ptr &       # Remove the ugly X cursor
 set-display                            # Switch to external monitor if connected
 xrandr --dpi "$(get-dpi --pixel)"      # Set correct DPI
+chmod 600 /mnt/decrypted/git/magpie-private/.ssh/* # Change decrypted key permissions
 # lock                                   # Start locked
 
 $COMPOSITOR &         # Launch Compositor

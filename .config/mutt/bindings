@@ -34,7 +34,7 @@ macro index,pager u <set-flag>O   "Mark as unread"
 
 bind index,pager s sync-mailbox
 #  macro index m "<shell-escape>mbsync -m<enter>"
-macro index m "<shell-escape>check-mails<enter>"
+macro index m "<shell-escape>check-dsi-mail<enter>"
 #  bind index,pager m imap-fetch-mail
 macro index ,/ "<vfolder-from-query>" "Search mailbox"
 
@@ -62,7 +62,8 @@ bind index <Space> tag-entry
 #---------------------------------------
 #               Exp
 #---------------------------------------
-bind index,pager R group-reply
+bind index,pager r group-reply
+bind index,pager R reply
 
 # macro index,pager    o "<pipe-message> urlscan -Hdcr 'launch --link {}'<Enter>"
 # macro attach,compose o "<pipe-entry> urlscan -Hdcr 'launch --link {}'<Enter>"

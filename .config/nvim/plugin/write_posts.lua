@@ -14,9 +14,10 @@ autocmd BufWritePost */qtile/config.py silent !xdotool key super+q
 " autocmd BufWritePost *.dfa silent !xdotool key super+l key alt+f+1 key super+l
 
 " autocmd BufWritePost .{bash,input,vim}rc silent !for server in jump:~ rht:~; do scp % $server &; done
-autocmd BufWritePost */scripts_production/* silent !rsync -aP % dsi:/t/salmanA/tmp &
+autocmd BufWritePost */scripts_production/* silent !rsync -aP $(readlink -f %) dsi:/t/salmanA/tmp &
 autocmd BufWritePost test_salmanA.sh silent !rsync -a % dsi:/t &
-autocmd BufWritePost .bash{rc,_profile} silent !rsync -a % dsi:/z/salmanA &
+"  autocmd BufWritePost .bash{rc,_profile} silent !rsync -a % dsi:/z/salmanA &
+autocmd BufWritePost .bash{rc,_profile} silent !mirror-work %
 
 ]]
 

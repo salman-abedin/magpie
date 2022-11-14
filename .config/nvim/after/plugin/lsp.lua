@@ -21,19 +21,19 @@ local lsp = require 'lspconfig'
 
 lsp.bashls.setup {
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end
 }
 
 lsp.clangd.setup {
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end
 }
 
 lsp.tsserver.setup {
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end,
 
     root_dir = function()
@@ -46,12 +46,12 @@ lsp.solargraph.setup {}
 
 lsp.html.setup {
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end
 }
 lsp.cssls.setup {
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end,
     filetypes = {'css', 'sass'},
     settings = {sass = {validate = true}}
@@ -59,13 +59,13 @@ lsp.cssls.setup {
 
 --  lsp.stylelint_lsp.setup {
 --  on_attach = function(client)
---  client.resolved_capabilities.document_formatting = false
+--  client.server_capabilities.document_formatting = false
 --  end
 --  }
 
 lsp.pylsp.setup {
     --  on_attach = function(client)
-    --  client.resolved_capabilities.document_formatting = false
+    --  client.server_capabilities.document_formatting = false
     --  end
 }
 
@@ -85,7 +85,7 @@ lsp.perlpls.setup {}
 
 --  lsp.pyright.setup {
 --  on_attach = function(client)
---  client.resolved_capabilities.document_formatting = false
+--  client.server_capabilities.document_formatting = false
 --  end
 --  }
 
@@ -94,7 +94,7 @@ lsp.vuels.setup {}
 
 lsp.jdtls.setup {
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end,
     root_dir = function()
         return vim.loop.cwd()
@@ -103,7 +103,7 @@ lsp.jdtls.setup {
 
 --  lsp.java_language_server.setup {
 --  on_attach = function(client)
---  client.resolved_capabilities.document_formatting = false
+--  client.server_capabilities.document_formatting = false
 --  end,
 --  root_dir = function()
 --  return vim.loop.cwd()
@@ -161,8 +161,8 @@ vim.cmd [[
   " autocmd FileType sh,python,php,javascript,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
   " autocmd BufWritePre *.{mjs,css,html,yaml,vue,svelte,json,c,cpp} silent! lua vim.lsp.buf.formatting()
 
-  autocmd FileType php,lua autocmd BufWritePre * silent! lua vim.lsp.buf.formatting()
-  autocmd BufWritePre *.{css,html,yaml,yml,c,cpp,tsx,xml,java} silent! lua vim.lsp.buf.formatting()
+  autocmd FileType php,lua autocmd BufWritePre * silent! lua vim.lsp.buf.format { async = true }
+  autocmd BufWritePre *.{css,html,yaml,yml,c,cpp,tsx,xml,java} silent! lua vim.lsp.buf.format { async = true }
 ]]
 -- }}}
 -- mappings{{{
@@ -186,7 +186,7 @@ map('n', 'gk', '<cmd>cprev<cr>')
 
 map('n', 'gh', '<cmd>cclose<cr>')
 
-map('n', '<leader>a', '<cmd>lua vim.lsp.buf.formatting()<cr>')
+map('n', '<leader>a', '<cmd>lua vim.lsp.buf.format { async = true }<cr>')
 
 --  map('n', 'gh', '`j')
 

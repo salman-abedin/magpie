@@ -27,13 +27,14 @@ keys = [
 
     Key([mod], "q", lazy.restart()),
 
-    Key([mod], "apostrophe", lazy.spawn('blue -m')),
+    #  Key([mod], "apostrophe", lazy.spawn('blue -m')),
+    Key([mod], "apostrophe", lazy.spawn('toggle-mic')),
     Key([mod], "e", lazy.spawn('insertemoji')),
     Key([mod], "i", lazy.spawn('unipass fetch')),
     Key([mod, 'shift'], "i", lazy.spawn('unipass add')),
     Key([mod], "n", lazy.spawn('pkill -f dunst')),
     Key([mod, 'shift'], "n", lazy.spawn('toggle -n')),
-    Key([mod], "p", lazy.spawn('scratchpad')),
+    Key([mod], "p", lazy.spawn('share-ticket')),
     Key([mod], "r", lazy.spawn('amenu -l')),
     Key([mod], "t", lazy.spawn('alacritty -e tmux')),
     Key([mod], "u", lazy.spawn('unimark')),
@@ -134,24 +135,30 @@ groups = [
         ]
     ),
 
-    #  Group(
-        #  '5',
-        #  label='🎵',
-        #  matches=[
-            #  Match(wm_class=["Spotify"]),
-        #  ]
-    #  ),
-
     Group(
         '5',
+        label='🗃',
+        matches=[
+            Match(wm_class=["DBeaver"]),
+        ]
+    ),
+
+    Group(
+        '6',
+        label='💼',
+        matches=[
+            Match(wm_class=["zoom"]),
+        ]
+    ),
+
+    Group(
+        '7',
         label='💻',
         matches=[
             Match(wm_class=["VirtualBox Manager"]),
             Match(wm_class=["VirtualBox Machine"]),
         ]
     ),
-
-
 ]
 
 for i in groups:
@@ -228,6 +235,8 @@ screens = [
                 #  widget.GenPollText(update_interval=30, func=lambda: check_output('panel -w'.split()).decode("utf-8")),
                 #  widget.Sep(),
                 #  widget.GenPollText(update_interval=60, func=lambda: check_output('panel -b'.split()).decode("utf-8")),
+                #  widget.Sep(),
+                #  widget.TextBox(text="echo yo"),
                 #  widget.Sep(),
                 widget.GenPollText(update_interval=5, func=lambda: check_output('panel -s'.split()).decode("utf-8")),
                 widget.Sep(),

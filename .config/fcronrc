@@ -17,19 +17,38 @@ GIT=/mnt/internal/git
 #  ║                              Tabs
 #  ╚══════════════════════════════════════════════════════════════════════
 
-@ 5 DISPLAY=$(cat /tmp/DISPLAY) battery --monitor
+#  ╔════════════════════════════════════════
+#  ║                    Crons
+#  ╚════════════════════════════════════════
+@ 15 DISPLAY=$(cat /tmp/DISPLAY) battery --monitor
+*/5 20-23,0-3 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) check-tickets 82296 82419
+*/15 20-23,0-3 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) check-dsi-mail
+1 20-23,0-3 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) mirror --calcurse --pp -hno
+1 20-23,0-3 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/internal 25
+#  45 3 * * 1-5 rm ~/.local/share/misc/cookie_ts
 
 #  ╔════════════════════════════════════════
-#  ║                    Office Stuff
+#  ║                    Meetings
 #  ╚════════════════════════════════════════
-#  */5 18-22 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) check-tickets
-1 18-22 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) check-mails
-1 18-22 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) mirror --calcurse --pp -hno
-1 18-22 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/internal 50
+# AC Daily Scrum
+28 23 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) meet z 89095216893 U0JUQkhpWUZwSVoweVBwbjg2OXZFQT09
+# ISD Daily Scrum 1
+58 23 * * 1-4 DISPLAY=$(cat /tmp/DISPLAY) meet z 7397604014 RkpFbEd4RzJMZ3o1NFdydFo1YVVuUT09
+# ISD Weekly Scrum 2
+58 23 * * 5 DISPLAY=$(cat /tmp/DISPLAY) meet z 89099693509 UWduV2RKc0hGM0Q3L2xBMm5wdVNYdz09
+# Estatement Bi-daily Scrum
+58 21 * * 2,4 DISPLAY=$(cat /tmp/DISPLAY) meet z 87004581543 UzZlajc0SmFFNHJFTWtPZXNZd3ppQT09
 
 #  ╔══════════════════════════════════════════════════════════════════════
 #  ║                              Exp
 #  ╚══════════════════════════════════════════════════════════════════════
+
+# Estatement Discussion
+# m h D M d
+#  58 22 9 11 * DISPLAY=$(cat /tmp/DISPLAY) meet z 83178219809 aEhKWk5kN21ydGJZcjlodTdncCtrUT09
+
+# IS Weekly scrum
+# 58 21 * * 4 DISPLAY=$(cat /tmp/DISPLAY) meet g ndd-igch-zta
 
 #  @ 7d DISPLAY=$(cat /tmp/DISPLAY) housekeep
 # @ 7d DISPLAY=$(cat /tmp/DISPLAY) mirror --system --repos --upstream

@@ -111,3 +111,8 @@ unset imap_passive
 set sig_on_top # Puts signature on top
 
 set imap_check_subscribed
+
+set from = "salman.abedin@dsinnovators.com"
+set smtp_url = "smtps://$from@imap.gmail.com"
+set smtp_pass = `gpg -qd ~/.local/share/misc/passwords.gpg 2>/dev/null | awk -F, '/dsi_gmail_app,/{print $3}'`
+set signature="~/.config/mutt/signature_dsi"
