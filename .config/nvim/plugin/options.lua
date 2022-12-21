@@ -78,6 +78,8 @@ window = {
 -- ===========================================================================
 
 global = {
+    completeopt = 'menuone,noselect',
+
     -- don't autoinsert two spaces after '.', '?', '!' for join command
     joinspaces = false,
 
@@ -111,7 +113,8 @@ global = {
     emoji = false, -- don't assume all emoji are double width
     magic = true, -- respect regx characters while searching
     scrolloff = 999, -- Start scrolling at an offset from the bottom
-    updatetime = 1000, -- buffer update / Cursor hold autocommand delay
+    -- sidescrolloff = 999, -- Start scrolling at an offset from the side
+    updatetime = 250, -- buffer update / Cursor hold autocommand delay
     showmode = false, -- dont show current mode
     showmatch = true, -- live match highlighting
     pumheight = 5, -- Makes popup menu smaller

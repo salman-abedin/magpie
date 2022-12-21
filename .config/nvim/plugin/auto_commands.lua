@@ -1,11 +1,7 @@
 vim.cmd [[
 
-	" restore cursor position
+	"  restore cursor position
 	autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
-
-	" Highlight yanked lines
-	autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='Visual', timeout=200 }
-
 
 	" Custom filetypes
 	autocmd BufNewFile,BufRead calcurse-note.* setlocal filetype=markdown
@@ -23,6 +19,14 @@ vim.cmd [[
     autocmd FileType expect setlocal commentstring=#%s
 
 ]]
+
+--  autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='Visual', timeout=200 }
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        vim.highlight.on_yank {higroup = 'Visual'}
+    end,
+    pattern = '*'
+})
 
 -- ===========================================================================
 -- =                             Exp

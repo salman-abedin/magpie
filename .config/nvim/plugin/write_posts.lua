@@ -17,7 +17,11 @@ autocmd BufWritePost */qtile/config.py silent !xdotool key super+q
 autocmd BufWritePost */scripts_production/* silent !rsync -aP $(readlink -f %) dsi:/t/salmanA/tmp &
 autocmd BufWritePost test_salmanA.sh silent !rsync -a % dsi:/t &
 "  autocmd BufWritePost .bash{rc,_profile} silent !rsync -a % dsi:/z/salmanA &
-autocmd BufWritePost .bash{rc,_profile} silent !mirror-work %
+autocmd BufWritePost .bash{rc,_profile},.zshenv,*zsh/* silent !mirror-work %
+
+"  autocmd BufWritePost tfsl_api* silent !rsync -a % hP1:~/ &
+
+
 
 ]]
 

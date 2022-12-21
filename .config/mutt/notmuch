@@ -4,7 +4,8 @@ set virtual_spoolfile=yes
 set folder = "/mnt/internal/mail"
 
 virtual-mailboxes "u" "notmuch://?query=tag:unread"
-virtual-mailboxes "i" "notmuch://?query=tag:inbox"
+virtual-mailboxes "i" "notmuch://?query=tag:important"
+virtual-mailboxes "I" "notmuch://?query=tag:inbox"
 virtual-mailboxes "t" 'notmuch://?query=subject:"/(Salman|Nouros|Rakibul).*modified/" and to:"salman.abedin"'
 #  virtual-mailboxes "t" 'notmuch://?query=subject:"/(Salman|Nouros|Rakibul).*modified/" and to:"salman.abedin"'
 #  virtual-mailboxes "m" 'notmuch://?query=from:"infocare" and to:"salman.abedin" and subject:"assigned you"'

@@ -4,6 +4,7 @@
 
 # sources{{{
 . ~/.personal 2> /dev/null
+#  . ~/.bash_profile 2> /dev/null
 # }}}
 # paths{{{
 export PATH=$PATH:~/.local/bin                      # local scripts
@@ -17,7 +18,8 @@ fi
 #                             Defaults Programs
 #===============================================================================
 
-export WM="qtile start"
+#  export WM="qtile start"
+export WM="dbus-launch qtile start"
 export TERMINAL=alacritty
 export DMENU=amenu
 
@@ -177,4 +179,5 @@ fi
 # [ -L ~/.config/lf/lf_icons ] && . ~/.config/lf/lf_icons
 # export PERL5LIB=~/perl5/lib/perl5
 #  export STATUSBAR="uniblocks -g"
+
 # }}}

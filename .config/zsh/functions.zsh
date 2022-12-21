@@ -72,9 +72,10 @@ launch_dpi(){
   program=$1
   shift
   arguments=$*
-  setsid $program --force-device-scale-factor=$(get-dpi -f) $arguments > /dev/null 2>&1
+  setsid dbus-launch $program --force-device-scale-factor=$(get-dpi -f) $arguments > /dev/null 2>&1
 }
 
+alias b="setsid dbus-launch brave --force-device-scale-factor=1.25 > /dev/null 2>&1"
 #  alias b="setsid brave > /dev/null 2>&1"
 br(){ launch_dpi brave $*; }
 dis(){ launch_dpi discord; }

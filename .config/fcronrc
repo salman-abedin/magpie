@@ -25,13 +25,13 @@ GIT=/mnt/internal/git
 */15 20-23,0-3 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) check-dsi-mail
 1 20-23,0-3 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) mirror --calcurse --pp -hno
 1 20-23,0-3 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) checkstorage / 5 /mnt/internal 25
-#  45 3 * * 1-5 rm ~/.local/share/misc/cookie_ts
+45 3 * * 2-6 rm ~/.local/share/misc/cookie_ts
 
 #  ╔════════════════════════════════════════
 #  ║                    Meetings
 #  ╚════════════════════════════════════════
 # AC Daily Scrum
-28 23 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) meet z 89095216893 U0JUQkhpWUZwSVoweVBwbjg2OXZFQT09
+28 23 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) meet z 88105129996 THVOZGFRYU1Kd3gxSi9Vek12MzBsUT09
 # ISD Daily Scrum 1
 58 23 * * 1-4 DISPLAY=$(cat /tmp/DISPLAY) meet z 7397604014 RkpFbEd4RzJMZ3o1NFdydFo1YVVuUT09
 # ISD Weekly Scrum 2

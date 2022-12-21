@@ -12,12 +12,18 @@ if pcall(require, 'hop') then
         {noremap = false})
 end
 
-if pcall(require, 'commented') then
-    require('commented').setup {
-        keybindings = {n = '<leader>s', v = '<leader>s', nl = '<leader>ss'},
-        hooks = {
-            before_comment = require('ts_context_commentstring.internal').update_commentstring
-        }
+--  if pcall(require, 'commented') then
+--  require('commented').setup {
+--  keybindings = {n = '<leader>s', v = '<leader>s', nl = '<leader>ss'},
+--  hooks = {
+--  before_comment = require('ts_context_commentstring.internal').update_commentstring
+--  }
+--  }
+--  end
+if pcall(require, 'Comment') then
+    require('Comment').setup {
+        opleader = {line = '<leader>s'},
+        toggler = {line = '<leader>ss'}
     }
 end
 
@@ -40,6 +46,10 @@ vim.g.indent_blankline_use_treesitter = true
 
 if pcall(require, 'colorizer') then
     require'colorizer'.setup {'sass', 'svelte', 'vue', 'css', 'scss', 'yaml'}
+end
+
+if pcall(require, 'neodev') then
+    require('neodev').setup()
 end
 
 -- if pcall(require, 'nvim-web-devicons') then

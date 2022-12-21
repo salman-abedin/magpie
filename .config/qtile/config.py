@@ -30,13 +30,14 @@ keys = [
     #  Key([mod], "apostrophe", lazy.spawn('blue -m')),
     Key([mod], "apostrophe", lazy.spawn('toggle-mic')),
     Key([mod], "e", lazy.spawn('insertemoji')),
-    Key([mod], "i", lazy.spawn('unipass fetch')),
+    Key([mod], "i", lazy.spawn('xdotool sleep 0.5 key ctrl+shift+k')),
+    Key([mod], "p", lazy.spawn('unipass fetch')),
     Key([mod, 'shift'], "i", lazy.spawn('unipass add')),
     Key([mod], "n", lazy.spawn('pkill -f dunst')),
     Key([mod, 'shift'], "n", lazy.spawn('toggle -n')),
-    Key([mod], "p", lazy.spawn('share-ticket')),
+    Key([mod], "t", lazy.spawn('share-ticket')),
     Key([mod], "r", lazy.spawn('amenu -l')),
-    Key([mod], "t", lazy.spawn('alacritty -e tmux')),
+    #  Key([mod], "t", lazy.spawn('alacritty -e tmux')),
     Key([mod], "u", lazy.spawn('unimark')),
     Key([mod], "w", lazy.spawn('set-bg -s')),
 
@@ -110,33 +111,34 @@ groups = [
         '2',
         label='🕸',
         matches=[
-            Match(wm_class=["brave-browser"]),
-            Match(wm_class=["firefox"]),
+            #  Match(wm_class=["brave-browser"]),
+            #  Match(wm_class=["firefox"]),
             #  Match(wm_class=["vncviewer"]),
             #  Match(wm_class=["tk"]),
         ]
     ),
 
+    #  Group(
+        #  '3',
+        #  label='☎',
+        #  matches=[
+            #  Match(wm_class=["firefox"]),
+            #  Match(wm_class=["Skype"]),
+            #  Match(title=["Skype"]),
+        #  ]
+    #  ),
+
+    #  Group(
+        #  '4',
+        #  label='🎫',
+        #  matches=[
+            #  Match(title=["TeamSupport"]),
+            #  #  Match(wm_class=["TradingView"]),
+        #  ]
+    #  ),
+
     Group(
         '3',
-        label='☎',
-        matches=[
-            Match(wm_class=["Skype"]),
-            Match(title=["Skype"]),
-        ]
-    ),
-
-    Group(
-        '4',
-        label='🎫',
-        matches=[
-            Match(title=["TeamSupport"]),
-            #  Match(wm_class=["TradingView"]),
-        ]
-    ),
-
-    Group(
-        '5',
         label='🗃',
         matches=[
             Match(wm_class=["DBeaver"]),
@@ -144,7 +146,7 @@ groups = [
     ),
 
     Group(
-        '6',
+        '4',
         label='💼',
         matches=[
             Match(wm_class=["zoom"]),
@@ -152,13 +154,22 @@ groups = [
     ),
 
     Group(
-        '7',
+        '5',
         label='💻',
         matches=[
             Match(wm_class=["VirtualBox Manager"]),
             Match(wm_class=["VirtualBox Machine"]),
         ]
     ),
+
+    #  Group(
+        #  '6',
+        #  label='🎵',
+        #  matches=[
+            #  Match(wm_class=["spotify"]),
+        #  ]
+    #  ),
+
 ]
 
 for i in groups:
@@ -234,13 +245,13 @@ screens = [
                 #  widget.Sep(),
                 #  widget.GenPollText(update_interval=30, func=lambda: check_output('panel -w'.split()).decode("utf-8")),
                 #  widget.Sep(),
-                #  widget.GenPollText(update_interval=60, func=lambda: check_output('panel -b'.split()).decode("utf-8")),
-                #  widget.Sep(),
                 #  widget.TextBox(text="echo yo"),
                 #  widget.Sep(),
                 widget.GenPollText(update_interval=5, func=lambda: check_output('panel -s'.split()).decode("utf-8")),
                 widget.Sep(),
                 widget.GenPollText(update_interval=60, func=lambda: check_output('panel -d'.split()).decode("utf-8")),
+                widget.Sep(),
+                widget.GenPollText(update_interval=60, func=lambda: check_output('panel -b'.split()).decode("utf-8")),
                 widget.Sep(),
                 widget.Systray(),
             ],

@@ -78,7 +78,7 @@ require('lualine').setup {
     options = {theme = gruvbox_material_custom},
     sections = {
         lualine_a = {{machine}},
-        lualine_b = {{'branch'}},
+        lualine_b = {{'branch'}, {'location', icon = {''}}},
         lualine_c = {{'filename', icon = {''}}},
         lualine_x = {
             {

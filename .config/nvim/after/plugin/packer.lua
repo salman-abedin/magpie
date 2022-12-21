@@ -52,7 +52,9 @@ require('packer').startup(function()
     --  config = 'vim.cmd[[colorscheme gruvbox-baby]]'
     --  }
 
-    -- treesitter
+    --  ╔════════════════════════════════════════
+    --  ║                    Treesitter
+    --  ╚════════════════════════════════════════
     use {'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate'}
     use {'p00f/nvim-ts-rainbow', requires = 'nvim-treesitter/nvim-treesitter'}
     use {
@@ -81,15 +83,42 @@ require('packer').startup(function()
         }
     }
 
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-compe'
-    use 'winston0410/commented.nvim'
+    --  ╔════════════════════════════════════════
+    --  ║                    LSP
+    --  ╚════════════════════════════════════════
+    --  use 'neovim/nvim-lspconfig'
+
+    use {
+        'neovim/nvim-lspconfig',
+        requires = {
+            'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
+            'j-hui/fidget.nvim'
+        }
+    }
+
+    --  ╔════════════════════════════════════════
+    --  ║                    Completion
+    --  ╚════════════════════════════════════════
+    --  use 'hrsh7th/nvim-compe'
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip'
+        }
+    }
+
+    --  use 'winston0410/commented.nvim'
+    use 'numToStr/Comment.nvim'
+
     use 'phaazon/hop.nvim'
     use 'karb94/neoscroll.nvim'
 
     use 'lewis6991/impatient.nvim'
 
     use 'nvim-lualine/lualine.nvim'
+
+    use "folke/neodev.nvim"
 
     -- }}}
     -- misc{{{
@@ -125,9 +154,12 @@ require('packer').startup(function()
     -- =                             Experiements
     -- =========================================================================  
 
-    -- Database
-    use {'tpope/vim-dadbod'}
-    use {'kristijanhusak/vim-dadbod-ui'}
+    --  use {'mbbill/undotree'}
+    --  use {'tpope/vim-fugitive'}
+
+    --  -- Database
+    --  use {'tpope/vim-dadbod'}
+    --  use {'kristijanhusak/vim-dadbod-ui'}
 
     -- colorschemes{{{
     ------------------------------------------------
@@ -216,8 +248,6 @@ require('packer').startup(function()
     -- 'ibhagwan/fzf-lua',
     -- requires = {'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons'}
     -- }
-
-    -- use {'lukas-reineke/indent-blankline.nvim', ft = {'svelte', 'vue'}}
 
     -- use 'tyru/caw.vim'
     -- use 'Shougo/context_filetype.vim'

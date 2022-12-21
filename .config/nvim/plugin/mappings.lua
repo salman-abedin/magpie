@@ -1,6 +1,8 @@
 local map = require('map')
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', {silent = true})
 
 -- consistancy with default mappings{{{
 map('n', 'Y', 'y$')
@@ -35,6 +37,10 @@ map('n', 'u', ':silent undo<cr>')
 
 -- -- search and replace hotkey
 map('n', '<leader>R', ':%s//gcI<left><left><left><left>')
+
+-- horizontal scrolling
+map('n', 'L', '40l')
+map('n', 'H', '40h')
 
 -- }}}
 -- saves & quites{{{

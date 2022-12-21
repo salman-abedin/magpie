@@ -166,12 +166,7 @@ OPS="\
 ©  Yank:yank;
 🖌  Paste:paste;
 🚚 Move:move;
-🖥  Push to RH2:push_to_rh2;
-🖥  Push to RHS2:push_to_rhs2;
 📱 Push to Arnie:push_to_arnie;
-⏰ Push to Lenny:push_to_lenny;
-⏰ Push to GSS:push_to_gss;
-⏰ Push to Test Main:push_to_testmain;
 ℹ  Show Size:show_size;
 💊 Choose:launch_choose;
 📁 New Directory:make_dir;
@@ -181,10 +176,9 @@ OPS="\
 🔑 Decrypt:decrypt;
 ♦  Compress:compress;
 ⬆  Upload:upload;
-📃 View Markdown:view_markdown;
+$OPS
 "
 # 😎 Own:own;
-# 💻 Push to YY:push2yy;
 
 #===============================================================================
 #                               Icons

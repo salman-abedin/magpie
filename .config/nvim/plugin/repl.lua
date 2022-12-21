@@ -19,6 +19,8 @@ vim.cmd [[
 
  autocmd BufWritePost mq4.py silent !python %  &
 
- autocmd BufRead *infoimage/db/*.py nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal python % <cr>
+ "  autocmd BufRead *infoimage/db/*.py nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal python % <cr>
+ " autocmd BufRead *infoimage/db/*.py nnoremap <silent> <cr> :silent up <bar> silent! %bd! <bar> e# <bar> bd# <bar> 1sleep <bar> terminal python % > /tmp/ii_db && vim /tmp/ii_db <cr>
+ autocmd BufRead *infoimage/db/*.py nnoremap <silent> <cr> :silent up \| 1sleep \| silent! execute '!python % > /tmp/ii_db' \| e /tmp/ii_db<cr>
 
 ]]
