@@ -7,3 +7,7 @@ vim.cmd [[
 " command! Tzc Telescope find_files cwd=/mnt/internal/git/work/3ZC/src
 
 ]]
+
+-- vim.api.nvim_buf_create_user_command(0, 'Format', function(_)
+--     vim.lsp.buf.format()
+-- end, {})

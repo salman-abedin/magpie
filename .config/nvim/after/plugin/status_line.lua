@@ -49,12 +49,12 @@ gruvbox_material_custom.command.b.fg = foreground_color
 --  gruvbox_material_custom.command.c.fg = foreground_color
 gruvbox_material_custom.command.c.fg = foreground_color_file
 
-vim.cmd [[
-autocmd VimEnter * highlight DiagnosticLualineError guibg=#444444 guifg=red
-autocmd VimEnter * highlight DiagnosticLualineWarn guibg=#444444 guifg=yellow
-autocmd VimEnter * highlight DiagnosticLualineHint guibg=#444444 guifg=orange
-autocmd VimEnter * highlight DiagnosticLualineInfo guibg=#444444 guifg=green
-]]
+-- vim.cmd [[
+-- autocmd VimEnter * highlight DiagnosticLualineError guibg=#444444 guifg=red
+-- autocmd VimEnter * highlight DiagnosticLualineWarn guibg=#444444 guifg=yellow
+-- autocmd VimEnter * highlight DiagnosticLualineInfo guibg=#444444 guifg=orange
+-- autocmd VimEnter * highlight DiagnosticLualineHint guibg=#444444 guifg=green
+-- ]]
 
 -- }}}
 --  functions{{{

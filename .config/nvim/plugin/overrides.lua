@@ -17,7 +17,7 @@ overrides = function()
 
 end
 
-vim.cmd [[ autocmd BufNewFile,BufRead * lua overrides() ]]
+-- vim.cmd [[ autocmd BufNewFile,BufRead * lua overrides() ]]
 
 
 --  python_overrides = function()

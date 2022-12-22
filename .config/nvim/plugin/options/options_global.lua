@@ -1,83 +1,4 @@
-local set_options = function(global, window, buffer)
-    for key, value in pairs(global) do
-        vim.api.nvim_set_option(key, value)
-    end
-
-    for key, value in pairs(window) do
-        vim.api.nvim_win_set_option(0, key, value)
-    end
-
-    for key, value in pairs(buffer) do
-        vim.api.nvim_buf_set_option(0, key, value)
-    end
-end
-
-local remove = function(option, exclusion)
-    return vim.api.nvim_get_option(option):gsub(',' .. exclusion, '')
-end
-
-local add = function(option, inclusion)
-    return vim.api.nvim_get_option(option) .. inclusion
-end
-
-vim.opt.iskeyword = vim.opt.iskeyword - '_' -- exclude underscore from keyword
-
--- Prevent annoying messages
-vim.opt.shortmess = vim.opt.shortmess + 'c' -- Completion
-+ 'A' -- Swap
-+ 'W' -- Written
-+ 'o' -- Overwrite
-+ 'O' -- file-read
-+ 'a' -- Abbreviation
-+ 'I' -- Splash Screen
-+ 'T' -- non-file
-+ 't' -- Startup
-
--- ===========================================================================
--- =                             Buffers 
--- ===========================================================================
-
-buffer = {
-
-    expandtab = true, -- Use spaces instead of tabs
-    undofile = true, -- enable undoing between buffer closes
-
-    softtabstop = 2, -- spaces per tab (in insert mode)
-    shiftwidth = 2, -- spaces per tab (when shifting)
-    tabstop = 2 -- number of spaces per tab
-
-    -- backspace = 'indent,eol,start', -- Enable proper backspace behavior
-    -- smarttab = true, -- <tab>/<BS> indent/dedent in leading whitespace
-    -- autoindent = true, -- match indents new lines with previous line.
-}
-
--- ===========================================================================
--- =                             Window 
--- ===========================================================================
-window = {
-    foldmethod = 'marker', -- User markers for folding
-    signcolumn = 'yes', -- Always show the sign column (i.e. no more jerking)
-    number = true, -- Set absolute line numbers
-    relativenumber = true, -- Set relative line numbers
-
-    cursorline = true, -- Show cursor line
-
-    wrap = false, -- Disable line wrapping
-
-    foldlevel = 99, -- Disable folding at startup
-
-    --  list = true, -- show whitespace
-
-    linebreak = true, -- break lines consistantly
-    breakindent = true -- break indents consistantly
-
-}
-
--- ===========================================================================
--- =                             Globals 
--- ===========================================================================
-
-global = {
+local global_options = {
     completeopt = 'menuone,noselect',
 
     -- don't autoinsert two spaces after '.', '?', '!' for join command
@@ -161,7 +82,22 @@ global = {
 
 }
 
-set_options(global, window, buffer)
+for key, value in pairs(global_options) do
+    vim.api.nvim_set_option(key, value)
+end
+
+vim.opt.iskeyword = vim.opt.iskeyword - '_' -- exclude underscore from keyword
+
+-- Prevent annoying messages
+vim.opt.shortmess = vim.opt.shortmess + 'c' -- Completion
+    + 'A' -- Swap
+    + 'W' -- Written
+    + 'o' -- Overwrite
+    + 'O' -- file-read
+    + 'a' -- Abbreviation
+    + 'I' -- Splash Screen
+    + 'T' -- non-file
+    + 't' -- Startup
 
 --  vim.opt.listchars = {
 --  nbsp = '⦸',
@@ -180,7 +116,16 @@ vim.opt.listchars = {
     precedes = '>'
 }
 
-vim.opt.fillchars = {diff = '∙', eob = ' ', fold = '·', vert = '┃'}
+vim.opt.fillchars = { diff = '∙', eob = ' ', fold = '·', vert = '┃' }
 
 -- vim.opt.wildmode = vim.opt.wildmode - 'list' + 'longest' + 'full'
---  print(vim.wo.fillchars)
+-- print(vim.wo.fillchars)
+--
+--
+-- local remove = function(option, exclusion)
+--     return vim.api.nvim_get_option(option):gsub(',' .. exclusion, '')
+-- end
+--
+-- local add = function(option, inclusion)
+--     return vim.api.nvim_get_option(option) .. inclusion
+-- end

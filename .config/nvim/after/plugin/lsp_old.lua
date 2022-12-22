@@ -1,7 +1,3 @@
-if pcall(require, 'mason') then
-    require('mason').setup()
-end
-
 --  init{{{
 if not pcall(require, 'lspconfig') then
     return
@@ -126,14 +122,14 @@ lsp.bashls.setup {
 
 local sumneko_root_path = '/mnt/internal/git/upstream/lua-language-server'
 local sumneko_binary =
-    '/mnt/internal/git/upstream/lua-language-server/bin/lua-language-server'
+'/mnt/internal/git/upstream/lua-language-server/bin/lua-language-server'
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require'lspconfig'.sumneko_lua.setup {
-    cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'},
+require 'lspconfig'.sumneko_lua.setup {
+    cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
     settings = {
         Lua = {
             runtime = {
@@ -144,14 +140,14 @@ require'lspconfig'.sumneko_lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'}
+                globals = { 'vim' }
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file('', true)
             },
             -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {enable = false}
+            telemetry = { enable = false }
         }
     }
 }
@@ -159,7 +155,7 @@ require'lspconfig'.sumneko_lua.setup {
 -- }}}
 -- auto formatter{{{
 -- ===========================================================================
--- =                             Auto Formatter 
+-- =                             Auto Formatter
 -- ===========================================================================
 
 vim.cmd [[
@@ -172,7 +168,7 @@ vim.cmd [[
 -- }}}
 -- mappings{{{
 -- ===========================================================================
--- =                             Mappings 
+-- =                             Mappings
 -- ===========================================================================
 
 map('n', '<leader>W', '<cmd>lua vim.diagnostic.goto_next()<cr>')
@@ -222,34 +218,6 @@ vim.cmd [[
   "  autocmd InsertEnter *.{py,php} silent! exec 'lclose'
 ]]
 -- }}}
--- theme{{{
--- ===========================================================================
--- =                             Theme
--- ===========================================================================
-
-local signs = {Error = ' ', Warn = '! ', Hint = ' ', Info = ' '}
-for type, icon in pairs(signs) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
-end
-
-vim.cmd [[
-autocmd VimEnter * highlight DiagnosticSignError guibg=NONE guifg=red
-autocmd VimEnter * highlight DiagnosticVirtualTextError guibg=NONE guifg=red
-
-autocmd VimEnter * highlight DiagnosticSignWarn guibg=NONE guifg=yellow
-autocmd VimEnter * highlight DiagnosticVirtualTextWarn guibg=NONE guifg=yellow
-
-autocmd VimEnter * highlight DiagnosticSignHint guibg=NONE guifg=orange
-autocmd VimEnter * highlight DiagnosticVirtualTextHint guifg=orange
-
-autocmd VimEnter * highlight DiagnosticSignInfo guibg=NONE guifg=green
-autocmd VimEnter * highlight DiagnosticSignInfo guibg=NONE guifg=green
-
-
-]]
-
--- }}}
 --  autocommands{{{
 
 toggle_lsp_insert = function()
@@ -272,8 +240,6 @@ vim.cmd [[
 ]]
 -- }}}
 
-require('fidget').setup()
-
 -- efm
 
 local lua_format = {
@@ -286,12 +252,12 @@ local shellcheck = {
         '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
     }
 }
-local shfmt = {formatCommand = 'shfmt -i 4 -ci -s -sr -bn'}
-local xmllint = {formatCommand = 'xmllint --format -'}
-local tidy = {formatCommand = 'tidy -xml -i -q -'}
-local xmlpp = {formatCommand = 'xml_pp'}
+local shfmt = { formatCommand = 'shfmt -i 4 -ci -s -sr -bn' }
+local xmllint = { formatCommand = 'xmllint --format -' }
+local tidy = { formatCommand = 'tidy -xml -i -q -' }
+local xmlpp = { formatCommand = 'xml_pp' }
 --  local autopep8 = {formatCommand = 'autopep8 --indent-size=2'}
-local autopep8 = {formatCommand = 'autopep8'}
+local autopep8 = { formatCommand = 'autopep8' }
 --  local black = {formatCommand = 'black'}
 --  local yapf = {formatCommand = 'yapf'}
 local google_java_format = {
@@ -303,47 +269,47 @@ local clang_format = {
 
 -- local clang_format = {formatCommand = 'clang-format --style="{BasedOnStyle: mozilla}"'}
 
-local prettier = {formatCommand = 'prettier'}
-local php_cs_fixer = {formatCommand = 'php-cs-fixer'}
-local prettier_javascript = {formatCommand = 'prettier --single-quote'}
-local prettier_yaml = {formatCommand = 'prettier --tab-width 4'}
-local prettier_json = {formatCommand = 'prettier --tab-width 4'}
+local prettier = { formatCommand = 'prettier' }
+local php_cs_fixer = { formatCommand = 'php-cs-fixer' }
+local prettier_javascript = { formatCommand = 'prettier --single-quote' }
+local prettier_yaml = { formatCommand = 'prettier --tab-width 4' }
+local prettier_json = { formatCommand = 'prettier --tab-width 4' }
 
 lsp.efm.setup {
-    init_options = {documentFormatting = true, codeAction = false},
+    init_options = { documentFormatting = true, codeAction = false },
     filetypes = {
         'c', 'cpp', 'javascript', 'typescriptreact', 'sh', 'markdown', 'yaml',
         'json', 'xml', 'html', 'lua'
-        --  'typescript', 
+        --  'typescript',
         --  'python',
         --  'php',
         -- 'vue',
     },
     settings = {
-        rootMarkers = {'.git/'},
+        rootMarkers = { '.git/' },
         languages = {
-            c = {clang_format},
-            cpp = {clang_format},
-            css = {prettier},
-            html = {prettier},
-            java = {google_java_format},
-            javascript = {prettier_javascript},
-            typescript = {prettier_javascript},
-            typescriptreact = {prettier_javascript},
-            json = {prettier_json},
-            lua = {lua_format},
-            markdown = {prettier},
-            php = {php_cs_fixer},
+            c = { clang_format },
+            cpp = { clang_format },
+            css = { prettier },
+            html = { prettier },
+            java = { google_java_format },
+            javascript = { prettier_javascript },
+            typescript = { prettier_javascript },
+            typescriptreact = { prettier_javascript },
+            json = { prettier_json },
+            lua = { lua_format },
+            markdown = { prettier },
+            php = { php_cs_fixer },
             --  xml = {xmllint},
             --  xml = {tidy},
-            xml = {xmlpp},
-            python = {autopep8},
+            xml = { xmlpp },
+            python = { autopep8 },
             --  python = {black},
             --  python = {yapf},
-            yaml = {prettier_yaml},
-            sh = {shellcheck, shfmt},
-            svelte = {prettier_javascript},
-            vue = {prettier_javascript}
+            yaml = { prettier_yaml },
+            sh = { shellcheck, shfmt },
+            svelte = { prettier_javascript },
+            vue = { prettier_javascript }
         }
     }
 }

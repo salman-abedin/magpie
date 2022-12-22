@@ -20,12 +20,17 @@ vim.cmd [[
 
 ]]
 
---  autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='Visual', timeout=200 }
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
-        vim.highlight.on_yank {higroup = 'Visual'}
+        vim.highlight.on_yank { higroup = 'Visual' }
     end,
-    pattern = '*'
+})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+    pattern = "*.{lua,sh}",
 })
 
 -- ===========================================================================
