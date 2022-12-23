@@ -10,7 +10,7 @@ map('n', 'Y', 'y$')
 map('n', 'V', 'v$h')
 map('n', 'vv', 'V')
 map('n', 'U', '<c-r>')
-map('n', '<leader>v', '<c-v>')
+map('n', '<space>v', '<c-v>')
 
 -- I Love My Pincky
 map('i', 'kj', '<ESC>')
@@ -20,22 +20,22 @@ map('n', 'j', 'gj')
 map('n', 'k', 'gk')
 
 -- paste last yanked text
-map('n', '<leader>p', '"0p')
+map('n', '<space>p', '"0p')
 
 -- -- better command mode
 -- map('n', ':', ':<c-f>i')
 -- map('c', '<esc>', '<c-c>')
 
 -- fold management
--- map('n', '<leader>j', 'zA')
+-- map('n', '<space>j', 'zA')
 
-map('n', '<leader>j', 'za')
-map('n', '<leader>k', 'zM')
+map('n', '<space>j', 'za')
+map('n', '<space>k', 'zM')
 
 map('n', 'u', ':silent undo<cr>')
 
 -- -- search and replace hotkey
-map('n', '<leader>R', ':%s//gcI<left><left><left><left>')
+map('n', '<space>R', ':%s//gcI<left><left><left><left>')
 
 -- horizontal scrolling
 map('n', 'L', '40l')
@@ -43,16 +43,16 @@ map('n', 'H', '40h')
 
 -- saves & quites
 map('n', '<cr>', ':silent! up<cr>')
---  map('n', '<leader><cr>', ':silent! exec "up | !compile % &"<cr>')
-map('n', '<leader><cr>', ':silent! w !sudo tee %<cr>')
+--  map('n', '<space><cr>', ':silent! exec "up | !compile % &"<cr>')
+map('n', '<space><cr>', ':silent! w !sudo tee %<cr>')
 map('n', '<esc>', ':silent! up | qa<cr>')
-map('n', '<leader><esc>', ':qa!<cr>')
+map('n', '<space><esc>', ':qa!<cr>')
 
 -- keep stuff centered
 map('n', 'n', 'nzzzv') -- go to next search
 map('n', 'N', 'Nzzzv') -- go to previous search
-map('n', '<leader>J', 'mzJ`z') -- join the line from below
-map('n', '<leader>K', 'kmzJ`z') -- join the line from above
+map('n', '<space>J', 'mzJ`z') -- join the line from below
+map('n', '<space>K', 'kmzJ`z') -- join the line from above
 
 -- undo break points
 map('i', ',', ',<c-g>u')
@@ -62,33 +62,33 @@ map('i', '?', '?<c-g>u')
 map('i', ';', ';<c-g>u')
 
 -- move lines
-map('n', '<leader><c-j>', ':m .+1<cr>==')
-map('n', '<leader><c-k>', ':m .-2<cr>==')
+map('n', '<space><c-j>', ':m .+1<cr>==')
+map('n', '<space><c-k>', ':m .-2<cr>==')
 map('i', '<c-j>', '<esc>:m .+1<cr>==a')
 map('i', '<c-k>', '<esc>:m .-2<cr>==a')
-map('v', '<leader><c-j>', ':m \'>+1<cr>gv=gv')
-map('v', '<leader><c-k>', ':m \'<-2<cr>gv=gv')
+map('v', '<space><c-j>', ':m \'>+1<cr>gv=gv')
+map('v', '<space><c-k>', ':m \'<-2<cr>gv=gv')
 
 -- quickfixlist & buffer management
 map('n', '<tab>', ':silent! execute "bp | copen | cn | cc | cclose"<cr>')
 map('n', '<s-tab>', ':silent! execute "bn | copen | cp | cc | cclose"<cr>')
-map('n', '<leader><tab>', ':silent! execute "bd | cclose')
-map('n', '<leader>r', 'q:icfdo %s//gcI | up<esc>F/i<c-c>')
+map('n', '<space><tab>', ':silent! execute "bd | cclose')
+map('n', '<space>r', 'q:icfdo %s//gcI | up<esc>F/i<c-c>')
 
 -- spellings
-map('n', '<leader>c', '1z=')
-  map('n', '<leader>C', 'i<C-X><C-S>')
--- map('n', '<leader>a', 'zg')
-  -- map('n', '<leader>A', 'zug')
+map('n', '<space>c', '1z=')
+map('n', '<space>C', 'i<C-X><C-S>')
+-- map('n', '<space>a', 'zg')
+-- map('n', '<space>A', 'zug')
 
 -- git
-map('n', '<leader>q', 'q:i!git add -A && git commit -m ""<esc>i<c-c>')
+map('n', '<space>q', 'q:i!git add -A && git commit -m ""<esc>i<c-c>')
 
 -- ===========================================================================
 -- =                             Exp
 -- ===========================================================================
 
-map('n', '<leader>n', ':set rnu!<cr>')
+map('n', '<space>n', ':set rnu!<cr>')
 
 -- saves & quites
 -- map('n', '<cr>', ':silent! wa<cr>')
@@ -96,16 +96,16 @@ map('n', '<leader>n', ':set rnu!<cr>')
 
 -- map('n', '<tab>', '<cmd>cn<cr>')
 -- map('n', '<s-tab>', '<cmd>cp<cr>')
--- map('n', '<leader><tab>', '<cmd>cclose<cr>')
+-- map('n', '<space><tab>', '<cmd>cclose<cr>')
 
--- map('n', '<leader>h', '<c-o>')
--- map('n', '<leader>l', '<c-i>')
+-- map('n', '<space>h', '<c-o>')
+-- map('n', '<space>l', '<c-i>')
 
--- map('n', '<leader>l', '<c-i>')
+-- map('n', '<space>l', '<c-i>')
 
 -- joins
--- map('n', '<leader>J', 'J')
--- map('n', '<leader>K', 'kJ')
+-- map('n', '<space>J', 'J')
+-- map('n', '<space>K', 'kJ')
 
 -- Scrolls
 -- map('', 'J', '<c-f>')
@@ -118,4 +118,4 @@ map('n', '<leader>n', ':set rnu!<cr>')
 -- map('', 'J', '<c-d>', {noremap = false})
 -- map('', 'K', '<c-u>', {noremap = false})
 
--- map('n', '<leader><cr>', ':!wc -w %<cr>')
+-- map('n', '<space><cr>', ':!wc -w %<cr>')

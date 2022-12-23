@@ -8,45 +8,57 @@ if pcall(require, 'mason-lspconfig') then
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
     end
 
-    local on_attach = function(_, buffer)
-        -- vim.diagnostic.disable()
-    end
+    -- local on_attach = function(_, buffer)
+    --     vim.diagnostic.disable()
+    -- end
 
     local mason_lspconfig = require 'mason-lspconfig'
     mason_lspconfig.setup_handlers {
         function(server_name)
             require('lspconfig')[server_name].setup {
-                on_attach = on_attach,
                 capabilities = capabilities,
+                -- on_attach = on_attach,
             }
         end,
     }
 end
 
-if not pcall(require, 'lspconfig') then
-    return
+if pcall(require, 'null-ls') then
+    require("null-ls").setup({
+        sources = {
+            require("null-ls").builtins.formatting.shfmt,
+            -- require("null-ls").builtins.diagnostics.shellcheck,
+        },
+    })
 end
 
-vim.diagnostic.config({
-    virtual_text = false,
-})
+if pcall(require, 'lspconfig') then
+    vim.diagnostic.config({
+        virtual_text = false,
+    })
+end
 
-require('lspconfig').efm.setup {
-    init_options = { documentFormatting = true, codeAction = false },
-    settings = {
-        rootMarkers = { '.git/' },
-        languages = {
-            sh = {
-                {
+-- ╔═════════════════════════════════════════════════════════════════════════════
+-- ║                              Exp
+-- ╚═════════════════════════════════════════════════════════════════════════════
 
-                    -- LintCommand = 'shellcheck -f gcc -x',
-                    -- lintFormats = {
-                    --     '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
-                    -- },
-
-                    formatCommand = 'shfmt -i 4 -ci -s -sr -bn'
-                },
-            },
-        }
-    }
-}
+-- require('lspconfig').efm.setup {
+--     -- init_options = { documentFormatting = true, codeAction = false },
+--     init_options = { documentFormatting = true },
+--     settings = {
+--         rootMarkers = { '.git/' },
+--         languages = {
+--             sh = {
+--                 {
+--
+--                     -- LintCommand = 'shellcheck -f gcc -x',
+--                     -- lintFormats = {
+--                     --     '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
+--                     -- },
+--
+--                     -- formatCommand = 'shfmt -i 4 -ci -s -sr -bn'
+--                 },
+--             },
+--         }
+--     }
+-- }

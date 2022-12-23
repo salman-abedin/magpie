@@ -7,262 +7,268 @@ local install_path = vim.fn.stdpath('data') ..
     '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
-    install_path)
-  execute 'packadd packer.nvim'
+    execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
+        install_path)
+    execute 'packadd packer.nvim'
 end
 -- }}}
 
 if not pcall(require, 'packer') then
-  return
+    return
 end
 
 require('packer').startup(function()
 
-  -- essentials{{{
-  ------------------------------------------------
-  -- -                   Essentials
-  ------------------------------------------------
+    -- essentials{{{
+    ------------------------------------------------
+    -- -                   Essentials
+    ------------------------------------------------
 
-  use {
-    'sainnhe/gruvbox-material',
-    config = 'vim.cmd[[colorscheme gruvbox-material]]'
-  }
-
-  --  use {
-  --  'mhartington/oceanic-next',
-  --  config = 'vim.cmd[[colorscheme OceanicNext]]'
-  --  }
-
-  --  use {'Th3Whit3Wolf/one-nvim', config = 'vim.cmd[[colorscheme one-nvim]]'}
-
-  --  use {
-  --  'tanvirtin/monokai.nvim',
-  --  --  config = 'require(\'monokai\').setup {}'
-  --  config = 'require(\'monokai\').setup { palette = require(\'monokai\').pro  }'
-  --  }
-
-  --  use {
-  --  'NLKNguyen/papercolor-theme',
-  --  config = 'vim.cmd[[colorscheme PaperColor]]'
-  --  }
-
-  --  use {
-  --  'luisiacc/gruvbox-baby',
-  --  config = 'vim.cmd[[colorscheme gruvbox-baby]]'
-  --  }
-
-  --  ╔════════════════════════════════════════
-  --  ║                    Treesitter
-  --  ╚════════════════════════════════════════
-  use { 'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate' }
-  use { 'p00f/nvim-ts-rainbow', requires = 'nvim-treesitter/nvim-treesitter' }
-  use {
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    requires = 'nvim-treesitter/nvim-treesitter'
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    requires = 'nvim-treesitter/nvim-treesitter'
-  }
-  use {
-    'code-biscuits/nvim-biscuits',
-    requires = 'nvim-treesitter/nvim-treesitter'
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter-context',
-    requires = 'nvim-treesitter/nvim-treesitter'
-  }
-
-  -- fuzzy finder
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim'
+    use {
+        'sainnhe/gruvbox-material',
+        config = 'vim.cmd[[colorscheme gruvbox-material]]'
     }
-  }
 
-  --  ╔════════════════════════════════════════
-  --  ║                    LSP
-  --  ╚════════════════════════════════════════
-  --  use 'neovim/nvim-lspconfig'
+    --  use {
+    --  'mhartington/oceanic-next',
+    --  config = 'vim.cmd[[colorscheme OceanicNext]]'
+    --  }
 
-  use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
-      'j-hui/fidget.nvim'
+    --  use {'Th3Whit3Wolf/one-nvim', config = 'vim.cmd[[colorscheme one-nvim]]'}
+
+    --  use {
+    --  'tanvirtin/monokai.nvim',
+    --  --  config = 'require(\'monokai\').setup {}'
+    --  config = 'require(\'monokai\').setup { palette = require(\'monokai\').pro  }'
+    --  }
+
+    --  use {
+    --  'NLKNguyen/papercolor-theme',
+    --  config = 'vim.cmd[[colorscheme PaperColor]]'
+    --  }
+
+    --  use {
+    --  'luisiacc/gruvbox-baby',
+    --  config = 'vim.cmd[[colorscheme gruvbox-baby]]'
+    --  }
+
+    --  ╔════════════════════════════════════════
+    --  ║                    Treesitter
+    --  ╚════════════════════════════════════════
+    use { 'nvim-treesitter/nvim-treesitter', run = '<cmd>TSUpdate' }
+    use { 'p00f/nvim-ts-rainbow', requires = 'nvim-treesitter/nvim-treesitter' }
+    use {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+        requires = 'nvim-treesitter/nvim-treesitter'
     }
-  }
-
-  --  ╔════════════════════════════════════════
-  --  ║                    Completion
-  --  ╚════════════════════════════════════════
-  --  use 'hrsh7th/nvim-compe'
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip'
+    use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        requires = 'nvim-treesitter/nvim-treesitter'
     }
-  }
-
-  --  use 'winston0410/commented.nvim'
-  use 'numToStr/Comment.nvim'
-
-  use 'phaazon/hop.nvim'
-  use 'karb94/neoscroll.nvim'
-
-  use 'lewis6991/impatient.nvim'
-
-  use 'nvim-lualine/lualine.nvim'
-
-  use "folke/neodev.nvim"
-
-  -- }}}
-  -- misc{{{
-  ------------------------------------------------
-  -- -                   Misc
-  ------------------------------------------------
-  use {
-    'mattn/emmet-vim',
-    ft = { 'html', 'svelte', 'astro', 'vue', 'typescriptreact' }
-  }
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    ft = {
-      'lua', 'pug', 'python', 'mql4', 'sh', 'javascript', 'java', 'bash', 'json'
+    use {
+        'code-biscuits/nvim-biscuits',
+        requires = 'nvim-treesitter/nvim-treesitter'
     }
-  }
-  use 'norcalli/nvim-colorizer.lua'
+    use {
+        'nvim-treesitter/nvim-treesitter-context',
+        requires = 'nvim-treesitter/nvim-treesitter'
+    }
 
-  -- syntax
-  --  use 'pangloss/vim-javascript'
-  --  use 'evanleck/vim-svelte'
-  --  use 'posva/vim-vue'
-  --  use 'digitaltoad/vim-pug'
+    -- fuzzy finder
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope-fzy-native.nvim'
+        }
+    }
 
-  use 'vobornik/vim-mql4'
-  use 'rupurt/vim-mql5'
+    --  ╔════════════════════════════════════════
+    --  ║                    LSP
+    --  ╚════════════════════════════════════════
+    --  use 'neovim/nvim-lspconfig'
 
-  use 'wbthomason/packer.nvim'
+    use {
+        'neovim/nvim-lspconfig',
+        requires = {
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'jose-elias-alvarez/null-ls.nvim',
+            'j-hui/fidget.nvim'
+        }
+    }
 
-  -- }}}
-  -- experiments{{{
-  -- =========================================================================
-  -- =                             Experiements
-  -- =========================================================================
+    --  ╔════════════════════════════════════════
+    --  ║                    Completion
+    --  ╚════════════════════════════════════════
+    --  use 'hrsh7th/nvim-compe'
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip'
+        }
+    }
 
-  --  use {'mbbill/undotree'}
-  --  use {'tpope/vim-fugitive'}
+    --  use 'winston0410/commented.nvim'
+    use 'numToStr/Comment.nvim'
 
-  --  -- Database
-  --  use {'tpope/vim-dadbod'}
-  --  use {'kristijanhusak/vim-dadbod-ui'}
+    use 'phaazon/hop.nvim'
+    use 'karb94/neoscroll.nvim'
 
-  -- colorschemes{{{
-  ------------------------------------------------
-  -- -                   ColorSchemes
-  ------------------------------------------------
-  --  .........................
-  --  .         Light
-  --  .........................
+    use 'lewis6991/impatient.nvim'
 
-  --  use {
-  --  'rafamadriz/neon',
-  --  config = 'vim.cmd[[colorscheme neon]]'
-  --  }
+    use 'nvim-lualine/lualine.nvim'
 
-  --  use {
-  --  'RRethy/nvim-base16',
-  --  config = 'vim.cmd[[colorscheme base16-one-light]]'
-  --  }
+    use "folke/neodev.nvim"
 
-  --  use 'olimorris/onedarkpro.nvim'
-  --  local onedarkpro = require('onedarkpro')
-  --  onedarkpro.setup({
-  --  theme = 'onelight'
-  --  })
-  --  onedarkpro.load()
+    -- }}}
+    -- misc{{{
+    ------------------------------------------------
+    -- -                   Misc
+    ------------------------------------------------
+    use {
+        'mattn/emmet-vim',
+        ft = { 'html', 'svelte', 'astro', 'vue', 'typescriptreact' }
+    }
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        ft = {
+            'lua', 'pug', 'python', 'mql4', 'sh', 'javascript', 'java', 'bash', 'json'
+        }
+    }
+    use 'norcalli/nvim-colorizer.lua'
 
-  --  use 'norcalli/nvim-base16.lua'
-  --  local base16 = require 'base16'
-  --  local one_dark = base16.theme_from_array {
-  --  '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD', '56B6C2',
-  --  'ABB2BF', '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD',
-  --  '56B6C2', 'ABB2BF'
-  --  }
-  --  base16(one_dark, true)
+    -- syntax
+    --  use 'pangloss/vim-javascript'
+    --  use 'evanleck/vim-svelte'
+    --  use 'posva/vim-vue'
+    --  use 'digitaltoad/vim-pug'
 
-  --  use {
-  --  'marko-cerovac/material.nvim',
-  --  config = 'vim.cmd[[colorscheme material]]'
-  --  }
+    use 'vobornik/vim-mql4'
+    use 'rupurt/vim-mql5'
 
-  --  use {
-  --  'sainnhe/edge',
-  --  config = 'vim.cmd[[colorscheme edge]]'
-  --  }
+    use 'wbthomason/packer.nvim'
 
-  --  use {
-  --  'Th3Whit3Wolf/space-nvim',
-  --  config = 'vim.cmd[[colorscheme space-nvim]]'
-  --  }
+    -- }}}
+    -- experiments{{{
+    -- =========================================================================
+    -- =                             Experiements
+    -- =========================================================================
 
-  --  use {
-  --  'Shatur/neovim-ayu',
-  --  config = 'vim.cmd[[colorscheme ayu]]'
-  --  }
+    --  use {'mbbill/undotree'}
+    --  use {'tpope/vim-fugitive'}
 
-  --  use {
-  --  'Th3Whit3Wolf/onebuddy',
-  --  requires = 'tjdevries/colorbuddy.vim',
-  --  config = 'require(\'colorbuddy\').colorscheme(\'onebuddy\')'
-  --  }
+    --  -- Database
+    --  use {'tpope/vim-dadbod'}
+    --  use {'kristijanhusak/vim-dadbod-ui'}
 
-  -- use {'rakr/vim-one'}
-  -- vim.cmd('colorscheme one')
+    -- colorschemes{{{
+    ------------------------------------------------
+    -- -                   ColorSchemes
+    ------------------------------------------------
+    --  .........................
+    --  .         Light
+    --  .........................
 
-  -- use 'Th3Whit3Wolf/space-nvim'
-  -- vim.cmd('colorscheme space-nvim')
+    --  use {
+    --  'rafamadriz/neon',
+    --  config = 'vim.cmd[[colorscheme neon]]'
+    --  }
 
-  --  use {'sainnhe/sonokai', config = 'vim.cmd[[colorscheme sonokai]]'}
+    --  use {
+    --  'RRethy/nvim-base16',
+    --  config = 'vim.cmd[[colorscheme base16-one-light]]'
+    --  }
 
-  -- use 'sainnhe/edge'
-  -- vim.cmd('colorscheme edge')
+    --  use 'olimorris/onedarkpro.nvim'
+    --  local onedarkpro = require('onedarkpro')
+    --  onedarkpro.setup({
+    --  theme = 'onelight'
+    --  })
+    --  onedarkpro.load()
 
-  -- use 'RRethy/nvim-base16'
-  -- local colorscheme = require('base16-colorscheme')
-  -- colorscheme.setup('monokai')
+    --  use 'norcalli/nvim-base16.lua'
+    --  local base16 = require 'base16'
+    --  local one_dark = base16.theme_from_array {
+    --  '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD', '56B6C2',
+    --  'ABB2BF', '282C34', 'E06C75', '98C379', 'E5C07B', '61AFEF', 'C678DD',
+    --  '56B6C2', 'ABB2BF'
+    --  }
+    --  base16(one_dark, true)
 
-  -- }}}
+    --  use {
+    --  'marko-cerovac/material.nvim',
+    --  config = 'vim.cmd[[colorscheme material]]'
+    --  }
 
-  -- use {'tjdevries/express_line.nvim', requires = 'nvim-lua/plenary.nvim'}
+    --  use {
+    --  'sainnhe/edge',
+    --  config = 'vim.cmd[[colorscheme edge]]'
+    --  }
 
-  -- use 'Xuyuanp/scrollbar.nvim'
-  -- use 'kyazdani42/nvim-web-devicons'
-  -- use 'neoclide/coc.nvim'
-  -- use 'nvim-lua/completion-nvim'
-  -- use {
-  -- 'ibhagwan/fzf-lua',
-  -- requires = {'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons'}
-  -- }
+    --  use {
+    --  'Th3Whit3Wolf/space-nvim',
+    --  config = 'vim.cmd[[colorscheme space-nvim]]'
+    --  }
 
-  -- use 'tyru/caw.vim'
-  -- use 'Shougo/context_filetype.vim'
-  -- map('', 's', 'gcc', {noremap = false})
+    --  use {
+    --  'Shatur/neovim-ayu',
+    --  config = 'vim.cmd[[colorscheme ayu]]'
+    --  }
 
-  -- use 'b3nj5m1n/kommentary'
-  -- require('kommentary.config').configure_language('default', {
-  --   prefer_single_line_comments = true
-  --   -- use_consistent_indentation = true,
-  --   -- ignore_whitespace = true
-  -- })
-  -- map('v', 's', 'gc<esc>', {noremap = false})
-  -- map('n', 's', 'gc', {noremap = false})
-  -- map('n', 'ss', 'gcc', {noremap = false})
+    --  use {
+    --  'Th3Whit3Wolf/onebuddy',
+    --  requires = 'tjdevries/colorbuddy.vim',
+    --  config = 'require(\'colorbuddy\').colorscheme(\'onebuddy\')'
+    --  }
 
-  -- }}}
+    -- use {'rakr/vim-one'}
+    -- vim.cmd('colorscheme one')
+
+    -- use 'Th3Whit3Wolf/space-nvim'
+    -- vim.cmd('colorscheme space-nvim')
+
+    --  use {'sainnhe/sonokai', config = 'vim.cmd[[colorscheme sonokai]]'}
+
+    -- use 'sainnhe/edge'
+    -- vim.cmd('colorscheme edge')
+
+    -- use 'RRethy/nvim-base16'
+    -- local colorscheme = require('base16-colorscheme')
+    -- colorscheme.setup('monokai')
+
+    -- }}}
+
+    -- use {'tjdevries/express_line.nvim', requires = 'nvim-lua/plenary.nvim'}
+
+    -- use 'Xuyuanp/scrollbar.nvim'
+    -- use 'kyazdani42/nvim-web-devicons'
+    -- use 'neoclide/coc.nvim'
+    -- use 'nvim-lua/completion-nvim'
+    -- use {
+    -- 'ibhagwan/fzf-lua',
+    -- requires = {'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons'}
+    -- }
+
+    -- use 'tyru/caw.vim'
+    -- use 'Shougo/context_filetype.vim'
+    -- map('', 's', 'gcc', {noremap = false})
+
+    -- use 'b3nj5m1n/kommentary'
+    -- require('kommentary.config').configure_language('default', {
+    --   prefer_single_line_comments = true
+    --   -- use_consistent_indentation = true,
+    --   -- ignore_whitespace = true
+    -- })
+    -- map('v', 's', 'gc<esc>', {noremap = false})
+    -- map('n', 's', 'gc', {noremap = false})
+    -- map('n', 'ss', 'gcc', {noremap = false})
+
+    -- }}}
 
 end)

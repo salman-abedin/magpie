@@ -2,6 +2,8 @@ if not pcall(require, 'telescope') then return end
 
 require('telescope').setup {
     defaults = {
+        layout_config = { prompt_position = 'top' },
+        sorting_strategy = 'ascending',
         file_ignore_patterns = {
             'node_modules/.*',
             '%.env',
@@ -10,29 +12,29 @@ require('telescope').setup {
             '%.ex4',
             '%.set',
         },
-        mappings = { i = { ['kj'] = 'close', ['<ESC>'] = 'close' } }
+        mappings = {
+            i = {
+                ['kj'] = 'close',
+                ['<ESC>'] = 'close',
+                [';'] = 'select_default',
+            }
+        }
     },
 
     pickers = {
         find_files = {
-            layout_config = { prompt_position = 'top' },
-            sorting_strategy = 'ascending',
             previewer = false,
             mappings = {
                 i = {
-                    [';'] = 'select_default',
                     [':'] = 'select_tab',
                     -- [':'] = 'select_horizontal',
                 }
-                -- i = {[';'] = 'select_default', ['kj'] = 'close', ['<ESC>'] = 'close'}
             }
-            -- theme = 'dropdown'
-            -- theme = 'ivy'
-            -- hidden = true
         },
-
-        live_grep = { theme = 'ivy', mappings = { i = { [';'] = 'send_to_qflist' } } }
-
+        live_grep = { theme = 'ivy' },
+        lsp_definitions = { theme = 'ivy' },
+        lsp_references = { theme = 'ivy' },
+        diagnostics = { theme = 'ivy' },
     }
 }
 require('telescope').load_extension('fzy_native')

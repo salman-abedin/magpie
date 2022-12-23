@@ -1,15 +1,15 @@
 local map = require('map')
 
 if pcall(require, 'hop') then
-  require 'hop'.setup { quit_key = ';' }
-  map('n', '<leader>e', '<cmd>lua require\'hop\'.hint_words()<cr>',
-    { noremap = false })
-  map('v', '<leader>e', '<cmd>lua require\'hop\'.hint_words()<cr>',
-    { noremap = false })
-  map('n', '<leader>E', '<cmd>lua require\'hop\'.hint_char1()<cr>',
-    { noremap = false })
-  map('v', '<leader>E', '<cmd>lua require\'hop\'.hint_char1()<cr>',
-    { noremap = false })
+    require 'hop'.setup { quit_key = ';' }
+    map('n', '<leader>e', '<cmd>lua require\'hop\'.hint_words()<cr>',
+        { noremap = false })
+    map('v', '<leader>e', '<cmd>lua require\'hop\'.hint_words()<cr>',
+        { noremap = false })
+    map('n', '<leader>E', '<cmd>lua require\'hop\'.hint_char1()<cr>',
+        { noremap = false })
+    map('v', '<leader>E', '<cmd>lua require\'hop\'.hint_char1()<cr>',
+        { noremap = false })
 end
 
 --  if pcall(require, 'commented') then
@@ -21,18 +21,18 @@ end
 --  }
 --  end
 if pcall(require, 'Comment') then
-  require('Comment').setup {
-    opleader = { line = '<leader>s' },
-    toggler = { line = '<leader>ss' }
-  }
+    require('Comment').setup {
+        opleader = { line = '<leader>s' },
+        toggler = { line = '<leader>ss' }
+    }
 end
 
 if pcall(require, 'neoscroll') then
-  require('neoscroll').setup()
-  require('neoscroll.config').set_mappings {
-    J = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'false', '250' } },
-    K = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'false', '250' } }
-  }
+    require('neoscroll').setup()
+    require('neoscroll.config').set_mappings {
+        J = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'false', '250' } },
+        K = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'false', '250' } }
+    }
 end
 
 vim.g.emmet_html5 = 0
@@ -45,16 +45,21 @@ vim.g.indent_blankline_use_treesitter = true
 -- vim.g.indent_blankline_enabled = false
 
 if pcall(require, 'colorizer') then
-  require 'colorizer'.setup { 'sass', 'svelte', 'vue', 'css', 'scss', 'yaml' }
+    require 'colorizer'.setup { 'sass', 'svelte', 'vue', 'css', 'scss', 'yaml' }
 end
 
 if pcall(require, 'neodev') then
-  require('neodev').setup()
+    require('neodev').setup()
 end
 
 if pcall(require, 'fidget') then
-  require('fidget').setup()
+    require('fidget').setup()
 end
+
+if pcall(require, 'luasnip') then
+    require("luasnip.loaders.from_snipmate").lazy_load()
+end
+
 
 -- if pcall(require, 'nvim-web-devicons') then
 -- require'nvim-web-devicons'.setup {
