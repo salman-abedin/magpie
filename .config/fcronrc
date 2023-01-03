@@ -31,7 +31,7 @@ GIT=/mnt/internal/git
 #  ║                    Meetings
 #  ╚════════════════════════════════════════
 # AC Daily Scrum
-28 23 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) meet z 88105129996 THVOZGFRYU1Kd3gxSi9Vek12MzBsUT09
+28 23 * * 1-5 DISPLAY=$(cat /tmp/DISPLAY) meet z 89063887656 QUt0bFVKWXRMTWY3dlMzSFFrYi9LUT09
 # ISD Daily Scrum 1
 58 23 * * 1-4 DISPLAY=$(cat /tmp/DISPLAY) meet z 7397604014 RkpFbEd4RzJMZ3o1NFdydFo1YVVuUT09
 # ISD Weekly Scrum 2
