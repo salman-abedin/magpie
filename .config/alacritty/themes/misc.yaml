@@ -1,0 +1,139 @@
+#=======================================
+#              Gruvbox
+#=======================================
+
+#  colors:
+#  primary:
+#  # background: '#282828'
+#  # soft contrast: background = '#32302f'
+#  background: '#000000'
+#  foreground: '#ebdbb2'
+#  normal:
+#  black: '#282828'
+#  red: '#cc241d'
+#  green: '#98971a'
+#  yellow: '#d79921'
+#  blue: '#458588'
+#  magenta: '#b16286'
+#  cyan: '#689d6a'
+#  white: '#a89984'
+#  bright:
+#  black: '#928374'
+#  red: '#fb4934'
+#  green: '#b8bb26'
+#  yellow: '#fabd2f'
+#  blue: '#83a598'
+#  magenta: '#d3869b'
+#  cyan: '#8ec07c'
+#  white: '#ebdbb2'
+
+#  --------------------------------------------------
+#  -                   Gotham
+#  --------------------------------------------------
+
+# colors:
+#    primary:
+#       # background: '0x0a0f14'
+#       background: '0x000000'
+#       foreground: '0x98d1ce'
+#    normal:
+#       black: '0x0a0f14'
+#       red: '0xc33027'
+#       green: '0x26a98b'
+#       yellow: '0xedb54b'
+#       blue: '0x195465'
+#       magenta: '0x4e5165'
+#       cyan: '0x33859d'
+#       white: '0x98d1ce'
+#    bright:
+#       black: '0x10151b'
+#       red: '0xd26939'
+#       green: '0x081f2d'
+#       yellow: '0x245361'
+#       blue: '0x093748'
+#       magenta: '0x888ba5'
+#       cyan: '0x599caa'
+#       white: '0xd3ebe9'
+
+#  --------------------------------------------------
+#  -                   Nightfly
+#  --------------------------------------------------
+
+# colors:
+#   primary:
+#     background:        '#000000'
+# # background:        '#011627'
+#     foreground:        '#acb4c2'
+#     bright_foreground: '#eeeeee'
+#   cursor:
+#     text:   '#080808'
+#     cursor: '#9ca1aa'
+#   selection:
+#     text:       '#080808'
+#     background: '#b2ceee'
+#   normal:
+#     black:   '#1d3b53'
+#     red:     '#fc514e'
+#     green:   '#a1cd5e'
+#     yellow:  '#e3d18a'
+#     blue:    '#82aaff'
+#     magenta: '#c792ea'
+#     cyan:    '#7fdbca'
+#     white:   '#a1aab8'
+#   bright:
+#     black:   '#7c8f8f'
+#     red:     '#ff5874'
+#     green:   '#21c7a8'
+#     yellow:  '#ecc48d'
+#     blue:    '#82aaff'
+#     magenta: '#ae81ff'
+#     cyan:    '#7fdbca'
+#     white:   '#d6deeb'
+
+#  --------------------------------------------------
+#  -                   PaperColor
+#  --------------------------------------------------
+
+#  colors:
+
+#  primary:
+
+#  background: "#cccccc"
+
+#  foreground: "#000000"
+
+#  normal:
+
+#  black: "#eeeeee"
+
+#  red: "#af0000"
+
+#  green: "#008700"
+
+#  yellow: "#5f8700"
+
+#  blue: "#0087af"
+
+#  magenta: "#878787"
+
+#  cyan: "#005f87"
+
+#  white: "#444444"
+
+#  bright:
+
+#  black: "#bcbcbc"
+
+#  red: "#d70000"
+
+#  green: "#d70087"
+
+#  yellow: "#8700af"
+
+#  blue: "#d75f00"
+
+#  magenta: "#d75f00"
+
+#  cyan: "#005faf"
+
+#  white: "#005f87"

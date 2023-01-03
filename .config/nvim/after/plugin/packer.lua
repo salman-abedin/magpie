@@ -24,23 +24,28 @@ require('packer').startup(function()
     -- -                   Essentials
     ------------------------------------------------
 
-    use {
-        'sainnhe/gruvbox-material',
-        config = 'vim.cmd[[colorscheme gruvbox-material]]'
-    }
+    -- use {
+    --     'sainnhe/gruvbox-material',
+    --     config = 'vim.cmd[[colorscheme gruvbox-material]]'
+    -- }
 
-    --  use {
-    --  'mhartington/oceanic-next',
-    --  config = 'vim.cmd[[colorscheme OceanicNext]]'
-    --  }
+    -- use {
+    --     'mhartington/oceanic-next',
+    --     config = 'vim.cmd[[colorscheme OceanicNext]]'
+    -- }
 
-    --  use {'Th3Whit3Wolf/one-nvim', config = 'vim.cmd[[colorscheme one-nvim]]'}
+    -- use { 'Th3Whit3Wolf/one-nvim', config = 'vim.cmd[[colorscheme one-nvim]]' }
+    -- use { 'navarasu/onedark.nvim', config = 'vim.cmd[[colorscheme onedark]]' }
+    use { 'navarasu/onedark.nvim', config = function() vim.cmd.colorscheme('onedark') end }
 
-    --  use {
-    --  'tanvirtin/monokai.nvim',
-    --  --  config = 'require(\'monokai\').setup {}'
-    --  config = 'require(\'monokai\').setup { palette = require(\'monokai\').pro  }'
-    --  }
+    -- use {
+    --     'tanvirtin/monokai.nvim',
+    --     --  config = 'require(\'monokai\').setup {}'
+    --     -- config = 'require(\'monokai\').setup { palette = require(\'monokai\').pro  }'
+    --     config = function()
+    --         require('monokai').setup { palette = require('monokai').pro }
+    --     end
+    -- }
 
     --  use {
     --  'NLKNguyen/papercolor-theme',

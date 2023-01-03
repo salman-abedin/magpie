@@ -13,6 +13,15 @@ if pcall(require, 'mason-lspconfig') then
     -- end
 
     local mason_lspconfig = require 'mason-lspconfig'
+    mason_lspconfig.setup {
+        ensure_installed = {
+            'sumneko_lua',
+            'bashls',
+            'pylsp',
+            'tsserver',
+            'rust_analyzer',
+        },
+    }
     mason_lspconfig.setup_handlers {
         function(server_name)
             require('lspconfig')[server_name].setup {
@@ -27,6 +36,7 @@ if pcall(require, 'null-ls') then
     require("null-ls").setup({
         sources = {
             require("null-ls").builtins.formatting.shfmt,
+            require("null-ls").builtins.formatting.prettier.with({ extra_args = { "--tab-width", "4" } }),
             -- require("null-ls").builtins.diagnostics.shellcheck,
         },
     })

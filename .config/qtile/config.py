@@ -208,8 +208,8 @@ widget_defaults = dict(
     fontsize=20,
     padding=10,
     #  foreground='#000000',
-    #  foreground='#abb2bf',
-    foreground='#dfbf8e',  # gruvbox
+     foreground='#abb2bf',
+    # foreground='#dfbf8e',  # gruvbox
     #  foreground='#abb2bf',  # One Dark
 )
 extension_defaults = widget_defaults.copy()
@@ -256,9 +256,9 @@ screens = [
                 widget.Systray(),
             ],
             30,
-            background="#282828",  # gruvbox
-            #  background="#000000",
-            #  background="#1e2127",
+            # background="#282828",  # gruvbox
+             # background="#000000",
+             background="#1e2127",
             #  background="#dddddddd",
         ),
     ),

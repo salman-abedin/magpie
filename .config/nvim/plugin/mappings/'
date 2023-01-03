@@ -51,8 +51,6 @@ map('n', '<space><esc>', ':qa!<cr>')
 -- keep stuff centered
 map('n', 'n', 'nzzzv') -- go to next search
 map('n', 'N', 'Nzzzv') -- go to previous search
-
--- join lines
 map('n', '<space>J', 'mzJ`z') -- join the line from below
 map('n', '<space>K', 'kmzJ`z') -- join the line from above
 
@@ -64,8 +62,8 @@ map('i', '?', '?<c-g>u')
 map('i', ';', ';<c-g>u')
 
 -- move lines
-map('n', '<c-j>', ':m .+1<cr>==')
-map('n', '<c-k>', ':m .-2<cr>==')
+map('n', '<space><c-j>', ':m .+1<cr>==')
+map('n', '<space><c-k>', ':m .-2<cr>==')
 map('i', '<c-j>', '<esc>:m .+1<cr>==a')
 map('i', '<c-k>', '<esc>:m .-2<cr>==a')
 map('v', '<c-j>', ':m \'>+1<cr>gv=gv')

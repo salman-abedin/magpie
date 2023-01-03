@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     callback = function()
         vim.lsp.buf.format()
     end,
-    pattern = "*.{lua,sh}",
+    pattern = "*.{lua,sh,yaml,rs,py}",
 })
 
 -- vim.api.nvim_create_autocmd({ 'CursorHold' }, {

@@ -18,24 +18,34 @@ PS1+="%B"
 # User & Machine
 PS1+="👤 %{$fg[yellow]%}%n "
 PS1+="💻 %{$fg[red]%}%m "
+# PS1+="%{$fg[yellow]%}%n"
+# PS1+=" %{$fg[red]%}@%m"
 
 # Git
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '🌴 %b '
+# zstyle ':vcs_info:*' formats ' on %b '
 precmd () { vcs_info }
 PS1+="%{$fg[green]%}"
 PS1+=\$vcs_info_msg_0_
 
 # Path
 # PS1+="📁 %{$fg[blue]%}%1~ "
-PS1+="📁 %{$fg[grey]%}%~ "
+# PS1+="📁 %{$fg[grey]%}%~ "
+PS1+="📁 %{$fg[white]%}%~ "
+# PS1+=":%{$fg[white]%}%~ "
 
+# New line
+PS1+=$'\n'
 
 # Shell
-PS1+=$'\n'
-[ "$EUID" = 0 ] &&
-   PS1+="🔨 " ||
-   PS1+="💲 "
+# [ "$EUID" = 0 ] &&
+#    PS1+="🔨 " ||
+#    PS1+="💲 "
+# [ "$EUID" = 0 ] &&
+#    PS1+="%{$fg[red]%}#  " ||
+#    PS1+="%{$fg[green]%}$  "
+PS1+="%{$fg[green]%}$  "
 
 # Reset
 PS1+="%{$reset_color%}%b"
